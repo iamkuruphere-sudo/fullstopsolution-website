@@ -103,7 +103,7 @@
             "name": "How do I receive my digital product after purchase?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Upon completing your secure checkout via Razorpay or Stripe, you receive an instant download link and a unique license key on your screen, plus a backup confirmation sent directly to your email."
+              "text": "Upon completing your secure checkout via Razorpay (UPI, Cards, Netbanking), you receive an instant download link and a unique license key on your screen, plus a backup confirmation sent directly to your email."
             }
           },
           {
@@ -493,7 +493,7 @@
             <div class="product-header">
               <span class="badge badge-success" style="margin-bottom:0.75rem;">Code & Architecture</span>
               <h3 class="product-title">Developer Pro SaaS Boilerplate</h3>
-              <p class="product-subtitle">Production-ready Next.js / Tailwind / Auth / Razorpay & Stripe integration with lifetime updates.</p>
+              <p class="product-subtitle">Production-ready Next.js / Tailwind / Auth / Razorpay & UPI integration with lifetime updates.</p>
             </div>
             <div class="product-pricing">
               <span class="product-price" id="price-dev-boilerplate"><span class="product-price-currency">₹</span>3,999</span>
@@ -507,7 +507,7 @@
               </li>
               <li class="product-feature-item">
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                <span><strong>Razorpay & Stripe:</strong> Multi-currency checkout & webhooks</span>
+                <span><strong>Razorpay & UPI:</strong> Instant payments, UPI QR & webhooks</span>
               </li>
               <li class="product-feature-item">
                 <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
@@ -644,7 +644,7 @@
               <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
             <div class="faq-answer">
-              We support Razorpay (for UPI via Google Pay, PhonePe, Paytm, Indian Debit/Credit cards, Netbanking) and Stripe (for international cards like Visa, Mastercard, American Express, and Apple Pay).
+              We support Razorpay (for instant UPI via Google Pay, PhonePe, Paytm, BHIM, RuPay, Indian Debit/Credit cards, Netbanking) and PayPal for international payments. All transactions are 100% encrypted.
             </div>
           </div>
 
@@ -770,7 +770,8 @@
     </div>
   </div>
 
-  <!-- Core Scripts -->
+  <!-- Core Scripts & Payment SDKs -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="assets/js/tools.js"></script>
   <script src="assets/js/checkout.js"></script>
   <script src="assets/js/app.js"></script>

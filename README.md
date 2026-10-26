@@ -74,20 +74,23 @@ Then open your browser and navigate to:
 
 ---
 
-## 💳 Payment Gateway Configuration (Razorpay & Stripe)
+## 💳 Payment Gateway Configuration (Razorpay & PayPal)
 
 In `assets/js/checkout.js`:
-- To enable live **Razorpay** checkout (UPI, Netbanking, Cards for India):
-  Add your Razorpay Key ID:
+- **Razorpay (India - UPI, Cards, Netbanking):**
+  Add your live Razorpay Key ID either via the on-screen Gateway Settings box or in code:
   ```javascript
   const rzp = new Razorpay({
-    key: "YOUR_RAZORPAY_KEY_ID",
+    key: "YOUR_RAZORPAY_KEY_ID", // e.g. rzp_live_xxxxxxxx
     amount: priceInPaise,
     currency: "INR",
     name: "Fullstop Solution"
   });
   ```
-- Instant Sandbox Mode: The site comes with a built-in interactive checkout simulation that validates user input, applies promotional coupon codes (e.g. `LAUNCH50` for 50% off), generates unique license keys (`FS-XXXX-XXXX`), and provides immediate digital package downloads!
+- **PayPal (International Buyers):**
+  Set your PayPal Merchant email (defaults to `contact@fullstopsolution.in`).
+
+- **Instant Sandbox Mode:** The site comes with a built-in interactive checkout simulation that validates user input, applies promotional coupon codes (e.g. `LAUNCH50` for 50% off), generates unique license keys (`FS-XXXX-XXXX`), and provides immediate digital package downloads!
 
 ---
 
