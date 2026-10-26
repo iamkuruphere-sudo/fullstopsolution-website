@@ -19,7 +19,7 @@ const Analytics = {
   },
 
   getGscCode() {
-    return localStorage.getItem('fs_gsc_code') || '';
+    return localStorage.getItem('fs_gsc_code') || 'Uy5GWDDBbORvj1QoiopkFustieBbaZIsD5j9CL8vONE';
   },
 
   setGscCode(code) {
