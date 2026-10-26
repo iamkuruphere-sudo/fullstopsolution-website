@@ -2,6 +2,8 @@
 User-agent: *
 Allow: /
 Disallow: /assets/private/
+Disallow: /dashboard.html
+Disallow: /admin
 
 # Sitemap location
 Sitemap: https://www.fullstopsolution.in/sitemap.xml

@@ -3,14 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Traffic Intelligence & Google Analytics Dashboard | Fullstop Solution</title>
-  <meta name="description" content="Executive real-time traffic monitoring dashboard for www.fullstopsolution.in. Google Search Console & Google Analytics 4 integration hub.">
+  <title>Private Backend Console | Fullstop Solution</title>
+  <meta name="robots" content="noindex, nofollow, noarchive">
   <meta name="google-site-verification" content="Uy5GWDDBbORvj1QoiopkFustieBbaZIsD5j9CL8vONE">
-  <link rel="canonical" href="https://www.fullstopsolution.in/dashboard.html">
   <link rel="icon" type="image/png" href="assets/images/logo.png">
   <link rel="stylesheet" href="assets/css/styles.css">
 
   <style>
+    /* Admin Lock Gate */
+    #admin-gate {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+    }
+    .gate-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .gate-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.15);
+      color: var(--accent-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
     .dash-pulse-badge {
       display: inline-flex;
       align-items: center;
@@ -150,273 +181,348 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a href="/" class="brand">
-        <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img">
-        <div class="brand-text">
-          <span class="brand-name">FULLSTOP SOLUTION</span>
-          <span class="brand-domain">Executive Traffic Intelligence</span>
-        </div>
-      </a>
 
-      <div class="nav-actions">
-        <div class="dash-pulse-badge">
-          <span class="pulse-dot"></span>
-          <span>4 Users Active Now</span>
-        </div>
-        <a href="/" class="btn btn-outline btn-sm">← Back to Website</a>
-        <button id="theme-toggle-btn" class="btn-icon" aria-label="Toggle theme">
-          <span id="theme-icon">☀️</span>
-        </button>
+  <!-- ADMIN LOCK SCREEN (Default view for unauthenticated visitors) -->
+  <div id="admin-gate" style="display:flex;">
+    <div class="gate-card">
+      <div class="gate-icon">🔒</div>
+      <h2 style="font-size:1.35rem; font-weight:800; margin-bottom:0.4rem; color:var(--text-primary);">Site Owner Access</h2>
+      <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:1.5rem; line-height:1.5;">
+        This traffic monitoring dashboard is a private administration console for <strong>Fullstop Solution</strong>.
+      </p>
+      <form id="gate-form" onsubmit="event.preventDefault(); verifyAdminPin();" style="display:flex; flex-direction:column; gap:0.75rem;">
+        <input type="password" id="admin-pin-input" class="form-input" placeholder="Enter Admin PIN" autocomplete="off" autofocus style="text-align:center; font-size:1.15rem; letter-spacing:4px; font-family:var(--font-mono);">
+        <button type="submit" class="btn btn-primary" style="width:100%; font-weight:700;">🔓 Unlock Dashboard</button>
+      </form>
+      <div id="gate-error" style="color:var(--accent-rose); font-size:0.8rem; margin-top:0.75rem; min-height:1.2rem; font-weight:600;"></div>
+      <div style="margin-top:1.5rem; border-top:1px solid var(--border-color); padding-top:1rem;">
+        <a href="/" style="font-size:0.825rem; color:var(--text-muted); text-decoration:none;">← Return to Public Website</a>
       </div>
     </div>
-  </header>
+  </div>
 
-  <main class="container" style="padding: 2.5rem 1.25rem 4rem;">
-    <!-- Top Alert & Audit Guide for Google Analytics -->
-    <div class="setup-guide-box">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
-        <div>
-          <h3 style="font-size:1.15rem; font-weight:800; color:var(--text-primary); margin-bottom:0.35rem;">
-            🔍 Why couldn't you find 'fullstopsolution.in' in Google Analytics?
-          </h3>
-          <p style="color:var(--text-secondary); font-size:0.875rem; line-height:1.5; max-width:820px;">
-            Google Analytics (GA4) does not automatically discover new domains until you create a <strong>Web Data Stream</strong> inside your Google Analytics account. 
-            Once created, Google generates a unique <strong>Measurement ID</strong> (formatted as <code>G-XXXXXXXXXX</code>) that connects your website to Google's reporting servers.
-          </p>
-        </div>
-        <a href="https://analytics.google.com/analytics/web/#/provision/SignUp" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-          ➕ Open GA4 Stream Creator ↗
+  <!-- AUTHENTICATED ADMIN CONTENT (Hidden until unlocked with PIN) -->
+  <div id="admin-content" style="display:none;">
+    <!-- Header -->
+    <header class="navbar">
+      <div class="container nav-inner">
+        <a href="/" class="brand">
+          <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img">
+          <div class="brand-text">
+            <span class="brand-name">FULLSTOP SOLUTION</span>
+            <span class="brand-domain">Private Admin Console</span>
+          </div>
         </a>
-      </div>
 
-      <!-- Quick 3-Step Walkthrough -->
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem; margin-top:1.25rem; font-size:0.825rem;">
-        <div style="background:var(--bg-primary); padding:0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-          <strong style="color:#60a5fa;">Step 1: In Google Analytics</strong><br>
-          Click <strong>Admin</strong> (gear icon bottom-left) → <strong>Create Property</strong> named <em>"Fullstop Solution"</em>.
-        </div>
-        <div style="background:var(--bg-primary); padding:0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-          <strong style="color:#60a5fa;">Step 2: Add Web Stream</strong><br>
-          Under Data Streams, select <strong>Web</strong>. Enter URL: <code>https://www.fullstopsolution.in</code>.
-        </div>
-        <div style="background:var(--bg-primary); padding:0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
-          <strong style="color:#60a5fa;">Step 3: Paste Measurement ID</strong><br>
-          Copy the generated <code>G-XXXXXXXXXX</code> and paste it in the box below to activate instant tracking!
-        </div>
-      </div>
-    </div>
-
-    <!-- KPI Metric Cards -->
-    <div class="dash-kpi-grid">
-      <div class="dash-kpi-card">
-        <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Total Pageviews</span>
-        <div class="dash-kpi-val" id="kpi-pageviews">1,482</div>
-        <div class="dash-kpi-sub">↑ +18.4% this week</div>
-      </div>
-      <div class="dash-kpi-card">
-        <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Unique User Sessions</span>
-        <div class="dash-kpi-val" id="kpi-sessions">894</div>
-        <div class="dash-kpi-sub">↑ 88% New Visitors</div>
-      </div>
-      <div class="dash-kpi-card">
-        <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Daily Tools Executed</span>
-        <div class="dash-kpi-val" id="kpi-tools">3,240</div>
-        <div class="dash-kpi-sub">⚡ 100% In-Browser Privacy</div>
-      </div>
-      <div class="dash-kpi-card">
-        <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Checklist Leads & Sales</span>
-        <div class="dash-kpi-val" id="kpi-leads">152</div>
-        <div class="dash-kpi-sub">🎯 10.2% Conversion Rate</div>
-      </div>
-    </div>
-
-    <!-- Main Grid: Connection Controls & Live Stream -->
-    <div class="dash-grid-2">
-      <!-- Google Analytics & Search Console Control Center -->
-      <div class="dash-panel">
-        <div class="dash-panel-header">
-          <h2 class="dash-panel-title">
-            <span>⚙️</span> Google Integration Hub
-          </h2>
-          <span class="badge badge-success" id="overall-status-badge">DNS & GSC Verified</span>
-        </div>
-
-        <!-- Google Analytics Setup Box -->
-        <div class="form-group" style="margin-bottom:1.5rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <label class="form-label" style="margin-bottom:0;">Google Analytics 4 Measurement ID</label>
-            <span id="ga-status-badge" class="badge badge-success">🟢 Connected: G-E9HWZP2114</span>
+        <div class="nav-actions">
+          <div class="dash-pulse-badge">
+            <span class="pulse-dot"></span>
+            <span>4 Users Active Now</span>
           </div>
-          <div style="display:flex; gap:0.5rem;">
-            <input type="text" id="input-ga-id" class="form-input" value="G-E9HWZP2114" placeholder="G-XXXXXXXXXX" style="font-family:var(--font-mono); text-transform:uppercase;">
-            <button class="btn btn-primary btn-sm" onclick="saveGaId()">Save GA4 ID</button>
-          </div>
-          <small style="color:var(--accent-emerald); font-size:0.75rem; margin-top:4px; display:block;">
-            ✓ Measurement ID G-E9HWZP2114 is live & actively streaming hits to your Google Analytics dashboard.
-          </small>
-        </div>
-
-        <!-- Google Search Console Status Box -->
-        <div class="form-group" style="margin-bottom:1.5rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <label class="form-label" style="margin-bottom:0;">Google Search Console Token</label>
-            <span class="badge badge-success">✓ Verified on GoDaddy & HTML</span>
-          </div>
-          <div style="display:flex; gap:0.5rem;">
-            <input type="text" id="input-gsc-code" class="form-input" value="Uy5GWDDBbORvj1QoiopkFustieBbaZIsD5j9CL8vONE" readonly style="font-family:var(--font-mono); background:rgba(0,0,0,0.2);">
-            <button class="btn btn-secondary btn-sm" onclick="navigator.clipboard.writeText('Uy5GWDDBbORvj1QoiopkFustieBbaZIsD5j9CL8vONE'); App.toast('Copied token!');">Copy</button>
-          </div>
-          <small style="color:var(--accent-emerald); font-size:0.75rem; margin-top:4px; display:block;">
-            ✓ Active in DNS TXT record and HTML meta tag for full Search Console indexing.
-          </small>
-        </div>
-
-        <!-- Live Diagnostics & Testing Buttons -->
-        <div style="border-top:1px solid var(--border-color); padding-top:1.25rem;">
-          <label class="form-label" style="margin-bottom:0.65rem;">Verification & Test Actions</label>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-            <button class="btn btn-primary btn-sm" onclick="sendTestGaEvent()">🧪 Dispatch Test GA4 Event</button>
-            <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">🔍 Open Search Console ↗</a>
-            <a href="https://analytics.google.com/analytics/web/#/p/realtime" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">📊 Open GA4 Realtime ↗</a>
-            <button class="btn btn-outline btn-sm" onclick="exportMetricsCsv()">📥 Export CSV</button>
-          </div>
+          <button onclick="lockAdminConsole()" class="btn btn-outline btn-sm" style="border-color:rgba(239, 68, 68, 0.4); color:#f87171;">🔒 Lock & Exit</button>
+          <a href="/" class="btn btn-outline btn-sm">← Live Website</a>
+          <button id="theme-toggle-btn" class="btn-icon" aria-label="Toggle theme">
+            <span id="theme-icon">☀️</span>
+          </button>
         </div>
       </div>
+    </header>
 
-      <!-- Real-Time Activity Feed -->
-      <div class="dash-panel">
-        <div class="dash-panel-header">
-          <h2 class="dash-panel-title">
-            <span>⚡</span> Live Traffic Stream
-          </h2>
-          <span style="font-size:0.8rem; color:var(--accent-emerald); font-weight:bold;">● Streaming</span>
-        </div>
-
-        <ul class="activity-feed-list" id="activity-feed">
-          <!-- Dynamically populated -->
-        </ul>
-      </div>
-    </div>
-
-    <!-- Traffic Channels & Tool Operations -->
-    <div class="dash-grid-2">
-      <!-- Traffic Channels -->
-      <div class="dash-panel">
-        <div class="dash-panel-header">
-          <h2 class="dash-panel-title">
-            <span>🌐</span> Acquisition Channels
-          </h2>
-          <span style="font-size:0.8rem; color:var(--text-muted);">Real-time Telemetry</span>
-        </div>
-
-        <div style="display:flex; flex-direction:column; gap:0.65rem;">
+    <main class="container" style="padding: 2.5rem 1.25rem 4rem;">
+      <!-- Top Alert & Audit Guide for Google Analytics -->
+      <div class="setup-guide-box">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
           <div>
-            <div class="bar-row">
-              <span style="font-weight:600;">Google Organic Search</span>
-              <div class="bar-wrap"><div class="bar-fill" style="width:58%;"></div></div>
-              <span style="font-family:var(--font-mono); font-weight:700;">58%</span>
+            <h3 style="font-size:1.15rem; font-weight:800; color:var(--text-primary); margin-bottom:0.35rem;">
+              🔍 Google Analytics 4 & Search Console Control Hub
+            </h3>
+            <p style="color:var(--text-secondary); font-size:0.875rem; line-height:1.5; max-width:820px;">
+              This backend dashboard allows you to audit live traffic telemetry, monitor Google Search Console indexing status, and test real-time Google Analytics events privately.
+            </p>
+          </div>
+          <a href="https://analytics.google.com/analytics/web/#/provision/SignUp" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            ➕ Open GA4 Admin ↗
+          </a>
+        </div>
+
+        <!-- Quick 3-Step Walkthrough -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem; margin-top:1.25rem; font-size:0.825rem;">
+          <div style="background:var(--bg-primary); padding:0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+            <strong style="color:#60a5fa;">Step 1: In Google Analytics</strong><br>
+            Click <strong>Admin</strong> (gear icon) → <strong>Create Property</strong> named <em>"Fullstop Solution"</em>.
+          </div>
+          <div style="background:var(--bg-primary); padding:0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+            <strong style="color:#60a5fa;">Step 2: Add Web Stream</strong><br>
+            Under Data Streams, select <strong>Web</strong>. Enter URL: <code>https://www.fullstopsolution.in</code>.
+          </div>
+          <div style="background:var(--bg-primary); padding:0.85rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+            <strong style="color:#60a5fa;">Step 3: Measurement ID Live</strong><br>
+            <code>G-E9HWZP2114</code> is already linked and capturing traffic data.
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Metric Cards -->
+      <div class="dash-kpi-grid">
+        <div class="dash-kpi-card">
+          <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Total Pageviews</span>
+          <div class="dash-kpi-val" id="kpi-pageviews">1,482</div>
+          <div class="dash-kpi-sub">↑ +18.4% this week</div>
+        </div>
+        <div class="dash-kpi-card">
+          <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Unique User Sessions</span>
+          <div class="dash-kpi-val" id="kpi-sessions">894</div>
+          <div class="dash-kpi-sub">↑ 88% New Visitors</div>
+        </div>
+        <div class="dash-kpi-card">
+          <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Daily Tools Executed</span>
+          <div class="dash-kpi-val" id="kpi-tools">3,240</div>
+          <div class="dash-kpi-sub">⚡ 100% In-Browser Privacy</div>
+        </div>
+        <div class="dash-kpi-card">
+          <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Checklist Leads & Sales</span>
+          <div class="dash-kpi-val" id="kpi-leads">152</div>
+          <div class="dash-kpi-sub">🎯 10.2% Conversion Rate</div>
+        </div>
+      </div>
+
+      <!-- Main Grid: Connection Controls & Live Stream -->
+      <div class="dash-grid-2">
+        <!-- Google Analytics & Search Console Control Center -->
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <h2 class="dash-panel-title">
+              <span>⚙️</span> Google Integration Hub
+            </h2>
+            <span class="badge badge-success" id="overall-status-badge">DNS & GSC Verified</span>
+          </div>
+
+          <!-- Google Analytics Setup Box -->
+          <div class="form-group" style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <label class="form-label" style="margin-bottom:0;">Google Analytics 4 Measurement ID</label>
+              <span id="ga-status-badge" class="badge badge-success">🟢 Connected: G-E9HWZP2114</span>
             </div>
-          </div>
-          <div>
-            <div class="bar-row">
-              <span style="font-weight:600;">Direct & Bookmarks</span>
-              <div class="bar-wrap"><div class="bar-fill" style="width:24%;"></div></div>
-              <span style="font-family:var(--font-mono); font-weight:700;">24%</span>
+            <div style="display:flex; gap:0.5rem;">
+              <input type="text" id="input-ga-id" class="form-input" value="G-E9HWZP2114" placeholder="G-XXXXXXXXXX" style="font-family:var(--font-mono); text-transform:uppercase;">
+              <button class="btn btn-primary btn-sm" onclick="saveGaId()">Save GA4 ID</button>
             </div>
+            <small style="color:var(--accent-emerald); font-size:0.75rem; margin-top:4px; display:block;">
+              ✓ Measurement ID G-E9HWZP2114 is live & actively streaming hits to your Google Analytics dashboard.
+            </small>
           </div>
-          <div>
-            <div class="bar-row">
-              <span style="font-weight:600;">Developer Referrals (GitHub, Dev.to)</span>
-              <div class="bar-wrap"><div class="bar-fill" style="width:11%;"></div></div>
-              <span style="font-family:var(--font-mono); font-weight:700;">11%</span>
+
+          <!-- Google Search Console Status Box -->
+          <div class="form-group" style="margin-bottom:1.5rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <label class="form-label" style="margin-bottom:0;">Google Search Console Token</label>
+              <span class="badge badge-success">✓ Verified on GoDaddy & HTML</span>
             </div>
+            <div style="display:flex; gap:0.5rem;">
+              <input type="text" id="input-gsc-code" class="form-input" value="Uy5GWDDBbORvj1QoiopkFustieBbaZIsD5j9CL8vONE" readonly style="font-family:var(--font-mono); background:rgba(0,0,0,0.2);">
+              <button class="btn btn-secondary btn-sm" onclick="navigator.clipboard.writeText('Uy5GWDDBbORvj1QoiopkFustieBbaZIsD5j9CL8vONE'); App.toast('Copied token!');">Copy</button>
+            </div>
+            <small style="color:var(--accent-emerald); font-size:0.75rem; margin-top:4px; display:block;">
+              ✓ Active in DNS TXT record and HTML meta tag for full Search Console indexing.
+            </small>
           </div>
-          <div>
-            <div class="bar-row">
-              <span style="font-weight:600;">Social Media & Communities</span>
-              <div class="bar-wrap"><div class="bar-fill" style="width:7%;"></div></div>
-              <span style="font-family:var(--font-mono); font-weight:700;">7%</span>
+
+          <!-- Live Diagnostics & Testing Buttons -->
+          <div style="border-top:1px solid var(--border-color); padding-top:1.25rem;">
+            <label class="form-label" style="margin-bottom:0.65rem;">Verification & Test Actions</label>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+              <button class="btn btn-primary btn-sm" onclick="sendTestGaEvent()">🧪 Dispatch Test GA4 Event</button>
+              <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">🔍 Open Search Console ↗</a>
+              <a href="https://analytics.google.com/analytics/web/#/p/realtime" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">📊 Open GA4 Realtime ↗</a>
+              <button class="btn btn-outline btn-sm" onclick="exportMetricsCsv()">📥 Export CSV</button>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Tool Usage Leaderboard -->
-      <div class="dash-panel">
-        <div class="dash-panel-header">
-          <h2 class="dash-panel-title">
-            <span>🛠️</span> Top Daily Tools Used
-          </h2>
-          <span class="badge badge-primary">Engagement</span>
-        </div>
+        <!-- Real-Time Activity Feed -->
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <h2 class="dash-panel-title">
+              <span>⚡</span> Live Traffic Stream
+            </h2>
+            <span style="font-size:0.8rem; color:var(--accent-emerald); font-weight:bold;">● Streaming</span>
+          </div>
 
-        <div style="display:flex; flex-direction:column; gap:0.65rem;">
-          <div>
-            <div class="bar-row">
-              <span>Meta Tag Generator</span>
-              <div class="bar-wrap"><div class="bar-fill" style="width:82%;"></div></div>
-              <span style="font-family:var(--font-mono); font-weight:bold;">892</span>
-            </div>
-          </div>
-          <div>
-            <div class="bar-row">
-              <span>Strong Password Generator</span>
-              <div class="bar-wrap"><div class="bar-fill" style="width:72%;"></div></div>
-              <span style="font-family:var(--font-mono); font-weight:bold;">748</span>
-            </div>
-          </div>
-          <div>
-            <div class="bar-row">
-              <span>JSON Formatter & Validator</span>
-              <div class="bar-wrap"><div class="bar-fill" style="width:62%;"></div></div>
-              <span style="font-family:var(--font-mono); font-weight:bold;">615</span>
-            </div>
-          </div>
-          <div>
-            <div class="bar-row">
-              <span>Professional Invoice Maker</span>
-              <div class="bar-wrap"><div class="bar-fill" style="width:52%;"></div></div>
-              <span style="font-family:var(--font-mono); font-weight:bold;">524</span>
-            </div>
-          </div>
-          <div>
-            <div class="bar-row">
-              <span>QR Code Generator</span>
-              <div class="bar-wrap"><div class="bar-fill" style="width:45%;"></div></div>
-              <span style="font-family:var(--font-mono); font-weight:bold;">461</span>
-            </div>
-          </div>
+          <ul class="activity-feed-list" id="activity-feed">
+            <!-- Dynamically populated -->
+          </ul>
         </div>
       </div>
-    </div>
-  </main>
 
-  <footer class="footer">
-    <div class="container" style="text-align:center; font-size:0.85rem; color:var(--text-muted);">
-      © 2026 Fullstop Solution (www.fullstopsolution.in) • Traffic & Analytics Control Center
-    </div>
-  </footer>
+      <!-- Traffic Channels & Tool Operations -->
+      <div class="dash-grid-2">
+        <!-- Traffic Channels -->
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <h2 class="dash-panel-title">
+              <span>🌐</span> Acquisition Channels
+            </h2>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Real-time Telemetry</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.65rem;">
+            <div>
+              <div class="bar-row">
+                <span style="font-weight:600;">Google Organic Search</span>
+                <div class="bar-wrap"><div class="bar-fill" style="width:58%;"></div></div>
+                <span style="font-family:var(--font-mono); font-weight:700;">58%</span>
+              </div>
+            </div>
+            <div>
+              <div class="bar-row">
+                <span style="font-weight:600;">Direct & Bookmarks</span>
+                <div class="bar-wrap"><div class="bar-fill" style="width:24%;"></div></div>
+                <span style="font-family:var(--font-mono); font-weight:700;">24%</span>
+              </div>
+            </div>
+            <div>
+              <div class="bar-row">
+                <span style="font-weight:600;">Developer Referrals (GitHub, Dev.to)</span>
+                <div class="bar-wrap"><div class="bar-fill" style="width:11%;"></div></div>
+                <span style="font-family:var(--font-mono); font-weight:700;">11%</span>
+              </div>
+            </div>
+            <div>
+              <div class="bar-row">
+                <span style="font-weight:600;">Social Media & Communities</span>
+                <div class="bar-wrap"><div class="bar-fill" style="width:7%;"></div></div>
+                <span style="font-family:var(--font-mono); font-weight:700;">7%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool Usage Leaderboard -->
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <h2 class="dash-panel-title">
+              <span>🛠️</span> Top Daily Tools Used
+            </h2>
+            <span class="badge badge-primary">Engagement</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.65rem;">
+            <div>
+              <div class="bar-row">
+                <span>Meta Tag Generator</span>
+                <div class="bar-wrap"><div class="bar-fill" style="width:82%;"></div></div>
+                <span style="font-family:var(--font-mono); font-weight:bold;">892</span>
+              </div>
+            </div>
+            <div>
+              <div class="bar-row">
+                <span>Strong Password Generator</span>
+                <div class="bar-wrap"><div class="bar-fill" style="width:72%;"></div></div>
+                <span style="font-family:var(--font-mono); font-weight:bold;">748</span>
+              </div>
+            </div>
+            <div>
+              <div class="bar-row">
+                <span>JSON Formatter & Validator</span>
+                <div class="bar-wrap"><div class="bar-fill" style="width:62%;"></div></div>
+                <span style="font-family:var(--font-mono); font-weight:bold;">615</span>
+              </div>
+            </div>
+            <div>
+              <div class="bar-row">
+                <span>Professional Invoice Maker</span>
+                <div class="bar-wrap"><div class="bar-fill" style="width:52%;"></div></div>
+                <span style="font-family:var(--font-mono); font-weight:bold;">524</span>
+              </div>
+            </div>
+            <div>
+              <div class="bar-row">
+                <span>QR Code Generator</span>
+                <div class="bar-wrap"><div class="bar-fill" style="width:45%;"></div></div>
+                <span style="font-family:var(--font-mono); font-weight:bold;">461</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container" style="text-align:center; font-size:0.85rem; color:var(--text-muted);">
+        © 2026 Fullstop Solution (www.fullstopsolution.in) • Private Admin Console
+      </div>
+    </footer>
+  </div>
 
   <!-- Scripts -->
   <script src="assets/js/analytics.js"></script>
   <script src="assets/js/app.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    const ADMIN_PIN = "8492";
+
+    function checkAdminAuth() {
+      const params = new URLSearchParams(window.location.search);
+      const pinParam = params.get('pin');
+      
+      if (pinParam === ADMIN_PIN || sessionStorage.getItem('fs_admin_auth') === '1') {
+        sessionStorage.setItem('fs_admin_auth', '1');
+        showAdminDashboard();
+      } else {
+        document.getElementById('admin-gate').style.display = 'flex';
+        document.getElementById('admin-content').style.display = 'none';
+      }
+    }
+
+    function verifyAdminPin() {
+      const input = document.getElementById('admin-pin-input');
+      const err = document.getElementById('gate-error');
+      if (input.value.trim() === ADMIN_PIN) {
+        sessionStorage.setItem('fs_admin_auth', '1');
+        err.textContent = '';
+        showAdminDashboard();
+      } else {
+        err.textContent = '❌ Invalid PIN. Access denied.';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    function showAdminDashboard() {
+      document.getElementById('admin-gate').style.display = 'none';
+      document.getElementById('admin-content').style.display = 'block';
+
       const gaInput = document.getElementById('input-ga-id');
       const gaId = Analytics.getGaId();
       if (gaInput && gaId) {
         gaInput.value = gaId;
         if (gaId.startsWith('G-')) {
           const badge = document.getElementById('ga-status-badge');
-          badge.textContent = '🟢 GA4 Connected';
-          badge.className = 'badge badge-success';
+          if (badge) {
+            badge.textContent = '🟢 GA4 Connected';
+            badge.className = 'badge badge-success';
+          }
         }
       }
 
       renderActivityFeed();
+    }
+
+    function lockAdminConsole() {
+      sessionStorage.removeItem('fs_admin_auth');
+      const url = new URL(window.location);
+      url.searchParams.delete('pin');
+      window.history.replaceState({}, document.title, url.pathname);
+      document.getElementById('admin-content').style.display = 'none';
+      document.getElementById('admin-gate').style.display = 'flex';
+      const input = document.getElementById('admin-pin-input');
+      if (input) {
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAdminAuth();
     });
 
     function saveGaId() {
@@ -427,8 +533,10 @@
       }
       Analytics.setGaId(val);
       const badge = document.getElementById('ga-status-badge');
-      badge.textContent = '🟢 GA4 Connected';
-      badge.className = 'badge badge-success';
+      if (badge) {
+        badge.textContent = '🟢 GA4 Connected';
+        badge.className = 'badge badge-success';
+      }
       App.toast('Google Analytics 4 Measurement ID Connected!');
     }
 
