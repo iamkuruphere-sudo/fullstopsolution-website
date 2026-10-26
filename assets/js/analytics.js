@@ -7,7 +7,7 @@
 const Analytics = {
   // Stored Keys
   getGaId() {
-    return localStorage.getItem('fs_ga_id') || '';
+    return localStorage.getItem('fs_ga_id') || 'G-E9HWZP2114';
   },
 
   setGaId(id) {
