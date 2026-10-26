@@ -138,6 +138,11 @@ const App = {
     modalBody.innerHTML = content;
     this.openModal('tool-modal');
 
+    // Track tool engagement in Analytics
+    if (typeof Analytics !== 'undefined') {
+      Analytics.trackToolLaunch(title);
+    }
+
     // Trigger initial tool renders if needed
     if (toolKey === 'meta') ToolEngine.updateMetaPreview();
     if (toolKey === 'password') ToolEngine.generatePassword();
@@ -229,6 +234,9 @@ Visit www.fullstopsolution.in for daily interactive tools and premium toolkits.`
       URL.revokeObjectURL(url);
 
       this.toast('🎉 Checklist downloaded! Welcome to Fullstop Solution.');
+      if (typeof Analytics !== 'undefined') {
+        Analytics.trackLeadDownload();
+      }
       document.getElementById('lead-email').value = '';
     });
   },

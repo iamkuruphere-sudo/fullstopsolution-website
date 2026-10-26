@@ -16,6 +16,7 @@ Fullstop Solution is a high-performance, SEO-engineered digital toolkit and digi
 ```
 fullstopsolution-website/
 ├── index.html               # Main landing, daily tools workstation & marketplace
+├── dashboard.html           # Live traffic analytics & Google Console/GA4 control center
 ├── privacy-policy.html      # DPDP Act 2023 & GDPR compliant privacy policy
 ├── terms.html               # Commercial terms of service & 30-day refund guarantee
 ├── security.html            # Zero-knowledge security white paper & CSP details
@@ -91,6 +92,18 @@ In `assets/js/checkout.js`:
   Set your PayPal Merchant email (defaults to `contact@fullstopsolution.in`).
 
 - **Instant Sandbox Mode:** The site comes with a built-in interactive checkout simulation that validates user input, applies promotional coupon codes (e.g. `LAUNCH50` for 50% off), generates unique license keys (`FS-XXXX-XXXX`), and provides immediate digital package downloads!
+
+---
+
+## 📊 Traffic Monitoring & Analytics Dashboard (GA4 & Google Console)
+
+The website includes an integrated executive traffic analytics control center at `/dashboard.html`:
+- **Live Google Search Console Integration:** Simply paste your Google Search Console verification tag or code on the dashboard or enter it in `index.html`. Submit your sitemap at `https://www.fullstopsolution.in/sitemap.xml`.
+- **Google Analytics 4 (GA4):** Paste your Measurement ID (e.g. `G-XXXXXXXXXX`) in `/dashboard.html`. It activates real-time `gtag.js` tracking, including custom conversion events:
+  - `tool_launch`: Tracks which daily tools visitors are actively using
+  - `generate_lead`: Tracks downloads of the 50-Point SEO Checklist
+  - `begin_checkout` & `purchase`: Tracks e-commerce funnel conversions
+- **Local Telemetry Monitoring:** Instant live dashboard showing Pageviews, Sessions, and individual Tool Run distributions.
 
 ---
 

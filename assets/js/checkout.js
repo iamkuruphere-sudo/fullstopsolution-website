@@ -128,6 +128,11 @@ const Commerce = {
     this.activeDiscount = 0;
     this.activeCouponCode = '';
 
+    // Track checkout initiation in Analytics
+    if (typeof Analytics !== 'undefined') {
+      Analytics.trackCheckoutStart(product);
+    }
+
     const isINR = this.currency === 'INR';
     const symbol = isINR ? '₹' : '$';
     const price = isINR ? product.priceINR : product.priceUSD;
@@ -379,6 +384,14 @@ const Commerce = {
       });
       localStorage.setItem('fs_purchases', JSON.stringify(history));
     } catch(e) {}
+
+    // Track purchase conversion in Analytics
+    if (typeof Analytics !== 'undefined') {
+      const isINR = this.currency === 'INR';
+      const basePrice = isINR ? this.selectedProduct.priceINR : this.selectedProduct.priceUSD;
+      const finalPrice = Math.round(basePrice * (1 - this.activeDiscount));
+      Analytics.trackPurchaseSuccess(this.selectedProduct, license, finalPrice, gateway);
+    }
 
     App.toast(`🎉 Payment confirmed via ${gateway}! License generated.`);
   },
