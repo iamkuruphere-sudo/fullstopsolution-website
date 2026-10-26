@@ -1,0 +1,21 @@
+{
+  "name": "Fullstop Solution - Digital Toolkit",
+  "short_name": "Fullstop",
+  "description": "Daily digital toolkit, SEO tools, developer utilities & business OS packs.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#0a0e17",
+  "icons": [
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

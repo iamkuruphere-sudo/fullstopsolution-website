@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Architecture & Zero-Knowledge Guarantee | Fullstop Solution</title>
+  <meta name="description" content="Detailed security documentation for Fullstop Solution. Explains our client-side Web Crypto sandbox, CSP headers, HSTS, and zero-knowledge posture.">
+  <link rel="canonical" href="https://www.fullstopsolution.in/security.html">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="brand">
+        <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-name">FULLSTOP SOLUTION</span>
+          <span class="brand-domain">www.fullstopsolution.in</span>
+        </div>
+      </a>
+      <a href="/" class="btn btn-outline btn-sm">← Back to Home & Tools</a>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 4rem 1.25rem; max-width: 860px;">
+    <span class="badge badge-success" style="margin-bottom:1rem;">SECURITY ARCHITECTURE WHITE PAPER</span>
+    <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;">Enterprise-Grade Web Security</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 2.5rem;">How Fullstop Solution protects your data, privacy, and computations.</p>
+
+    <div style="display:flex; flex-direction:column; gap:2.5rem; line-height:1.7; color:var(--text-secondary);">
+      <section style="background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:2rem;">
+        <h2 style="color:var(--text-primary); font-size:1.4rem; margin-bottom:0.75rem;">1. Zero-Knowledge In-Browser Execution</h2>
+        <p>
+          Traditional web applications transmit user input to a centralized cloud backend for processing, creating exposure to interception, server-side data leaks, and third-party logging.
+        </p>
+        <p style="margin-top:0.75rem;">
+          <strong>Fullstop Solution inverts this paradigm:</strong> Every single tool—from password generation and SHA-256 hash calculation to JSON formatting and invoice creation—is executed 
+          strictly in the local memory of your client device via modern HTML5 APIs and the native W3C <code>Web Crypto API</code>.
+        </p>
+      </section>
+
+      <section>
+        <h2 style="color:var(--text-primary); font-size:1.4rem; margin-bottom:0.75rem;">2. Hardened Security Headers</h2>
+        <p>
+          Our web servers and deployment edge networks enforce strict security headers to prevent common attack vectors:
+        </p>
+        <div class="code-output" style="margin-top:0.75rem; font-size:0.85rem;">
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://js.stripe.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;
+        </div>
+      </section>
+
+      <section>
+        <h2 style="color:var(--text-primary); font-size:1.4rem; margin-bottom:0.75rem;">3. Cryptographic Verification & Randomness</h2>
+        <p>
+          When generating passwords or unique identifiers, we avoid pseudo-random math (e.g. <code>Math.random()</code>) which is predictable. 
+          Instead, we use <code>window.crypto.getRandomValues()</code> and <code>crypto.randomUUID()</code> which tap directly into your operating system's cryptographic entropy pool.
+        </p>
+      </section>
+
+      <section>
+        <h2 style="color:var(--text-primary); font-size:1.4rem; margin-bottom:0.75rem;">4. PCI-DSS Certified Commerce Processing</h2>
+        <p>
+          All commercial payments are processed via Level 1 PCI-DSS certified gateways (Razorpay and Stripe). 
+          Card details, UPI pins, and banking credentials are handled through secure iframes and tokenized encryption. Fullstop Solution never stores or accesses cardholder data.
+        </p>
+      </section>
+
+      <section>
+        <h2 style="color:var(--text-primary); font-size:1.4rem; margin-bottom:0.75rem;">5. Vulnerability Disclosure & Bug Bounty</h2>
+        <p>
+          We encourage security researchers to review our code and report vulnerabilities responsibly. 
+          If you discover a potential vulnerability, please email our security team:
+          <br>
+          <strong>Security Desk:</strong> <a href="mailto:security@fullstopsolution.in" style="color:var(--accent-primary);">security@fullstopsolution.in</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer" style="margin-top:4rem;">
+    <div class="container" style="text-align:center; font-size:0.85rem; color:var(--text-muted);">
+      © 2026 Fullstop Solution (www.fullstopsolution.in). All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>

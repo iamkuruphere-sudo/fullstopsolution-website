@@ -1,0 +1,7 @@
+# Robots.txt for Fullstop Solution (www.fullstopsolution.in)
+User-agent: *
+Allow: /
+Disallow: /assets/private/
+
+# Sitemap location
+Sitemap: https://www.fullstopsolution.in/sitemap.xml

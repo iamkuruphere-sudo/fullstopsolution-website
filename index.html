@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>Fullstop Solution | Free Daily Digital Toolkit & High-Value Business OS</title>
+  <meta name="title" content="Fullstop Solution | Free Daily Digital Toolkit & High-Value Business OS">
+  <meta name="description" content="All-in-one digital toolkit platform. Run free daily SEO, developer, business, and productivity utilities 100% in your browser. Plus premium Notion business templates, growth packs & developer boilerplates.">
+  <meta name="keywords" content="fullstop solution, digital toolkit, free seo tools, json formatter, password generator, invoice generator, qr code generator, utm builder, business os notion, developer boilerplate, gst calculator">
+  <meta name="author" content="Fullstop Solution">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://www.fullstopsolution.in/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.fullstopsolution.in/">
+  <meta property="og:title" content="Fullstop Solution | Daily Digital Toolkit & Growth Platform">
+  <meta property="og:description" content="Access daily high-utility tools (SEO, JSON, Passwords, Invoices) and premium business systems. 100% client-side privacy.">
+  <meta property="og:image" content="https://www.fullstopsolution.in/assets/images/logo.png">
+  <meta property="og:site_name" content="Fullstop Solution">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.fullstopsolution.in/">
+  <meta property="twitter:title" content="Fullstop Solution | Daily Digital Toolkit & Growth Platform">
+  <meta property="twitter:description" content="Daily high-utility digital tools and battle-tested business OS packs.">
+  <meta property="twitter:image" content="https://www.fullstopsolution.in/assets/images/logo.png">
+
+  <!-- Favicon & Brand Icons -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="apple-touch-icon" href="assets/images/logo.png">
+  <meta name="theme-color" content="#0a0e17">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- JSON-LD Structured Data for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.fullstopsolution.in/#organization",
+        "name": "Fullstop Solution",
+        "url": "https://www.fullstopsolution.in",
+        "logo": "https://www.fullstopsolution.in/assets/images/logo.png",
+        "sameAs": [
+          "https://twitter.com/fullstopsolution"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "contact@fullstopsolution.in",
+          "contactType": "customer service"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.fullstopsolution.in/#website",
+        "url": "https://www.fullstopsolution.in",
+        "name": "Fullstop Solution",
+        "publisher": {
+          "@id": "https://www.fullstopsolution.in/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.fullstopsolution.in/?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Fullstop Digital Toolkit",
+        "operatingSystem": "All modern web browsers",
+        "applicationCategory": "BusinessApplication, UtilitiesApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1840"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is my data safe when using Fullstop Solution free tools?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, 100%. All computations (JSON parsing, password generation, hash calculations, QR code rendering, invoice creation) run locally inside your browser using client-side Web APIs. Zero data is ever sent to our servers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I receive my digital product after purchase?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Upon completing your secure checkout via Razorpay or Stripe, you receive an instant download link and a unique license key on your screen, plus a backup confirmation sent directly to your email."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use the premium templates for commercial client work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! All Fullstop Solution premium toolkits and developer boilerplates include commercial licensing allowing you to build projects for unlimited personal and client projects."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="brand">
+        <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-name">FULLSTOP SOLUTION</span>
+          <span class="brand-domain">www.fullstopsolution.in</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#tools" class="active">Daily Tools</a></li>
+          <li><a href="#products">Premium Packs</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="security.html">Zero-Knowledge</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Currency Selector -->
+        <div style="display:flex; background:var(--bg-tertiary); border-radius:var(--radius-sm); padding:2px; border:1px solid var(--border-color);">
+          <button class="btn btn-sm curr-btn active" data-curr="INR" onclick="Commerce.setCurrency('INR')" style="padding:0.25rem 0.6rem; font-size:0.75rem;">₹ INR</button>
+          <button class="btn btn-sm curr-btn" data-curr="USD" onclick="Commerce.setCurrency('USD')" style="padding:0.25rem 0.6rem; font-size:0.75rem;">$ USD</button>
+        </div>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button id="theme-toggle-btn" class="btn-icon" aria-label="Toggle theme">
+          <span id="theme-icon">☀️</span>
+        </button>
+
+        <a href="#products" class="btn btn-gradient btn-sm">Explore Pro Kits</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge-wrap">
+          <span class="badge badge-gradient">
+            ✨ Free Daily Utilities + High-Value Pro Systems
+          </span>
+        </div>
+        
+        <h1 class="hero-title">
+          Your All-in-One <span class="hero-title-gradient">Digital Toolkit</span> & Growth Platform
+        </h1>
+        
+        <p class="hero-subtitle">
+          Run essential daily SEO, developer, business, and marketing utilities 100% in your browser. 
+          Zero tracking, zero latency, maximum privacy. Plus unlock turnkey business operating systems.
+        </p>
+
+        <!-- Live Search Bar -->
+        <div class="hero-search-box">
+          <span class="hero-search-icon">🔍</span>
+          <input type="search" id="hero-search" class="hero-search-input" placeholder="Search 14+ daily tools (e.g. SEO Meta, Password, JSON, QR Code, Invoice, GST)..." autocomplete="off">
+        </div>
+
+        <div class="hero-features">
+          <div class="hero-feature-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>100% Client-Side Privacy</span>
+          </div>
+          <div class="hero-feature-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>No Account Required</span>
+          </div>
+          <div class="hero-feature-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>Instant Zero-Lag Execution</span>
+          </div>
+          <div class="hero-feature-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span>Commercial License Available</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Ribbon -->
+    <section class="stats-ribbon">
+      <div class="container stats-grid">
+        <div>
+          <div class="stat-number">50,000+</div>
+          <div class="stat-label">Monthly Operations</div>
+        </div>
+        <div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">In-Browser Privacy</div>
+        </div>
+        <div>
+          <div class="stat-number">0.0 ms</div>
+          <div class="stat-label">Server Data Storage</div>
+        </div>
+        <div>
+          <div class="stat-number">4.9 / 5.0</div>
+          <div class="stat-label">Verified User Rating</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daily Digital Tools Section -->
+    <section id="tools" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="badge badge-primary">DAILY UTILITY SUITE</span>
+          </div>
+          <h2 class="section-title">Built-In Daily Digital Tools</h2>
+          <p class="section-desc">Fast, secure, and privacy-focused utilities designed for everyday productivity.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-category="all">All Tools (11)</button>
+          <button class="filter-tab" data-category="seo">SEO & Marketing</button>
+          <button class="filter-tab" data-category="dev">Developer & Security</button>
+          <button class="filter-tab" data-category="business">Business & Finance</button>
+        </div>
+
+        <!-- Tools Grid -->
+        <div class="tools-grid" id="tools-container">
+          <!-- Tool 1: Meta Tag Generator -->
+          <div class="tool-card" data-category="seo">
+            <div class="tool-card-header">
+              <div class="tool-icon">🌐</div>
+              <span class="badge badge-primary">SEO Tool</span>
+            </div>
+            <h3 class="tool-card-title">Meta Tag & SERP Previewer</h3>
+            <p class="tool-card-desc">Generate Google-compliant meta tags, Open Graph tags, and Twitter Cards with real-time SERP snippet previews.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 100% Client-Side</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('meta', 'Meta Tag Generator & SERP Preview')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 2: Strong Password Generator -->
+          <div class="tool-card" data-category="dev">
+            <div class="tool-card-header">
+              <div class="tool-icon">🔑</div>
+              <span class="badge badge-success">Security</span>
+            </div>
+            <h3 class="tool-card-title">Strong Password Generator</h3>
+            <p class="tool-card-desc">Create cryptographically secure passwords and passphrases with entropy analysis using native Web Crypto APIs.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 Web Crypto API</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('password', 'Strong Password Generator')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 3: JSON Formatter & Validator -->
+          <div class="tool-card" data-category="dev">
+            <div class="tool-card-header">
+              <div class="tool-icon">{ }</div>
+              <span class="badge badge-primary">Developer</span>
+            </div>
+            <h3 class="tool-card-title">JSON Formatter & Validator</h3>
+            <p class="tool-card-desc">Beautify, inspect, validate, and minify your JSON data with instant syntax error pinpointing and line markers.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 Zero Data Sent</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('json', 'JSON Formatter & Validator')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 4: QR Code Generator -->
+          <div class="tool-card" data-category="business">
+            <div class="tool-card-header">
+              <div class="tool-icon">📱</div>
+              <span class="badge badge-gradient">Popular</span>
+            </div>
+            <h3 class="tool-card-title">QR Code Generator</h3>
+            <p class="tool-card-desc">Generate high-contrast QR codes for website URLs, UPI payments, contact cards, and text with instant PNG export.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 Canvas Rendered</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('qr', 'QR Code Generator')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 5: Professional Invoice Generator -->
+          <div class="tool-card" data-category="business">
+            <div class="tool-card-header">
+              <div class="tool-icon">🧾</div>
+              <span class="badge badge-amber">Finance</span>
+            </div>
+            <h3 class="tool-card-title">Professional Invoice Generator</h3>
+            <p class="tool-card-desc">Create customizable, print-ready client invoices with automatic GST/VAT computations and multi-currency support.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 PDF Print Ready</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('invoice', 'Professional Invoice Generator')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 6: Keyword Density Analyzer -->
+          <div class="tool-card" data-category="seo">
+            <div class="tool-card-header">
+              <div class="tool-icon">📊</div>
+              <span class="badge badge-primary">Content SEO</span>
+            </div>
+            <h3 class="tool-card-title">Keyword Density & Readability</h3>
+            <p class="tool-card-desc">Calculate word counts, character counts, reading times, and identify over-optimized keyword frequencies.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 In-Memory Analysis</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('keyword', 'Keyword Density & Readability')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 7: Hash & Checksum Tool -->
+          <div class="tool-card" data-category="dev">
+            <div class="tool-card-header">
+              <div class="tool-icon">#️⃣</div>
+              <span class="badge badge-success">Cryptography</span>
+            </div>
+            <h3 class="tool-card-title">Hash & Checksum Calculator</h3>
+            <p class="tool-card-desc">Generate cryptographic SHA-256, SHA-512, and SHA-1 hashes instantly for text verification and data integrity.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 Web Crypto Subtle</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('hash', 'Hash & Checksum Calculator')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 8: Base64 Encoder / Decoder -->
+          <div class="tool-card" data-category="dev">
+            <div class="tool-card-header">
+              <div class="tool-icon">🔄</div>
+              <span class="badge badge-primary">Developer</span>
+            </div>
+            <h3 class="tool-card-title">Base64 Encoder / Decoder</h3>
+            <p class="tool-card-desc">Two-way instant Base64 string encoding and decoding with full UTF-8 international character support.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 Instant Client-Side</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('base64', 'Base64 Encoder & Decoder')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 9: UTM Campaign Link Builder -->
+          <div class="tool-card" data-category="seo">
+            <div class="tool-card-header">
+              <div class="tool-icon">🔗</div>
+              <span class="badge badge-primary">Marketing</span>
+            </div>
+            <h3 class="tool-card-title">UTM Campaign URL Builder</h3>
+            <p class="tool-card-desc">Create error-free Google Analytics tracking links with custom sources, mediums, campaign names, and terms.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 No URL Logging</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('utm', 'UTM Campaign Link Builder')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 10: GST & VAT Calculator -->
+          <div class="tool-card" data-category="business">
+            <div class="tool-card-header">
+              <div class="tool-icon">💰</div>
+              <span class="badge badge-amber">Finance</span>
+            </div>
+            <h3 class="tool-card-title">GST & Tax Slabs Calculator</h3>
+            <p class="tool-card-desc">Calculate Indian GST (5%, 12%, 18%, 28%) and global VAT amounts with inclusive and exclusive breakdowns.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 Accurate Calculations</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('gst', 'GST & VAT Calculator')">Launch Tool</button>
+            </div>
+          </div>
+
+          <!-- Tool 11: UUID v4 Generator -->
+          <div class="tool-card" data-category="dev">
+            <div class="tool-card-header">
+              <div class="tool-icon">🆔</div>
+              <span class="badge badge-primary">Developer</span>
+            </div>
+            <h3 class="tool-card-title">UUID v4 Generator</h3>
+            <p class="tool-card-desc">Generate single or bulk RFC 4122 Version 4 globally unique identifiers with one-click clipboard copying.</p>
+            <div class="tool-card-footer">
+              <span class="tool-privacy-tag">🔒 Cryptographically Random</span>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('uuid', 'UUID v4 Generator')">Launch Tool</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="tools-no-results" style="display:none; text-align:center; padding:3rem; color:var(--text-secondary);">
+          <p style="font-size:1.1rem;">No tools found matching your search. Try searching for "SEO", "JSON", or "Password".</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sellable High-Value Digital Products Store -->
+    <section id="products" class="section products-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="badge badge-gradient">HIGH-VALUE DIGITAL TOOLKITS</span>
+          </div>
+          <h2 class="section-title">Battle-Tested Systems to Accelerate Your Growth</h2>
+          <p class="section-desc">Production-grade templates, growth blueprints, and developer boilerplates with instant delivery.</p>
+        </div>
+
+        <div class="products-grid">
+          <!-- Product 1: Ultimate Business OS -->
+          <div class="product-card">
+            <div class="product-header">
+              <span class="badge badge-primary" style="margin-bottom:0.75rem;">Notion & Spreadsheets</span>
+              <h3 class="product-title">Fullstop Ultimate Business OS</h3>
+              <p class="product-subtitle">Complete operating system with client CRM, cash-flow tracker & 30+ legal contract templates.</p>
+            </div>
+            <div class="product-pricing">
+              <span class="product-price" id="price-business-os"><span class="product-price-currency">₹</span>1,499</span>
+              <span class="product-price-original" id="orig-business-os">₹4,999</span>
+              <span class="product-price-period">one-time</span>
+            </div>
+            <ul class="product-features">
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Notion Master Hub:</strong> CRM, Projects & Finances</span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>30+ Contracts & Proposals:</strong> Client-tested agreements</span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Invoicing Automation:</strong> Tax & quotation sheets</span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Lifetime Updates:</strong> Continuous feature additions</span>
+              </li>
+            </ul>
+            <button class="btn btn-primary" onclick="Commerce.openCheckout('business-os')">Buy Now • Instant Access</button>
+          </div>
+
+          <!-- Product 2: Growth & SEO Mastery -->
+          <div class="product-card">
+            <div class="product-header">
+              <span class="badge badge-amber" style="margin-bottom:0.75rem;">SEO & Organic Traffic</span>
+              <h3 class="product-title">Full-Stack Growth & SEO Mastery</h3>
+              <p class="product-subtitle">500+ high-DA submission directories, audit checklists, and programmatic SEO matrices.</p>
+            </div>
+            <div class="product-pricing">
+              <span class="product-price" id="price-growth-seo"><span class="product-price-currency">₹</span>2,499</span>
+              <span class="product-price-original" id="orig-growth-seo">₹6,999</span>
+              <span class="product-price-period">one-time</span>
+            </div>
+            <ul class="product-features">
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>500+ Curated Directories:</strong> High DA & DR backlinks</span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Technical SEO Checklist:</strong> 100 audit checkpoints</span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Programmatic Blueprints:</strong> Scalable landing page systems</span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Viral Hook Database:</strong> 250+ copywriting templates</span>
+              </li>
+            </ul>
+            <button class="btn btn-primary" onclick="Commerce.openCheckout('growth-seo')">Buy Now • Instant Access</button>
+          </div>
+
+          <!-- Product 3: Developer Pro Boilerplate -->
+          <div class="product-card">
+            <div class="product-header">
+              <span class="badge badge-success" style="margin-bottom:0.75rem;">Code & Architecture</span>
+              <h3 class="product-title">Developer Pro SaaS Boilerplate</h3>
+              <p class="product-subtitle">Production-ready Next.js / Tailwind / Auth / Razorpay & Stripe integration with lifetime updates.</p>
+            </div>
+            <div class="product-pricing">
+              <span class="product-price" id="price-dev-boilerplate"><span class="product-price-currency">₹</span>3,999</span>
+              <span class="product-price-original" id="orig-dev-boilerplate">₹9,999</span>
+              <span class="product-price-period">one-time</span>
+            </div>
+            <ul class="product-features">
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Next.js 15 App Router:</strong> Server components & APIs</span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Razorpay & Stripe:</strong> Multi-currency checkout & webhooks</span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Lucide UI Components:</strong> Accessible dark/light design</span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Commercial License:</strong> Unlimited client & personal apps</span>
+              </li>
+            </ul>
+            <button class="btn btn-primary" onclick="Commerce.openCheckout('dev-boilerplate')">Buy Now • Instant Access</button>
+          </div>
+
+          <!-- Product 4: Lifetime Bundle (Featured) -->
+          <div class="product-card featured">
+            <div class="product-header">
+              <span class="badge badge-gradient" style="margin-bottom:0.75rem;">BEST VALUE • LIFETIME ACCESS</span>
+              <h3 class="product-title">The All-Access Lifetime Bundle</h3>
+              <p class="product-subtitle">Get every current and future toolkit created under fullstopsolution.in with VIP private support.</p>
+            </div>
+            <div class="product-pricing">
+              <span class="product-price" id="price-lifetime-bundle"><span class="product-price-currency">₹</span>6,999</span>
+              <span class="product-price-original" id="orig-lifetime-bundle">₹19,999</span>
+              <span class="product-price-period">lifetime</span>
+            </div>
+            <ul class="product-features">
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Includes Ultimate Business OS</strong></span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Includes Growth & SEO Mastery Toolkit</strong></span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>Includes Developer Pro SaaS Boilerplate</strong></span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>All Future Digital Products Added Free Forever</strong></span>
+              </li>
+              <li class="product-feature-item">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span><strong>VIP WhatsApp & Email Priority Support</strong></span>
+              </li>
+            </ul>
+            <button class="btn btn-gradient btn-lg" onclick="Commerce.openCheckout('lifetime-bundle')">Unlock All-Access Lifetime Pass</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security & Privacy Architecture Banner -->
+    <section id="security" class="container">
+      <div class="security-banner">
+        <span class="badge badge-success" style="margin-bottom:1rem;">BANK-GRADE SECURITY GUARANTEE</span>
+        <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:1rem;">Your Data Never Leaves Your Browser</h2>
+        <p style="max-width:700px; margin:0 auto; color:var(--text-secondary); line-height:1.6;">
+          Unlike traditional web services that process your sensitive JSON, passwords, invoices, and analytics on backend servers, 
+          Fullstop Solution runs entirely in client-side memory using the native Web Crypto API and HTML5.
+        </p>
+
+        <div class="security-pillars">
+          <div class="security-pillar">
+            <div style="font-size:1.75rem;">🛡️</div>
+            <h3 class="security-pillar-title">Zero-Knowledge Architecture</h3>
+            <p class="security-pillar-desc">No database logs, no tracking cookies, and no telemetry storing your clipboard or input data.</p>
+          </div>
+          <div class="security-pillar">
+            <div style="font-size:1.75rem;">🔒</div>
+            <h3 class="security-pillar-title">Strict Content Security Policy</h3>
+            <p class="security-pillar-desc">Hardened with strict CSP headers, frame-ancestors 'none', and HSTS 2-year TLS encryption.</p>
+          </div>
+          <div class="security-pillar">
+            <div style="font-size:1.75rem;">⚡</div>
+            <h3 class="security-pillar-title">Offline Capable & Fast</h3>
+            <p class="security-pillar-desc">Once loaded, the tools work even if your internet disconnects. Zero network lag.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Free Lead Magnet Section -->
+    <section class="container" style="margin-bottom:4rem;">
+      <div class="lead-banner">
+        <span class="badge badge-primary">FREE 2026 EDITION RESOURCE</span>
+        <h2 style="font-size:2rem; font-weight:800; color:#ffffff;">Get the 50-Point Technical SEO & Web Security Checklist</h2>
+        <p style="color:#cbd5e1; max-width:600px; font-size:0.95rem;">
+          Download our master checklist used to rank websites on page 1 of Google while eliminating security vulnerabilities.
+        </p>
+        <form id="lead-magnet-form" class="lead-form">
+          <input type="email" id="lead-email" class="lead-input" placeholder="Enter your best email address..." required>
+          <button type="submit" class="btn btn-gradient">Instant Download</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Frequently Asked Questions (FAQ) -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="badge badge-primary">GOT QUESTIONS?</span>
+          </div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-desc">Everything you need to know about Fullstop Solution tools and digital products.</p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item active">
+            <button class="faq-question">
+              <span>Are all the daily tools really 100% free to use?</span>
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="faq-answer">
+              Yes! All 11 daily utilities (Meta Tag Generator, Password Generator, JSON Formatter, QR Generator, Invoice Maker, GST Calculator, etc.) are completely free with zero usage caps and no login required.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Is my sensitive data stored or sent to any server?</span>
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="faq-answer">
+              Never. Every tool executes directly inside your browser's local sandbox using client-side JavaScript and the Web Crypto API. Your passwords, hashes, invoices, and JSON code never leave your device.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What payment methods are supported for pro toolkits?</span>
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="faq-answer">
+              We support Razorpay (for UPI via Google Pay, PhonePe, Paytm, Indian Debit/Credit cards, Netbanking) and Stripe (for international cards like Visa, Mastercard, American Express, and Apple Pay).
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I use the toolkits for client work?</span>
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="faq-answer">
+              Yes, our premium toolkits and developer boilerplates include commercial licensing permitting unlimited client deployments and freelance projects.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is the refund policy?</span>
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="faq-answer">
+              We offer a straightforward 30-day money-back guarantee. If our templates or developer kits do not save you dozens of hours of work, email contact@fullstopsolution.in for a full refund.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="brand">
+            <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img">
+            <span class="brand-name">FULLSTOP SOLUTION</span>
+          </a>
+          <p>
+            Your all-in-one digital toolkit & business growth platform. Providing high-utility browser tools, 
+            battle-tested business systems, and developer frameworks for modern creators and enterprises.
+          </p>
+          <div style="margin-top:1.25rem; font-size:0.85rem; color:var(--text-muted);">
+            Official Domain: <strong>www.fullstopsolution.in</strong>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Daily Tools</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="App.openTool('meta', 'Meta Tag Generator')">Meta Tag Generator</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('password', 'Strong Password Generator')">Password Generator</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('json', 'JSON Formatter & Validator')">JSON Formatter</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('qr', 'QR Code Generator')">QR Code Maker</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('invoice', 'Invoice Generator')">Invoice Maker</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('gst', 'GST Calculator')">GST Calculator</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pro Products</h4>
+          <ul class="footer-links">
+            <li><a href="#products">Business OS Notion</a></li>
+            <li><a href="#products">Growth & SEO Toolkit</a></li>
+            <li><a href="#products">Developer SaaS Kit</a></li>
+            <li><a href="#products">Lifetime Access Pass</a></li>
+            <li><a href="#products">Directory Submissions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Trust & Legal</h4>
+          <ul class="footer-links">
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="security.html">Security Architecture</a></li>
+            <li><a href="sitemap.xml">XML Sitemap</a></li>
+            <li><a href="mailto:contact@fullstopsolution.in">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Fullstop Solution (www.fullstopsolution.in). All rights reserved.
+        </div>
+        <div style="display:flex; gap:1rem;">
+          <span>🔒 256-Bit SSL Encrypted</span>
+          <span>⚡ 100% In-Browser Privacy</span>
+          <span>🇮🇳 Built for India & Global Scale</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Reusable Interactive Tool Modal -->
+  <div class="modal-backdrop" id="tool-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span style="font-size:1.5rem;">⚙️</span>
+          <h3 class="modal-title" id="tool-modal-title">Interactive Tool</h3>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+      </div>
+      <div class="modal-body" id="tool-modal-body">
+        <!-- Injected dynamically by ToolEngine -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Reusable Checkout & License Fulfillment Modal -->
+  <div class="modal-backdrop" id="checkout-modal">
+    <div class="modal-container" style="max-width:580px;">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span style="font-size:1.5rem;">💳</span>
+          <h3 class="modal-title">Secure Checkout</h3>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+      </div>
+      <div class="modal-body" id="checkout-modal-body">
+        <!-- Injected dynamically by Commerce -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="assets/js/tools.js"></script>
+  <script src="assets/js/checkout.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
