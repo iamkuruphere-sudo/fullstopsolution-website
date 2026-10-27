@@ -130,6 +130,9 @@
 
         <!-- Navbar Right Actions -->
         <div class="admin-nav-actions">
+          <span style="background:rgba(245,158,11,0.12); color:#fbbf24; border:1px solid rgba(245,158,11,0.3); padding:0.35rem 0.8rem; border-radius:9999px; font-size:0.75rem; font-weight:700; display:inline-flex; align-items:center; gap:0.35rem;">
+            🔒 Sales Locked (Gateway Pending)
+          </span>
           <div class="admin-live-pulse">
             <span class="pulse-circle"></span>
             <span>4 Active Users</span>
@@ -152,6 +155,20 @@
            ==================================================================== -->
       <div id="tab-panel-overview" class="admin-tab-content active">
         
+        <!-- Gateway Lock Warning Banner -->
+        <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.3); border-radius:12px; padding:1rem 1.25rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.85rem; flex-wrap:wrap;">
+          <span style="font-size:1.75rem; line-height:1;">🔒</span>
+          <div style="flex-grow:1;">
+            <strong style="color:#fbbf24; font-size:0.95rem;">Paid Services & Checkout Currently Locked on Storefront</strong>
+            <div style="color:#cbd5e1; font-size:0.8rem; margin-top:2px;">
+              Direct online sales are temporarily locked because no live payment gateway key is active yet. All 4 paid products are protected against unauthorized checkout. All 11 daily tools and free leads remain 100% active.
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm" style="border-color:#fbbf24; color:#fbbf24; font-size:0.75rem;" onclick="DashboardUI.switchTab('theme')">
+            ⚙️ Configure Gateway Keys
+          </button>
+        </div>
+
         <!-- 4 Hero KPI Metric Cards (Realistic, Clean, Mathematically Exact) -->
         <div class="admin-kpi-grid">
           <div class="admin-kpi-card admin-kpi-glow-emerald">
@@ -159,9 +176,9 @@
               <span class="admin-kpi-label">Total Verified Revenue</span>
               <div class="admin-kpi-icon kpi-icon-emerald">₹</div>
             </div>
-            <div class="admin-kpi-value" id="kpi-val-revenue">₹78,972</div>
+            <div class="admin-kpi-value" id="kpi-val-revenue">₹0</div>
             <div class="admin-kpi-footer">
-              <span class="kpi-sub-positive">↑ +14.2%</span> vs last month • 28 Paid Orders
+              <span style="color:#fbbf24; font-weight:700;">🔒 Gateway Locked</span> • 0 Paid Orders Recorded
             </div>
           </div>
 
@@ -172,18 +189,18 @@
             </div>
             <div class="admin-kpi-value" id="kpi-val-downloads">340 Leads</div>
             <div class="admin-kpi-footer">
-              <span class="kpi-sub-positive">↑ +26.8%</span> Product-wise downloads
+              <span class="kpi-sub-positive">↑ +26.8%</span> Product-wise downloads (Active)
             </div>
           </div>
 
           <div class="admin-kpi-card admin-kpi-glow-purple">
             <div class="admin-kpi-top">
-              <span class="admin-kpi-label">Conversion Rate</span>
+              <span class="admin-kpi-label">Store Conversion Rate</span>
               <div class="admin-kpi-icon kpi-icon-purple">🎯</div>
             </div>
-            <div class="admin-kpi-value">3.2%</div>
+            <div class="admin-kpi-value">0.0%</div>
             <div class="admin-kpi-footer">
-              <span class="kpi-sub-positive">Top:</span> Razorpay UPI 82% • Cards 18%
+              <span style="color:#fbbf24; font-weight:700;">Status:</span> Checkout Paused for Gateway KYC
             </div>
           </div>
 
@@ -257,8 +274,8 @@
               <tbody>
                 <tr>
                   <td style="color:#38bdf8; font-family:monospace;">Just now</td>
-                  <td><strong style="color:#ffffff;">Product Checkout Started</strong></td>
-                  <td>Aditya S.</td>
+                  <td><strong style="color:#ffffff;">Tool Executed: Meta Tag & SERP Previewer</strong></td>
+                  <td>Active User</td>
                   <td>Google Organic</td>
                   <td><span class="table-geo-badge">Bengaluru, IN 🇮🇳</span></td>
                   <td>Mobile (Chrome Android)</td>
@@ -281,8 +298,8 @@
                 </tr>
                 <tr>
                   <td style="color:#94a3b8; font-family:monospace;">14m ago</td>
-                  <td><strong style="color:#34d399;">Verified Purchase</strong>: Growth & SEO Mastery (₹2,499)</td>
-                  <td>priya.p@techventures.in</td>
+                  <td><span class="badge-paid">Free Lead Download</span>: Meta Tag Templates</td>
+                  <td>ananya.r@designcraft.in</td>
                   <td>Google Organic</td>
                   <td><span class="table-geo-badge">Mumbai, IN 🇮🇳</span></td>
                   <td>Desktop (macOS)</td>
@@ -306,6 +323,20 @@
            ==================================================================== -->
       <div id="tab-panel-sales" class="admin-tab-content">
         
+        <!-- Gateway Lock Warning Banner -->
+        <div style="background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.3); border-radius:12px; padding:1rem 1.25rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.85rem; flex-wrap:wrap;">
+          <span style="font-size:1.75rem; line-height:1;">🔒</span>
+          <div style="flex-grow:1;">
+            <strong style="color:#fbbf24; font-size:0.95rem;">Payment Gateway Offline & Paid Checkout Locked</strong>
+            <div style="color:#cbd5e1; font-size:0.8rem; margin-top:2px;">
+              No payment gateway credentials have been verified on production. Direct sales are disabled across all products. Recorded revenue is ₹0 with zero customer transactions.
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm" style="border-color:#fbbf24; color:#fbbf24; font-size:0.75rem;" onclick="DashboardUI.switchTab('theme')">
+            ⚙️ Gateway Settings
+          </button>
+        </div>
+
         <!-- Product-Wise Sales Cards -->
         <div class="product-kpi-grid">
           <div class="prod-card">
@@ -314,16 +345,16 @@
                 <span class="badge-product">Notion & SOPs</span>
                 <h4 class="prod-name" style="margin-top:0.35rem;">Fullstop Business OS</h4>
               </div>
-              <span class="prod-badge" style="background:rgba(56,189,248,0.15); color:#38bdf8;">12 Orders</span>
+              <span class="prod-badge" style="background:rgba(245,158,11,0.15); color:#fbbf24;">🔒 Locked</span>
             </div>
             <div class="prod-stat-row">
               <div>
-                <div class="prod-stat-val">₹17,988</div>
+                <div class="prod-stat-val">₹0</div>
                 <div class="prod-stat-lbl">Revenue (₹1,499/ea)</div>
               </div>
               <div>
-                <div class="prod-stat-val" style="color:#34d399;">3.8%</div>
-                <div class="prod-stat-lbl">Conversion Rate</div>
+                <div class="prod-stat-val" style="color:#fbbf24;">0 Orders</div>
+                <div class="prod-stat-lbl">Sales Paused</div>
               </div>
             </div>
           </div>
@@ -334,16 +365,16 @@
                 <span class="badge-product">Growth & SEO</span>
                 <h4 class="prod-name" style="margin-top:0.35rem;">Growth & SEO Mastery</h4>
               </div>
-              <span class="prod-badge" style="background:rgba(52,211,153,0.15); color:#34d399;">8 Orders</span>
+              <span class="prod-badge" style="background:rgba(245,158,11,0.15); color:#fbbf24;">🔒 Locked</span>
             </div>
             <div class="prod-stat-row">
               <div>
-                <div class="prod-stat-val">₹19,992</div>
+                <div class="prod-stat-val">₹0</div>
                 <div class="prod-stat-lbl">Revenue (₹2,499/ea)</div>
               </div>
               <div>
-                <div class="prod-stat-val" style="color:#34d399;">2.9%</div>
-                <div class="prod-stat-lbl">Conversion Rate</div>
+                <div class="prod-stat-val" style="color:#fbbf24;">0 Orders</div>
+                <div class="prod-stat-lbl">Sales Paused</div>
               </div>
             </div>
           </div>
@@ -354,16 +385,16 @@
                 <span class="badge-product">Micro-SaaS</span>
                 <h4 class="prod-name" style="margin-top:0.35rem;">Developer Boilerplate</h4>
               </div>
-              <span class="prod-badge" style="background:rgba(167,139,250,0.15); color:#a78bfa;">5 Orders</span>
+              <span class="prod-badge" style="background:rgba(245,158,11,0.15); color:#fbbf24;">🔒 Locked</span>
             </div>
             <div class="prod-stat-row">
               <div>
-                <div class="prod-stat-val">₹19,995</div>
+                <div class="prod-stat-val">₹0</div>
                 <div class="prod-stat-lbl">Revenue (₹3,999/ea)</div>
               </div>
               <div>
-                <div class="prod-stat-val" style="color:#34d399;">2.1%</div>
-                <div class="prod-stat-lbl">Conversion Rate</div>
+                <div class="prod-stat-val" style="color:#fbbf24;">0 Orders</div>
+                <div class="prod-stat-lbl">Sales Paused</div>
               </div>
             </div>
           </div>
@@ -374,16 +405,16 @@
                 <span class="badge-product">VIP Access</span>
                 <h4 class="prod-name" style="margin-top:0.35rem;">Lifetime All-Access</h4>
               </div>
-              <span class="prod-badge" style="background:rgba(251,191,36,0.15); color:#fbbf24;">3 Orders</span>
+              <span class="prod-badge" style="background:rgba(245,158,11,0.15); color:#fbbf24;">🔒 Locked</span>
             </div>
             <div class="prod-stat-row">
               <div>
-                <div class="prod-stat-val">₹20,997</div>
+                <div class="prod-stat-val">₹0</div>
                 <div class="prod-stat-lbl">Revenue (₹6,999/ea)</div>
               </div>
               <div>
-                <div class="prod-stat-val" style="color:#34d399;">1.2%</div>
-                <div class="prod-stat-lbl">Conversion Rate</div>
+                <div class="prod-stat-val" style="color:#fbbf24;">0 Orders</div>
+                <div class="prod-stat-lbl">Sales Paused</div>
               </div>
             </div>
           </div>

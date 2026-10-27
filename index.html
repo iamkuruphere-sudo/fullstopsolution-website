@@ -436,6 +436,21 @@
           <p class="section-desc">Production-grade templates, growth blueprints, and developer boilerplates with instant delivery.</p>
         </div>
 
+        <!-- Gateway Verification & Sales Lock Banner -->
+        <div style="background:rgba(245, 158, 11, 0.08); border:1px solid rgba(245, 158, 11, 0.3); border-radius:14px; padding:1.25rem 1.5rem; margin-bottom:2rem; display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap;">
+          <div style="font-size:2rem; line-height:1;">🔒</div>
+          <div style="flex-grow:1; min-width:240px;">
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+              <strong style="color:#fbbf24; font-size:1rem;">Paid Checkout Temporarily Locked</strong>
+              <span class="badge badge-amber" style="font-size:0.7rem;">Gateway KYC in Progress</span>
+            </div>
+            <p style="color:#cbd5e1; font-size:0.85rem; margin:0; line-height:1.4;">
+              Online purchases for premium digital toolkits are temporarily locked while payment gateway merchant onboarding is being finalized. All <strong>11 daily tools and free resources</strong> remain 100% active and free to use.
+            </p>
+          </div>
+          <a href="#tools" class="btn btn-outline btn-sm" style="border-color:#fbbf24; color:#fbbf24; font-weight:700;">⚡ Explore Free Daily Tools</a>
+        </div>
+
         <div class="products-grid">
           <!-- Product 1: Ultimate Business OS -->
           <div class="product-card" data-product-id="business-os">
@@ -467,7 +482,7 @@
                 <span><strong>Lifetime Updates:</strong> Continuous feature additions</span>
               </li>
             </ul>
-            <button class="btn btn-primary" onclick="Commerce.openCheckout('business-os')">Buy Now • Instant Access</button>
+            <button class="btn btn-outline" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="Commerce.showLockedModal('business-os')">🔒 Gateway Verification • Sales Locked</button>
           </div>
 
           <!-- Product 2: Growth & SEO Mastery -->
@@ -500,7 +515,7 @@
                 <span><strong>Viral Hook Database:</strong> 250+ copywriting templates</span>
               </li>
             </ul>
-            <button class="btn btn-primary" onclick="Commerce.openCheckout('growth-seo')">Buy Now • Instant Access</button>
+            <button class="btn btn-outline" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="Commerce.showLockedModal('growth-seo')">🔒 Gateway Verification • Sales Locked</button>
           </div>
 
           <!-- Product 3: Developer Pro Boilerplate -->
@@ -533,7 +548,7 @@
                 <span><strong>Commercial License:</strong> Unlimited client & personal apps</span>
               </li>
             </ul>
-            <button class="btn btn-primary" onclick="Commerce.openCheckout('dev-boilerplate')">Buy Now • Instant Access</button>
+            <button class="btn btn-outline" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="Commerce.showLockedModal('dev-boilerplate')">🔒 Gateway Verification • Sales Locked</button>
           </div>
 
           <!-- Product 4: Lifetime Bundle (Featured) -->
@@ -570,8 +585,9 @@
                 <span><strong>VIP WhatsApp & Email Priority Support</strong></span>
               </li>
             </ul>
-            <button class="btn btn-gradient btn-lg" onclick="Commerce.openCheckout('lifetime-bundle')">Unlock All-Access Lifetime Pass</button>
+            <button class="btn btn-outline btn-lg" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24; font-weight:700;" onclick="Commerce.showLockedModal('lifetime-bundle')">🔒 Gateway Verification • Sales Locked</button>
           </div>
+        </div>
         </div>
       </div>
     </section>

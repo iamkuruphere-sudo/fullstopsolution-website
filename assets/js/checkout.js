@@ -8,6 +8,58 @@ const Commerce = {
   currency: 'INR', // Default INR for .in domain
   activeDiscount: 0,
   activeCouponCode: '',
+  salesLocked: true, // Master lock: all paid products locked until gateway is active
+
+  isSalesLocked() {
+    const override = localStorage.getItem('fs_sales_locked');
+    if (override !== null) return override === 'true';
+    return true; // Locked by default
+  },
+
+  showLockedModal(productId) {
+    const prods = this.getProducts();
+    const product = prods[productId] || this.products[productId];
+    const modalBody = document.getElementById('checkout-modal-body');
+    if (!modalBody) {
+      if (typeof App !== 'undefined') {
+        App.toast('🔒 Sales are temporarily locked while payment gateway verification is in progress.');
+      }
+      return;
+    }
+
+    modalBody.innerHTML = `
+      <div style="text-align:center; padding:1.5rem 0.5rem;">
+        <div style="width:68px; height:68px; background:rgba(245,158,11,0.15); color:#f59e0b; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:2rem; margin-bottom:1rem; border:1px solid rgba(245,158,11,0.3);">
+          🔒
+        </div>
+        <h3 style="font-size:1.35rem; font-weight:800; margin-bottom:0.4rem; color:var(--text-primary);">
+          Paid Services Temporarily Locked
+        </h3>
+        <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.5; margin-bottom:1.5rem; max-width:420px; margin-left:auto; margin-right:auto;">
+          Payment gateway verification is currently underway for <strong>${product ? product.name : 'our toolkits'}</strong>. Online purchases are temporarily suspended to protect customer funds until full merchant KYC activation.
+        </p>
+
+        <div style="background:var(--bg-primary); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem; margin-bottom:1.5rem; text-align:left;">
+          <div style="font-size:0.8rem; font-weight:700; color:#34d399; margin-bottom:0.25rem;">✓ 100% Free Daily Tools Available</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.4;">
+            All 11 daily in-browser tools (Meta Tag Generator, Password Generator, JSON Validator, Invoice Maker, etc.) and free downloads remain completely active and free to use with zero caps.
+          </div>
+        </div>
+
+        <div style="display:flex; gap:0.5rem; justify-content:center;">
+          <button class="btn btn-primary" onclick="App.closeModals(); window.location.hash='tools';">
+            ⚡ Explore Free Daily Tools
+          </button>
+          <button class="btn btn-outline" onclick="App.closeModals();">
+            Close Window
+          </button>
+        </div>
+      </div>
+    `;
+    if (typeof App !== 'undefined') {
+      App.openModal('checkout-modal');
+    }
+  },
 
   // Gateway Configurations
   getRazorpayKey() {
@@ -136,6 +188,11 @@ const Commerce = {
   },
 
   openCheckout(productId) {
+    if (this.isSalesLocked()) {
+      this.showLockedModal(productId);
+      return;
+    }
+
     const prods = this.getProducts();
     const product = prods[productId] || this.products[productId];
     if (!product) return;

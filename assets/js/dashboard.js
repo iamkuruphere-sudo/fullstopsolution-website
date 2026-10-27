@@ -341,9 +341,9 @@ const AdminProducts = {
       priceUSD: 19,
       originalINR: 4999,
       originalUSD: 65,
-      status: 'active', // 'active' or 'unlisted'
-      salesCount: 12,
-      revenueINR: 17988,
+      status: 'locked', // Locked: Gateway KYC under verification
+      salesCount: 0,
+      revenueINR: 0,
       features: [
         'Complete Notion Workspace (CRM, Project Hub, Cash Flow)',
         '30+ Ready-to-Use Business Contract & Proposal Templates',
@@ -361,9 +361,9 @@ const AdminProducts = {
       priceUSD: 29,
       originalINR: 6999,
       originalUSD: 89,
-      status: 'active',
-      salesCount: 8,
-      revenueINR: 19992,
+      status: 'locked',
+      salesCount: 0,
+      revenueINR: 0,
       features: [
         '500+ High-Authority Directory Submission List (DR & Dofollow tags)',
         '100-Point Technical & On-Page SEO Audit Checklist',
@@ -381,9 +381,9 @@ const AdminProducts = {
       priceUSD: 49,
       originalINR: 9999,
       originalUSD: 129,
-      status: 'active',
-      salesCount: 5,
-      revenueINR: 19995,
+      status: 'locked',
+      salesCount: 0,
+      revenueINR: 0,
       features: [
         'Production Next.js 15 App Router Architecture',
         'Pre-configured Razorpay & UPI Webhook Workflows',
@@ -401,9 +401,9 @@ const AdminProducts = {
       priceUSD: 79,
       originalINR: 19999,
       originalUSD: 249,
-      status: 'active',
-      salesCount: 3,
-      revenueINR: 20997,
+      status: 'locked',
+      salesCount: 0,
+      revenueINR: 0,
       features: [
         'Everything in Ultimate Business OS',
         'Everything in Full-Stack Growth & SEO Mastery Toolkit',
@@ -561,37 +561,9 @@ const AdminTheme = {
 // ==========================================================================
 
 const DashboardData = {
-  // 28 Realistic Completed Sales Records (Clean, Mathematically Accurate, Zero Exaggeration)
-  SEED_SALES: [
-    { id: 'TXN-9842-8491', date: '27 Oct 2026, 17:15 IST', timestamp: '2026-10-27T11:45:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Aditya Sharma', customerEmail: 'aditya.sharma@gmail.com', amount: 1499, currency: 'INR', gateway: 'Razorpay UPI (Google Pay)', paymentId: 'pay_P84920K1', geography: 'Bengaluru, Karnataka, India 🇮🇳', licenseKey: 'FS-PRO-9842-8492-4819', status: 'Completed' },
-    { id: 'TXN-9831-7712', date: '27 Oct 2026, 15:30 IST', timestamp: '2026-10-27T10:00:00Z', productId: 'growth-seo', productName: 'Full-Stack Growth & SEO Mastery', customerName: 'Priya Patel', customerEmail: 'priya.p@techventures.in', amount: 2499, currency: 'INR', gateway: 'Razorpay (RuPay Card)', paymentId: 'pay_M77129X4', geography: 'Mumbai, Maharashtra, India 🇮🇳', licenseKey: 'FS-PRO-7712-4812-9901', status: 'Completed' },
-    { id: 'TXN-9820-6641', date: '27 Oct 2026, 12:45 IST', timestamp: '2026-10-27T07:15:00Z', productId: 'dev-boilerplate', productName: 'Developer Pro Micro-SaaS Boilerplate', customerName: 'Vikram Malhotra', customerEmail: 'vikram.m@zenithmedia.com', amount: 3999, currency: 'INR', gateway: 'Razorpay Netbanking (HDFC)', paymentId: 'pay_N66412W8', geography: 'Hyderabad, Telangana, India 🇮🇳', licenseKey: 'FS-PRO-6641-3819-2241', status: 'Completed' },
-    { id: 'TXN-9805-5519', date: '26 Oct 2026, 21:10 IST', timestamp: '2026-10-26T15:40:00Z', productId: 'lifetime-bundle', productName: 'The All-Access Lifetime Bundle', customerName: 'Arjun Nair', customerEmail: 'arjun.nair@stackcraft.dev', amount: 6999, currency: 'INR', gateway: 'Razorpay UPI (PhonePe)', paymentId: 'pay_K55198J2', geography: 'Delhi NCR, India 🇮🇳', licenseKey: 'FS-VIP-5519-8842-1004', status: 'Completed' },
-    { id: 'TXN-9792-4410', date: '26 Oct 2026, 18:05 IST', timestamp: '2026-10-26T12:35:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Sneha Kulkarni', customerEmail: 'sneha.k@cloudworks.co', amount: 1499, currency: 'INR', gateway: 'Razorpay UPI (Paytm)', paymentId: 'pay_Q44102P7', geography: 'Pune, Maharashtra, India 🇮🇳', licenseKey: 'FS-PRO-4410-1928-8832', status: 'Completed' },
-    { id: 'TXN-9781-3318', date: '26 Oct 2026, 14:20 IST', timestamp: '2026-10-26T08:50:00Z', productId: 'growth-seo', productName: 'Full-Stack Growth & SEO Mastery', customerName: 'Kunal Singhania', customerEmail: 'kunal.s@growthloop.io', amount: 2499, currency: 'INR', gateway: 'Razorpay (Visa Card)', paymentId: 'pay_A33189Z3', geography: 'Gurugram, Haryana, India 🇮🇳', licenseKey: 'FS-PRO-3318-7741-6629', status: 'Completed' },
-    { id: 'TXN-9770-2211', date: '25 Oct 2026, 20:45 IST', timestamp: '2026-10-25T15:15:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Rohan Joshi', customerEmail: 'rohan.j@freelancenet.in', amount: 1499, currency: 'INR', gateway: 'Razorpay UPI (Google Pay)', paymentId: 'pay_B22114Y9', geography: 'Ahmedabad, Gujarat, India 🇮🇳', licenseKey: 'FS-PRO-2211-9921-3341', status: 'Completed' },
-    { id: 'TXN-9759-1102', date: '25 Oct 2026, 16:30 IST', timestamp: '2026-10-25T11:00:00Z', productId: 'lifetime-bundle', productName: 'The All-Access Lifetime Bundle', customerName: 'David Miller', customerEmail: 'david.miller@apexlogic.io', amount: 6999, currency: 'INR', gateway: 'PayPal (International)', paymentId: 'PAYPAL-TXN-9842A', geography: 'San Francisco, CA, USA 🇺🇸', licenseKey: 'FS-VIP-1102-4482-7719', status: 'Completed' },
-    { id: 'TXN-9748-0091', date: '24 Oct 2026, 19:15 IST', timestamp: '2026-10-24T13:45:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Neha Gupta', customerEmail: 'neha.g@digitalleap.in', amount: 1499, currency: 'INR', gateway: 'Razorpay UPI (PhonePe)', paymentId: 'pay_C00918X5', geography: 'Bengaluru, Karnataka, India 🇮🇳', licenseKey: 'FS-PRO-0091-6632-1108', status: 'Completed' },
-    { id: 'TXN-9735-9982', date: '24 Oct 2026, 13:40 IST', timestamp: '2026-10-24T08:10:00Z', productId: 'growth-seo', productName: 'Full-Stack Growth & SEO Mastery', customerName: 'Amitav Ghosh', customerEmail: 'amitav.ghosh@calcuttainnovate.com', amount: 2499, currency: 'INR', gateway: 'Razorpay Netbanking (ICICI)', paymentId: 'pay_D99823W1', geography: 'Kolkata, West Bengal, India 🇮🇳', licenseKey: 'FS-PRO-9982-8819-4402', status: 'Completed' },
-    { id: 'TXN-9721-8874', date: '23 Oct 2026, 17:55 IST', timestamp: '2026-10-23T12:25:00Z', productId: 'dev-boilerplate', productName: 'Developer Pro Micro-SaaS Boilerplate', customerName: 'Rahul Verma', customerEmail: 'rahul.v@nextstage.dev', amount: 3999, currency: 'INR', gateway: 'Razorpay (Mastercard)', paymentId: 'pay_E88749V6', geography: 'Chennai, Tamil Nadu, India 🇮🇳', licenseKey: 'FS-PRO-8874-2219-5591', status: 'Completed' },
-    { id: 'TXN-9710-7763', date: '23 Oct 2026, 11:20 IST', timestamp: '2026-10-23T05:50:00Z', productId: 'lifetime-bundle', productName: 'The All-Access Lifetime Bundle', customerName: 'James Thornton', customerEmail: 'j.thornton@londonfintech.co.uk', amount: 6999, currency: 'INR', gateway: 'PayPal (UK Credit Card)', paymentId: 'PAYPAL-TXN-7763B', geography: 'London, United Kingdom 🇬🇧', licenseKey: 'FS-VIP-7763-1192-8834', status: 'Completed' },
-    { id: 'TXN-9698-6652', date: '22 Oct 2026, 21:05 IST', timestamp: '2026-10-22T15:35:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Tanvi Deshmukh', customerEmail: 'tanvi.d@designscale.in', amount: 1499, currency: 'INR', gateway: 'Razorpay UPI (Google Pay)', paymentId: 'pay_F66521U8', geography: 'Mumbai, Maharashtra, India 🇮🇳', licenseKey: 'FS-PRO-6652-3341-9920', status: 'Completed' },
-    { id: 'TXN-9685-5541', date: '22 Oct 2026, 15:10 IST', timestamp: '2026-10-22T09:40:00Z', productId: 'dev-boilerplate', productName: 'Developer Pro Micro-SaaS Boilerplate', customerName: 'Rajesh Sundaram', customerEmail: 'rajesh.s@innovatechennai.in', amount: 3999, currency: 'INR', gateway: 'Razorpay Netbanking (SBI)', paymentId: 'pay_G55419T2', geography: 'Chennai, Tamil Nadu, India 🇮🇳', licenseKey: 'FS-PRO-5541-7729-1148', status: 'Completed' },
-    { id: 'TXN-9672-4430', date: '21 Oct 2026, 18:40 IST', timestamp: '2026-10-21T13:10:00Z', productId: 'growth-seo', productName: 'Full-Stack Growth & SEO Mastery', customerName: 'Manish Agarwal', customerEmail: 'manish.a@northstar.co.in', amount: 2499, currency: 'INR', gateway: 'Razorpay UPI (PhonePe)', paymentId: 'pay_H44302S5', geography: 'Jaipur, Rajasthan, India 🇮🇳', licenseKey: 'FS-PRO-4430-8819-2234', status: 'Completed' },
-    { id: 'TXN-9660-3329', date: '21 Oct 2026, 12:15 IST', timestamp: '2026-10-21T06:45:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Kavita Menon', customerEmail: 'kavita.m@keralatech.io', amount: 1499, currency: 'INR', gateway: 'Razorpay UPI (Google Pay)', paymentId: 'pay_I33291R9', geography: 'Kochi, Kerala, India 🇮🇳', licenseKey: 'FS-PRO-3329-4410-7782', status: 'Completed' },
-    { id: 'TXN-9648-2218', date: '20 Oct 2026, 19:50 IST', timestamp: '2026-10-20T14:20:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Sanjay Kapoor', customerEmail: 'sanjay.k@venturestride.com', amount: 1499, currency: 'INR', gateway: 'Razorpay (RuPay Card)', paymentId: 'pay_J22189Q4', geography: 'Chandigarh, India 🇮🇳', licenseKey: 'FS-PRO-2218-9901-3329', status: 'Completed' },
-    { id: 'TXN-9635-1107', date: '20 Oct 2026, 14:35 IST', timestamp: '2026-10-20T09:05:00Z', productId: 'dev-boilerplate', productName: 'Developer Pro Micro-SaaS Boilerplate', customerName: 'Marcus Vance', customerEmail: 'marcus.v@synthetix.sg', amount: 3999, currency: 'INR', gateway: 'PayPal (Singapore)', paymentId: 'PAYPAL-TXN-1107C', geography: 'Singapore 🇸🇬', licenseKey: 'FS-PRO-1107-5582-6619', status: 'Completed' },
-    { id: 'TXN-9621-0096', date: '19 Oct 2026, 17:25 IST', timestamp: '2026-10-19T11:55:00Z', productId: 'growth-seo', productName: 'Full-Stack Growth & SEO Mastery', customerName: 'Deepak Chawla', customerEmail: 'deepak.c@apexscale.in', amount: 2499, currency: 'INR', gateway: 'Razorpay UPI (Paytm)', paymentId: 'pay_K00964P7', geography: 'Noida, Uttar Pradesh, India 🇮🇳', licenseKey: 'FS-PRO-0096-7731-4409', status: 'Completed' },
-    { id: 'TXN-9609-9985', date: '18 Oct 2026, 20:10 IST', timestamp: '2026-10-18T14:40:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Shreya Sen', customerEmail: 'shreya.sen@bengalux.com', amount: 1499, currency: 'INR', gateway: 'Razorpay (Axis Card)', paymentId: 'pay_L99852O1', geography: 'Kolkata, West Bengal, India 🇮🇳', licenseKey: 'FS-PRO-9985-1142-8820', status: 'Completed' },
-    { id: 'TXN-9594-8873', date: '17 Oct 2026, 16:45 IST', timestamp: '2026-10-17T11:15:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Rohit Bansal', customerEmail: 'rohit.b@foundersbay.in', amount: 1499, currency: 'INR', gateway: 'Razorpay UPI (Google Pay)', paymentId: 'pay_M88739N5', geography: 'Indore, Madhya Pradesh, India 🇮🇳', licenseKey: 'FS-PRO-8873-6629-3341', status: 'Completed' },
-    { id: 'TXN-9582-7761', date: '16 Oct 2026, 19:30 IST', timestamp: '2026-10-16T14:00:00Z', productId: 'growth-seo', productName: 'Full-Stack Growth & SEO Mastery', customerName: 'Swati Bhattacharya', customerEmail: 'swati.b@growthmatrix.in', amount: 2499, currency: 'INR', gateway: 'Razorpay UPI (PhonePe)', paymentId: 'pay_N77618M3', geography: 'Bengaluru, Karnataka, India 🇮🇳', licenseKey: 'FS-PRO-7761-4419-7728', status: 'Completed' },
-    { id: 'TXN-9570-6650', date: '15 Oct 2026, 13:15 IST', timestamp: '2026-10-15T07:45:00Z', productId: 'dev-boilerplate', productName: 'Developer Pro Micro-SaaS Boilerplate', customerName: 'Akash Trivedi', customerEmail: 'akash.t@saascraft.in', amount: 3999, currency: 'INR', gateway: 'Razorpay Netbanking (Kotak)', paymentId: 'pay_O66502L8', geography: 'Surat, Gujarat, India 🇮🇳', licenseKey: 'FS-PRO-6650-8891-2245', status: 'Completed' },
-    { id: 'TXN-9558-5539', date: '14 Oct 2026, 18:05 IST', timestamp: '2026-10-14T12:35:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Meera Krishnan', customerEmail: 'meera.k@nexustools.in', amount: 1499, currency: 'INR', gateway: 'Razorpay (HDFC Card)', paymentId: 'pay_P55391K2', geography: 'Bengaluru, Karnataka, India 🇮🇳', licenseKey: 'FS-PRO-5539-3301-9948', status: 'Completed' },
-    { id: 'TXN-9545-4428', date: '13 Oct 2026, 15:40 IST', timestamp: '2026-10-13T10:10:00Z', productId: 'growth-seo', productName: 'Full-Stack Growth & SEO Mastery', customerName: 'Nitin Saxena', customerEmail: 'nitin.s@scaleupmedia.in', amount: 2499, currency: 'INR', gateway: 'Razorpay UPI (Google Pay)', paymentId: 'pay_Q44289J6', geography: 'Lucknow, Uttar Pradesh, India 🇮🇳', licenseKey: 'FS-PRO-4428-7712-1139', status: 'Completed' },
-    { id: 'TXN-9532-3317', date: '12 Oct 2026, 11:20 IST', timestamp: '2026-10-12T05:50:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Divya Rao', customerEmail: 'divya.rao@hyderabadtech.in', amount: 1499, currency: 'INR', gateway: 'Razorpay UPI (PhonePe)', paymentId: 'pay_R33178I4', geography: 'Hyderabad, Telangana, India 🇮🇳', licenseKey: 'FS-PRO-3317-5592-8820', status: 'Completed' },
-    { id: 'TXN-9519-2206', date: '10 Oct 2026, 17:50 IST', timestamp: '2026-10-10T12:20:00Z', productId: 'business-os', productName: 'Fullstop Ultimate Business OS', customerName: 'Varun Sood', customerEmail: 'varun.sood@delhistartups.in', amount: 1499, currency: 'INR', gateway: 'Razorpay (ICICI Card)', paymentId: 'pay_S22064H9', geography: 'New Delhi, India 🇮🇳', licenseKey: 'FS-PRO-2206-8819-3341', status: 'Completed' },
-    { id: 'TXN-9505-1194', date: '08 Oct 2026, 14:15 IST', timestamp: '2026-10-08T08:45:00Z', productId: 'growth-seo', productName: 'Full-Stack Growth & SEO Mastery', customerName: 'Gaurav Mishra', customerEmail: 'gaurav.m@techcatalyst.in', amount: 2499, currency: 'INR', gateway: 'Razorpay UPI (Google Pay)', paymentId: 'pay_T11942G7', geography: 'Patna, Bihar, India 🇮🇳', licenseKey: 'FS-PRO-1194-4402-7719', status: 'Completed' }
-  ],
+  // Sales Ledger: Real verified orders only (Zero placeholder/demo orders)
+  // Currently empty because payment gateways are locked pending merchant verification
+  SEED_SALES: [],
 
   // 340 Realistic Free Downloads (Product-wise Distribution)
   SEED_DOWNLOADS: [
@@ -830,11 +802,23 @@ const DashboardCharts = {
 
     const stats = DashboardData.getProductWiseSales();
     const data = [
-      { name: 'Business OS', val: stats['business-os']?.revenueINR || 17988, color: '#38bdf8', orders: stats['business-os']?.ordersCount || 12 },
-      { name: 'Growth SEO', val: stats['growth-seo']?.revenueINR || 19992, color: '#34d399', orders: stats['growth-seo']?.ordersCount || 8 },
-      { name: 'Boilerplate', val: stats['dev-boilerplate']?.revenueINR || 19995, color: '#a78bfa', orders: stats['dev-boilerplate']?.ordersCount || 5 },
-      { name: 'Lifetime VIP', val: stats['lifetime-bundle']?.revenueINR || 20997, color: '#fbbf24', orders: stats['lifetime-bundle']?.ordersCount || 3 }
+      { name: 'Business OS', val: stats['business-os']?.revenueINR || 0, color: '#38bdf8', orders: stats['business-os']?.ordersCount || 0 },
+      { name: 'Growth SEO', val: stats['growth-seo']?.revenueINR || 0, color: '#34d399', orders: stats['growth-seo']?.ordersCount || 0 },
+      { name: 'Boilerplate', val: stats['dev-boilerplate']?.revenueINR || 0, color: '#a78bfa', orders: stats['dev-boilerplate']?.ordersCount || 0 },
+      { name: 'Lifetime VIP', val: stats['lifetime-bundle']?.revenueINR || 0, color: '#fbbf24', orders: stats['lifetime-bundle']?.ordersCount || 0 }
     ];
+
+    const totalRev = data.reduce((sum, d) => sum + d.val, 0);
+    if (totalRev === 0) {
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = 'bold 13px -apple-system, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('🔒 Paid Services Currently Locked (₹0 Revenue)', width / 2, height / 2 - 12);
+      ctx.font = '11px -apple-system, sans-serif';
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillText('Payment gateway KYC in progress • Direct checkout disabled', width / 2, height / 2 + 12);
+      return;
+    }
 
     const padding = { top: 35, right: 30, bottom: 45, left: 60 };
     const chartW = width - padding.left - padding.right;
@@ -1196,7 +1180,17 @@ const DashboardUI = {
     });
 
     if (filtered.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:2.5rem; color:#94a3b8;">No matching transactions found.</td></tr>`;
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align:center; padding:3rem 1rem; color:#94a3b8;">
+            <div style="font-size:2rem; margin-bottom:0.75rem;">🔒</div>
+            <strong style="color:#ffffff; font-size:1.05rem; display:block; margin-bottom:0.35rem;">Paid Services & Checkout Currently Locked</strong>
+            <span style="font-size:0.85rem; color:#f59e0b; display:block; max-width:520px; margin:0 auto; line-height:1.5;">
+              Online payment gateways are locked pending merchant verification. All paid products are locked on the storefront. Zero customer transactions recorded.
+            </span>
+          </td>
+        </tr>
+      `;
       return;
     }
 
