@@ -4,7 +4,7 @@
  * 100% Client-Side zero telemetry architecture.
  */
 
-const CACHE_NAME = 'fullstop-v2.6.0';
+const CACHE_NAME = 'fullstop-v2.7.0';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -15,6 +15,10 @@ const STATIC_ASSETS = [
   '/assets/js/checkout.js',
   '/assets/js/analytics.js',
   '/assets/images/logo.png',
+  '/assets/images/logo-icon.svg',
+  '/assets/images/logo.svg',
+  '/assets/fonts/PlusJakartaSans-Bold.woff2',
+  '/assets/fonts/PlusJakartaSans-ExtraBold.woff2',
   '/security.html',
   '/privacy-policy.html',
   '/terms.html'

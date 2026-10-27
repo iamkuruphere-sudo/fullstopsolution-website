@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329" />
+      <stop offset="50%" stop-color="#050a18" />
+      <stop offset="100%" stop-color="#02040a" />
+    </linearGradient>
+
+    <!-- Specular Border Gradient -->
+    <linearGradient id="specularBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.45)" />
+      <stop offset="30%" stop-color="rgba(56, 189, 248, 0.3)" />
+      <stop offset="70%" stop-color="rgba(129, 140, 248, 0.1)" />
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.05)" />
+    </linearGradient>
+
+    <!-- Primary Neon Aurora Gradient -->
+    <linearGradient id="auroraGlyph" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="45%" stop-color="#60a5fa" />
+      <stop offset="75%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <!-- Metallic Highlight Gradient -->
+    <linearGradient id="metallicSheen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="15%" stop-color="#ffffff" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Fullstop Jewel Gradient -->
+    <radialGradient id="fullstopJewel" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#67e8f9" />
+      <stop offset="60%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </radialGradient>
+
+    <!-- Ambient Core Glow -->
+    <radialGradient id="ambientGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(34, 211, 238, 0.35)" />
+      <stop offset="50%" stop-color="rgba(99, 102, 241, 0.15)" />
+      <stop offset="100%" stop-color="rgba(3, 7, 18, 0)" />
+    </radialGradient>
+
+    <!-- Drop Shadows -->
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="jewelGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur1" />
+      <feGaussianBlur stdDeviation="20" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Ambient Light Halo -->
+  <circle cx="340" cy="340" r="160" fill="url(#ambientGlow)" />
+  <circle cx="180" cy="160" r="140" fill="url(#ambientGlow)" opacity="0.6" />
+
+  <!-- Outer Shield Badge -->
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#shieldGrad)" stroke="url(#specularBorder)" stroke-width="2.5" />
+  
+  <!-- Subtle Internal Geometry Grid Lines -->
+  <path d="M 24 160 L 488 160 M 24 352 L 488 352 M 160 24 L 160 488 M 352 24 L 352 488" stroke="rgba(255,255,255,0.03)" stroke-width="1.5" />
+
+  <!-- Inner Specular Lip -->
+  <rect x="28" y="28" width="456" height="456" rx="108" fill="none" stroke="url(#metallicSheen)" stroke-width="1.5" opacity="0.4" />
+
+  <!-- ==========================================
+       ICONIC "FS" MONOGRAM GEOMETRY
+       Precision Architectural Vectors
+       ========================================== -->
+  <g filter="url(#neonGlow)">
+    <!-- Top Horizontal Bar of 'F' -->
+    <path d="M 148 140 H 364 C 382 140 396 154 396 172 C 396 190 382 204 364 204 H 208 V 232 H 312 C 330 232 344 246 344 264 C 344 282 330 296 312 296 H 208 V 372 C 208 390 194 404 176 404 C 158 404 144 390 144 372 V 176 C 144 156 160 140 180 140 Z" fill="url(#auroraGlyph)" />
+
+    <!-- Isometric 'S' Flow Ribbon -->
+    <path d="M 280 232 C 280 212 296 196 316 196 H 332 C 344 196 352 188 352 176 C 352 164 344 156 332 156 H 260 C 248 156 238 146 238 134 C 238 122 248 112 260 112 H 336 C 368 112 396 140 396 172 C 396 200 376 226 348 234 L 320 242 C 298 248 284 268 284 290 C 284 316 306 336 332 336 H 340 C 352 336 362 346 362 358 C 362 370 352 380 340 380 H 324 C 292 380 264 352 264 320 C 264 292 284 266 312 258 L 340 250" fill="none" stroke="url(#auroraGlyph)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+
+    <!-- Glass Overlay Line -->
+    <path d="M 152 148 H 360 C 374 148 384 158 384 172" fill="none" stroke="url(#metallicSheen)" stroke-width="3" opacity="0.6" />
+  </g>
+
+  <!-- ==========================================
+       THE LUMINOUS FULLSTOP NUCLEUS ( • )
+       Focal Point of The Brand Identity
+       ========================================== -->
+  <g filter="url(#jewelGlow)">
+    <!-- Outer Pulsing Aura -->
+    <circle cx="364" cy="356" r="42" fill="none" stroke="rgba(34, 211, 238, 0.4)" stroke-width="3" />
+    <!-- Radiant Halo -->
+    <circle cx="364" cy="356" r="32" fill="rgba(34, 211, 238, 0.25)" />
+    <!-- Solid Jewel Core -->
+    <circle cx="364" cy="356" r="26" fill="url(#fullstopJewel)" />
+    <!-- Specular Diamond Highlight -->
+    <circle cx="356" cy="348" r="7" fill="#ffffff" opacity="0.9" />
+  </g>
+</svg>

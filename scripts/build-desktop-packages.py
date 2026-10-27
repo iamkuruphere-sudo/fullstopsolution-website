@@ -84,8 +84,8 @@ completely in-browser with zero internet connection required.
             if os.path.exists(fpath):
                 z.write(fpath, f"Fullstop Suite/app/{rel_path}")
                 
-        # CSS & JS
-        for folder in ["assets/css", "assets/js", "assets/images"]:
+        # CSS, JS, Images & Fonts
+        for folder in ["assets/css", "assets/js", "assets/images", "assets/fonts"]:
             src_folder = os.path.join(ROOT_DIR, folder)
             if os.path.exists(src_folder):
                 for item in os.listdir(src_folder):
@@ -131,7 +131,7 @@ Compare the resulting hash with the published SHA256SUMS.txt.
             if os.path.exists(fpath):
                 z.write(fpath, f"Fullstop Suite/app/{rel_path}")
                 
-        for folder in ["assets/css", "assets/js", "assets/images"]:
+        for folder in ["assets/css", "assets/js", "assets/images", "assets/fonts"]:
             src_folder = os.path.join(ROOT_DIR, folder)
             if os.path.exists(src_folder):
                 for item in os.listdir(src_folder):
@@ -199,7 +199,7 @@ Run in terminal:
             if os.path.exists(fpath):
                 tar.add(fpath, arcname=f"fullstop-suite/app/{rel_path}")
 
-        for folder in ["assets/css", "assets/js", "assets/images"]:
+        for folder in ["assets/css", "assets/js", "assets/images", "assets/fonts"]:
             src_folder = os.path.join(ROOT_DIR, folder)
             if os.path.exists(src_folder):
                 for item in os.listdir(src_folder):

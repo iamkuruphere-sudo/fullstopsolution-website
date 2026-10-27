@@ -5,6 +5,23 @@
                High-DPI Retina Contrast, Micro-Fine Specular Borders
    ========================================================================== */
 
+/* Self-Hosted Luxury Neo-Grotesque Typography */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/PlusJakartaSans-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../fonts/PlusJakartaSans-ExtraBold.woff2') format('woff2');
+}
+
 :root {
   /* Ultra-Rich Cosmic Obsidian Canvas */
   --bg-primary: #030712;
@@ -70,6 +87,7 @@
   --transition-fast: all 0.15s ease-out;
   
   /* Typography Stack */
+  --font-brand: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
   --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
@@ -237,12 +255,20 @@ img {
 }
 
 .brand-logo-img {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+  height: 42px;
+  width: 42px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.35);
   flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.brand:hover .brand-logo-img {
+  transform: scale(1.06);
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-color: var(--accent-neon-cyan);
 }
 
 .brand-text {
@@ -252,17 +278,35 @@ img {
 }
 
 .brand-name {
-  font-size: 1.15rem;
+  font-family: var(--font-brand);
+  font-size: 1.25rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   background: var(--metallic-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.1;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   white-space: nowrap;
+}
+
+.brand-dot {
+  color: var(--accent-neon-cyan);
+  -webkit-text-fill-color: var(--accent-neon-cyan);
+  display: inline-block;
+  font-family: var(--font-brand);
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.85));
+  font-size: 1.4rem;
+  line-height: 0;
+  transform: translateY(-2px);
+}
+
+.brand-wordmark {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  letter-spacing: -0.015em;
 }
 
 .brand-pill-tag {
