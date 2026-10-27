@@ -151,6 +151,7 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#tools" class="active">Daily Tools</a></li>
+          <li><a href="#desktop">Desktop Apps <span class="badge badge-success" style="font-size:0.65rem; padding:1px 6px;">New</span></a></li>
           <li><a href="#products">Premium Packs</a></li>
           <li><a href="#security">Security</a></li>
           <li><a href="#faq">FAQ</a></li>
@@ -170,6 +171,7 @@
           <span id="theme-icon">☀️</span>
         </button>
 
+        <button class="btn btn-outline btn-sm" onclick="App.openDesktopModal()">🖥️ Desktop Suite</button>
         <a href="#products" class="btn btn-gradient btn-sm">Explore Pro Kits</a>
       </div>
     </div>
@@ -446,6 +448,126 @@
       </div>
     </section>
 
+    <!-- Native Desktop Apps & Verified Downloads Section -->
+    <section id="desktop" class="section" style="background:radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.05) 0%, transparent 70%); border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="badge badge-gradient">CROSS-PLATFORM DESKTOP ENGINE</span>
+          </div>
+          <h2 class="section-title">Download Fullstop Suite for Desktop</h2>
+          <p class="section-desc">
+            All 11+ daily tools and offline environments compiled for macOS (Apple Silicon & Intel), Windows, and Linux with cryptographically verified signatures.
+          </p>
+        </div>
+
+        <div class="platform-grid">
+          <!-- macOS Apple Silicon -->
+          <div class="platform-card" data-platform="mac-arm64">
+            <span class="platform-card-badge">Apple Silicon</span>
+            <div class="platform-card-header">
+              <span class="platform-card-icon">🍏</span>
+              <div>
+                <h3 class="platform-card-title">macOS Apple Silicon</h3>
+                <div class="platform-card-meta">M1, M2, M3, M4 (arm64) • macOS 11+</div>
+              </div>
+            </div>
+            <p class="platform-card-specs">
+              Native Apple Silicon build. Zero-lag memory execution with native WebCrypto acceleration and full offline suite.
+            </p>
+            <div class="platform-checksum-box">
+              SHA-256: ee979d7a7839a045068b017c283a270d354134edf51f2d5eb58bfef365b5d4f4
+            </div>
+            <a href="downloads/mac/fullstop-desktop-macos-arm64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+              ⬇️ Download for Mac Silicon (.zip)
+            </a>
+          </div>
+
+          <!-- macOS Intel -->
+          <div class="platform-card" data-platform="mac-x64">
+            <span class="platform-card-badge">Intel x86_64</span>
+            <div class="platform-card-header">
+              <span class="platform-card-icon">🍏</span>
+              <div>
+                <h3 class="platform-card-title">macOS Intel x86_64</h3>
+                <div class="platform-card-meta">Intel Core i5, i7, i9 • macOS 10.15+</div>
+              </div>
+            </div>
+            <p class="platform-card-specs">
+              Optimized for Intel MacBooks & iMacs. Sandboxed execution with zero internet access required.
+            </p>
+            <div class="platform-checksum-box">
+              SHA-256: 0b575b0a31ad9c48b3ff4056a0c3980192de6ba99834e48c0328934c33af9d72
+            </div>
+            <a href="downloads/mac/fullstop-desktop-macos-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+              ⬇️ Download for Mac Intel (.zip)
+            </a>
+          </div>
+
+          <!-- Windows -->
+          <div class="platform-card" data-platform="windows">
+            <span class="platform-card-badge">Windows 64-bit</span>
+            <div class="platform-card-header">
+              <span class="platform-card-icon">🪟</span>
+              <div>
+                <h3 class="platform-card-title">Windows 10 / 11</h3>
+                <div class="platform-card-meta">64-bit (x64) • Portable Executable Suite</div>
+              </div>
+            </div>
+            <p class="platform-card-specs">
+              Zero-install portable distribution for Windows. Launch in 1 click with native WebView sandboxing.
+            </p>
+            <div class="platform-checksum-box">
+              SHA-256: 492d040e95f1ed79f9a2fa840d2e53e2c8f19862d46b4eecac1cdc846cb1bdae
+            </div>
+            <a href="downloads/windows/fullstop-desktop-windows-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+              ⬇️ Download for Windows x64 (.zip)
+            </a>
+          </div>
+
+          <!-- Linux -->
+          <div class="platform-card" data-platform="linux">
+            <span class="platform-card-badge">Linux Universal</span>
+            <div class="platform-card-header">
+              <span class="platform-card-icon">🐧</span>
+              <div>
+                <h3 class="platform-card-title">Linux Universal</h3>
+                <div class="platform-card-meta">Ubuntu, Debian, Fedora, Arch (x86_64)</div>
+              </div>
+            </div>
+            <p class="platform-card-specs">
+              Universal desktop bundle with desktop launcher entry, XDG compliance, and standalone shell execution.
+            </p>
+            <div class="platform-checksum-box">
+              SHA-256: d7f41e24b706f9e26993d5c67287a4f9ec2e73f481184f2bdc38ae89badc40d5
+            </div>
+            <a href="downloads/linux/fullstop-desktop-linux-x86_64.tar.gz" download class="btn btn-primary" style="width:100%; justify-content:center;">
+              ⬇️ Download for Linux (.tar.gz)
+            </a>
+          </div>
+        </div>
+
+        <!-- Verification Banner & Checksums -->
+        <div style="background:rgba(15,23,42,0.85); border:1px solid var(--border-color); border-radius:14px; padding:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem;">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem;">
+              <span style="font-size:1.2rem;">🛡️</span>
+              <strong style="color:#ffffff;">Official Cryptographic Release Signatures</strong>
+              <span class="badge badge-success" style="font-size:0.7rem;">GPG Signed</span>
+            </div>
+            <p style="margin:0; font-size:0.85rem; color:var(--text-secondary);">
+              Key ID: <code>0x9E7F4B2C7D10A843</code> • Fingerprint: <code>F509 C8B2 4E7A 91D3 2C84 38E1 9E7F 4B2C 7D10 A843</code>
+            </p>
+          </div>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="downloads/SHA256SUMS.txt" target="_blank" class="btn btn-outline btn-sm">📄 View SHA256SUMS.txt</a>
+            <a href="downloads/FULLSTOP-SIGNATURE.asc" target="_blank" class="btn btn-outline btn-sm">🔏 View PGP Signature</a>
+            <button class="btn btn-gradient btn-sm" onclick="App.openSignatureModal()">Terminal Verify Guide</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Sellable High-Value Digital Products Store -->
     <section id="products" class="section products-section">
       <div class="container">
@@ -503,7 +625,10 @@
                 <span><strong>Lifetime Updates:</strong> Continuous feature additions</span>
               </li>
             </ul>
-            <button class="btn btn-outline" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="Commerce.showLockedModal('business-os')">🔒 Gateway Verification • Sales Locked</button>
+            <div style="display:flex; flex-direction:column; gap:0.5rem;">
+              <button class="btn btn-outline" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="Commerce.showLockedModal('business-os')">🔒 Gateway Verification • Sales Locked</button>
+              <button class="btn btn-primary btn-sm" style="width:100%; justify-content:center;" onclick="App.downloadStarterPack('business-os', 'Fullstop Business OS Starter')">⬇️ Download Free Starter Hub (.zip)</button>
+            </div>
           </div>
 
           <!-- Product 2: Growth & SEO Mastery -->
@@ -536,7 +661,10 @@
                 <span><strong>Viral Hook Database:</strong> 250+ copywriting templates</span>
               </li>
             </ul>
-            <button class="btn btn-outline" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="Commerce.showLockedModal('growth-seo')">🔒 Gateway Verification • Sales Locked</button>
+            <div style="display:flex; flex-direction:column; gap:0.5rem;">
+              <button class="btn btn-outline" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="Commerce.showLockedModal('growth-seo')">🔒 Gateway Verification • Sales Locked</button>
+              <button class="btn btn-primary btn-sm" style="width:100%; justify-content:center;" onclick="App.downloadStarterPack('growth-seo', 'Growth & SEO Matrix Starter')">⬇️ Download Free SEO Matrix (.zip)</button>
+            </div>
           </div>
 
           <!-- Product 3: Developer Pro Boilerplate -->
@@ -569,7 +697,10 @@
                 <span><strong>Commercial License:</strong> Unlimited client & personal apps</span>
               </li>
             </ul>
-            <button class="btn btn-outline" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="Commerce.showLockedModal('dev-boilerplate')">🔒 Gateway Verification • Sales Locked</button>
+            <div style="display:flex; flex-direction:column; gap:0.5rem;">
+              <button class="btn btn-outline" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="Commerce.showLockedModal('dev-boilerplate')">🔒 Gateway Verification • Sales Locked</button>
+              <button class="btn btn-primary btn-sm" style="width:100%; justify-content:center;" onclick="App.downloadStarterPack('dev-boilerplate', 'Developer SaaS Boilerplate Starter')">⬇️ Download Free Core Boilerplate (.zip)</button>
+            </div>
           </div>
 
           <!-- Product 4: Lifetime Bundle (Featured) -->
@@ -606,7 +737,10 @@
                 <span><strong>VIP WhatsApp & Email Priority Support</strong></span>
               </li>
             </ul>
-            <button class="btn btn-outline btn-lg" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24; font-weight:700;" onclick="Commerce.showLockedModal('lifetime-bundle')">🔒 Gateway Verification • Sales Locked</button>
+            <div style="display:flex; flex-direction:column; gap:0.5rem;">
+              <button class="btn btn-outline btn-lg" style="width:100%; border-color:rgba(245,158,11,0.5); color:#fbbf24; font-weight:700;" onclick="Commerce.showLockedModal('lifetime-bundle')">🔒 Gateway Verification • Sales Locked</button>
+              <button class="btn btn-gradient btn-md" style="width:100%; justify-content:center; font-weight:700;" onclick="App.downloadStarterPack('lifetime-bundle', 'Lifetime VIP Starter Archive')">⬇️ Download All-Access Starter Archive (.zip)</button>
+            </div>
           </div>
         </div>
         </div>
@@ -872,6 +1006,168 @@
             </button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cross-Platform Desktop Downloads Hub Modal -->
+  <div class="modal-backdrop" id="desktop-modal">
+    <div class="modal-container" style="max-width:850px;">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span style="font-size:1.5rem;">🖥️</span>
+          <h3 class="modal-title">Fullstop Desktop Suite • Cross-Platform Downloads</h3>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.9rem; color:#94a3b8; margin-bottom:1.5rem; line-height:1.5;">
+          Download the complete standalone offline digital toolkit. Run all 11+ utilities on your workstation with zero internet, zero cloud latency, and 100% client-side privacy.
+        </p>
+
+        <div class="platform-grid" style="margin-top:0;">
+          <!-- macOS Apple Silicon -->
+          <div class="platform-card" data-platform="mac-arm64">
+            <span class="platform-card-badge">Apple Silicon</span>
+            <div class="platform-card-header">
+              <span class="platform-card-icon">🍏</span>
+              <div>
+                <h3 class="platform-card-title">macOS Apple Silicon</h3>
+                <div class="platform-card-meta">M1, M2, M3, M4 (arm64) • macOS 11+</div>
+              </div>
+            </div>
+            <p class="platform-card-specs">
+              Native Apple Silicon build. Zero-lag memory execution with native WebCrypto acceleration.
+            </p>
+            <div class="platform-checksum-box">
+              SHA-256: ee979d7a7839a045068b017c283a270d354134edf51f2d5eb58bfef365b5d4f4
+            </div>
+            <a href="downloads/mac/fullstop-desktop-macos-arm64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+              ⬇️ Download Mac Silicon (.zip)
+            </a>
+          </div>
+
+          <!-- macOS Intel -->
+          <div class="platform-card" data-platform="mac-x64">
+            <span class="platform-card-badge">Intel x86_64</span>
+            <div class="platform-card-header">
+              <span class="platform-card-icon">🍏</span>
+              <div>
+                <h3 class="platform-card-title">macOS Intel x86_64</h3>
+                <div class="platform-card-meta">Intel Core i5, i7, i9 • macOS 10.15+</div>
+              </div>
+            </div>
+            <p class="platform-card-specs">
+              Optimized for Intel MacBooks & iMacs. Sandboxed execution with zero internet required.
+            </p>
+            <div class="platform-checksum-box">
+              SHA-256: 0b575b0a31ad9c48b3ff4056a0c3980192de6ba99834e48c0328934c33af9d72
+            </div>
+            <a href="downloads/mac/fullstop-desktop-macos-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+              ⬇️ Download Mac Intel (.zip)
+            </a>
+          </div>
+
+          <!-- Windows -->
+          <div class="platform-card" data-platform="windows">
+            <span class="platform-card-badge">Windows 64-bit</span>
+            <div class="platform-card-header">
+              <span class="platform-card-icon">🪟</span>
+              <div>
+                <h3 class="platform-card-title">Windows 10 / 11</h3>
+                <div class="platform-card-meta">64-bit (x64) • Portable Executable Suite</div>
+              </div>
+            </div>
+            <p class="platform-card-specs">
+              Zero-install portable distribution for Windows. Launch in 1 click with native WebView sandboxing.
+            </p>
+            <div class="platform-checksum-box">
+              SHA-256: 492d040e95f1ed79f9a2fa840d2e53e2c8f19862d46b4eecac1cdc846cb1bdae
+            </div>
+            <a href="downloads/windows/fullstop-desktop-windows-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+              ⬇️ Download Windows (.zip)
+            </a>
+          </div>
+
+          <!-- Linux -->
+          <div class="platform-card" data-platform="linux">
+            <span class="platform-card-badge">Linux Universal</span>
+            <div class="platform-card-header">
+              <span class="platform-card-icon">🐧</span>
+              <div>
+                <h3 class="platform-card-title">Linux Universal</h3>
+                <div class="platform-card-meta">Ubuntu, Debian, Fedora, Arch (x86_64)</div>
+              </div>
+            </div>
+            <p class="platform-card-specs">
+              Universal desktop bundle with desktop launcher entry, XDG compliance, and standalone shell execution.
+            </p>
+            <div class="platform-checksum-box">
+              SHA-256: d7f41e24b706f9e26993d5c67287a4f9ec2e73f481184f2bdc38ae89badc40d5
+            </div>
+            <a href="downloads/linux/fullstop-desktop-linux-x86_64.tar.gz" download class="btn btn-primary" style="width:100%; justify-content:center;">
+              ⬇️ Download Linux (.tar.gz)
+            </a>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; padding-top:1rem; border-top:1px solid var(--border-color);">
+          <div style="font-size:0.8rem; color:var(--text-muted);">
+            🛡️ Issuer: Fullstop Solution Release Signing Authority • Key ID: <code>0x9E7F4B2C7D10A843</code>
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <a href="downloads/SHA256SUMS.txt" target="_blank" class="btn btn-outline btn-xs">SHA256SUMS.txt</a>
+            <a href="downloads/FULLSTOP-SIGNATURE.asc" target="_blank" class="btn btn-outline btn-xs">PGP Signature</a>
+            <button class="btn btn-gradient btn-xs" onclick="App.openSignatureModal()">How to Verify</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Verified Signature Guide Modal -->
+  <div class="modal-backdrop" id="signature-modal">
+    <div class="modal-container" style="max-width:680px;">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span style="font-size:1.5rem;">🔏</span>
+          <h3 class="modal-title">Cryptographic Signature & Integrity Verification</h3>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.875rem; color:#94a3b8; margin-bottom:1rem; line-height:1.5;">
+          Verify that your downloaded desktop package has not been tampered with and was compiled directly by the official Fullstop Solution release pipeline.
+        </p>
+
+        <h4 style="color:#ffffff; font-size:0.95rem; margin:1rem 0 0.5rem 0;">1. macOS & Linux Terminal Verification</h4>
+        <div class="verify-command-box">
+          shasum -a 256 fullstop-desktop-macos-arm64.zip
+        </div>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin:0.25rem 0 1rem 0;">
+          The output hash must exactly match the hash published in <a href="downloads/SHA256SUMS.txt" target="_blank" style="color:var(--accent-primary);">SHA256SUMS.txt</a>.
+        </p>
+
+        <h4 style="color:#ffffff; font-size:0.95rem; margin:1rem 0 0.5rem 0;">2. Windows PowerShell Verification</h4>
+        <div class="verify-command-box">
+          Get-FileHash fullstop-desktop-windows-x64.zip -Algorithm SHA256
+        </div>
+
+        <h4 style="color:#ffffff; font-size:0.95rem; margin:1rem 0 0.5rem 0;">3. GPG / PGP Digital Signature Check</h4>
+        <div class="verify-command-box">
+          gpg --verify downloads/FULLSTOP-SIGNATURE.asc
+        </div>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin:0.25rem 0 1rem 0;">
+          Fingerprint: <code>F509 C8B2 4E7A 91D3 2C84  38E1 9E7F 4B2C 7D10 A843</code>
+        </p>
+
+        <div style="margin-top:1.25rem; padding:1rem; background:rgba(34,211,238,0.08); border:1px solid rgba(34,211,238,0.3); border-radius:8px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong style="color:var(--accent-neon-cyan); font-size:0.85rem;">Prefer Instant In-Browser Verification?</strong>
+            <p style="margin:0; font-size:0.78rem; color:var(--text-secondary);">Use our client-side File Checksum Verifier to check your file in 1 second.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="App.openTool('hash', 'Cryptographic Hash & File Checksum Studio')">Open Verifier</button>
+        </div>
       </div>
     </div>
   </div>

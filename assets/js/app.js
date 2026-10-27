@@ -13,10 +13,20 @@ const App = {
     this.initToolTabs();
     this.initFaq();
     this.initLeadMagnet();
+    this.initServiceWorker();
 
     // Check if ?contact=1 or #contact requested
     if (new URLSearchParams(window.location.search).get('contact') === '1' || window.location.hash === '#contact') {
       setTimeout(() => this.openContactModal(), 300);
+    }
+  },
+
+  // Progressive Web App & Offline Cache Engine
+  initServiceWorker() {
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
     }
   },
 
@@ -345,7 +355,11 @@ Visit www.fullstopsolution.in for daily interactive tools and premium toolkits.`
     });
   },
 
-  // 7. Toast Notification System
+  // Toast Notification System
+  showToast(message) {
+    this.toast(message);
+  },
+
   toast(message) {
     let container = document.getElementById('toast-container');
     if (!container) {
@@ -366,6 +380,83 @@ Visit www.fullstopsolution.in for daily interactive tools and premium toolkits.`
       toast.style.transition = 'all 0.3s ease';
       setTimeout(() => toast.remove(), 300);
     }, 3500);
+  },
+
+  // Operating System & Platform Detection
+  detectPlatform() {
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.includes('mac')) {
+      const isArm = navigator.userAgentData?.platform === 'macOS' || navigator.maxTouchPoints > 1 || /macintosh.*arm|apple/i.test(ua);
+      return isArm ? 'mac-arm64' : 'mac-x64';
+    }
+    if (ua.includes('win')) return 'windows';
+    if (ua.includes('linux')) return 'linux';
+    return 'mac-arm64';
+  },
+
+  // Cross-Platform Desktop App Modal
+  openDesktopModal(preferredPlatform) {
+    const detected = preferredPlatform || this.detectPlatform();
+    const modal = document.getElementById('desktop-modal');
+    if (!modal) return;
+
+    // Highlight current detected OS
+    document.querySelectorAll('.platform-card').forEach(card => {
+      if (card.dataset.platform === detected || (detected.startsWith('mac') && card.dataset.platform.startsWith('mac'))) {
+        card.classList.add('detected');
+      } else {
+        card.classList.remove('detected');
+      }
+    });
+
+    this.openModal('desktop-modal');
+  },
+
+  // Verified Cryptographic Signature Modal
+  openSignatureModal() {
+    this.openModal('signature-modal');
+  },
+
+  // Direct Starter Pack Downloads for Paid Products
+  downloadStarterPack(productId, productName) {
+    const files = {
+      'business-os': 'downloads/starter-packs/fullstop-business-os-starter.zip',
+      'growth-seo': 'downloads/starter-packs/fullstop-seo-growth-matrix.zip',
+      'dev-boilerplate': 'downloads/starter-packs/fullstop-developer-boilerplate-core.zip',
+      'lifetime-bundle': 'downloads/starter-packs/fullstop-lifetime-starter-bundle.zip'
+    };
+
+    const filePath = files[productId] || 'downloads/starter-packs/fullstop-business-os-starter.zip';
+    const a = document.createElement('a');
+    a.href = filePath;
+    a.download = filePath.split('/').pop();
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Record into free downloads ledger for private dashboard
+    try {
+      const freeDownloads = JSON.parse(localStorage.getItem('fs_free_downloads') || '[]');
+      const geo = (typeof Analytics !== 'undefined' && Analytics.detectClientGeo)
+        ? Analytics.detectClientGeo()
+        : 'India 🇮🇳 (IST)';
+      
+      freeDownloads.unshift({
+        id: 'DL-' + Math.floor(1000 + Math.random() * 9000),
+        date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' IST',
+        timestamp: new Date().toISOString(),
+        productId: productId,
+        productName: productName || 'Starter Pack',
+        customerName: 'Anonymous Desktop User',
+        customerEmail: 'direct-starter-download@client',
+        format: 'ZIP (Multiplatform Verified)',
+        geography: geo,
+        device: /Mobile/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop'
+      });
+      localStorage.setItem('fs_free_downloads', JSON.stringify(freeDownloads));
+    } catch(e) {}
+
+    this.toast(`📥 Starting verified download: ${productName || 'Starter Pack'}`);
   },
 
   // Security Helper: Safe string escaping
