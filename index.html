@@ -180,24 +180,37 @@
     <section class="hero">
       <div class="container">
         <div class="hero-badge-wrap">
-          <span class="badge badge-gradient">
-            ✨ Free Daily Utilities + High-Value Pro Systems
+          <span class="badge badge-hero">
+            <span class="badge-dot"></span>
+            <span>Zero-Knowledge Architecture • Enterprise Digital Toolkit</span>
           </span>
         </div>
         
         <h1 class="hero-title">
-          Your All-in-One <span class="hero-title-gradient">Digital Toolkit</span> & Growth Platform
+          Precision Software Tools & <span class="hero-title-gradient">Business OS Platforms</span>
         </h1>
         
         <p class="hero-subtitle">
-          Run essential daily SEO, developer, business, and marketing utilities 100% in your browser. 
-          Zero tracking, zero latency, maximum privacy. Plus unlock turnkey business operating systems.
+          Execute daily SEO, security, developer, and finance utilities 100% in your browser. 
+          Zero tracking, zero latency, mathematical privacy. Plus access turnkey digital business systems.
         </p>
 
-        <!-- Live Search Bar -->
+        <!-- Live Search Palette with Command-K indicator -->
         <div class="hero-search-box">
-          <span class="hero-search-icon">🔍</span>
-          <input type="search" id="hero-search" class="hero-search-input" placeholder="Search 14+ daily tools (e.g. SEO Meta, Password, JSON, QR Code, Invoice, GST)..." autocomplete="off">
+          <span class="hero-search-icon">⚡</span>
+          <input type="search" id="hero-search" class="hero-search-input" placeholder="Search 11+ daily tools (SEO Meta, Password Gen, JSON Studio, QR, GST)..." autocomplete="off">
+          <span class="hero-search-shortcut">⌘K</span>
+        </div>
+
+        <!-- Quick Launch Chips -->
+        <div class="hero-chips-wrap">
+          <span class="hero-chips-label">Popular:</span>
+          <button class="hero-chip" onclick="App.openTool('meta', 'Meta Tag Generator & SERP Preview')">🌐 Meta & SERP</button>
+          <button class="hero-chip" onclick="App.openTool('password', 'Strong Password Generator')">🔑 Password Gen</button>
+          <button class="hero-chip" onclick="App.openTool('json', 'JSON Formatter & Validator')">{ } JSON Studio</button>
+          <button class="hero-chip" onclick="App.openTool('qr', 'QR Code Generator')">📱 QR Generator</button>
+          <button class="hero-chip" onclick="App.openTool('invoice', 'Professional Invoice Generator')">🧾 Invoice Studio</button>
+          <button class="hero-chip" onclick="App.openTool('gst', 'GST & VAT Calculator')">💰 GST Calculator</button>
         </div>
 
         <div class="hero-features">
@@ -211,34 +224,42 @@
           </div>
           <div class="hero-feature-item">
             <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-            <span>Instant Zero-Lag Execution</span>
+            <span>Sub-Millisecond Engine</span>
           </div>
           <div class="hero-feature-item">
             <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-            <span>Commercial License Available</span>
+            <span>Commercial Rights Included</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Stats Ribbon (100% Factual & Verifiable Platform Metrics) -->
+    <!-- Stats Ribbon (Executive Glass Pods) -->
     <section class="stats-ribbon">
       <div class="container stats-grid">
-        <div>
+        <div class="stat-pod">
+          <div class="stat-pod-icon">⚡</div>
           <div class="stat-number">11</div>
           <div class="stat-label">Daily Digital Utilities</div>
+          <div class="stat-desc">SEO, Dev, Finance & Security running entirely client-side.</div>
         </div>
-        <div>
+        <div class="stat-pod">
+          <div class="stat-pod-icon">🔒</div>
           <div class="stat-number">100%</div>
           <div class="stat-label">In-Browser Privacy</div>
+          <div class="stat-desc">Web Crypto API sandboxed memory; zero data leaves your device.</div>
         </div>
-        <div>
+        <div class="stat-pod">
+          <div class="stat-pod-icon">🛡️</div>
           <div class="stat-number">0 ms</div>
-          <div class="stat-label">Server Data Storage</div>
+          <div class="stat-label">Server Data Latency</div>
+          <div class="stat-desc">Zero external processing bottlenecks or third-party storage.</div>
         </div>
-        <div>
+        <div class="stat-pod">
+          <div class="stat-pod-icon">💎</div>
           <div class="stat-number">0</div>
-          <div class="stat-label">Ad Trackers / Data Selling</div>
+          <div class="stat-label">Ad Trackers & Popups</div>
+          <div class="stat-desc">Zero telemetry bloat, ad networks, or data monetization.</div>
         </div>
       </div>
     </section>
@@ -625,15 +646,15 @@
     <!-- Free Lead Magnet Section -->
     <section class="container" style="margin-bottom:4rem;">
       <div class="lead-banner">
-        <span class="badge badge-primary">FREE 2026 EDITION RESOURCE</span>
-        <h2 style="font-size:2rem; font-weight:800; color:#ffffff;">Get the 50-Point Technical SEO & Web Security Checklist</h2>
-        <p style="color:#cbd5e1; max-width:600px; font-size:0.95rem;">
-          Download our master checklist used to rank websites on page 1 of Google while eliminating security vulnerabilities.
+        <span class="lead-banner-badge">Executive Playbook • 2026 Edition</span>
+        <h2 class="lead-title">The 50-Point Technical SEO & Security Audit Framework</h2>
+        <p class="lead-desc">
+          Download our master engineering checklist to rank on page 1 of Google and eliminate security vulnerabilities before deployment. 100% free direct instant delivery.
         </p>
-        <form id="lead-magnet-form" class="lead-form" style="max-width:620px;">
+        <form id="lead-magnet-form" class="lead-form">
           <input type="text" id="lead-name" class="lead-input" placeholder="Your Full Name" required style="max-width:180px;">
-          <input type="email" id="lead-email" class="lead-input" placeholder="Enter your best email address..." required>
-          <button type="submit" class="btn btn-gradient" style="white-space:nowrap;">Instant Download 📥</button>
+          <input type="email" id="lead-email" class="lead-input" placeholder="Enter your business email address..." required>
+          <button type="submit" class="btn btn-gradient" style="white-space:nowrap;">Instant Access 📥</button>
         </form>
       </div>
     </section>

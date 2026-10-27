@@ -61,6 +61,15 @@ const App = {
     const searchInput = document.getElementById('hero-search');
     if (!searchInput) return;
 
+    // Command/Ctrl + K Palette Shortcut
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
     searchInput.addEventListener('input', (e) => {
       const q = e.target.value.toLowerCase().trim();
       const cards = document.querySelectorAll('.tool-card');
