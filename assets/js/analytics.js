@@ -147,44 +147,32 @@ const Analytics = {
     });
   },
 
-  // 4. Real-Time Telemetry & Visitor Intelligence
+  // 4. Real-Time Telemetry & Visitor Intelligence (100% Genuine, Zero Synthetic Seeds)
   getMetrics() {
     try {
       const raw = localStorage.getItem('fs_traffic_metrics');
-      if (raw) return JSON.parse(raw);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        // If data is from previous mock version or has fake 1482 pageviews, reset cleanly to genuine state
+        if (parsed && parsed.version === 'v2_realtime' && parsed.pageviews !== 1482) {
+          return parsed;
+        }
+      }
     } catch(e) {}
     
-    // Default baseline structure
-    return {
-      pageviews: 1482,
-      uniqueSessions: 894,
-      liveVisitors: Math.floor(Math.random() * 5) + 3,
-      events: {
-        tool_launch: 3240,
-        generate_lead: 128,
-        purchase: 24
-      },
-      toolUsage: {
-        'Meta Tag & SERP Previewer': 892,
-        'Strong Password Generator': 748,
-        'JSON Formatter & Validator': 615,
-        'Professional Invoice Generator': 524,
-        'QR Code Generator': 461
-      },
-      channels: {
-        organic: 58,
-        direct: 24,
-        referral: 11,
-        social: 7
-      },
-      activityLog: [
-        { time: 'Just now', action: 'Page View: /', source: 'Google Organic', device: 'Mobile' },
-        { time: '2m ago', action: 'Tool Used: Strong Password Generator', source: 'Direct', device: 'Desktop' },
-        { time: '5m ago', action: 'Lead Download: 50-Point SEO Checklist', source: 'Google Search', device: 'Desktop' },
-        { time: '9m ago', action: 'Tool Used: JSON Formatter & Validator', source: 'GitHub Referral', device: 'Desktop' },
-        { time: '14m ago', action: 'Page View: /dashboard.html', source: 'Direct', device: 'Mobile' }
-      ]
+    // Genuine clean baseline (Starts at 0, increments on verified visits and tool runs)
+    const cleanMetrics = {
+      version: 'v2_realtime',
+      pageviews: 0,
+      uniqueSessions: 0,
+      hourlyViews: {}, // { 0: 0, 1: 0, ... 23: count }
+      dailyViews: {},
+      events: {},
+      toolUsage: {},
+      activityLog: []
     };
+    this.saveMetrics(cleanMetrics);
+    return cleanMetrics;
   },
 
   saveMetrics(metrics) {
@@ -195,38 +183,46 @@ const Analytics = {
 
   recordPageView() {
     const metrics = this.getMetrics();
-    const today = new Date().toISOString().split('T')[0];
+    const now = new Date();
+    const today = now.toISOString().split('T')[0];
+    const hour = now.getHours();
 
     metrics.pageviews = (metrics.pageviews || 0) + 1;
     metrics.dailyViews = metrics.dailyViews || {};
     metrics.dailyViews[today] = (metrics.dailyViews[today] || 0) + 1;
 
-    // Detect device type
+    metrics.hourlyViews = metrics.hourlyViews || {};
+    metrics.hourlyViews[hour] = (metrics.hourlyViews[hour] || 0) + 1;
+
+    // Detect real device type
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const deviceType = isMobile ? 'Mobile' : 'Desktop';
-    const referrer = document.referrer ? new URL(document.referrer).hostname : 'Direct';
+    const referrer = document.referrer ? (new URL(document.referrer).hostname || 'Referral') : 'Direct';
 
-    // Track unique session
+    // Track genuine unique session
     if (!sessionStorage.getItem('fs_session_active')) {
       metrics.uniqueSessions = (metrics.uniqueSessions || 0) + 1;
       sessionStorage.setItem('fs_session_active', '1');
     }
 
-    // Append to live activity log (max 20 entries)
+    // Append to live activity log (max 30 genuine entries)
     metrics.activityLog = metrics.activityLog || [];
     metrics.activityLog.unshift({
-      time: 'Just now',
-      action: `Page View: ${window.location.pathname}`,
+      time: now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }),
+      timestamp: Date.now(),
+      action: `Page View: ${window.location.pathname || '/'}`,
       source: referrer,
-      device: deviceType
+      device: deviceType,
+      geo: this.detectClientGeo()
     });
-    if (metrics.activityLog.length > 20) metrics.activityLog.pop();
+    if (metrics.activityLog.length > 30) metrics.activityLog.pop();
 
     this.saveMetrics(metrics);
   },
 
   recordLocalEvent(eventName, params) {
     const metrics = this.getMetrics();
+    const now = new Date();
     metrics.events = metrics.events || {};
     metrics.events[eventName] = (metrics.events[eventName] || 0) + 1;
 
@@ -235,44 +231,61 @@ const Analytics = {
       metrics.toolUsage[params.tool_name] = (metrics.toolUsage[params.tool_name] || 0) + 1;
     }
 
-    // Append to live activity log
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const deviceType = isMobile ? 'Mobile' : 'Desktop';
+
     metrics.activityLog = metrics.activityLog || [];
+    let actionTitle = `Event: ${eventName}`;
+    if (eventName === 'tool_launch') actionTitle = `Tool Run: ${params.tool_name}`;
+    if (eventName === 'generate_lead') actionTitle = `Free Lead Download: ${params.lead_type || 'Checklist'}`;
+    if (eventName === 'tool_completed') actionTitle = `Completed: ${params.tool_name}`;
+
     metrics.activityLog.unshift({
-      time: 'Just now',
-      action: eventName === 'tool_launch' ? `Tool Used: ${params.tool_name}` : `Event: ${eventName}`,
-      source: 'Active User',
-      device: isMobile ? 'Mobile' : 'Desktop'
+      time: now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }),
+      timestamp: Date.now(),
+      action: actionTitle,
+      source: 'Active User Session',
+      device: deviceType,
+      geo: this.detectClientGeo()
     });
-    if (metrics.activityLog.length > 20) metrics.activityLog.pop();
+    if (metrics.activityLog.length > 30) metrics.activityLog.pop();
 
     this.saveMetrics(metrics);
   },
 
+  // Genuine Client Geography Detection (Derived from user's verified browser timezone & locale, zero random guessing)
   detectClientGeo() {
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      if (tz.includes('Calcutta') || tz.includes('Kolkata') || tz.includes('Asia/Colombo')) {
-        const cities = [
-          'Bengaluru, Karnataka, India 🇮🇳',
-          'Mumbai, Maharashtra, India 🇮🇳',
-          'Hyderabad, Telangana, India 🇮🇳',
-          'Delhi NCR, India 🇮🇳',
-          'Pune, Maharashtra, India 🇮🇳',
-          'Chennai, Tamil Nadu, India 🇮🇳',
-          'Kolkata, West Bengal, India 🇮🇳',
-          'Ahmedabad, Gujarat, India 🇮🇳'
-        ];
-        return cities[Math.floor(Math.random() * cities.length)];
-      } else if (tz.includes('New_York') || tz.includes('America/Chicago') || tz.includes('America/Los_Angeles')) {
-        return 'San Francisco, CA, USA 🇺🇸';
-      } else if (tz.includes('London') || tz.includes('Europe')) {
-        return 'London, United Kingdom 🇬🇧';
+      if (tz.includes('Calcutta') || tz.includes('Kolkata')) {
+        return 'India 🇮🇳 (Asia/Kolkata • IST)';
+      } else if (tz.includes('Asia/Colombo')) {
+        return 'Sri Lanka 🇱🇰 (Asia/Colombo)';
+      } else if (tz.includes('New_York') || tz.includes('Detroit') || tz.includes('Indiana')) {
+        return 'USA 🇺🇸 (Eastern Time • EST)';
+      } else if (tz.includes('Chicago') || tz.includes('Houston')) {
+        return 'USA 🇺🇸 (Central Time • CST)';
+      } else if (tz.includes('Denver') || tz.includes('Phoenix')) {
+        return 'USA 🇺🇸 (Mountain Time • MST)';
+      } else if (tz.includes('Los_Angeles') || tz.includes('San_Francisco') || tz.includes('Seattle')) {
+        return 'USA 🇺🇸 (Pacific Time • PST)';
+      } else if (tz.includes('London')) {
+        return 'United Kingdom 🇬🇧 (GMT • London)';
+      } else if (tz.includes('Berlin') || tz.includes('Paris') || tz.includes('Rome') || tz.includes('Amsterdam') || tz.includes('Madrid')) {
+        return 'Europe 🇪🇺 (CET)';
       } else if (tz.includes('Singapore')) {
-        return 'Singapore 🇸🇬';
+        return 'Singapore 🇸🇬 (SGT)';
+      } else if (tz.includes('Dubai')) {
+        return 'United Arab Emirates 🇦🇪 (GST)';
+      } else if (tz.includes('Tokyo')) {
+        return 'Japan 🇯🇵 (JST)';
+      } else if (tz.includes('Sydney') || tz.includes('Melbourne')) {
+        return 'Australia 🇦🇺 (AEST)';
+      } else if (tz) {
+        return `${tz.replace(/_/g, ' ')}`;
       }
     } catch(e) {}
-    return 'Bengaluru, Karnataka, India 🇮🇳';
+    return 'India 🇮🇳 (IST)';
   }
 };
 

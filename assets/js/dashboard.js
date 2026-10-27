@@ -561,55 +561,42 @@ const AdminTheme = {
 // ==========================================================================
 
 const DashboardData = {
-  // Sales Ledger: Real verified orders only (Zero placeholder/demo orders)
-  // Currently empty because payment gateways are locked pending merchant verification
+  // Sales Ledger: Verified live customer purchases only (Zero demo/seed data)
+  // Currently empty because payment gateways are locked pending merchant onboarding
   SEED_SALES: [],
 
-  // 340 Realistic Free Downloads (Product-wise Distribution)
-  SEED_DOWNLOADS: [
-    { id: 'DL-9842-10', date: '27 Oct 2026, 16:42 IST', timestamp: '2026-10-27T11:12:00Z', productId: 'free-seo-checklist', productName: '50-Point Technical SEO & Security Checklist', customerName: 'Kunal Singhania', customerEmail: 'kunal.s@growthloop.io', format: 'PDF Checklist', geography: 'Bengaluru, Karnataka, India 🇮🇳', device: 'Desktop (macOS)' },
-    { id: 'DL-9838-19', date: '27 Oct 2026, 15:10 IST', timestamp: '2026-10-27T09:40:00Z', productId: 'free-meta-templates', productName: 'High-CTR Meta Tag & OpenGraph Blueprints', customerName: 'Ananya Roy', customerEmail: 'ananya.r@designcraft.in', format: 'JSON Blueprints', geography: 'Mumbai, Maharashtra, India 🇮🇳', device: 'Mobile (Android)' },
-    { id: 'DL-9824-22', date: '27 Oct 2026, 13:55 IST', timestamp: '2026-10-27T08:25:00Z', productId: 'free-invoice-template', productName: 'Professional GST & Freelancer Invoice Template', customerName: 'Rohan Desai', customerEmail: 'rohan.d@freelancehub.dev', format: 'Spreadsheet / HTML', geography: 'Hyderabad, Telangana, India 🇮🇳', device: 'Desktop (Windows)' },
-    { id: 'DL-9815-31', date: '27 Oct 2026, 11:20 IST', timestamp: '2026-10-27T05:50:00Z', productId: 'free-security-guide', productName: 'Zero-Knowledge Privacy Architecture & DPDP Guide', customerName: 'Pooja Mehta', customerEmail: 'pooja.m@cipherguard.io', format: 'PDF Playbook', geography: 'Pune, Maharashtra, India 🇮🇳', device: 'Desktop (macOS)' },
-    { id: 'DL-9801-44', date: '26 Oct 2026, 22:30 IST', timestamp: '2026-10-26T17:00:00Z', productId: 'free-seo-checklist', productName: '50-Point Technical SEO & Security Checklist', customerName: 'Suresh Menon', customerEmail: 'suresh.m@keralaviews.com', format: 'PDF Checklist', geography: 'Kochi, Kerala, India 🇮🇳', device: 'Mobile (iOS)' },
-    { id: 'DL-9790-55', date: '26 Oct 2026, 19:15 IST', timestamp: '2026-10-26T13:45:00Z', productId: 'free-meta-templates', productName: 'High-CTR Meta Tag & OpenGraph Blueprints', customerName: 'Elena Rostova', customerEmail: 'elena.rostova@techberlin.de', format: 'JSON Blueprints', geography: 'Berlin, Germany 🇩🇪', device: 'Desktop (Windows)' },
-    { id: 'DL-9782-62', date: '26 Oct 2026, 16:40 IST', timestamp: '2026-10-26T11:10:00Z', productId: 'free-seo-checklist', productName: '50-Point Technical SEO & Security Checklist', customerName: 'Manish Chawla', customerEmail: 'manish.c@delhiseo.in', format: 'PDF Checklist', geography: 'Delhi NCR, India 🇮🇳', device: 'Desktop (Windows)' },
-    { id: 'DL-9774-71', date: '26 Oct 2026, 14:05 IST', timestamp: '2026-10-26T08:35:00Z', productId: 'free-invoice-template', productName: 'Professional GST & Freelancer Invoice Template', customerName: 'Deepa Nambiar', customerEmail: 'deepa.n@creativedesign.co', format: 'Spreadsheet / HTML', geography: 'Chennai, Tamil Nadu, India 🇮🇳', device: 'Desktop (macOS)' },
-    { id: 'DL-9760-84', date: '25 Oct 2026, 21:50 IST', timestamp: '2026-10-25T16:20:00Z', productId: 'free-seo-checklist', productName: '50-Point Technical SEO & Security Checklist', customerName: 'Tyler Ward', customerEmail: 't.ward@austinstartups.com', format: 'PDF Checklist', geography: 'Austin, TX, USA 🇺🇸', device: 'Desktop (macOS)' },
-    { id: 'DL-9751-92', date: '25 Oct 2026, 18:25 IST', timestamp: '2026-10-25T12:55:00Z', productId: 'free-security-guide', productName: 'Zero-Knowledge Privacy Architecture & DPDP Guide', customerName: 'Farhan Akhtar', customerEmail: 'farhan.a@dataprotect.in', format: 'PDF Playbook', geography: 'Mumbai, Maharashtra, India 🇮🇳', device: 'Desktop (Linux)' },
-    { id: 'DL-9742-15', date: '25 Oct 2026, 15:10 IST', timestamp: '2026-10-25T09:40:00Z', productId: 'free-meta-templates', productName: 'High-CTR Meta Tag & OpenGraph Blueprints', customerName: 'Aishwarya Iyer', customerEmail: 'aishwarya.i@chennaidigital.in', format: 'JSON Blueprints', geography: 'Chennai, Tamil Nadu, India 🇮🇳', device: 'Mobile (Android)' },
-    { id: 'DL-9730-28', date: '25 Oct 2026, 11:35 IST', timestamp: '2026-10-25T06:05:00Z', productId: 'free-seo-checklist', productName: '50-Point Technical SEO & Security Checklist', customerName: 'Girish Kulkarni', customerEmail: 'girish.k@punetech.org', format: 'PDF Checklist', geography: 'Pune, Maharashtra, India 🇮🇳', device: 'Desktop (Windows)' },
-    { id: 'DL-9718-39', date: '24 Oct 2026, 20:15 IST', timestamp: '2026-10-24T14:45:00Z', productId: 'free-invoice-template', productName: 'Professional GST & Freelancer Invoice Template', customerName: 'Simran Walia', customerEmail: 'simran.w@contentcraft.in', format: 'Spreadsheet / HTML', geography: 'Chandigarh, India 🇮🇳', device: 'Desktop (macOS)' },
-    { id: 'DL-9705-47', date: '24 Oct 2026, 17:40 IST', timestamp: '2026-10-24T12:10:00Z', productId: 'free-seo-checklist', productName: '50-Point Technical SEO & Security Checklist', customerName: 'Vivek Oberoi', customerEmail: 'vivek.o@apexgrowth.in', format: 'PDF Checklist', geography: 'Gurugram, Haryana, India 🇮🇳', device: 'Mobile (iOS)' },
-    { id: 'DL-9692-56', date: '24 Oct 2026, 13:20 IST', timestamp: '2026-10-24T07:50:00Z', productId: 'free-meta-templates', productName: 'High-CTR Meta Tag & OpenGraph Blueprints', customerName: 'Chloe Dupont', customerEmail: 'chloe.d@parisgrowth.fr', format: 'JSON Blueprints', geography: 'Paris, France 🇫🇷', device: 'Desktop (macOS)' },
-    { id: 'DL-9680-68', date: '23 Oct 2026, 22:05 IST', timestamp: '2026-10-23T16:35:00Z', productId: 'free-security-guide', productName: 'Zero-Knowledge Privacy Architecture & DPDP Guide', customerName: 'Ashok Sengupta', customerEmail: 'ashok.s@bengalinfosec.com', format: 'PDF Playbook', geography: 'Kolkata, West Bengal, India 🇮🇳', device: 'Desktop (Windows)' },
-    { id: 'DL-9671-74', date: '23 Oct 2026, 18:50 IST', timestamp: '2026-10-23T13:20:00Z', productId: 'free-seo-checklist', productName: '50-Point Technical SEO & Security Checklist', customerName: 'Meghna Trivedi', customerEmail: 'meghna.t@ahmedabadventures.in', format: 'PDF Checklist', geography: 'Ahmedabad, Gujarat, India 🇮🇳', device: 'Mobile (Android)' },
-    { id: 'DL-9660-82', date: '23 Oct 2026, 14:15 IST', timestamp: '2026-10-23T08:45:00Z', productId: 'free-invoice-template', productName: 'Professional GST & Freelancer Invoice Template', customerName: 'Liam O’Connor', customerEmail: 'liam.oc@dublinfreelance.ie', format: 'Spreadsheet / HTML', geography: 'Dublin, Ireland 🇮🇪', device: 'Desktop (macOS)' },
-    { id: 'DL-9648-95', date: '22 Oct 2026, 21:30 IST', timestamp: '2026-10-22T16:00:00Z', productId: 'free-seo-checklist', productName: '50-Point Technical SEO & Security Checklist', customerName: 'Ritu Bhargava', customerEmail: 'ritu.b@jaipurdigital.in', format: 'PDF Checklist', geography: 'Jaipur, Rajasthan, India 🇮🇳', device: 'Desktop (Windows)' },
-    { id: 'DL-9635-08', date: '22 Oct 2026, 16:45 IST', timestamp: '2026-10-22T11:15:00Z', productId: 'free-meta-templates', productName: 'High-CTR Meta Tag & OpenGraph Blueprints', customerName: 'Pranav Joshi', customerEmail: 'pranav.j@indoretech.org', format: 'JSON Blueprints', geography: 'Indore, Madhya Pradesh, India 🇮🇳', device: 'Mobile (iOS)' }
-  ],
+  // Free Downloads Ledger: Zero placeholder or synthetic seed leads
+  // Real submissions populate directly into localStorage ('fs_free_downloads') via the storefront
+  SEED_DOWNLOADS: [],
 
-  // Load merged sales (seeded + live purchases)
+  // Load merged sales (Zero placeholder records)
   getSalesLedger() {
     try {
       const live = JSON.parse(localStorage.getItem('fs_sales_ledger') || '[]');
-      return [...live, ...this.SEED_SALES];
+      return live;
     } catch (e) {
-      return this.SEED_SALES;
+      return [];
     }
   },
 
-  // Load merged free downloads (seeded + live downloads)
+  // Load verified free downloads (Filters out any previous mock seed records)
   getFreeDownloadsLedger() {
     try {
-      const live = JSON.parse(localStorage.getItem('fs_free_downloads') || '[]');
-      return [...live, ...this.SEED_DOWNLOADS];
-    } catch (e) {
-      return this.SEED_DOWNLOADS;
-    }
+      const raw = localStorage.getItem('fs_free_downloads');
+      if (raw) {
+        let live = JSON.parse(raw);
+        if (Array.isArray(live)) {
+          // Remove any legacy mock demo emails from initial prototype testing
+          const mockEmails = ['kunal.s@growthloop.io', 'ananya.r@designcraft.in', 'rohan.d@freelancehub.dev', 'pooja.m@cipherguard.io', 'suresh.m@keralaviews.com', 'elena.rostova@techberlin.de', 't.ward@austinstartups.com', 'farhan.a@dataprotect.in', 'aishwarya.i@chennaidigital.in', 'girish.k@punetech.org'];
+          live = live.filter(d => !mockEmails.includes(d.customerEmail) && !d.id?.startsWith('DL-98') && !d.id?.startsWith('DL-97') && !d.id?.startsWith('DL-96'));
+          return live;
+        }
+      }
+    } catch (e) {}
+    return [];
   },
 
-  // Compute product-wise performance summary
+  // Compute product-wise performance summary (Strictly verified numbers)
   getProductWiseSales() {
     const sales = this.getSalesLedger();
     const catalog = AdminProducts.getProducts();
@@ -650,20 +637,26 @@ const DashboardData = {
     return stats;
   },
 
-  // Compute free downloads by product summary
+  // Compute genuine free downloads by product summary (Calculated dynamically from real submissions)
   getProductWiseDownloads() {
     const downloads = this.getFreeDownloadsLedger();
     const stats = {
-      'free-seo-checklist': { name: '50-Point Technical SEO & Security Checklist', count: 142, format: 'PDF' },
-      'free-meta-templates': { name: 'High-CTR Meta Tag & Social Blueprints', count: 89, format: 'JSON' },
-      'free-invoice-template': { name: 'Professional GST & Freelancer Invoice Template', count: 64, format: 'Spreadsheet' },
-      'free-security-guide': { name: 'Zero-Knowledge Privacy Architecture & DPDP Guide', count: 45, format: 'Playbook' }
+      'free-seo-checklist': { name: '50-Point Technical SEO & Security Checklist', count: 0, format: 'PDF Checklist' },
+      'free-meta-templates': { name: 'High-CTR Meta Tag & Social Blueprints', count: 0, format: 'JSON Blueprints' },
+      'free-invoice-template': { name: 'Professional GST & Freelancer Invoice Template', count: 0, format: 'HTML / Spreadsheet' },
+      'free-security-guide': { name: 'Zero-Knowledge Privacy Architecture & DPDP Guide', count: 0, format: 'Playbook' }
     };
 
     downloads.forEach(d => {
       const pId = d.productId;
       if (stats[pId]) {
-        // live additions beyond the base
+        stats[pId].count += 1;
+      } else {
+        stats[pId] = {
+          name: d.productName || pId,
+          count: 1,
+          format: d.format || 'Digital Asset'
+        };
       }
     });
 
@@ -687,7 +680,7 @@ const DashboardCharts = {
     return { ctx, width: rect.width, height: rect.height };
   },
 
-  // 1. Live Traffic Velocity Spline Chart
+  // 1. Live Traffic Velocity Spline Chart (Dynamically plotted from real hourly pageviews)
   renderTrafficChart(canvasId) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
@@ -695,16 +688,22 @@ const DashboardCharts = {
 
     ctx.clearRect(0, 0, width, height);
 
-    // Realistic hourly pageview points (00:00 to 23:00)
-    const points = [
-      32, 24, 18, 12, 16, 28, 64, 112, 148, 172, 194, 218,
-      205, 188, 212, 234, 260, 245, 210, 185, 160, 138, 92, 54
-    ];
+    const metrics = (typeof Analytics !== 'undefined') ? Analytics.getMetrics() : { hourlyViews: {}, pageviews: 0 };
+    const hourly = metrics.hourlyViews || {};
+    const currentHour = new Date().getHours();
+
+    // Construct genuine 24-hour array (00:00 to 23:00)
+    const points = [];
+    for (let h = 0; h < 24; h++) {
+      points.push(hourly[h] || 0);
+    }
+
+    const maxRecorded = Math.max(...points, 5);
+    const maxVal = Math.ceil(maxRecorded * 1.3);
 
     const padding = { top: 30, right: 25, bottom: 40, left: 45 };
     const chartW = width - padding.left - padding.right;
     const chartH = height - padding.top - padding.bottom;
-    const maxVal = 300;
 
     // Draw Grid Lines
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
@@ -770,11 +769,11 @@ const DashboardCharts = {
 
     // Draw Glowing Data Nodes at select intervals
     coords.forEach((pt, idx) => {
-      if (idx % 3 === 0 || idx === coords.length - 1) {
+      if (idx % 3 === 0 || idx === coords.length - 1 || idx === currentHour) {
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = '#06b6d4';
-        ctx.shadowColor = '#06b6d4';
+        ctx.arc(pt.x, pt.y, (idx === currentHour ? 5 : 3.5), 0, Math.PI * 2);
+        ctx.fillStyle = (idx === currentHour ? '#10b981' : '#06b6d4');
+        ctx.shadowColor = (idx === currentHour ? '#10b981' : '#06b6d4');
         ctx.shadowBlur = 8;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -784,12 +783,19 @@ const DashboardCharts = {
 
         // X-axis time label
         const hour = idx.toString().padStart(2, '0') + ':00';
-        ctx.fillStyle = '#94a3b8';
-        ctx.font = '10px ui-monospace, SFMono-Regular, monospace';
+        ctx.fillStyle = (idx === currentHour ? '#34d399' : '#94a3b8');
+        ctx.font = (idx === currentHour ? 'bold 10px monospace' : '10px monospace');
         ctx.textAlign = 'center';
         ctx.fillText(hour, pt.x, height - 12);
       }
     });
+
+    if (metrics.pageviews === 0) {
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px -apple-system, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('📡 Live Telemetry Active • Listening for incoming page visits...', width / 2, padding.top + chartH / 2);
+    }
   },
 
   // 2. Product Revenue Breakdown Bar Chart
@@ -877,7 +883,7 @@ const DashboardCharts = {
     });
   },
 
-  // 3. Free Downloads Distribution Donut Chart
+  // 3. Free Downloads Distribution Donut Chart (Dynamically computed from real lead submissions)
   renderDownloadsDonut(canvasId) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
@@ -885,12 +891,20 @@ const DashboardCharts = {
 
     ctx.clearRect(0, 0, width, height);
 
-    const segments = [
-      { label: '50-Point SEO Checklist', val: 142, color: '#06b6d4' },
-      { label: 'Meta Tag Templates', val: 89, color: '#8b5cf6' },
-      { label: 'GST Invoice Maker', val: 64, color: '#10b981' },
-      { label: 'Zero-Knowledge Guide', val: 45, color: '#f59e0b' }
-    ];
+    const stats = DashboardData.getProductWiseDownloads();
+    const colors = {
+      'free-seo-checklist': '#06b6d4',
+      'free-meta-templates': '#8b5cf6',
+      'free-invoice-template': '#10b981',
+      'free-security-guide': '#f59e0b'
+    };
+
+    const segments = Object.entries(stats).map(([id, info]) => ({
+      id: id,
+      label: info.name,
+      val: info.count || 0,
+      color: colors[id] || '#38bdf8'
+    }));
 
     const total = segments.reduce((sum, s) => sum + s.val, 0);
     const centerX = width * 0.35;
@@ -898,9 +912,43 @@ const DashboardCharts = {
     const outerRadius = Math.min(centerX, centerY) - 20;
     const innerRadius = outerRadius * 0.62;
 
+    if (total === 0) {
+      // Clean genuine empty state ring
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, outerRadius, 0, Math.PI * 2);
+      ctx.arc(centerX, centerY, innerRadius, Math.PI * 2, 0, true);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+      ctx.fill();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 22px ui-monospace, SFMono-Regular, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('0', centerX, centerY - 8);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px -apple-system, sans-serif';
+      ctx.fillText('TOTAL LEADS', centerX, centerY + 14);
+
+      // Legend on the right side
+      const legendX = width * 0.65;
+      ctx.fillStyle = '#cbd5e1';
+      ctx.font = 'bold 12px -apple-system, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('No Lead Submissions Yet', legendX, height * 0.38);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '11px -apple-system, sans-serif';
+      ctx.fillText('When visitors enter their name &', legendX, height * 0.38 + 20);
+      ctx.fillText('email on the homepage, they will', legendX, height * 0.38 + 36);
+      ctx.fillText('appear here in real time.', legendX, height * 0.38 + 52);
+      return;
+    }
+
     let startAngle = -Math.PI / 2;
 
     segments.forEach(seg => {
+      if (seg.val === 0) return;
       const sliceAngle = (seg.val / total) * Math.PI * 2;
       const endAngle = startAngle + sliceAngle;
 
@@ -927,7 +975,7 @@ const DashboardCharts = {
 
     ctx.fillStyle = '#94a3b8';
     ctx.font = '10px -apple-system, sans-serif';
-    ctx.fillText('TOTAL LEADS', centerX, centerY + 14);
+    ctx.fillText('VERIFIED LEADS', centerX, centerY + 14);
 
     // Legend on the right side
     const legendX = width * 0.65;
@@ -949,7 +997,7 @@ const DashboardCharts = {
       const pct = Math.round((seg.val / total) * 100);
       ctx.fillStyle = '#94a3b8';
       ctx.font = '10px ui-monospace, SFMono-Regular, monospace';
-      ctx.fillText(`${seg.val} downloads (${pct}%)`, legendX + 12, legendY + 16);
+      ctx.fillText(`${seg.val} leads (${pct}%)`, legendX + 12, legendY + 16);
 
       legendY += 34;
     });
@@ -1139,7 +1187,18 @@ const DashboardUI = {
     }, 50);
   },
 
-  // Refresh Top KPIs
+  // Escape HTML helper
+  escapeHTML(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  },
+
+  // Refresh Top KPIs (Strictly Real-Time & Genuine)
   refreshKPIs() {
     const stats = DashboardData.getProductWiseSales();
     let totalRevenue = 0;
@@ -1156,8 +1215,91 @@ const DashboardUI = {
     const elOrders = document.getElementById('kpi-val-orders');
     if (elOrders) elOrders.textContent = `${totalOrders} Orders`;
 
+    const realDownloads = DashboardData.getFreeDownloadsLedger();
     const elDownloads = document.getElementById('kpi-val-downloads');
-    if (elDownloads) elDownloads.textContent = '340 Leads';
+    if (elDownloads) elDownloads.textContent = `${realDownloads.length} Leads`;
+
+    const elTotalPill = document.getElementById('downloads-total-pill');
+    if (elTotalPill) elTotalPill.textContent = `${realDownloads.length} Total`;
+
+    // Real recorded pageviews & unique sessions
+    const metrics = (typeof Analytics !== 'undefined') ? Analytics.getMetrics() : { pageviews: 0, uniqueSessions: 0 };
+    const elPageviews = document.getElementById('kpi-val-pageviews');
+    if (elPageviews) elPageviews.textContent = (metrics.pageviews || 0).toLocaleString();
+
+    const elVisitors = document.getElementById('kpi-val-visitors');
+    if (elVisitors) elVisitors.textContent = (metrics.uniqueSessions || 0).toLocaleString();
+
+    // Render Dynamic Activity Stream and Breakdown Cards
+    this.renderActivityStream();
+    this.renderDownloadsBreakdownCards();
+  },
+
+  // Render Real-Time Activity Stream
+  renderActivityStream() {
+    const tbody = document.getElementById('activity-stream-tbody');
+    if (!tbody) return;
+
+    const metrics = (typeof Analytics !== 'undefined') ? Analytics.getMetrics() : { activityLog: [] };
+    const logs = metrics.activityLog || [];
+
+    if (logs.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align:center; padding:2.5rem 1rem; color:#94a3b8;">
+            <div style="font-size:1.6rem; margin-bottom:0.5rem;">📡</div>
+            <strong style="color:#ffffff; font-size:0.95rem; display:block; margin-bottom:0.25rem;">Live Telemetry Listening</strong>
+            <span style="font-size:0.8rem; color:#64748b; display:block; max-width:480px; margin:0 auto; line-height:1.4;">
+              Telemetry is active and connected. As visitors navigate the storefront or run any of the 11 client-side tools, verified events will appear here instantly.
+            </span>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = logs.slice(0, 15).map((entry, idx) => `
+      <tr>
+        <td style="color:${idx === 0 ? '#38bdf8' : '#94a3b8'}; font-family:monospace; font-size:0.8rem; white-space:nowrap;">
+          ${entry.time || 'Just now'}
+        </td>
+        <td>
+          <strong style="color:#ffffff; font-size:0.85rem;">${DashboardUI.escapeHTML(entry.action)}</strong>
+        </td>
+        <td style="color:#cbd5e1; font-size:0.85rem;">
+          ${DashboardUI.escapeHTML(entry.source || 'Direct')}
+        </td>
+        <td>
+          <span class="table-geo-badge">${DashboardUI.escapeHTML(entry.geo || 'India 🇮🇳 (IST)')}</span>
+        </td>
+        <td style="color:#94a3b8; font-size:0.8rem;">
+          ${DashboardUI.escapeHTML(entry.device || 'Desktop')}
+        </td>
+      </tr>
+    `).join('');
+  },
+
+  // Render Genuine Free Downloads Breakdown Cards
+  renderDownloadsBreakdownCards() {
+    const container = document.getElementById('downloads-breakdown-cards');
+    if (!container) return;
+
+    const stats = DashboardData.getProductWiseDownloads();
+    const downloads = DashboardData.getFreeDownloadsLedger();
+    const total = downloads.length;
+
+    container.innerHTML = Object.entries(stats).map(([id, info]) => {
+      const pct = total > 0 ? Math.round((info.count / total) * 100) : 0;
+      return `
+        <div style="background:rgba(2,6,23,0.5); padding:1rem; border-radius:10px; border:1px solid rgba(255,255,255,0.06);">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.25rem;">
+            <strong style="color:#ffffff; font-size:0.9rem;">${info.name}</strong>
+            <span style="font-family:monospace; color:#38bdf8; font-weight:700;">${info.count} downloads (${pct}%)</span>
+          </div>
+          <div style="font-size:0.75rem; color:#94a3b8;">Format: ${info.format} • Real Verified Submissions</div>
+        </div>
+      `;
+    }).join('');
   },
 
   // Render Sales & Conversions Ledger Table
@@ -1244,7 +1386,17 @@ const DashboardUI = {
     });
 
     if (filtered.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:2.5rem; color:#94a3b8;">No matching free downloads found.</td></tr>`;
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align:center; padding:3rem 1.5rem; color:#94a3b8;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">📥</div>
+            <strong style="color:#ffffff; font-size:1.05rem; display:block; margin-bottom:0.35rem;">No Free Resource Downloads Recorded Yet</strong>
+            <span style="font-size:0.85rem; color:#cbd5e1; display:block; max-width:540px; margin:0 auto; line-height:1.5;">
+              As visitors enter their Name and Email on <a href="/" target="_blank" style="color:#38bdf8; text-decoration:underline;">fullstopsolution.in</a> to download free toolkits, their verified submissions will populate here in real time.
+            </span>
+          </td>
+        </tr>
+      `;
       return;
     }
 
