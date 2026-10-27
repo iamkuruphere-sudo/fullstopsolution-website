@@ -596,6 +596,15 @@ const DashboardData = {
     return [];
   },
 
+  // Load verified incoming customer support inquiries
+  getInquiries() {
+    try {
+      const raw = localStorage.getItem('fs_support_inquiries');
+      if (raw) return JSON.parse(raw);
+    } catch(e) {}
+    return [];
+  },
+
   // Compute product-wise performance summary (Strictly verified numbers)
   getProductWiseSales() {
     const sales = this.getSalesLedger();
@@ -1081,6 +1090,7 @@ const DashboardUI = {
     this.refreshKPIs();
     this.renderSalesLedger();
     this.renderFreeDownloadsLedger();
+    this.renderInquiries();
     this.renderProductsManager();
     this.renderSecuritySettings();
   },
@@ -1183,6 +1193,8 @@ const DashboardUI = {
         DashboardCharts.renderRevenueChart('chart-revenue-breakdown');
       } else if (tabId === 'downloads') {
         DashboardCharts.renderDownloadsDonut('chart-downloads-donut');
+      } else if (tabId === 'inquiries') {
+        DashboardUI.renderInquiries();
       }
     }, 50);
   },
@@ -1221,6 +1233,14 @@ const DashboardUI = {
 
     const elTotalPill = document.getElementById('downloads-total-pill');
     if (elTotalPill) elTotalPill.textContent = `${realDownloads.length} Total`;
+
+    // Customer Inquiries Badge
+    const inquiries = DashboardData.getInquiries();
+    const navBadge = document.getElementById('inquiries-nav-badge');
+    if (navBadge) {
+      navBadge.textContent = inquiries.length.toString();
+      navBadge.style.display = inquiries.length > 0 ? 'inline-block' : 'none';
+    }
 
     // Real recorded pageviews & unique sessions
     const metrics = (typeof Analytics !== 'undefined') ? Analytics.getMetrics() : { pageviews: 0, uniqueSessions: 0 };
@@ -1425,6 +1445,94 @@ const DashboardUI = {
         </td>
       </tr>
     `).join('');
+  },
+
+  // Render Incoming Customer Support Inquiries Table
+  renderInquiries() {
+    const tbody = document.getElementById('inquiries-ledger-tbody');
+    if (!tbody) return;
+
+    const inquiries = DashboardData.getInquiries();
+    const countBadge = document.getElementById('inquiries-count-badge');
+    const navBadge = document.getElementById('inquiries-nav-badge');
+
+    if (countBadge) countBadge.textContent = `${inquiries.length} Messages`;
+    if (navBadge) {
+      navBadge.textContent = inquiries.length.toString();
+      navBadge.style.display = inquiries.length > 0 ? 'inline-block' : 'none';
+    }
+
+    if (inquiries.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align:center; padding:3rem 1.5rem; color:#94a3b8;">
+            <div style="font-size:2rem; margin-bottom:0.5rem;">📫</div>
+            <strong style="color:#ffffff; font-size:1.05rem; display:block; margin-bottom:0.35rem;">Inbox Zero • No Support Inquiries Yet</strong>
+            <span style="font-size:0.85rem; color:#cbd5e1; display:block; max-width:540px; margin:0 auto; line-height:1.5;">
+              Messages submitted by visitors through the storefront Contact Modal will be delivered here instantly with sender contact info, location, and 1-click email reply.
+            </span>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = inquiries.map((item) => `
+      <tr>
+        <td style="white-space:nowrap; font-family:ui-monospace, monospace; font-size:0.8rem; color:#94a3b8;">
+          ${DashboardUI.escapeHTML(item.date)}
+        </td>
+        <td>
+          <div class="table-user-cell">
+            <span class="table-user-name">${DashboardUI.escapeHTML(item.name)}</span>
+            <span class="table-user-email">${DashboardUI.escapeHTML(item.email)}</span>
+          </div>
+        </td>
+        <td>
+          <span class="badge-product">${DashboardUI.escapeHTML(item.subject)}</span>
+        </td>
+        <td style="max-width:320px; font-size:0.85rem; color:#cbd5e1; line-height:1.4;">
+          ${DashboardUI.escapeHTML(item.message)}
+        </td>
+        <td>
+          <span class="table-geo-badge">${DashboardUI.escapeHTML(item.geography || 'India 🇮🇳 (IST)')}</span>
+        </td>
+        <td style="white-space:nowrap;">
+          <a href="mailto:${encodeURIComponent(item.email)}?subject=Re: ${encodeURIComponent(item.subject)} - Fullstop Solution" class="btn btn-primary btn-sm" style="font-size:0.75rem; padding:0.25rem 0.5rem;">
+            ✉️ Reply
+          </a>
+        </td>
+      </tr>
+    `).join('');
+  },
+
+  // Export Customer Inquiries to CSV
+  exportInquiriesCsv() {
+    const list = DashboardData.getInquiries();
+    if (list.length === 0) {
+      alert('No support inquiries available to export.');
+      return;
+    }
+    const headers = ['Inquiry ID', 'Date', 'Customer Name', 'Customer Email', 'Subject', 'Message', 'Geography', 'Device'];
+    const rows = list.map(i => [
+      i.id || '',
+      `"${i.date}"`,
+      `"${(i.name || '').replace(/"/g, '""')}"`,
+      `"${(i.email || '').replace(/"/g, '""')}"`,
+      `"${(i.subject || '').replace(/"/g, '""')}"`,
+      `"${(i.message || '').replace(/"/g, '""')}"`,
+      `"${(i.geography || '').replace(/"/g, '""')}"`,
+      `"${(i.device || '').replace(/"/g, '""')}"`
+    ]);
+
+    const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `fullstopsolution-inquiries-${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   },
 
   // Render Product Catalog Management Cards

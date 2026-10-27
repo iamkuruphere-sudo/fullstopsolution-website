@@ -117,6 +117,9 @@
           <button class="admin-tab-btn" data-tab="downloads">
             <span>🎁</span> Free Downloads
           </button>
+          <button class="admin-tab-btn" data-tab="inquiries">
+            <span>💬</span> Inquiries <span id="inquiries-nav-badge" class="admin-pill-tag" style="background:#2563eb; color:#ffffff; font-size:0.65rem; padding:0.1rem 0.4rem; display:none;">0</span>
+          </button>
           <button class="admin-tab-btn" data-tab="products">
             <span>📦</span> Products & Pricing
           </button>
@@ -549,6 +552,46 @@
       </div>
 
       <!-- ====================================================================
+           TAB: INCOMING CUSTOMER INQUIRIES & SUPPORT MESSAGES
+           ==================================================================== -->
+      <div id="tab-panel-inquiries" class="admin-tab-content">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div>
+              <h3 class="admin-card-title">
+                <span>💬</span> Customer Support Inquiries & Messages
+              </h3>
+              <div class="admin-card-subtitle">Direct messages received via the in-browser support modal on fullstopsolution.in</div>
+            </div>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <span id="inquiries-count-badge" class="admin-pill-tag">0 Messages</span>
+              <button class="admin-export-btn" onclick="DashboardUI.exportInquiriesCsv()">
+                📥 Export CSV
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>Sender Contact</th>
+                  <th>Subject</th>
+                  <th>Message Body</th>
+                  <th>Location</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="inquiries-ledger-tbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
            TAB 4: PRODUCTS & PRICING MANAGER (DEVELOPER ACCESS)
            ==================================================================== -->
       <div id="tab-panel-products" class="admin-tab-content">
@@ -692,7 +735,7 @@
             <div style="margin-bottom:1.25rem;">
               <label style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase; font-weight:700;">PayPal Merchant Email (International)</label>
               <div style="display:flex; gap:0.5rem; margin-top:0.35rem;">
-                <input type="email" id="admin-paypal-email" class="form-input" style="font-family:monospace; font-size:0.8rem;" value="contact@fullstopsolution.in">
+                <input type="email" id="admin-paypal-email" class="form-input" style="font-family:monospace; font-size:0.8rem;" placeholder="merchant@yourdomain.com">
                 <button class="btn btn-secondary btn-sm" onclick="Commerce.setPaypalEmail(document.getElementById('admin-paypal-email').value)">Save</button>
               </div>
             </div>

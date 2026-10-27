@@ -696,7 +696,7 @@
               <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
             <div class="faq-answer">
-              We offer a straightforward 30-day money-back guarantee. If our templates or developer kits do not save you dozens of hours of work, email contact@fullstopsolution.in for a full refund.
+              We offer a straightforward 30-day money-back guarantee. If our templates or developer kits do not save you dozens of hours of work, reach out directly through our <a href="javascript:void(0)" onclick="App.openContactModal()" style="color:var(--accent-primary); text-decoration:underline;">Online Support Desk</a> or contact us at contact@fullstopsolution.in for an immediate refund.
             </div>
           </div>
         </div>
@@ -752,7 +752,7 @@
             <li><a href="terms.html">Terms of Service</a></li>
             <li><a href="security.html">Security Architecture</a></li>
             <li><a href="sitemap.xml">XML Sitemap</a></li>
-            <li><a href="mailto:contact@fullstopsolution.in">Contact Support</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openContactModal()">Contact Support</a></li>
           </ul>
         </div>
       </div>
@@ -798,6 +798,59 @@
       </div>
       <div class="modal-body" id="checkout-modal-body">
         <!-- Injected dynamically by Commerce -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Support & Customer Inquiry Modal -->
+  <div class="modal-backdrop" id="contact-modal">
+    <div class="modal-container" style="max-width:540px;">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span style="font-size:1.5rem;">💬</span>
+          <h3 class="modal-title">Contact Support & Inquiries</h3>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.875rem; color:#94a3b8; margin-bottom:1.25rem; line-height:1.5;">
+          Have a question about our developer boilerplates, digital templates, or daily tools? Submit your inquiry below. Your message will be delivered directly to our administration desk.
+        </p>
+        <form id="contact-form" onsubmit="App.handleContactSubmit(event)">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:1rem;">
+            <div>
+              <label style="display:block; font-size:0.78rem; font-weight:700; color:#cbd5e1; margin-bottom:0.35rem;">Your Name</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div>
+              <label style="display:block; font-size:0.78rem; font-weight:700; color:#cbd5e1; margin-bottom:0.35rem;">Your Email</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="you@company.com" required>
+            </div>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <label style="display:block; font-size:0.78rem; font-weight:700; color:#cbd5e1; margin-bottom:0.35rem;">Inquiry Subject</label>
+            <select id="contact-subject" class="form-input" style="background:#0f172a; color:#ffffff;">
+              <option value="Product & Licensing Inquiry">Product & Licensing Inquiry</option>
+              <option value="Developer Boilerplate Support">Developer Boilerplate Support</option>
+              <option value="Feature / Tool Request">Feature / Tool Request</option>
+              <option value="Bug Report & Security Feedback">Bug Report & Security Feedback</option>
+              <option value="General Question">General Question</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom:1.25rem;">
+            <label style="display:block; font-size:0.78rem; font-weight:700; color:#cbd5e1; margin-bottom:0.35rem;">Your Message</label>
+            <textarea id="contact-message" class="form-input" rows="4" placeholder="How can we help you? Please include any relevant details..." required></textarea>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
+            <span style="font-size:0.75rem; color:#64748b;">🔒 100% Private • Direct Administration Delivery</span>
+            <button type="submit" id="contact-submit-btn" class="btn btn-primary">
+              Send Message →
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

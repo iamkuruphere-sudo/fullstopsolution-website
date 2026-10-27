@@ -13,6 +13,11 @@ const App = {
     this.initToolTabs();
     this.initFaq();
     this.initLeadMagnet();
+
+    // Check if ?contact=1 or #contact requested
+    if (new URLSearchParams(window.location.search).get('contact') === '1' || window.location.hash === '#contact') {
+      setTimeout(() => this.openContactModal(), 300);
+    }
   },
 
   // 1. Theme Management (Dark / Light + Custom Presets)
@@ -174,6 +179,61 @@ const App = {
   closeModals() {
     document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('active'));
     document.body.style.overflow = '';
+  },
+
+  // Direct In-Browser Support & Contact Modal
+  openContactModal() {
+    this.openModal('contact-modal');
+    setTimeout(() => {
+      const nameInput = document.getElementById('contact-name');
+      if (nameInput) nameInput.focus();
+    }, 150);
+  },
+
+  handleContactSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('contact-name')?.value.trim();
+    const email = document.getElementById('contact-email')?.value.trim();
+    const subject = document.getElementById('contact-subject')?.value || 'General Inquiry';
+    const message = document.getElementById('contact-message')?.value.trim();
+
+    if (!name || !email || !message) {
+      this.toast('Please fill in all required fields.');
+      return;
+    }
+
+    const geo = (typeof Analytics !== 'undefined' && Analytics.detectClientGeo)
+      ? Analytics.detectClientGeo()
+      : 'India 🇮🇳 (IST)';
+
+    const newInquiry = {
+      id: 'INQ-' + Math.floor(1000 + Math.random() * 9000),
+      date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' IST',
+      timestamp: new Date().toISOString(),
+      name: name,
+      email: email,
+      subject: subject,
+      message: message,
+      geography: geo,
+      device: /Mobile/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop'
+    };
+
+    try {
+      const inquiries = JSON.parse(localStorage.getItem('fs_support_inquiries') || '[]');
+      inquiries.unshift(newInquiry);
+      localStorage.setItem('fs_support_inquiries', JSON.stringify(inquiries));
+    } catch(err) {}
+
+    // Record local telemetry event
+    if (typeof Analytics !== 'undefined') {
+      Analytics.recordLocalEvent('support_inquiry', { tool_name: subject });
+    }
+
+    this.closeModals();
+    this.toast(`✓ Thank you ${name}! Your inquiry was delivered to our administrative desk.`);
+
+    const form = document.getElementById('contact-form');
+    if (form) form.reset();
   },
 
   // 5. FAQ Accordion

@@ -72,7 +72,7 @@ const Commerce = {
   },
 
   getPaypalEmail() {
-    return localStorage.getItem('fs_paypal_email') || 'contact@fullstopsolution.in';
+    return localStorage.getItem('fs_paypal_email') || '';
   },
 
   setPaypalEmail(email) {
@@ -511,8 +511,9 @@ Your digital assets, Notion templates, checklists, and documentation are ready.
 1. Notion Workspace Access:
    https://www.fullstopsolution.in/portal/access?key=${document.getElementById('generated-license-key')?.textContent}
 
-2. VIP Discord & Support:
-   Email: contact@fullstopsolution.in
+2. VIP Support & Helpdesk:
+   Support Portal: https://www.fullstopsolution.in/?contact=1
+   Official Email: contact@fullstopsolution.in
    WhatsApp VIP Line: Available in your dashboard
 
 All rights reserved © Fullstop Solution.`
