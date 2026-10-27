@@ -45,8 +45,7 @@ const App = {
     const toggleBtn = document.getElementById('theme-toggle-btn');
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => {
-        const newTheme = this.theme === 'dark' ? 'light' : 'dark';
-        this.setTheme(newTheme);
+        this.toggleTheme();
       });
     }
 
@@ -54,6 +53,11 @@ const App = {
     if (typeof Commerce !== 'undefined' && Commerce.updateProductPricingDisplays) {
       Commerce.updateProductPricingDisplays();
     }
+  },
+
+  toggleTheme() {
+    const newTheme = this.theme === 'dark' ? 'light' : 'dark';
+    this.setTheme(newTheme);
   },
 
   setTheme(theme) {
@@ -64,6 +68,48 @@ const App = {
     if (icon) {
       icon.textContent = theme === 'dark' ? '☀️' : '🌙';
     }
+    const mobileIcon = document.getElementById('mobile-theme-icon');
+    if (mobileIcon) {
+      mobileIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+    const mobileText = document.getElementById('mobile-theme-text');
+    if (mobileText) {
+      mobileText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
+    }
+  },
+
+  // Mobile Navigation Drawer Toggle & Close
+  toggleMobileNav() {
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const backdrop = document.getElementById('mobile-nav-backdrop');
+    const toggleBtn = document.getElementById('nav-toggle-btn');
+    if (!drawer || !backdrop) return;
+
+    const isOpen = drawer.classList.contains('active');
+    if (isOpen) {
+      this.closeMobileNav();
+    } else {
+      drawer.classList.add('active');
+      backdrop.classList.add('active');
+      if (toggleBtn) {
+        toggleBtn.classList.add('open');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+      document.body.style.overflow = 'hidden';
+    }
+  },
+
+  closeMobileNav() {
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const backdrop = document.getElementById('mobile-nav-backdrop');
+    const toggleBtn = document.getElementById('nav-toggle-btn');
+    if (drawer) drawer.classList.remove('active');
+    if (backdrop) backdrop.classList.remove('active');
+    if (toggleBtn) {
+      toggleBtn.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+    document.body.style.overflow = '';
   },
 
   // 2. Global Live Tool & Product Search
@@ -476,7 +522,10 @@ document.addEventListener('DOMContentLoaded', () => {
   App.init();
 });
 
-// Close modal when clicking outside or pressing Escape
+// Close modal or mobile nav when clicking outside or pressing Escape
 window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') App.closeModals();
+  if (e.key === 'Escape') {
+    App.closeModals();
+    App.closeMobileNav();
+  }
 });

@@ -148,7 +148,7 @@
         </div>
       </a>
 
-      <nav class="nav-menu">
+      <nav class="nav-menu" aria-label="Main Navigation">
         <ul class="nav-links">
           <li><a href="#tools" class="active">Daily Tools</a></li>
           <li><a href="#desktop">Desktop Apps <span class="badge badge-success" style="font-size:0.65rem; padding:1px 6px;">New</span></a></li>
@@ -160,9 +160,9 @@
 
       <div class="nav-actions">
         <!-- Currency Selector -->
-        <div style="display:flex; background:var(--bg-tertiary); border-radius:var(--radius-sm); padding:2px; border:1px solid var(--border-color);">
-          <button class="btn btn-sm curr-btn active" data-curr="INR" onclick="Commerce.setCurrency('INR')" style="padding:0.25rem 0.6rem; font-size:0.75rem;">₹ INR</button>
-          <button class="btn btn-sm curr-btn" data-curr="USD" onclick="Commerce.setCurrency('USD')" style="padding:0.25rem 0.6rem; font-size:0.75rem;">$ USD</button>
+        <div class="currency-segmented nav-curr-desktop">
+          <button class="curr-btn active" data-curr="INR" onclick="Commerce.setCurrency('INR')" aria-label="Switch to Indian Rupee">₹ INR</button>
+          <button class="curr-btn" data-curr="USD" onclick="Commerce.setCurrency('USD')" aria-label="Switch to US Dollar">$ USD</button>
         </div>
 
         <!-- Dark/Light Theme Toggle -->
@@ -171,10 +171,89 @@
         </button>
 
         <button class="btn btn-outline btn-sm nav-btn-desktop" onclick="App.openDesktopModal()">🖥️ Desktop Suite</button>
-        <a href="#products" class="btn btn-gradient btn-sm">Explore Pro Kits</a>
+        <a href="#products" class="btn btn-gradient btn-sm nav-cta-desktop">Explore Pro Kits</a>
+
+        <!-- Mobile & Tablet Hamburger Button -->
+        <button id="nav-toggle-btn" class="nav-toggle-btn" aria-label="Toggle navigation drawer" aria-expanded="false" onclick="App.toggleMobileNav()">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile & Tablet Slide-in Navigation Drawer -->
+  <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" onclick="App.closeMobileNav()"></div>
+  <aside id="mobile-nav-drawer" class="mobile-nav-drawer" aria-label="Mobile Navigation Menu">
+    <div class="mobile-nav-header">
+      <a href="/" class="brand" onclick="App.closeMobileNav()">
+        <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img" width="36" height="36">
+        <div class="brand-text">
+          <span class="brand-name" style="font-size:1.05rem;">FULLSTOP SOLUTION<span class="brand-dot">.</span></span>
+          <span class="brand-domain" style="font-size:0.65rem;">www.fullstopsolution.in</span>
+        </div>
+      </a>
+      <button class="mobile-nav-close" aria-label="Close navigation" onclick="App.closeMobileNav()">✕</button>
+    </div>
+
+    <div class="mobile-nav-body">
+      <nav class="mobile-nav-links">
+        <a href="#tools" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">⚡</span>
+          <div class="mobile-nav-label">
+            <strong>Daily Tools</strong>
+            <span>11 offline browser utilities</span>
+          </div>
+        </a>
+        <a href="#desktop" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">🖥️</span>
+          <div class="mobile-nav-label">
+            <strong>Desktop Apps <span class="badge badge-success" style="font-size:0.6rem; padding:1px 5px;">New</span></strong>
+            <span>macOS, Windows & Linux builds</span>
+          </div>
+        </a>
+        <a href="#products" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">💎</span>
+          <div class="mobile-nav-label">
+            <strong>Premium Packs</strong>
+            <span>Business OS, SEO & Boilerplates</span>
+          </div>
+        </a>
+        <a href="#security" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">🛡️</span>
+          <div class="mobile-nav-label">
+            <strong>Security Architecture</strong>
+            <span>Zero-Knowledge client sandbox</span>
+          </div>
+        </a>
+        <a href="#faq" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">❓</span>
+          <div class="mobile-nav-label">
+            <strong>FAQ</strong>
+            <span>Pricing, privacy & support answers</span>
+          </div>
+        </a>
+      </nav>
+
+      <div class="mobile-nav-section">
+        <div class="mobile-nav-section-title">Pricing Currency</div>
+        <div class="currency-segmented" style="width:100%; justify-content:center;">
+          <button class="curr-btn active" data-curr="INR" onclick="Commerce.setCurrency('INR')" style="flex:1;">₹ INR (₹)</button>
+          <button class="curr-btn" data-curr="USD" onclick="Commerce.setCurrency('USD')" style="flex:1;">$ USD ($)</button>
+        </div>
+      </div>
+
+      <div class="mobile-nav-actions">
+        <button class="btn btn-outline btn-sm" style="width:100%; justify-content:center;" onclick="App.closeMobileNav(); App.openDesktopModal();">
+          🖥️ Desktop App Packages
+        </button>
+        <a href="#products" class="btn btn-gradient btn-sm" style="width:100%; justify-content:center;" onclick="App.closeMobileNav();">
+          Explore Commercial Kits →
+        </a>
+      </div>
+    </div>
+  </aside>
 
   <main>
     <!-- Hero Section -->
@@ -576,6 +655,15 @@
           </div>
           <h2 class="section-title">Battle-Tested Systems to Accelerate Your Growth</h2>
           <p class="section-desc">Production-grade templates, growth blueprints, and developer boilerplates with instant delivery.</p>
+
+          <!-- In-Section Interactive Currency Switcher -->
+          <div style="display:flex; justify-content:center; align-items:center; gap:0.75rem; margin-top:1.5rem; flex-wrap:wrap;">
+            <span style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">Pricing Currency:</span>
+            <div class="currency-segmented">
+              <button class="curr-btn active" data-curr="INR" onclick="Commerce.setCurrency('INR')" aria-label="Show prices in Indian Rupee">₹ INR (India)</button>
+              <button class="curr-btn" data-curr="USD" onclick="Commerce.setCurrency('USD')" aria-label="Show prices in US Dollar">$ USD (Global)</button>
+            </div>
+          </div>
         </div>
 
         <!-- Gateway Verification & Sales Lock Banner -->
@@ -971,7 +1059,7 @@
           Have a question about our developer boilerplates, digital templates, or daily tools? Submit your inquiry below. Your message will be delivered directly to our administration desk.
         </p>
         <form id="contact-form" onsubmit="App.handleContactSubmit(event)">
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:1rem;">
+          <div class="contact-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:1rem;">
             <div>
               <label style="display:block; font-size:0.78rem; font-weight:700; color:#cbd5e1; margin-bottom:0.35rem;">Your Name</label>
               <input type="text" id="contact-name" class="form-input" placeholder="e.g. Rahul Sharma" required>
