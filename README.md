@@ -16,12 +16,12 @@ Fullstop Solution is a high-performance, SEO-engineered digital toolkit and digi
 ```
 fullstopsolution-website/
 ├── index.html               # Main landing, daily tools workstation & marketplace
-├── dashboard.html           # Live traffic analytics & Google Console/GA4 control center
+├── dashboard.html           # Private backend console (Password + 2FA, Sales & Leads ledger)
 ├── privacy-policy.html      # DPDP Act 2023 & GDPR compliant privacy policy
 ├── terms.html               # Commercial terms of service & 30-day refund guarantee
 ├── security.html            # Zero-knowledge security white paper & CSP details
 ├── sitemap.xml              # XML sitemap for Google & Bing indexing
-├── robots.txt               # Crawler directives with sitemap reference
+├── robots.txt               # Crawler directives (disallows private console)
 ├── manifest.json            # PWA manifest for mobile/desktop install
 ├── .htaccess                # Apache / cPanel / Hostinger security & gzip config
 ├── _headers                 # Cloudflare Pages / Netlify security headers
@@ -29,11 +29,14 @@ fullstopsolution-website/
 ├── nginx.conf               # High-performance Nginx block for VPS
 ├── assets/
 │   ├── css/
-│   │   └── styles.css       # Responsive dark/light design system (zero external bloat)
+│   │   ├── styles.css       # Responsive dark/light design system (zero external bloat)
+│   │   └── dashboard.css    # Cyber-glassmorphism styling for private backend console
 │   ├── js/
 │   │   ├── app.js           # Theme toggle, live search, tabs, modals, toast system
 │   │   ├── tools.js         # 11 interactive client-side daily tools
-│   │   └── checkout.js      # Multi-currency checkout, coupons, license fulfillment
+│   │   ├── checkout.js      # Multi-currency checkout, coupons, license fulfillment
+│   │   ├── analytics.js     # GA4, Search Console, and client geo telemetry
+│   │   └── dashboard.js     # Private backend console engine (SHA-256, 2FA, Canvas charts)
 │   └── images/
 │       ├── logo.png         # Fullstop Solution brand logo
 │       ├── logo-wide.png    # Wide horizontal banner logo

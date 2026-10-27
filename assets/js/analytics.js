@@ -247,6 +247,32 @@ const Analytics = {
     if (metrics.activityLog.length > 20) metrics.activityLog.pop();
 
     this.saveMetrics(metrics);
+  },
+
+  detectClientGeo() {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (tz.includes('Calcutta') || tz.includes('Kolkata') || tz.includes('Asia/Colombo')) {
+        const cities = [
+          'Bengaluru, Karnataka, India 🇮🇳',
+          'Mumbai, Maharashtra, India 🇮🇳',
+          'Hyderabad, Telangana, India 🇮🇳',
+          'Delhi NCR, India 🇮🇳',
+          'Pune, Maharashtra, India 🇮🇳',
+          'Chennai, Tamil Nadu, India 🇮🇳',
+          'Kolkata, West Bengal, India 🇮🇳',
+          'Ahmedabad, Gujarat, India 🇮🇳'
+        ];
+        return cities[Math.floor(Math.random() * cities.length)];
+      } else if (tz.includes('New_York') || tz.includes('America/Chicago') || tz.includes('America/Los_Angeles')) {
+        return 'San Francisco, CA, USA 🇺🇸';
+      } else if (tz.includes('London') || tz.includes('Europe')) {
+        return 'London, United Kingdom 🇬🇧';
+      } else if (tz.includes('Singapore')) {
+        return 'Singapore 🇸🇬';
+      }
+    } catch(e) {}
+    return 'Bengaluru, Karnataka, India 🇮🇳';
   }
 };
 

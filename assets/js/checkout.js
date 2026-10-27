@@ -96,6 +96,14 @@ const Commerce = {
     }
   },
 
+  getProducts() {
+    try {
+      const stored = localStorage.getItem('fs_products_catalog');
+      if (stored) return JSON.parse(stored);
+    } catch(e) {}
+    return this.products;
+  },
+
   setCurrency(curr) {
     this.currency = curr;
     document.querySelectorAll('.curr-btn').forEach(b => {
@@ -107,10 +115,17 @@ const Commerce = {
   updateProductPricingDisplays() {
     const isINR = this.currency === 'INR';
     const symbol = isINR ? '₹' : '$';
+    const prods = this.getProducts();
 
-    Object.values(this.products).forEach(p => {
-      const price = isINR ? p.priceINR.toLocaleString() : p.priceUSD;
-      const orig = isINR ? p.originalINR.toLocaleString() : p.originalUSD;
+    Object.values(prods).forEach(p => {
+      // Toggle card visibility if unlisted
+      const cardEl = document.querySelector(`[data-product-id="${p.id}"]`);
+      if (cardEl) {
+        cardEl.style.display = p.status === 'unlisted' ? 'none' : '';
+      }
+
+      const price = isINR ? (p.priceINR || 0).toLocaleString() : p.priceUSD;
+      const orig = isINR ? (p.originalINR || 0).toLocaleString() : p.originalUSD;
 
       const priceEl = document.getElementById(`price-${p.id}`);
       if (priceEl) priceEl.innerHTML = `<span class="product-price-currency">${symbol}</span>${price}`;
@@ -121,7 +136,8 @@ const Commerce = {
   },
 
   openCheckout(productId) {
-    const product = this.products[productId];
+    const prods = this.getProducts();
+    const product = prods[productId] || this.products[productId];
     if (!product) return;
 
     this.selectedProduct = product;
@@ -383,6 +399,33 @@ const Commerce = {
         paymentId: paymentId
       });
       localStorage.setItem('fs_purchases', JSON.stringify(history));
+
+      // Append to shared sales ledger for Private Backend Console
+      const isINR = this.currency === 'INR';
+      const basePrice = isINR ? this.selectedProduct.priceINR : this.selectedProduct.priceUSD;
+      const finalPrice = Math.round(basePrice * (1 - this.activeDiscount));
+      const ledger = JSON.parse(localStorage.getItem('fs_sales_ledger') || '[]');
+      const clientGeo = (typeof Analytics !== 'undefined' && Analytics.detectClientGeo) 
+        ? Analytics.detectClientGeo() 
+        : 'Bengaluru, Karnataka, India 🇮🇳';
+      
+      ledger.unshift({
+        id: 'TXN-' + Math.floor(1000 + Math.random() * 9000) + '-' + Math.floor(1000 + Math.random() * 9000),
+        date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' IST',
+        timestamp: new Date().toISOString(),
+        productId: this.selectedProduct.id,
+        productName: this.selectedProduct.name,
+        customerName: name,
+        customerEmail: email,
+        amount: finalPrice,
+        currency: isINR ? 'INR' : 'USD',
+        gateway: gateway,
+        paymentId: paymentId,
+        licenseKey: license,
+        geography: clientGeo,
+        status: 'Completed'
+      });
+      localStorage.setItem('fs_sales_ledger', JSON.stringify(ledger));
     } catch(e) {}
 
     // Track purchase conversion in Analytics

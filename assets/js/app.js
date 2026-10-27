@@ -15,8 +15,14 @@ const App = {
     this.initLeadMagnet();
   },
 
-  // 1. Theme Management (Dark / Light)
+  // 1. Theme Management (Dark / Light + Custom Presets)
   initTheme() {
+    // Check if custom admin preset theme is saved
+    const customPreset = localStorage.getItem('fs_site_theme');
+    if (customPreset && typeof AdminTheme !== 'undefined') {
+      AdminTheme.applyTheme(customPreset);
+    }
+
     const savedTheme = localStorage.getItem('fs_theme') || 
       (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     this.setTheme(savedTheme);
@@ -27,6 +33,11 @@ const App = {
         const newTheme = this.theme === 'dark' ? 'light' : 'dark';
         this.setTheme(newTheme);
       });
+    }
+
+    // Sync product displays from catalog
+    if (typeof Commerce !== 'undefined' && Commerce.updateProductPricingDisplays) {
+      Commerce.updateProductPricingDisplays();
     }
   },
 
@@ -189,6 +200,7 @@ const App = {
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      const name = document.getElementById('lead-name')?.value.trim() || 'Explorer';
       const email = document.getElementById('lead-email')?.value.trim();
       if (!email || !email.includes('@')) {
         this.toast('Please enter a valid email address.');
@@ -199,7 +211,7 @@ const App = {
       const checklistBlob = new Blob([
 `FULLSTOP SOLUTION - 50-POINT SEO & WEB SECURITY CHECKLIST (2026 EDITION)
 Domain: www.fullstopsolution.in
-Dispatched to: ${email}
+Dispatched to: ${name} (${email})
 
 === PART 1: CORE SEO CHECKLIST ===
 [x] 1. Set canonical URL tags on all pages to prevent duplicate indexing
@@ -233,11 +245,34 @@ Visit www.fullstopsolution.in for daily interactive tools and premium toolkits.`
       a.click();
       URL.revokeObjectURL(url);
 
-      this.toast('🎉 Checklist downloaded! Welcome to Fullstop Solution.');
+      // Record into shared free downloads ledger for Private Console
+      try {
+        const freeDownloads = JSON.parse(localStorage.getItem('fs_free_downloads') || '[]');
+        const geo = (typeof Analytics !== 'undefined' && Analytics.detectClientGeo)
+          ? Analytics.detectClientGeo()
+          : 'Bengaluru, Karnataka, India 🇮🇳';
+        
+        freeDownloads.unshift({
+          id: 'DL-' + Math.floor(1000 + Math.random() * 9000) + '-' + Math.floor(10 + Math.random() * 90),
+          date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' IST',
+          timestamp: new Date().toISOString(),
+          productId: 'free-seo-checklist',
+          productName: '50-Point Technical SEO & Security Checklist',
+          customerName: name,
+          customerEmail: email,
+          format: 'PDF Checklist',
+          geography: geo,
+          device: /Mobile/i.test(navigator.userAgent) ? 'Mobile (Android/iOS)' : 'Desktop (Browser)'
+        });
+        localStorage.setItem('fs_free_downloads', JSON.stringify(freeDownloads));
+      } catch(e) {}
+
+      this.toast(`🎉 Checklist downloaded! Welcome ${name}.`);
       if (typeof Analytics !== 'undefined') {
         Analytics.trackLeadDownload();
       }
-      document.getElementById('lead-email').value = '';
+      if (document.getElementById('lead-name')) document.getElementById('lead-name').value = '';
+      if (document.getElementById('lead-email')) document.getElementById('lead-email').value = '';
     });
   },
 

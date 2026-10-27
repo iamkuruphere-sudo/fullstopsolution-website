@@ -438,7 +438,7 @@
 
         <div class="products-grid">
           <!-- Product 1: Ultimate Business OS -->
-          <div class="product-card">
+          <div class="product-card" data-product-id="business-os">
             <div class="product-header">
               <span class="badge badge-primary" style="margin-bottom:0.75rem;">Notion & Spreadsheets</span>
               <h3 class="product-title">Fullstop Ultimate Business OS</h3>
@@ -471,7 +471,7 @@
           </div>
 
           <!-- Product 2: Growth & SEO Mastery -->
-          <div class="product-card">
+          <div class="product-card" data-product-id="growth-seo">
             <div class="product-header">
               <span class="badge badge-amber" style="margin-bottom:0.75rem;">SEO & Organic Traffic</span>
               <h3 class="product-title">Full-Stack Growth & SEO Mastery</h3>
@@ -504,7 +504,7 @@
           </div>
 
           <!-- Product 3: Developer Pro Boilerplate -->
-          <div class="product-card">
+          <div class="product-card" data-product-id="dev-boilerplate">
             <div class="product-header">
               <span class="badge badge-success" style="margin-bottom:0.75rem;">Code & Architecture</span>
               <h3 class="product-title">Developer Pro SaaS Boilerplate</h3>
@@ -537,7 +537,7 @@
           </div>
 
           <!-- Product 4: Lifetime Bundle (Featured) -->
-          <div class="product-card featured">
+          <div class="product-card featured" data-product-id="lifetime-bundle">
             <div class="product-header">
               <span class="badge badge-gradient" style="margin-bottom:0.75rem;">BEST VALUE • LIFETIME ACCESS</span>
               <h3 class="product-title">The All-Access Lifetime Bundle</h3>
@@ -614,9 +614,10 @@
         <p style="color:#cbd5e1; max-width:600px; font-size:0.95rem;">
           Download our master checklist used to rank websites on page 1 of Google while eliminating security vulnerabilities.
         </p>
-        <form id="lead-magnet-form" class="lead-form">
+        <form id="lead-magnet-form" class="lead-form" style="max-width:620px;">
+          <input type="text" id="lead-name" class="lead-input" placeholder="Your Full Name" required style="max-width:180px;">
           <input type="email" id="lead-email" class="lead-input" placeholder="Enter your best email address..." required>
-          <button type="submit" class="btn btn-gradient">Instant Download</button>
+          <button type="submit" class="btn btn-gradient" style="white-space:nowrap;">Instant Download 📥</button>
         </form>
       </div>
     </section>
