@@ -59,6 +59,26 @@ const htaccess = fs.readFileSync(path.join(ROOT, '.htaccess'), 'utf8');
 assert(htaccess.includes("frame-ancestors 'none'"), 'Frame-ancestors none set in .htaccess');
 assert(htaccess.includes("base-uri 'self'"), 'Base-uri self set in .htaccess');
 
+// 7. MacSentinel Star Product & Distribution Verification
+assert(fs.existsSync(path.join(ROOT, 'macsentinel.html')), 'macsentinel.html dedicated product page exists');
+assert(fs.existsSync(path.join(ROOT, 'downloads/mac/MacSentinel-arm64.dmg')), 'Official MacSentinel-arm64.dmg exists in downloads folder');
+const dmgStats = fs.statSync(path.join(ROOT, 'downloads/mac/MacSentinel-arm64.dmg'));
+assert(dmgStats.size > 100000, `MacSentinel DMG is valid binary (${dmgStats.size} bytes)`);
+
+const macsentinelHtml = fs.readFileSync(path.join(ROOT, 'macsentinel.html'), 'utf8');
+assert(macsentinelHtml.includes('060f124de7d888b03550b42c8b011b3e8884e44dbe0acd49946252e4ff0016d3'), 'macsentinel.html contains verified SHA-256 hash');
+assert(macsentinelHtml.includes('downloads/mac/MacSentinel-arm64.dmg'), 'macsentinel.html provides direct DMG download');
+assert(macsentinelHtml.includes('Evidence to Inspect, Not Automatic Verdicts'), 'macsentinel.html contains honest architectural disclosure ("nothing fake")');
+assert(macsentinelHtml.includes('No Background Daemons') && macsentinelHtml.includes('100% Read-Only'), 'macsentinel.html discloses zero daemons and read-only design');
+
+assert(indexHtml.includes('macsentinel.html'), 'index.html links to macsentinel.html in navigation');
+assert(indexHtml.includes('macsentinel-star-card'), 'index.html features MacSentinel star product card in desktop section');
+assert(indexHtml.includes('downloads/mac/MacSentinel-arm64.dmg'), 'index.html offers direct DMG download for MacSentinel');
+
+const sitemapXml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
+assert(sitemapXml.includes('https://www.fullstopsolution.in/macsentinel.html'), 'sitemap.xml includes macsentinel.html');
+assert(swJs.includes('/macsentinel.html'), 'sw.js static cache includes /macsentinel.html');
+
 console.log(`\n==================================================`);
 console.log(`Results: ${passed} Passed, ${failed} Failed`);
 console.log(`==================================================\n`);

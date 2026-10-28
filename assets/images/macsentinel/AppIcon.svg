@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Space Black & Titanium Radial Gradient -->
+    <radialGradient id="titanium-base" cx="50%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+
+    <!-- Bezel Specular Ring Gradient -->
+    <linearGradient id="bezel-specular" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+      <stop offset="25%" stop-color="#818cf8" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#1e293b" stop-opacity="0.2"/>
+      <stop offset="75%" stop-color="#06b6d4" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <!-- Shield Left Facet Gradient -->
+    <linearGradient id="shield-left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="40%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+
+    <!-- Shield Right Facet Gradient -->
+    <linearGradient id="shield-right" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+
+    <!-- Shield Outer Core Neon Glow -->
+    <linearGradient id="shield-glow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+
+    <!-- Inner Core Lens Gradient -->
+    <radialGradient id="sentinel-lens" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="45%" stop-color="#0284c7"/>
+      <stop offset="75%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+
+    <!-- Drop Shadows & Glow Filters -->
+    <filter id="apple-drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#000000" flood-opacity="0.65"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+
+    <filter id="neon-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="core-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Apple Squircle Clip Path (Continuous superellipse radius standard) -->
+    <clipPath id="squircle-clip">
+      <path d="M 256,36 
+               C 380,36 440,36 458,54 
+               C 476,72 476,132 476,256 
+               C 476,380 476,440 458,458 
+               C 440,476 380,476 256,476 
+               C 132,476 72,476 54,458 
+               C 36,440 36,380 36,256 
+               C 36,132 36,72 54,54 
+               C 72,36 132,36 256,36 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Ambient macOS Dock Drop Shadow -->
+  <path d="M 256,36 
+           C 380,36 440,36 458,54 
+           C 476,72 476,132 476,256 
+           C 476,380 476,440 458,458 
+           C 440,476 380,476 256,476 
+           C 132,476 72,476 54,458 
+           C 36,440 36,380 36,256 
+           C 36,132 36,72 54,54 
+           C 72,36 132,36 256,36 Z" 
+        fill="#000000" filter="url(#apple-drop-shadow)"/>
+
+  <!-- Main Squircle Body -->
+  <g clip-path="url(#squircle-clip)">
+    <!-- Base Plate -->
+    <rect x="0" y="0" width="512" height="512" fill="url(#titanium-base)"/>
+
+    <!-- Subtle Radar Surveillance Rings & Grid -->
+    <circle cx="256" cy="256" r="190" fill="none" stroke="#38bdf8" stroke-opacity="0.08" stroke-width="1.5" stroke-dasharray="4 6"/>
+    <circle cx="256" cy="256" r="140" fill="none" stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1.5"/>
+    <circle cx="256" cy="256" r="90"  fill="none" stroke="#22d3ee" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="8 6"/>
+
+    <!-- Crosshair Telemetry Axes -->
+    <line x1="256" y1="56" x2="256" y2="456" stroke="#38bdf8" stroke-opacity="0.1" stroke-width="1"/>
+    <line x1="56" y1="256" x2="456" y2="256" stroke="#38bdf8" stroke-opacity="0.1" stroke-width="1"/>
+
+    <!-- Outer Ambient Radar Sweep Glow -->
+    <path d="M 256,256 L 400,160 A 170,170 0 0,0 256,86 Z" fill="#38bdf8" fill-opacity="0.04"/>
+
+    <!-- ======================================================== -->
+    <!-- THE SENTINEL SHIELD EMBLEM -->
+    <!-- ======================================================== -->
+    <g transform="translate(0, 4)">
+      <!-- Shield Outer Silhouette Ambient Glow -->
+      <path d="M 256,102 
+               L 374,152 
+               C 374,272 328,348 256,396 
+               C 184,348 138,272 138,152 
+               Z" 
+            fill="none" stroke="url(#shield-glow)" stroke-width="6" opacity="0.4" filter="url(#core-glow)"/>
+
+      <!-- Shield Base Frame -->
+      <path d="M 256,108 
+               L 366,156 
+               C 366,268 322,340 256,386 
+               C 190,340 146,268 146,156 
+               Z" 
+            fill="#0b1329" stroke="url(#shield-glow)" stroke-width="3.5" filter="url(#apple-drop-shadow)"/>
+
+      <!-- Shield Left Facet -->
+      <path d="M 256,112 
+               L 152,158 
+               C 152,264 194,334 256,380 
+               Z" 
+            fill="url(#shield-left)" opacity="0.9"/>
+
+      <!-- Shield Right Facet -->
+      <path d="M 256,112 
+               L 360,158 
+               C 360,264 318,334 256,380 
+               Z" 
+            fill="url(#shield-right)" opacity="0.9"/>
+
+      <!-- Central Shield Crease Highlight -->
+      <line x1="256" y1="112" x2="256" y2="380" stroke="#7dd3fc" stroke-width="2" stroke-opacity="0.8"/>
+
+      <!-- Inner Shield Inset Frame -->
+      <path d="M 256,134 
+               L 338,170 
+               C 338,252 304,310 256,348 
+               C 208,310 174,252 174,170 
+               Z" 
+            fill="#030b1c" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.6"/>
+
+      <!-- ======================================================== -->
+      <!-- THE SENTINEL RADAR EYE & INSPECTION LENS CORE -->
+      <!-- ======================================================== -->
+      <!-- Outer Aperture Ring -->
+      <circle cx="256" cy="242" r="54" fill="url(#sentinel-lens)" stroke="#38bdf8" stroke-width="2.5" filter="url(#neon-glow)"/>
+
+      <!-- Concentric Cyan Reticle -->
+      <circle cx="256" cy="242" r="42" fill="none" stroke="#22d3ee" stroke-width="1.8" stroke-dasharray="6 4" opacity="0.9"/>
+      
+      <!-- Inner Glowing Core Eye -->
+      <circle cx="256" cy="242" r="26" fill="#0284c7" stroke="#67e8f9" stroke-width="2"/>
+      <circle cx="256" cy="242" r="14" fill="#38bdf8" filter="url(#core-glow)"/>
+      <circle cx="256" cy="242" r="6"  fill="#ffffff"/>
+
+      <!-- Optical Specular Highlights on Lens -->
+      <ellipse cx="246" cy="232" rx="10" ry="5" transform="rotate(-35 246 232)" fill="#ffffff" opacity="0.75"/>
+      <circle cx="266" cy="252" r="2.5" fill="#ffffff" opacity="0.5"/>
+
+      <!-- Security Endpoint Indicator Nodes (North, East, South, West) -->
+      <circle cx="256" cy="184" r="3.5" fill="#34d399" filter="url(#neon-glow)"/>
+      <circle cx="314" cy="242" r="3.5" fill="#38bdf8" filter="url(#neon-glow)"/>
+      <circle cx="256" cy="300" r="3.5" fill="#34d399" filter="url(#neon-glow)"/>
+      <circle cx="198" cy="242" r="3.5" fill="#38bdf8" filter="url(#neon-glow)"/>
+
+      <!-- macOS System Verification Checkmark Badge -->
+      <g transform="translate(256, 332)">
+        <circle cx="0" cy="0" r="16" fill="#0f172a" stroke="#10b981" stroke-width="2" filter="url(#neon-glow)"/>
+        <path d="M -6,-1 L -2,3 L 7,-5" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <!-- Apple Top Glass Bevel Specular Sheen -->
+    <path d="M 36,256 C 36,132 36,72 54,54 C 72,36 132,36 256,36 C 380,36 440,36 458,54 C 476,72 476,132 476,256 C 350,220 160,220 36,256 Z" 
+          fill="#ffffff" fill-opacity="0.06"/>
+  </g>
+
+  <!-- Specular Outer Rim Stroke -->
+  <path d="M 256,36 
+           C 380,36 440,36 458,54 
+           C 476,72 476,132 476,256 
+           C 476,380 476,440 458,458 
+           C 440,476 380,476 256,476 
+           C 132,476 72,476 54,458 
+           C 36,440 36,380 36,256 
+           C 36,132 36,72 54,54 
+           C 72,36 132,36 256,36 Z" 
+        fill="none" stroke="url(#bezel-specular)" stroke-width="3"/>
+</svg>

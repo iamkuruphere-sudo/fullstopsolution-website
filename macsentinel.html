@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO Meta Tags -->
+  <title>MacSentinel — Native macOS Security Endpoint Auditor | Fullstop Solution</title>
+  <meta name="title" content="MacSentinel — Native macOS Security Endpoint Auditor | Fullstop Solution">
+  <meta name="description" content="Download MacSentinel for macOS. A 100% free, native SwiftUI read-only endpoint security auditing app for system integrity, network activity, persistence items, and Unified Logging.">
+  <link rel="canonical" href="https://www.fullstopsolution.in/macsentinel.html">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://www.fullstopsolution.in/macsentinel.html">
+  <meta property="og:title" content="MacSentinel — Native macOS Security Endpoint Auditor">
+  <meta property="og:description" content="100% free, native read-only macOS security auditing app. Inspect SIP, Gatekeeper, FileVault, TCP sockets, launch daemons, Office autoloaders, and Unified Logs.">
+  <meta property="og:image" content="https://www.fullstopsolution.in/assets/images/macsentinel/AppIcon-1024.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="MacSentinel — macOS Security Endpoint Auditor">
+  <meta property="twitter:description" content="100% free, native read-only macOS security auditing app. Zero kernel extensions, zero background daemons, zero telemetry.">
+  <meta property="twitter:image" content="https://www.fullstopsolution.in/assets/images/macsentinel/AppIcon-1024.png">
+
+  <!-- JSON-LD Structured Data for Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MacSentinel",
+    "operatingSystem": "macOS 14.0 or later",
+    "applicationCategory": "SecurityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Read-only macOS security auditing app for system settings, network activity, persistence, updates, logs, and application signatures.",
+    "downloadUrl": "https://www.fullstopsolution.in/downloads/mac/MacSentinel-arm64.dmg",
+    "softwareVersion": "v0.1.5",
+    "author": {
+      "@type": "Organization",
+      "name": "Fullstop Solution",
+      "url": "https://www.fullstopsolution.in"
+    }
+  }
+  </script>
+
+  <!-- Privacy-Preserving Analytics managed via assets/js/analytics.js with explicit user consent -->
+</head>
+<body>
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="brand">
+        <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img" width="42" height="42">
+        <div class="brand-text">
+          <span class="brand-name">FULLSTOP SOLUTION<span class="brand-dot">.</span></span>
+          <span class="brand-domain">www.fullstopsolution.in</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/#tools">Daily Tools</a></li>
+          <li><a href="macsentinel.html" class="active" style="color:var(--accent-neon-cyan); font-weight:700;">★ MacSentinel</a></li>
+          <li><a href="/#desktop">Desktop Apps</a></li>
+          <li><a href="/#products">Commercial Kits</a></li>
+          <li><a href="security.html">Security Whitepaper</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/iamkuruphere-sudo/MacSentinel" target="_blank" rel="noopener" class="btn btn-outline btn-sm nav-btn-desktop">
+          GitHub Project ↗
+        </a>
+        <a href="#download" class="btn btn-primary btn-sm">
+          ⬇️ Download Free DMG
+        </a>
+
+        <!-- Mobile & Tablet Hamburger Button -->
+        <button id="nav-toggle-btn" class="nav-toggle-btn" aria-label="Toggle navigation drawer" aria-expanded="false" onclick="App.toggleMobileNav()">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile & Tablet Slide-in Navigation Drawer -->
+  <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" onclick="App.closeMobileNav()"></div>
+  <aside id="mobile-nav-drawer" class="mobile-nav-drawer" aria-label="Mobile Navigation Menu">
+    <div class="mobile-nav-header">
+      <a href="/" class="brand" onclick="App.closeMobileNav()">
+        <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img" width="36" height="36">
+        <div class="brand-text">
+          <span class="brand-name" style="font-size:1.05rem;">FULLSTOP SOLUTION<span class="brand-dot">.</span></span>
+          <span class="brand-domain" style="font-size:0.65rem;">www.fullstopsolution.in</span>
+        </div>
+      </a>
+      <button class="mobile-nav-close" aria-label="Close navigation" onclick="App.closeMobileNav()">✕</button>
+    </div>
+
+    <div class="mobile-nav-body">
+      <nav class="mobile-nav-links">
+        <a href="macsentinel.html" class="mobile-nav-link" onclick="App.closeMobileNav()" style="background:rgba(34, 211, 238, 0.08); border-left:3px solid var(--accent-neon-cyan);">
+          <span class="mobile-nav-icon">🛡️</span>
+          <div class="mobile-nav-label">
+            <strong style="color:var(--accent-neon-cyan);"><span style="color:#f59e0b;">★</span> MacSentinel App <span class="badge badge-success" style="font-size:0.6rem; padding:1px 5px;">Star Product</span></strong>
+            <span>Free native macOS endpoint security auditor</span>
+          </div>
+        </a>
+        <a href="/" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">🏠</span>
+          <div class="mobile-nav-label">
+            <strong>Fullstop Home</strong>
+            <span>Return to main homepage</span>
+          </div>
+        </a>
+        <a href="/#tools" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">⚡</span>
+          <div class="mobile-nav-label">
+            <strong>Daily Tools</strong>
+            <span>11 offline browser utilities</span>
+          </div>
+        </a>
+        <a href="/#desktop" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">🖥️</span>
+          <div class="mobile-nav-label">
+            <strong>Desktop Apps</strong>
+            <span>macOS, Windows &amp; Linux builds</span>
+          </div>
+        </a>
+        <a href="security.html" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">🔒</span>
+          <div class="mobile-nav-label">
+            <strong>Security Whitepaper</strong>
+            <span>Zero-Knowledge client sandbox</span>
+          </div>
+        </a>
+      </nav>
+    </div>
+  </aside>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 4.5rem 0 3.5rem; background: radial-gradient(circle at 50% 20%, rgba(34, 211, 238, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%);">
+      <div class="container" style="text-align: center; max-width: 980px;">
+        
+        <!-- Star Product Badge -->
+        <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(34, 211, 238, 0.15); border:1px solid rgba(34, 211, 238, 0.4); border-radius:var(--radius-full); padding:0.35rem 1rem; margin-bottom:1.5rem; box-shadow:0 0 25px rgba(34, 211, 238, 0.25);">
+          <span style="font-size:0.95rem;">★</span>
+          <span style="font-size:0.8rem; font-weight:800; color:var(--accent-neon-cyan); letter-spacing:0.06em; text-transform:uppercase;">Flagship Star Product • 100% Free &amp; Open Source</span>
+        </div>
+
+        <!-- 3D App Icon Lockup -->
+        <div style="margin: 0 auto 1.75rem; width: 140px; height: 140px; position: relative;">
+          <img src="assets/images/macsentinel/AppIcon-1024.png" alt="MacSentinel App Icon" width="140" height="140" style="border-radius:32px; box-shadow: 0 20px 50px rgba(6, 182, 212, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.15); display:block;">
+        </div>
+
+        <h1 style="font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 1rem; color: #ffffff;">
+          MacSentinel <span style="background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Security Snapshot</span>
+        </h1>
+
+        <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.6; max-width: 760px; margin: 0 auto 2rem;">
+          A native, read-only SwiftUI macOS application for collecting a comprehensive point-in-time security evidence snapshot. 
+          Audits system integrity, network listeners, launch daemons, Office autoloaders, and Unified Logs.
+        </p>
+
+        <!-- Feature Pill Badges -->
+        <div style="display:flex; justify-content:center; align-items:center; gap:0.65rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+          <span class="badge badge-success">🔒 100% Read-Only</span>
+          <span class="badge badge-primary">⚡ Zero Daemons / Agents</span>
+          <span class="badge badge-primary">🛡️ Zero Kernel Extensions</span>
+          <span class="badge badge-success">🍏 macOS 14+ (Sonoma &amp; Sequoia)</span>
+          <span class="badge badge-amber">📝 CocoaLumberjack Logging</span>
+          <span class="badge badge-primary">💾 Explicit JSON Export</span>
+        </div>
+
+        <!-- Direct Download Call To Action Box -->
+        <div id="download" style="background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 2rem; max-width: 640px; margin: 0 auto 2rem; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), var(--border-card-specular);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+            <div style="text-align:left;">
+              <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Current Release</span>
+              <div style="font-weight:700; color:#ffffff; font-size:1.05rem;">MacSentinel v0.1.5 (Apple Silicon)</div>
+            </div>
+            <span class="badge badge-success" style="font-size:0.75rem; padding:0.25rem 0.65rem;">Free Direct Download</span>
+          </div>
+
+          <div style="display:flex; gap:0.75rem; flex-direction:column; margin-bottom:1.25rem;">
+            <a href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="width:100%; justify-content:center; font-size:1.05rem;">
+              ⬇️ Download MacSentinel-arm64.dmg (435 KB)
+            </a>
+            <div style="display:flex; gap:0.5rem; justify-content:center;">
+              <a href="https://github.com/iamkuruphere-sudo/MacSentinel/releases/tag/v0.1.5" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="flex:1; justify-content:center;">
+                GitHub Release v0.1.5 ↗
+              </a>
+              <a href="https://github.com/iamkuruphere-sudo/MacSentinel" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="flex:1; justify-content:center;">
+                View Swift Source Code ↗
+              </a>
+            </div>
+          </div>
+
+          <!-- Verified SHA-256 Checksum -->
+          <div style="text-align:left; background:#020617; border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-sm); padding:0.65rem 0.85rem;">
+            <div style="font-size:0.7rem; color:var(--text-muted); margin-bottom:0.25rem; font-family:var(--font-mono); text-transform:uppercase;">
+              SHA-256 Verified Checksum:
+            </div>
+            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-neon-cyan); word-break:break-all; overflow-wrap:anywhere;">
+              060f124de7d888b03550b42c8b011b3e8884e44dbe0acd49946252e4ff0016d3
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:0.825rem; color:var(--text-muted);">
+          System Requirements: Apple Silicon Mac (M1, M2, M3, M4) running macOS 14.0 (Sonoma) or macOS 15.0 (Sequoia).
+        </p>
+      </div>
+    </section>
+
+    <!-- Honest Design Boundaries & Security Disclosure (Nothing Fake) -->
+    <section class="section" style="background:var(--bg-secondary); border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+      <div class="container" style="max-width:980px;">
+        <div style="background:rgba(15, 23, 42, 0.95); border:1px solid rgba(245, 158, 11, 0.3); border-radius:var(--radius-xl); padding:2rem; box-shadow:var(--shadow-lg);">
+          <div style="display:flex; align-items:flex-start; gap:1rem;">
+            <div style="font-size:2rem; line-height:1;">⚖️</div>
+            <div>
+              <h2 style="font-size:1.35rem; font-weight:800; color:#fbbf24; margin-bottom:0.5rem;">
+                Honest Architectural Principles: Evidence to Inspect, Not Automatic Verdicts
+              </h2>
+              <p style="color:#cbd5e1; font-size:0.925rem; line-height:1.6; margin-bottom:1rem;">
+                Unlike commercial antivirus tools that make dubious claims of "100% clean bills of health" or inject high-privilege kernel drivers, 
+                <strong>MacSentinel is designed with rigorous cryptographic honesty</strong>:
+              </p>
+              
+              <ul style="color:var(--text-secondary); font-size:0.885rem; line-height:1.65; padding-left:1.25rem; margin-bottom:1rem;">
+                <li><strong>No System Changes:</strong> It never deletes files, alters system settings, modifies preferences, or quaran­tines software.</li>
+                <li><strong>No Background Daemons:</strong> It runs only when you open it. When you close the app, zero background processes remain running.</li>
+                <li><strong>Evidence vs. Verdicts:</strong> Legitimate applications routinely use launch services, network sockets, TCC permissions, and update helpers. Items flagged in MacSentinel are factual evidence for human review, not definitive accusations of malware.</li>
+                <li><strong>Zero Telemetry:</strong> All audits execute 100% locally in user space memory. No telemetry, machine identifiers, or logs are ever transmitted to our servers or third parties.</li>
+                <li><strong>Ad-Hoc Signed:</strong> Distributed as an open-source ad-hoc signed build for local inspection. Inspect the full Swift source code on GitHub anytime.</li>
+              </ul>
+
+              <div style="font-size:0.8rem; color:#94a3b8; font-style:italic;">
+                Always review security findings with a trusted security professional before deleting or modifying operating system components.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 6 Security Audit Pillars -->
+    <section class="section">
+      <div class="container" style="max-width:1100px;">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="badge badge-gradient">FORENSIC TELEMETRY ENGINE</span>
+          </div>
+          <h2 class="section-title">What MacSentinel Audits On Your Workstation</h2>
+          <p class="section-desc">
+            A comprehensive, point-in-time inspection across six critical macOS security surfaces.
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-top:2rem;">
+          
+          <!-- Pillar 1 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.75rem; display:flex; flex-direction:column;">
+            <div style="font-size:2rem; margin-bottom:0.75rem;">🛡️</div>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">1. System Integrity &amp; Security State</h3>
+            <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem; flex-grow:1;">
+              Audits low-level macOS security boundaries including <strong>System Integrity Protection (SIP)</strong>, <strong>Gatekeeper policy</strong>, 
+              <strong>FileVault volume encryption</strong>, Secure Boot telemetry, and Mobile Device Management (MDM) enrollment profiles.
+            </p>
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+              Checks: csrutil • spctl • fdesetup • enrollment
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.75rem; display:flex; flex-direction:column;">
+            <div style="font-size:2rem; margin-bottom:0.75rem;">🌐</div>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">2. Network Listeners &amp; Active Sockets</h3>
+            <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem; flex-grow:1;">
+              Catalogs all active <strong>TCP listeners</strong>, established socket connection tables, system proxy configurations, 
+              Application Firewall state, and active network sharing services (SMB, AFP, WebDAV).
+            </p>
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+              Checks: TCP socket table • proxy • firewall • shares
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.75rem; display:flex; flex-direction:column;">
+            <div style="font-size:2rem; margin-bottom:0.75rem;">⚙️</div>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">3. Persistence &amp; Launch Daemons</h3>
+            <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem; flex-grow:1;">
+              Inventories primary macOS autostart locations: <strong>System &amp; User LaunchDaemons</strong>, <strong>LaunchAgents</strong>, 
+              login background items, system extensions, and managed configuration profiles.
+            </p>
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+              Checks: /Library/LaunchDaemons • LaunchAgents • extensions
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.75rem; display:flex; flex-direction:column;">
+            <div style="font-size:2rem; margin-bottom:0.75rem;">📦</div>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">4. Application &amp; Office Autoloaders</h3>
+            <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem; flex-grow:1;">
+              Inspects conventional Microsoft Office startup and template directories where macro or add-in autoloading can occur, 
+              and verifies application signature validity and quarantine attributes.
+            </p>
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+              Checks: Office startup folders • code signing • quarantine
+            </div>
+          </div>
+
+          <!-- Pillar 5 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.75rem; display:flex; flex-direction:column;">
+            <div style="font-size:2rem; margin-bottom:0.75rem;">📜</div>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">5. Unified Log Forensic Queries</h3>
+            <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem; flex-grow:1;">
+              Interrogates the native <strong>macOS Unified Logging system (`log show`)</strong> for recent security-relevant events, 
+              privacy permission (TCC) changes, software update activity, and installer package history.
+            </p>
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+              Checks: log show • TCC updates • install.log • signatures
+            </div>
+          </div>
+
+          <!-- Pillar 6 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.75rem; display:flex; flex-direction:column;">
+            <div style="font-size:2rem; margin-bottom:0.75rem;">💾</div>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">6. Local Audit Logs &amp; JSON Export</h3>
+            <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem; flex-grow:1;">
+              Integrated with <strong>CocoaLumberjack</strong> for daily rotating local log files (retained up to 7 days). 
+              Provides explicit, user-triggered JSON report export for external auditing or compliance records.
+            </p>
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+              Checks: DDFileLogger • daily rotation • explicit JSON export
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation & Terminal Verification Guide -->
+    <section class="section" style="background:var(--bg-secondary); border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+      <div class="container" style="max-width:860px;">
+        <h2 style="font-size:1.75rem; font-weight:800; color:#ffffff; margin-bottom:0.5rem; text-align:center;">
+          Terminal Installation &amp; Cryptographic Verification
+        </h2>
+        <p style="color:var(--text-secondary); text-align:center; margin-bottom:2.5rem; font-size:0.95rem;">
+          How to verify the DMG package checksum and launch MacSentinel locally.
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          
+          <!-- Step 1 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.5rem;">
+            <h4 style="font-size:1rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">
+              Step 1: Download &amp; Verify SHA-256 Checksum
+            </h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              Open Terminal and verify that the downloaded disk image matches the official release hash:
+            </p>
+            <pre style="background:#020617; padding:0.85rem; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-neon-cyan); overflow-x:auto;">shasum -a 256 ~/Downloads/MacSentinel-arm64.dmg</pre>
+            <p style="font-size:0.775rem; color:var(--text-muted); margin-top:0.5rem;">
+              Expected output: <code>060f124de7d888b03550b42c8b011b3e8884e44dbe0acd49946252e4ff0016d3</code>
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.5rem;">
+            <h4 style="font-size:1rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">
+              Step 2: Mount Disk Image &amp; Install
+            </h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+              Double-click <code>MacSentinel-arm64.dmg</code> and drag <strong>MacSentinel.app</strong> to your <strong>Applications</strong> folder.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.5rem;">
+            <h4 style="font-size:1rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">
+              Step 3: First Launch &amp; Gatekeeper Notice
+            </h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5; margin-bottom:0.75rem;">
+              Because MacSentinel is an open-source, ad-hoc signed community build rather than an Apple-notarized commercial binary, macOS Gatekeeper may present a security prompt on initial launch.
+              You can open it by:
+            </p>
+            <ul style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; padding-left:1.25rem;">
+              <li>Right-click <strong>MacSentinel.app</strong> in Finder and select <strong>Open</strong>, then click <strong>Open Anyway</strong>.</li>
+              <li>Or remove the download quarantine flag via Terminal:
+                <pre style="background:#020617; padding:0.6rem; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-neon-cyan); margin-top:0.4rem; overflow-x:auto;">xattr -dr com.apple.quarantine /Applications/MacSentinel.app</pre>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 4 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.5rem;">
+            <h4 style="font-size:1rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">
+              Step 4 (Optional): Full Disk Access for Deep Forensic Analysis
+            </h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+              MacSentinel runs cleanly in user space out of the box. However, modern macOS privacy permissions hide certain internal log entries and TCC databases unless the app is granted <strong>Full Disk Access</strong>. 
+              To inspect restricted system areas: open <em>System Settings → Privacy &amp; Security → Full Disk Access</em> and toggle on MacSentinel.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Frequently Asked Questions -->
+    <section class="section">
+      <div class="container" style="max-width:860px;">
+        <div class="section-header">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-desc">Technical answers regarding MacSentinel's architecture and privacy.</p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:1.25rem; margin-top:2rem;">
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.5rem;">
+            <h4 style="font-size:1.05rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">Why is MacSentinel strictly read-only?</h4>
+            <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+              Automated remediation tools often inadvertently break legitimate system launch agents, corrupt enterprise configurations, or cause system instability. MacSentinel adheres to standard digital forensics best practices: gather accurate, uncompromised evidence first, and leave remediative decisions to the user.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.5rem;">
+            <h4 style="font-size:1.05rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">Does MacSentinel transmit any data over the internet?</h4>
+            <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+              No. MacSentinel has zero network egress. It contains no tracking SDKs, no analytics pings, no cloud reporting backends, and no update daemons. All operations and audit logs are stored strictly on your local disk.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1.5rem;">
+            <h4 style="font-size:1.05rem; font-weight:700; color:#ffffff; margin-bottom:0.5rem;">Can I inspect and compile the app from source?</h4>
+            <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+              Yes! The full Swift and SwiftUI codebase is available under the open-source repository at <a href="https://github.com/iamkuruphere-sudo/MacSentinel" target="_blank" rel="noopener" style="color:var(--accent-neon-cyan); text-decoration:underline;">github.com/iamkuruphere-sudo/MacSentinel</a>. You can build and run it directly using Xcode or via Terminal with <code>swift run</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Download CTA -->
+    <section class="section" style="background: radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.1) 0%, rgba(15, 23, 42, 0.95) 100%); border-top:1px solid var(--border-color); text-align:center;">
+      <div class="container" style="max-width:720px;">
+        <h2 style="font-size:2rem; font-weight:800; color:#ffffff; margin-bottom:0.75rem;">
+          Get Unfiltered Security Clarity on Your Mac
+        </h2>
+        <p style="font-size:1rem; color:var(--text-secondary); margin-bottom:2rem; line-height:1.6;">
+          Download MacSentinel today. 100% free, native Apple Silicon build with zero telemetry and zero background agents.
+        </p>
+        <a href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="margin: 0 auto; display:inline-flex;">
+          ⬇️ Download MacSentinel v0.1.5 (.dmg)
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom" style="text-align:center; padding:2rem 0; border-top:1px solid var(--border-color);">
+      <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:0.5rem;">
+        © 2026 Fullstop Solution (www.fullstopsolution.in). MacSentinel is an open-source security endpoint auditing project.
+      </p>
+      <div style="display:flex; justify-content:center; gap:1.25rem; font-size:0.8rem;">
+        <a href="/" style="color:var(--text-secondary);">Home</a>
+        <a href="/#tools" style="color:var(--text-secondary);">Daily Tools</a>
+        <a href="macsentinel.html" style="color:var(--accent-neon-cyan);">MacSentinel</a>
+        <a href="security.html" style="color:var(--text-secondary);">Security Whitepaper</a>
+        <a href="privacy-policy.html" style="color:var(--text-secondary);">Privacy Policy</a>
+        <a href="https://github.com/iamkuruphere-sudo/MacSentinel" target="_blank" rel="noopener" style="color:var(--text-secondary);">GitHub Repository</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/analytics.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -21,7 +21,8 @@ const STATIC_ASSETS = [
   '/assets/fonts/PlusJakartaSans-ExtraBold.woff2',
   '/security.html',
   '/privacy-policy.html',
-  '/terms.html'
+  '/terms.html',
+  '/macsentinel.html'
 ];
 
 self.addEventListener('install', (event) => {

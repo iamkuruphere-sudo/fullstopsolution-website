@@ -140,6 +140,7 @@
 
       <nav class="nav-menu" aria-label="Main Navigation">
         <ul class="nav-links">
+          <li><a href="macsentinel.html" style="color:var(--accent-neon-cyan); font-weight:700;"><span style="color:#f59e0b;">★</span> MacSentinel</a></li>
           <li><a href="#tools" class="active">Daily Tools</a></li>
           <li><a href="#desktop">Desktop Apps <span class="badge badge-success" style="font-size:0.65rem; padding:1px 6px;">New</span></a></li>
           <li><a href="#products">Premium Packs</a></li>
@@ -189,6 +190,13 @@
 
     <div class="mobile-nav-body">
       <nav class="mobile-nav-links">
+        <a href="macsentinel.html" class="mobile-nav-link" onclick="App.closeMobileNav()" style="background:rgba(34, 211, 238, 0.08); border-left:3px solid var(--accent-neon-cyan);">
+          <span class="mobile-nav-icon">🛡️</span>
+          <div class="mobile-nav-label">
+            <strong style="color:var(--accent-neon-cyan);"><span style="color:#f59e0b;">★</span> MacSentinel App <span class="badge badge-success" style="font-size:0.6rem; padding:1px 5px;">Star Product</span></strong>
+            <span>Free native macOS endpoint security auditor</span>
+          </div>
+        </a>
         <a href="#tools" class="mobile-nav-link" onclick="App.closeMobileNav()">
           <span class="mobile-nav-icon">⚡</span>
           <div class="mobile-nav-label">
@@ -275,6 +283,7 @@
         <!-- Quick Launch Chips -->
         <div class="hero-chips-wrap">
           <span class="hero-chips-label">Popular:</span>
+          <button class="hero-chip" onclick="window.location.href='macsentinel.html'" style="border-color:var(--accent-neon-cyan); color:var(--accent-neon-cyan); font-weight:700;"><span style="color:#f59e0b;">★</span> MacSentinel App</button>
           <button class="hero-chip" onclick="App.openTool('meta', 'Meta Tag Generator & SERP Preview')">🌐 Meta & SERP</button>
           <button class="hero-chip" onclick="App.openTool('password', 'Strong Password Generator')">🔑 Password Gen</button>
           <button class="hero-chip" onclick="App.openTool('json', 'JSON Formatter & Validator')">{ } JSON Studio</button>
@@ -527,6 +536,43 @@
           <p class="section-desc">
             All 11+ daily tools and offline environments compiled for macOS (Apple Silicon & Intel), Windows, and Linux with cryptographically verified signatures.
           </p>
+        </div>
+
+        <!-- Star Native Product Feature: MacSentinel -->
+        <div class="macsentinel-star-card">
+          <div style="display:flex; justify-content:center; align-items:center;">
+            <img src="assets/images/macsentinel/AppIcon-1024.png" alt="MacSentinel App Icon" class="macsentinel-star-icon" width="110" height="110">
+          </div>
+          <div>
+            <div class="badge-wrap" style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.4rem; flex-wrap:wrap;">
+              <span class="badge" style="background:rgba(34, 211, 238, 0.2); color:var(--accent-neon-cyan); border:1px solid var(--accent-neon-cyan); font-weight:800; font-size:0.75rem; letter-spacing:0.05em; padding:0.25rem 0.75rem; border-radius:999px;">
+                ★ STAR NATIVE PRODUCT • 100% FREE
+              </span>
+              <span class="badge badge-success" style="font-size:0.75rem; padding:0.25rem 0.65rem;">Open Source</span>
+              <span style="font-size:0.85rem; color:var(--text-secondary);">macOS 14.0+ (Sonoma &amp; Sequoia) • Apple Silicon</span>
+            </div>
+            <h3 style="font-size:1.65rem; font-weight:800; margin:0 0 0.5rem 0; color:#ffffff; letter-spacing:-0.02em;">
+              MacSentinel — Native macOS Security Endpoint Auditor
+            </h3>
+            <p style="margin:0 0 0.85rem 0; color:var(--text-secondary); font-size:0.95rem; line-height:1.5;">
+              A 100% free, point-in-time, read-only endpoint security inspector built in native Swift and SwiftUI. Inspect System Integrity (SIP/Gatekeeper/FileVault), active TCP listeners, launch persistence items, Office macro autoloaders, and macOS Unified Logging. Zero background daemons, zero kernel extensions, zero telemetry.
+            </p>
+            <div class="meta-row" style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap; font-size:0.8rem; color:var(--text-muted);">
+              <span>📦 v0.1.5 (arm64 Universal DMG)</span>
+              <span>•</span>
+              <span style="font-family:var(--font-mono); background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px; border:1px solid rgba(255,255,255,0.08);">SHA-256: 060f124d...16d3</span>
+              <span>•</span>
+              <span>🔒 Zero-Knowledge Local Architecture</span>
+            </div>
+          </div>
+          <div class="macsentinel-star-actions" style="display:flex; flex-direction:column; gap:0.75rem; justify-content:center; min-width:220px;">
+            <a href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-gradient" style="padding:0.85rem 1.25rem; font-weight:700; font-size:0.95rem; justify-content:center; box-shadow:0 4px 20px rgba(34, 211, 238, 0.3);">
+              ⬇️ Download DMG Free
+            </a>
+            <a href="macsentinel.html" class="btn btn-outline" style="padding:0.75rem 1.25rem; font-weight:600; font-size:0.9rem; justify-content:center; border-color:var(--accent-neon-cyan); color:var(--accent-neon-cyan);">
+              Explore Full Audit Specs →
+            </a>
+          </div>
         </div>
 
         <div class="platform-grid">
@@ -969,6 +1015,7 @@
         <div class="footer-col">
           <h4>Pro Products</h4>
           <ul class="footer-links">
+            <li><a href="macsentinel.html" style="color:var(--accent-neon-cyan); font-weight:700;"><span style="color:#f59e0b;">★</span> MacSentinel App (Free)</a></li>
             <li><a href="#products">Business OS Notion</a></li>
             <li><a href="#products">Growth & SEO Toolkit</a></li>
             <li><a href="#products">Developer SaaS Kit</a></li>
