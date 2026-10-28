@@ -118,7 +118,7 @@ The website includes an integrated executive traffic analytics control center at
 
 ---
 
-### 🛡️ About Fullstop Solution
+### <img src="https://raw.githubusercontent.com/iamkuruphere-sudo/fullstopsolution-website/main/assets/images/logo.png" alt="Fullstop Solution" width="28" style="vertical-align:middle; margin-right:8px;"> About Fullstop Solution
 
 **Fullstop Solution** ([www.fullstopsolution.in](https://www.fullstopsolution.in)) develops precision open-source software, native enterprise security auditing tools, and privacy-first digital engineering suites. Built for developers, security researchers, and system administrators who require absolute privacy, client-side execution, and zero cloud lock-in.
 
