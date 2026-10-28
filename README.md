@@ -115,3 +115,17 @@ The website includes an integrated executive traffic analytics control center at
 - **HSTS:** Enforces HTTPS for 2 years (`max-age=63072000; includeSubDomains; preload`).
 - **Zero In-Transit Data:** User inputs for password generation, JSON formatting, invoices, and hashes are computed strictly in browser memory.
 - **X-Frame-Options: DENY:** Protects users against clickjacking attacks.
+
+---
+
+### 🛡️ About Fullstop Solution
+
+**Fullstop Solution** ([www.fullstopsolution.in](https://www.fullstopsolution.in)) develops precision open-source software, native enterprise security auditing tools, and privacy-first digital engineering suites. Built for developers, security researchers, and system administrators who require absolute privacy, client-side execution, and zero cloud lock-in.
+
+- 🌐 **Official Website**: [https://www.fullstopsolution.in](https://www.fullstopsolution.in)
+- ⬇️ **All Desktop Apps & Downloads**: [https://www.fullstopsolution.in/#desktop](https://www.fullstopsolution.in/#desktop)
+- 🍏 **MacSentinel macOS Auditor**: [https://www.fullstopsolution.in/macsentinel.html](https://www.fullstopsolution.in/macsentinel.html)
+- 📂 **Open-Source GitHub Organization**: [https://github.com/iamkuruphere-sudo](https://github.com/iamkuruphere-sudo)
+- 🔒 **Zero Telemetry Guarantee**: 100% in-browser Web Crypto execution & zero server logging.
+
+© 2026 Fullstop Solution (www.fullstopsolution.in). All rights reserved.
