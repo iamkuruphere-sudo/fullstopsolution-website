@@ -40,7 +40,7 @@
     },
     "description": "Read-only macOS security auditing app for system settings, network activity, persistence, updates, logs, and application signatures.",
     "downloadUrl": "https://www.fullstopsolution.in/downloads/mac/MacSentinel-arm64.dmg",
-    "softwareVersion": "v0.1.8",
+    "softwareVersion": "v0.1.13",
     "author": {
       "@type": "Organization",
       "name": "Fullstop Solution",
@@ -188,18 +188,18 @@
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
             <div style="text-align:left;">
               <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Current Release</span>
-              <div style="font-weight:700; color:#ffffff; font-size:1.05rem;">MacSentinel v0.1.8 (Apple Silicon)</div>
+              <div id="macsentinel-version-tag" style="font-weight:700; color:#ffffff; font-size:1.05rem;">MacSentinel v0.1.13 (Apple Silicon)</div>
             </div>
             <span class="badge badge-success" style="font-size:0.75rem; padding:0.25rem 0.65rem;">Free Direct Download</span>
           </div>
 
           <div style="display:flex; gap:0.75rem; flex-direction:column; margin-bottom:1.25rem;">
-            <a href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="width:100%; justify-content:center; font-size:1.05rem;">
-              ⬇️ Download MacSentinel-arm64.dmg (1.82 MiB)
+            <a id="macsentinel-download-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="width:100%; justify-content:center; font-size:1.05rem;">
+              ⬇️ Download MacSentinel-arm64.dmg (1.91 MiB)
             </a>
             <div style="display:flex; gap:0.5rem; justify-content:center;">
-              <a href="https://github.com/iamkuruphere-sudo/MacSentinel/releases/tag/v0.1.8" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="flex:1; justify-content:center;">
-                GitHub Release v0.1.8 ↗
+              <a id="macsentinel-release-link" href="https://github.com/iamkuruphere-sudo/MacSentinel/releases/tag/v0.1.13" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="flex:1; justify-content:center;">
+                GitHub Release v0.1.13 ↗
               </a>
               <a href="https://github.com/iamkuruphere-sudo/MacSentinel" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="flex:1; justify-content:center;">
                 View Swift Source Code ↗
@@ -212,8 +212,8 @@
             <div style="font-size:0.7rem; color:var(--text-muted); margin-bottom:0.25rem; font-family:var(--font-mono); text-transform:uppercase;">
               SHA-256 Verified Checksum:
             </div>
-            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-neon-cyan); word-break:break-all; overflow-wrap:anywhere;">
-              a3aa26a0f0d32569ff83bdc7afaea77c7682e0c0989a0f7021d1554900ff0786
+            <div id="macsentinel-checksum" style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-neon-cyan); word-break:break-all; overflow-wrap:anywhere;">
+              0e878f246f53a1cf73e21ffe6fbd40496650e68ee501b8062174e64ffbdec681
             </div>
           </div>
         </div>
@@ -463,8 +463,8 @@
         <p style="font-size:1rem; color:var(--text-secondary); margin-bottom:2rem; line-height:1.6;">
           Download MacSentinel today. 100% free, native Apple Silicon build with zero telemetry and zero background agents.
         </p>
-        <a href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="margin: 0 auto; display:inline-flex;">
-          ⬇️ Download MacSentinel v0.1.8 (.dmg)
+        <a id="macsentinel-bottom-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="margin: 0 auto; display:inline-flex;">
+          ⬇️ Download MacSentinel v0.1.13 (.dmg)
         </a>
       </div>
     </section>
@@ -490,5 +490,6 @@
   <!-- Scripts -->
   <script src="assets/js/analytics.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/release-updater.js" defer></script>
 </body>
 </html>
