@@ -333,9 +333,18 @@ const Commerce = {
           <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.25rem;">Package Access</div>
           <div style="font-weight:600; font-size:0.95rem; margin-bottom:1rem;" id="success-package-name">${product.name}</div>
 
-          <button class="btn btn-primary" style="width:100%;" onclick="Commerce.downloadPackage()">
+          <button class="btn btn-primary" style="width:100%; margin-bottom:0.75rem;" onclick="Commerce.downloadPackage()">
             📥 Download Product Package (.ZIP & Notion Link)
           </button>
+
+          <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+            <button class="btn btn-outline" style="flex:1; justify-content:center; border-color:var(--accent-primary); color:var(--accent-primary); font-weight:700;" onclick="Commerce.downloadInvoice()">
+              📄 Download Tax Invoice (PDF)
+            </button>
+            <button class="btn btn-outline" style="flex:1; justify-content:center;" onclick="Commerce.viewInvoice()">
+              👁️ View Receipt
+            </button>
+          </div>
         </div>
 
         <button class="btn btn-outline btn-sm" onclick="App.closeModals()">Close Window</button>
@@ -503,15 +512,55 @@ const Commerce = {
     // Notice: Sensitive PII and transaction ledgers are NOT written to unencrypted browser localStorage
     // (Complies with DPDP Act 2023, GDPR Art 32, and PCI-DSS SAQ-A requirements)
 
+    const isINR = this.currency === 'INR';
+    const basePrice = isINR ? this.selectedProduct.priceINR : this.selectedProduct.priceUSD;
+    const finalPrice = Math.round(basePrice * (1 - this.activeDiscount));
+
+    // Auto-generate official tax invoice into secure vault
+    try {
+      if (typeof InvoiceVault !== 'undefined') {
+        const key = verified && license ? license : (licenseEl ? licenseEl.textContent : 'FS-LIC-PENDING');
+        this.currentInvoice = InvoiceVault.generateInvoice({
+          customerName: name,
+          customerEmail: email,
+          customerPhone: phone,
+          product: this.selectedProduct,
+          amount: finalPrice,
+          currency: this.currency,
+          gateway: gateway,
+          paymentId: paymentId,
+          orderId: orderId,
+          licenseKey: key
+        });
+      }
+    } catch (e) {
+      console.warn('Invoice vault auto-generation note:', e);
+    }
+
     // Track purchase event in Analytics (without raw PII)
     if (typeof Analytics !== 'undefined') {
-      const isINR = this.currency === 'INR';
-      const basePrice = isINR ? this.selectedProduct.priceINR : this.selectedProduct.priceUSD;
-      const finalPrice = Math.round(basePrice * (1 - this.activeDiscount));
       Analytics.trackPurchaseSuccess(this.selectedProduct, paymentId, finalPrice, gateway);
     }
 
-    App.toast(`Payment registered via ${gateway}. Processing order confirmation.`);
+    App.toast(`Payment registered via ${gateway}. Tax invoice generated.`);
+  },
+
+  downloadInvoice() {
+    if (this.currentInvoice && typeof InvoiceVault !== 'undefined') {
+      InvoiceVault.downloadInvoicePdf(this.currentInvoice.id);
+    } else {
+      // Fallback: search most recent invoice or generate one
+      const invoices = typeof InvoiceVault !== 'undefined' ? InvoiceVault.getAllInvoices() : [];
+      if (invoices.length > 0) {
+        InvoiceVault.downloadInvoicePdf(invoices[0].id);
+      } else {
+        App.toast('Generating invoice PDF...');
+      }
+    }
+  },
+
+  viewInvoice() {
+    this.downloadInvoice();
   },
 
   downloadPackage() {

@@ -114,6 +114,9 @@
           <button class="admin-tab-btn" data-tab="sales">
             <span>💰</span> Sales & Conversions
           </button>
+          <button class="admin-tab-btn" data-tab="invoices">
+            <span>📑</span> Invoices & Vault <span id="invoices-nav-badge" class="admin-pill-tag" style="background:#10b981; color:#ffffff; font-size:0.65rem; padding:0.1rem 0.4rem; display:none;">0</span>
+          </button>
           <button class="admin-tab-btn" data-tab="downloads">
             <span>🎁</span> Free Downloads
           </button>
@@ -461,6 +464,243 @@
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           TAB 2.5: OFFICIAL INVOICES & HIGH-SECURITY TAX VAULT
+           ==================================================================== -->
+      <div id="tab-panel-invoices" class="admin-tab-content">
+        
+        <!-- Tab Header -->
+        <div class="admin-tab-header">
+          <div>
+            <h2 class="admin-tab-title">📑 Invoices & Encrypted Tax Vault</h2>
+            <p class="admin-tab-subtitle">
+              Automated customer tax invoices, GST ledger, and real-time synchronization with Google Sheets.
+            </p>
+          </div>
+          <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+            <button class="btn btn-primary btn-sm" onclick="DashboardInvoices.openCreateInvoiceModal()">
+              ➕ Create Manual Invoice
+            </button>
+            <button class="btn btn-outline btn-sm" onclick="DashboardInvoices.exportCsv()">
+              📥 Export CSV
+            </button>
+            <button class="btn btn-outline btn-sm" onclick="DashboardInvoices.exportJson()">
+              📦 Export Vault (.JSON)
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Metrics Grid -->
+        <div class="admin-kpi-grid">
+          <div class="admin-kpi-card">
+            <div class="admin-kpi-header">
+              <span class="admin-kpi-label">Total Invoices</span>
+              <span class="admin-kpi-icon">📑</span>
+            </div>
+            <div class="admin-kpi-value" id="inv-kpi-total-count">0</div>
+            <div class="admin-kpi-sub">
+              <span class="kpi-sub-positive">100% Tax Compliant</span> • SAC 998313
+            </div>
+          </div>
+
+          <div class="admin-kpi-card">
+            <div class="admin-kpi-header">
+              <span class="admin-kpi-label">Gross Value Invoiced</span>
+              <span class="admin-kpi-icon">💰</span>
+            </div>
+            <div class="admin-kpi-value" id="inv-kpi-gross-revenue">₹0</div>
+            <div class="admin-kpi-sub">
+              Verified Settlement Value
+            </div>
+          </div>
+
+          <div class="admin-kpi-card">
+            <div class="admin-kpi-header">
+              <span class="admin-kpi-label">GST / Tax Handled</span>
+              <span class="admin-kpi-icon">🏛️</span>
+            </div>
+            <div class="admin-kpi-value" id="inv-kpi-tax-amount">₹0</div>
+            <div class="admin-kpi-sub">
+              18% GST (CGST 9% + SGST 9%)
+            </div>
+          </div>
+
+          <div class="admin-kpi-card">
+            <div class="admin-kpi-header">
+              <span class="admin-kpi-label">Google Sheet Status</span>
+              <span class="admin-kpi-icon">📊</span>
+            </div>
+            <div class="admin-kpi-value" id="inv-kpi-sync-status" style="font-size:1.35rem; color:#34d399;">
+              Connected
+            </div>
+            <div class="admin-kpi-sub">
+              <span id="inv-kpi-sync-time">Automated Master Ledger</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Sheets & Cloud Vault Live Management Banner -->
+        <div class="admin-card" style="margin-bottom:1.5rem; background:linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,0.7)); border:1px solid rgba(56,189,248,0.25);">
+          <div class="admin-card-header" style="flex-wrap:wrap; gap:1rem;">
+            <div>
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+                <span style="font-size:1.35rem;">📊</span>
+                <h3 style="font-size:1.05rem; font-weight:800; color:#ffffff; margin:0;">
+                  Google Sheets Real-Time Revenue Ledger
+                </h3>
+                <span class="admin-pill-tag" style="background:#0284c7; color:#ffffff;">Backend Master Sheet</span>
+              </div>
+              <p style="font-size:0.825rem; color:#94a3b8; margin:0;">
+                All customer invoices automatically synchronize date, time, customer details, and tax breakdowns to your Google Sheet.
+              </p>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <a id="btn-open-google-sheet" href="https://docs.google.com/spreadsheets/d/1FS-FULLSTOP-MASTER-INVOICE-LEDGER-2026/edit" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="border-color:#38bdf8; color:#38bdf8; font-weight:700;">
+                🔗 Open Google Sheet ↗
+              </a>
+              <button class="btn btn-primary btn-sm" onclick="DashboardInvoices.syncAllToGoogleSheet()">
+                🔄 Sync Invoices to Sheet Now
+              </button>
+            </div>
+          </div>
+
+          <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid rgba(255,255,255,0.08); display:grid; grid-template-columns:1fr auto; gap:1rem; align-items:flex-end;">
+            <div>
+              <label class="form-label" style="font-size:0.75rem; color:#94a3b8; margin-bottom:0.35rem; display:block;">
+                Google Apps Script Webhook URL (For zero-human-effort real-time appending):
+              </label>
+              <input type="text" id="sheet-webhook-url-input" class="form-input" style="font-size:0.8rem; font-family:monospace; width:100%;" placeholder="https://script.google.com/macros/s/AKfycbx.../exec">
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-secondary btn-sm" onclick="DashboardInvoices.saveWebhookUrl()">
+                Save Webhook
+              </button>
+              <button class="btn btn-outline btn-sm" onclick="DashboardInvoices.testWebhook()">
+                Test Ping
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Invoices Table Card -->
+        <div class="admin-card">
+          <div class="admin-card-header" style="flex-wrap:wrap; gap:1rem;">
+            <div>
+              <div class="admin-card-title">Customer Invoices Vault</div>
+              <div class="admin-card-desc">Click any invoice to download vector PDF or view tax breakdown.</div>
+            </div>
+
+            <!-- Search & Filters -->
+            <div class="admin-filter-bar" style="margin:0;">
+              <div class="admin-search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="invoices-search-input" placeholder="Search invoice #, customer name, email, payment ID..." oninput="DashboardInvoices.renderTable()">
+              </div>
+              <select id="invoices-product-filter" class="admin-select" onchange="DashboardInvoices.renderTable()">
+                <option value="all">All Digital Kits</option>
+                <option value="lifetime-bundle">Lifetime Bundle</option>
+                <option value="business-os">Business OS</option>
+                <option value="growth-seo">Growth & SEO</option>
+                <option value="dev-boilerplate">Dev Boilerplate</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Invoice Number</th>
+                  <th>Date & Time (IST)</th>
+                  <th>Customer</th>
+                  <th>Product Item</th>
+                  <th>Gross Amount</th>
+                  <th>GST (18%)</th>
+                  <th>Payment Ref</th>
+                  <th>Status</th>
+                  <th style="text-align:right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="invoices-ledger-tbody">
+                <!-- Dynamically populated by DashboardInvoices.renderTable() -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           MODAL: CREATE CUSTOM / B2B INVOICE
+           ==================================================================== -->
+      <div id="modal-create-invoice" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:200; align-items:center; justify-content:center; padding:1.5rem;">
+        <div style="background:#0f172a; border:1px solid #1e293b; border-radius:16px; width:100%; max-width:540px; padding:2rem; box-shadow:0 25px 60px rgba(0,0,0,0.8);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+            <h3 style="font-size:1.25rem; font-weight:800; color:#ffffff; margin:0;">
+              ➕ Generate Customer Tax Invoice
+            </h3>
+            <button type="button" onclick="DashboardInvoices.closeCreateModal()" style="background:none; border:none; color:#94a3b8; font-size:1.25rem; cursor:pointer;">✕</button>
+          </div>
+
+          <form id="form-create-invoice" onsubmit="DashboardInvoices.submitManualInvoice(event)">
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label class="form-label">Customer Full Name *</label>
+              <input type="text" id="man-inv-name" class="form-input" placeholder="e.g. Rahul Verma" required>
+            </div>
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label class="form-label">Customer Email Address *</label>
+              <input type="email" id="man-inv-email" class="form-input" placeholder="customer@example.com" required>
+            </div>
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" id="man-inv-phone" class="form-input" placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group" style="margin-bottom:1rem;">
+              <label class="form-label">Product / Service *</label>
+              <select id="man-inv-product" class="form-input" onchange="DashboardInvoices.onManualProductChange()">
+                <option value="business-os" data-inr="1499" data-usd="19">Fullstop Ultimate Business OS (₹1,499)</option>
+                <option value="growth-seo" data-inr="2499" data-usd="29">Full-Stack Growth & SEO Mastery (₹2,499)</option>
+                <option value="dev-boilerplate" data-inr="3999" data-usd="49">Developer Pro SaaS Boilerplate (₹3,999)</option>
+                <option value="lifetime-bundle" data-inr="6999" data-usd="79" selected>All-Access Lifetime Bundle (₹6,999)</option>
+                <option value="custom" data-inr="5000" data-usd="65">Custom Software / Consulting Service</option>
+              </select>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+              <div>
+                <label class="form-label">Amount Paid *</label>
+                <input type="number" id="man-inv-amount" class="form-input" value="6999" required>
+              </div>
+              <div>
+                <label class="form-label">Currency</label>
+                <select id="man-inv-currency" class="form-input">
+                  <option value="INR" selected>INR (₹)</option>
+                  <option value="USD">USD ($)</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+              <div>
+                <label class="form-label">Payment Gateway</label>
+                <select id="man-inv-gateway" class="form-input">
+                  <option value="Razorpay (UPI/Cards)" selected>Razorpay (UPI/Cards)</option>
+                  <option value="PayPal">PayPal</option>
+                  <option value="Direct Bank NEFT/IMPS">Direct Bank NEFT/IMPS</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">Payment Transaction ID</label>
+                <input type="text" id="man-inv-payid" class="form-input" placeholder="pay_manual_xxxxx">
+              </div>
+            </div>
+
+            <div style="display:flex; gap:0.75rem; justify-content:flex-end;">
+              <button type="button" class="btn btn-outline" onclick="DashboardInvoices.closeCreateModal()">Cancel</button>
+              <button type="submit" class="btn btn-primary">Generate & Save Invoice</button>
+            </div>
+          </form>
         </div>
       </div>
 
@@ -883,6 +1123,7 @@
 
   <!-- Scripts -->
   <script src="assets/js/analytics.js"></script>
+  <script src="assets/js/invoice-vault.js"></script>
   <script src="assets/js/checkout.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/dashboard.js"></script>

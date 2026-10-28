@@ -1125,6 +1125,9 @@ const DashboardUI = {
     this.renderSalesLedger();
     this.renderFreeDownloadsLedger();
     this.renderInquiries();
+    if (typeof DashboardInvoices !== 'undefined') {
+      DashboardInvoices.render();
+    }
     this.renderProductsManager();
     this.renderSecuritySettings();
   },
@@ -1245,6 +1248,8 @@ const DashboardUI = {
         DashboardCharts.renderDownloadsDonut('chart-downloads-donut');
       } else if (tabId === 'inquiries') {
         DashboardUI.renderInquiries();
+      } else if (tabId === 'invoices') {
+        if (typeof DashboardInvoices !== 'undefined') DashboardInvoices.render();
       }
     }, 50);
   },
@@ -1955,6 +1960,285 @@ const DashboardUI = {
         DashboardCharts.renderDownloadsDonut('chart-downloads-donut');
       }
     });
+  }
+};
+
+// ==========================================================================
+// 8. OFFICIAL INVOICES & HIGH-SECURITY TAX VAULT (DashboardInvoices)
+// ==========================================================================
+
+const DashboardInvoices = {
+  render() {
+    this.refreshKPIs();
+    this.renderTable();
+    this.initWebhookInput();
+  },
+
+  refreshKPIs() {
+    if (typeof InvoiceVault === 'undefined') return;
+    const invoices = InvoiceVault.getAllInvoices();
+    let grossINR = 0;
+    let taxINR = 0;
+
+    invoices.forEach(inv => {
+      if (inv.currency === 'INR') {
+        grossINR += (inv.item?.total || 0);
+        taxINR += (inv.taxBreakdown?.taxTotal || 0);
+      }
+    });
+
+    const elTotal = document.getElementById('inv-kpi-total-count');
+    if (elTotal) elTotal.textContent = `${invoices.length} Invoices`;
+
+    const elGross = document.getElementById('inv-kpi-gross-revenue');
+    if (elGross) elGross.textContent = `₹${grossINR.toLocaleString()}`;
+
+    const elTax = document.getElementById('inv-kpi-tax-amount');
+    if (elTax) elTax.textContent = `₹${taxINR.toLocaleString()}`;
+
+    const badge = document.getElementById('invoices-nav-badge');
+    if (badge) {
+      badge.textContent = invoices.length;
+      badge.style.display = invoices.length > 0 ? 'inline-block' : 'none';
+    }
+
+    const cfg = InvoiceVault.getSheetConfig();
+    const elSyncStatus = document.getElementById('inv-kpi-sync-status');
+    const elSyncTime = document.getElementById('inv-kpi-sync-time');
+    if (elSyncStatus) {
+      elSyncStatus.textContent = cfg.webhookUrl ? 'Live Webhook Active' : 'Master Sheet Linked';
+      elSyncStatus.style.color = cfg.webhookUrl ? '#34d399' : '#38bdf8';
+    }
+    if (elSyncTime) {
+      elSyncTime.textContent = cfg.lastSyncTime ? `Last sync: ${new Date(cfg.lastSyncTime).toLocaleTimeString()}` : 'Real-Time Logging Ready';
+    }
+  },
+
+  renderTable() {
+    if (typeof InvoiceVault === 'undefined') return;
+    const tbody = document.getElementById('invoices-ledger-tbody');
+    if (!tbody) return;
+
+    const invoices = InvoiceVault.getAllInvoices();
+    const search = document.getElementById('invoices-search-input')?.value.toLowerCase().trim() || '';
+    const filterProd = document.getElementById('invoices-product-filter')?.value || 'all';
+
+    const filtered = invoices.filter(inv => {
+      const matchSearch = !search ||
+        (inv.invoiceNumber && inv.invoiceNumber.toLowerCase().includes(search)) ||
+        (inv.customer?.name && inv.customer.name.toLowerCase().includes(search)) ||
+        (inv.customer?.email && inv.customer.email.toLowerCase().includes(search)) ||
+        (inv.paymentId && inv.paymentId.toLowerCase().includes(search));
+
+      const matchProd = filterProd === 'all' || inv.item?.productId === filterProd;
+      return matchSearch && matchProd;
+    });
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:2rem; color:#64748b;">No matching invoices found in vault.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(inv => {
+      const sym = inv.currencySymbol || '₹';
+      const amt = (inv.item?.total || 0).toLocaleString();
+      const tax = (inv.taxBreakdown?.taxTotal || 0).toLocaleString();
+
+      return `
+        <tr>
+          <td>
+            <strong style="color:#38bdf8; font-family:monospace; font-size:0.85rem;">${inv.invoiceNumber}</strong>
+          </td>
+          <td style="font-size:0.8rem; color:#cbd5e1;">
+            <div>${inv.dateFormatted}</div>
+            <div style="font-size:0.75rem; color:#64748b;">${inv.timeFormatted}</div>
+          </td>
+          <td>
+            <div style="font-weight:700; color:#ffffff;">${inv.customer?.name || 'Customer'}</div>
+            <div style="font-size:0.75rem; color:#94a3b8;">${inv.customer?.email || ''}</div>
+          </td>
+          <td style="font-size:0.85rem; color:#cbd5e1;">
+            <div>${inv.item?.name || 'Digital Kit'}</div>
+            <div style="font-size:0.7rem; color:#64748b;">SAC: ${inv.item?.hsnSac || '998313'}</div>
+          </td>
+          <td>
+            <strong style="color:#34d399; font-size:0.95rem;">${sym}${amt}</strong>
+            <span style="font-size:0.7rem; color:#64748b;"> ${inv.currency}</span>
+          </td>
+          <td style="font-size:0.8rem; color:#fbbf24;">
+            ${sym}${tax}
+          </td>
+          <td>
+            <div style="font-family:monospace; font-size:0.75rem; color:#94a3b8;">${inv.paymentId}</div>
+            <div style="font-size:0.7rem; color:#64748b;">${inv.paymentGateway}</div>
+          </td>
+          <td>
+            <span class="admin-pill-tag" style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.3);">
+              ✓ ${inv.paymentStatus}
+            </span>
+          </td>
+          <td style="text-align:right;">
+            <div style="display:inline-flex; gap:0.4rem;">
+              <button class="btn btn-outline btn-xs" style="border-color:#38bdf8; color:#38bdf8; font-weight:700;" onclick="DashboardInvoices.downloadPdf('${inv.id}')" title="Download Official Tax Invoice PDF">
+                📄 PDF
+              </button>
+              <button class="btn btn-outline btn-xs" onclick="DashboardInvoices.syncSingleToSheet('${inv.id}')" title="Sync this invoice to Google Sheet">
+                🔄 Sheet
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  },
+
+  downloadPdf(id) {
+    if (typeof InvoiceVault !== 'undefined') {
+      InvoiceVault.downloadInvoicePdf(id);
+    }
+  },
+
+  exportCsv() {
+    if (typeof InvoiceVault !== 'undefined') {
+      InvoiceVault.exportInvoicesCsv();
+    }
+  },
+
+  exportJson() {
+    if (typeof InvoiceVault !== 'undefined') {
+      InvoiceVault.exportVaultJson();
+    }
+  },
+
+  initWebhookInput() {
+    if (typeof InvoiceVault === 'undefined') return;
+    const cfg = InvoiceVault.getSheetConfig();
+    const input = document.getElementById('sheet-webhook-url-input');
+    if (input && cfg.webhookUrl) {
+      input.value = cfg.webhookUrl;
+    }
+  },
+
+  saveWebhookUrl() {
+    if (typeof InvoiceVault === 'undefined') return;
+    const input = document.getElementById('sheet-webhook-url-input');
+    if (!input) return;
+    const val = input.value.trim();
+    const cfg = InvoiceVault.getSheetConfig();
+    cfg.webhookUrl = val;
+    InvoiceVault.saveSheetConfig(cfg);
+    this.refreshKPIs();
+    if (typeof App !== 'undefined') App.toast('Google Apps Script Webhook URL saved!');
+  },
+
+  async testWebhook() {
+    if (typeof InvoiceVault === 'undefined') return;
+    const cfg = InvoiceVault.getSheetConfig();
+    if (!cfg.webhookUrl) {
+      if (typeof App !== 'undefined') App.toast('Please enter a Google Apps Script Webhook URL first.');
+      return;
+    }
+    if (typeof App !== 'undefined') App.toast('Sending test ping to Google Sheet...');
+    const invoices = InvoiceVault.getAllInvoices();
+    const sample = invoices[0] || { invoiceNumber: 'FS-TEST', timestamp: new Date().toISOString() };
+    await InvoiceVault.autoSyncToGoogleSheet(sample);
+    if (typeof App !== 'undefined') App.toast('✓ Ping dispatched to Google Apps Script!');
+    this.refreshKPIs();
+  },
+
+  async syncAllToGoogleSheet() {
+    if (typeof InvoiceVault === 'undefined') return;
+    const cfg = InvoiceVault.getSheetConfig();
+    if (!cfg.webhookUrl) {
+      InvoiceVault.exportInvoicesCsv();
+      if (typeof App !== 'undefined') {
+        App.toast('Exported master CSV. Enter your Google Apps Script Webhook URL above to enable real-time cloud auto-sync.');
+      }
+      return;
+    }
+
+    if (typeof App !== 'undefined') App.toast('Syncing all vault invoices to Google Sheet...');
+    const invoices = InvoiceVault.getAllInvoices();
+    let count = 0;
+    for (const inv of invoices) {
+      await InvoiceVault.autoSyncToGoogleSheet(inv);
+      count++;
+    }
+    cfg.lastSyncTime = new Date().toISOString();
+    InvoiceVault.saveSheetConfig(cfg);
+    this.refreshKPIs();
+    if (typeof App !== 'undefined') App.toast(`✓ Successfully synchronized ${count} invoices to Google Sheet!`);
+  },
+
+  syncSingleToSheet(id) {
+    if (typeof InvoiceVault === 'undefined') return;
+    const inv = InvoiceVault.getInvoiceById(id);
+    if (!inv) return;
+    const cfg = InvoiceVault.getSheetConfig();
+    if (!cfg.webhookUrl) {
+      InvoiceVault.downloadInvoicePdf(id);
+      return;
+    }
+    InvoiceVault.autoSyncToGoogleSheet(inv);
+    if (typeof App !== 'undefined') App.toast(`Invoice ${inv.invoiceNumber} dispatched to Google Sheet!`);
+  },
+
+  openCreateInvoiceModal() {
+    const modal = document.getElementById('modal-create-invoice');
+    if (modal) modal.style.display = 'flex';
+  },
+
+  closeCreateModal() {
+    const modal = document.getElementById('modal-create-invoice');
+    if (modal) modal.style.display = 'none';
+  },
+
+  onManualProductChange() {
+    const sel = document.getElementById('man-inv-product');
+    const amtInput = document.getElementById('man-inv-amount');
+    const currSel = document.getElementById('man-inv-currency');
+    if (!sel || !amtInput) return;
+    const opt = sel.options[sel.selectedIndex];
+    const isINR = currSel?.value === 'INR';
+    if (opt && opt.dataset) {
+      amtInput.value = isINR ? opt.dataset.inr : opt.dataset.usd;
+    }
+  },
+
+  submitManualInvoice(e) {
+    e.preventDefault();
+    if (typeof InvoiceVault === 'undefined') return;
+
+    const name = document.getElementById('man-inv-name')?.value.trim();
+    const email = document.getElementById('man-inv-email')?.value.trim();
+    const phone = document.getElementById('man-inv-phone')?.value.trim();
+    const prodSel = document.getElementById('man-inv-product');
+    const prodName = prodSel ? prodSel.options[prodSel.selectedIndex].text : 'Custom Toolkit';
+    const prodId = prodSel ? prodSel.value : 'custom';
+    const amount = Number(document.getElementById('man-inv-amount')?.value) || 0;
+    const currency = document.getElementById('man-inv-currency')?.value || 'INR';
+    const gateway = document.getElementById('man-inv-gateway')?.value || 'Manual';
+    const payId = document.getElementById('man-inv-payid')?.value.trim() || `pay_man_${Date.now()}`;
+
+    const newInv = InvoiceVault.generateInvoice({
+      customerName: name,
+      customerEmail: email,
+      customerPhone: phone,
+      product: { id: prodId, name: prodName },
+      amount: amount,
+      currency: currency,
+      gateway: gateway,
+      paymentId: payId
+    });
+
+    this.closeCreateModal();
+    this.render();
+    if (typeof App !== 'undefined') App.toast(`✓ Invoice ${newInv.invoiceNumber} created and saved to vault!`);
+    
+    // Auto-prompt to download PDF
+    setTimeout(() => {
+      InvoiceVault.downloadInvoicePdf(newInv.id);
+    }, 600);
   }
 };
 

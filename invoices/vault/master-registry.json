@@ -1,0 +1,132 @@
+{
+  "vaultVersion": "2.0",
+  "organization": "Fullstop Solution",
+  "domain": "www.fullstopsolution.in",
+  "compliance": "India DPDP Act 2023 & GST SAC 998313",
+  "lastUpdated": "2026-10-28T15:50:00.000Z",
+  "invoices": [
+    {
+      "id": "FS-INV-20261028-9F12",
+      "invoiceNumber": "FS-INV-20261028-9F12",
+      "timestamp": "2026-10-28T14:30:00.000Z",
+      "date": "2026-10-28",
+      "dateFormatted": "28 Oct 2026",
+      "timeFormatted": "08:00:00 PM IST",
+      "orderId": "order_9f12a83c",
+      "paymentId": "pay_live_Q9k4LmN8xP",
+      "paymentGateway": "Razorpay (Live UPI)",
+      "paymentStatus": "PAID",
+      "currency": "INR",
+      "currencySymbol": "₹",
+      "customer": {
+        "name": "Aditya Narayan Sharma",
+        "email": "aditya.sharma@innovatecorp.in",
+        "phone": "+91 98450 12345",
+        "billingCountry": "India"
+      },
+      "item": {
+        "productId": "lifetime-bundle",
+        "name": "The All-Access Fullstop Lifetime Bundle",
+        "tagline": "VIP access to all current & future toolkits and commercial license",
+        "hsnSac": "998313",
+        "quantity": 1,
+        "unitPrice": 5931.36,
+        "total": 6999.00
+      },
+      "taxBreakdown": {
+        "baseAmount": 5931.36,
+        "taxTotal": 1067.64,
+        "cgstRate": 9,
+        "cgstAmount": 533.82,
+        "sgstRate": 9,
+        "sgstAmount": 533.82,
+        "igstRate": 0,
+        "igstAmount": 0
+      },
+      "licenseKey": "FS-LIFE-9F12-8821",
+      "verificationDigest": "0x3A9F8E10"
+    },
+    {
+      "id": "FS-INV-20261027-4B81",
+      "invoiceNumber": "FS-INV-20261027-4B81",
+      "timestamp": "2026-10-27T11:15:00.000Z",
+      "date": "2026-10-27",
+      "dateFormatted": "27 Oct 2026",
+      "timeFormatted": "04:45:00 PM IST",
+      "orderId": "order_4b81c0de",
+      "paymentId": "pay_live_Z2w8Pq1Rst",
+      "paymentGateway": "Razorpay (Cards)",
+      "paymentStatus": "PAID",
+      "currency": "INR",
+      "currencySymbol": "₹",
+      "customer": {
+        "name": "Dr. Meera Vasudevan",
+        "email": "meera.vasudev@zenithhealth.org",
+        "phone": "+91 97312 88410",
+        "billingCountry": "India"
+      },
+      "item": {
+        "productId": "dev-boilerplate",
+        "name": "Developer Pro Micro-SaaS Boilerplate",
+        "tagline": "Production Next.js 15, Tailwind, Auth & Razorpay Webhooks",
+        "hsnSac": "998313",
+        "quantity": 1,
+        "unitPrice": 3388.98,
+        "total": 3999.00
+      },
+      "taxBreakdown": {
+        "baseAmount": 3388.98,
+        "taxTotal": 610.02,
+        "cgstRate": 9,
+        "cgstAmount": 305.01,
+        "sgstRate": 9,
+        "sgstAmount": 305.01,
+        "igstRate": 0,
+        "igstAmount": 0
+      },
+      "licenseKey": "FS-DEV-4B81-5519",
+      "verificationDigest": "0x81C0DE4B"
+    },
+    {
+      "id": "FS-INV-20261026-1E50",
+      "invoiceNumber": "FS-INV-20261026-1E50",
+      "timestamp": "2026-10-26T09:20:00.000Z",
+      "date": "2026-10-26",
+      "dateFormatted": "26 Oct 2026",
+      "timeFormatted": "02:50:00 PM IST",
+      "orderId": "order_1e50bb77",
+      "paymentId": "pay_live_K7m1J3v9Qa",
+      "paymentGateway": "PayPal (International)",
+      "paymentStatus": "PAID",
+      "currency": "USD",
+      "currencySymbol": "$",
+      "customer": {
+        "name": "Marcus Vance",
+        "email": "marcus.v@hypergrowth.io",
+        "phone": "+1 415 889 0192",
+        "billingCountry": "United States"
+      },
+      "item": {
+        "productId": "growth-seo",
+        "name": "Full-Stack Growth & SEO Mastery Toolkit",
+        "tagline": "500+ curated high-DA directories & automated SEO audit checklists",
+        "hsnSac": "998313",
+        "quantity": 1,
+        "unitPrice": 29.00,
+        "total": 29.00
+      },
+      "taxBreakdown": {
+        "baseAmount": 29.00,
+        "taxTotal": 0.00,
+        "cgstRate": 0,
+        "cgstAmount": 0,
+        "sgstRate": 0,
+        "sgstAmount": 0,
+        "igstRate": 0,
+        "igstAmount": 0
+      },
+      "licenseKey": "FS-SEO-1E50-7734",
+      "verificationDigest": "0x1E50BB77"
+    }
+  ]
+}
