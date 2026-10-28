@@ -8,6 +8,20 @@
 const ToolEngine = {
   // Common Top Action Bar for All Tools (Desktop Downloads & Offline Export)
   renderToolHeader(toolKey, toolTitle) {
+    const repoMap = {
+      'meta': 'fullstop-meta-tag-serp-previewer',
+      'password': 'fullstop-password-generator',
+      'json': 'fullstop-json-studio',
+      'qr': 'fullstop-qr-generator',
+      'invoice': 'fullstop-invoice-studio',
+      'hash': 'fullstop-hash-calculator',
+      'base64': 'fullstop-base64-tool',
+      'keyword': 'fullstop-keyword-analyzer',
+      'gst': 'fullstop-gst-vat-calculator',
+      'utm': 'fullstop-utm-campaign-builder',
+      'uuid': 'fullstop-uuid-generator'
+    };
+    const repoName = repoMap[toolKey] || `fullstop-${toolKey}`;
     return `
       <div class="tool-platform-bar">
         <div class="tool-platform-left">
@@ -17,6 +31,9 @@ const ToolEngine = {
           <span class="tool-badge-verified" title="Cryptographically Verified Release">🛡️ SHA-256 Verified</span>
         </div>
         <div class="tool-platform-right">
+          <a href="https://github.com/iamkuruphere-sudo/${repoName}" target="_blank" rel="noopener" class="btn btn-xs btn-outline" style="text-decoration:none;" title="Open Open-Source GitHub Repository">
+            ⭐ GitHub Repo ↗
+          </a>
           <button class="btn btn-xs btn-outline" onclick="App.openDesktopModal()" title="Download Fullstop Desktop Suite for Mac, Windows or Linux">
             ⬇️ Desktop App
           </button>
