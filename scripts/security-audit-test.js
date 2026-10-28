@@ -66,7 +66,7 @@ const dmgStats = fs.statSync(path.join(ROOT, 'downloads/mac/MacSentinel-arm64.dm
 assert(dmgStats.size > 100000, `MacSentinel DMG is valid binary (${dmgStats.size} bytes)`);
 
 const macsentinelHtml = fs.readFileSync(path.join(ROOT, 'macsentinel.html'), 'utf8');
-assert(macsentinelHtml.includes('060f124de7d888b03550b42c8b011b3e8884e44dbe0acd49946252e4ff0016d3'), 'macsentinel.html contains verified SHA-256 hash');
+assert(macsentinelHtml.includes('a1d3414ec2cf028db648deec993663d6ee4108988e9f75f50273622cc56dbe21'), 'macsentinel.html contains verified SHA-256 hash');
 assert(macsentinelHtml.includes('downloads/mac/MacSentinel-arm64.dmg'), 'macsentinel.html provides direct DMG download');
 assert(macsentinelHtml.includes('Evidence to Inspect, Not Automatic Verdicts'), 'macsentinel.html contains honest architectural disclosure ("nothing fake")');
 assert(macsentinelHtml.includes('No Background Daemons') && macsentinelHtml.includes('100% Read-Only'), 'macsentinel.html discloses zero daemons and read-only design');
