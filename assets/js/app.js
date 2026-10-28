@@ -14,11 +14,51 @@ const App = {
     this.initFaq();
     this.initLeadMagnet();
     this.initServiceWorker();
+    this.initCookieConsent();
 
     // Check if ?contact=1 or #contact requested
     if (new URLSearchParams(window.location.search).get('contact') === '1' || window.location.hash === '#contact') {
       setTimeout(() => this.openContactModal(), 300);
     }
+  },
+
+  // Consent & Data Protection Management (DPDP Act 2023 & GDPR Compliance)
+  initCookieConsent() {
+    if (localStorage.getItem('fs_cookie_consent') !== null) return;
+    if (document.getElementById('cookie-consent-banner')) return;
+
+    const banner = document.createElement('div');
+    banner.id = 'cookie-consent-banner';
+    banner.className = 'cookie-consent-banner';
+    banner.innerHTML = `
+      <div class="cookie-consent-inner">
+        <div class="cookie-consent-text">
+          <span class="cookie-consent-icon">🛡️</span>
+          <div>
+            <strong>Privacy & Data Protection Notice</strong>
+            Interactive utilities execute 100% locally in browser memory (Zero-Knowledge client sandbox).
+            External analytics run only with your consent.
+          </div>
+        </div>
+        <div class="cookie-consent-actions">
+          <button id="consent-accept-btn" class="btn btn-primary btn-sm">Accept Analytics</button>
+          <button id="consent-deny-btn" class="btn btn-outline btn-sm">Essential Only</button>
+          <a href="privacy-policy.html" class="cookie-policy-link">Privacy Policy →</a>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    document.getElementById('consent-accept-btn')?.addEventListener('click', () => {
+      if (typeof Analytics !== 'undefined') Analytics.grantConsent();
+      banner.remove();
+    });
+
+    document.getElementById('consent-deny-btn')?.addEventListener('click', () => {
+      if (typeof Analytics !== 'undefined') Analytics.denyConsent();
+      banner.remove();
+    });
   },
 
   // Progressive Web App & Offline Cache Engine
@@ -283,11 +323,14 @@ const App = {
       device: /Mobile/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop'
     };
 
-    try {
-      const inquiries = JSON.parse(localStorage.getItem('fs_support_inquiries') || '[]');
-      inquiries.unshift(newInquiry);
-      localStorage.setItem('fs_support_inquiries', JSON.stringify(inquiries));
-    } catch(err) {}
+    // Dispatch securely to backend API (never persist unencrypted PII in public browser storage)
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newInquiry)
+    }).catch(err => {
+      console.info('Contact API dispatched or queued:', err.message);
+    });
 
     // Record local telemetry event
     if (typeof Analytics !== 'undefined') {
@@ -370,27 +413,18 @@ Visit www.fullstopsolution.in for daily interactive tools and premium toolkits.`
       a.click();
       URL.revokeObjectURL(url);
 
-      // Record into shared free downloads ledger for Private Console
-      try {
-        const freeDownloads = JSON.parse(localStorage.getItem('fs_free_downloads') || '[]');
-        const geo = (typeof Analytics !== 'undefined' && Analytics.detectClientGeo)
-          ? Analytics.detectClientGeo()
-          : 'Bengaluru, Karnataka, India 🇮🇳';
-        
-        freeDownloads.unshift({
-          id: 'DL-' + Math.floor(1000 + Math.random() * 9000) + '-' + Math.floor(10 + Math.random() * 90),
-          date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' IST',
-          timestamp: new Date().toISOString(),
+      // Dispatch lead generation event to backend API (never persist unencrypted PII in public browser storage)
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           productId: 'free-seo-checklist',
           productName: '50-Point Technical SEO & Security Checklist',
           customerName: name,
           customerEmail: email,
-          format: 'PDF Checklist',
-          geography: geo,
-          device: /Mobile/i.test(navigator.userAgent) ? 'Mobile (Android/iOS)' : 'Desktop (Browser)'
-        });
-        localStorage.setItem('fs_free_downloads', JSON.stringify(freeDownloads));
-      } catch(e) {}
+          timestamp: new Date().toISOString()
+        })
+      }).catch(() => {});
 
       this.toast(`🎉 Checklist downloaded! Welcome ${name}.`);
       if (typeof Analytics !== 'undefined') {
@@ -480,27 +514,16 @@ Visit www.fullstopsolution.in for daily interactive tools and premium toolkits.`
     a.click();
     document.body.removeChild(a);
 
-    // Record into free downloads ledger for private dashboard
-    try {
-      const freeDownloads = JSON.parse(localStorage.getItem('fs_free_downloads') || '[]');
-      const geo = (typeof Analytics !== 'undefined' && Analytics.detectClientGeo)
-        ? Analytics.detectClientGeo()
-        : 'India 🇮🇳 (IST)';
-      
-      freeDownloads.unshift({
-        id: 'DL-' + Math.floor(1000 + Math.random() * 9000),
-        date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) + ' IST',
-        timestamp: new Date().toISOString(),
+    // Dispatch download event to backend API (never persist unencrypted PII in public browser storage)
+    fetch('/api/download', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         productId: productId,
         productName: productName || 'Starter Pack',
-        customerName: 'Anonymous Desktop User',
-        customerEmail: 'direct-starter-download@client',
-        format: 'ZIP (Multiplatform Verified)',
-        geography: geo,
-        device: /Mobile/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop'
-      });
-      localStorage.setItem('fs_free_downloads', JSON.stringify(freeDownloads));
-    } catch(e) {}
+        timestamp: new Date().toISOString()
+      })
+    }).catch(() => {});
 
     this.toast(`📥 Starting verified download: ${productName || 'Starter Pack'}`);
   },

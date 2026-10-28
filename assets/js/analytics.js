@@ -30,13 +30,31 @@ const Analytics = {
     if (typeof App !== 'undefined') App.toast('Google Search Console tag updated!');
   },
 
+  hasConsent() {
+    return localStorage.getItem('fs_cookie_consent') === 'granted';
+  },
+
+  grantConsent() {
+    localStorage.setItem('fs_cookie_consent', 'granted');
+    const gaId = this.getGaId();
+    if (gaId && gaId.startsWith('G-')) {
+      this.initGa(gaId);
+    }
+  },
+
+  denyConsent() {
+    localStorage.setItem('fs_cookie_consent', 'denied');
+  },
+
   init() {
     this.recordPageView();
     
-    // Initialize GA4 if ID exists
-    const gaId = this.getGaId();
-    if (gaId && gaId.startsWith('G-') && gaId !== 'G-XXXXXXXXXX') {
-      this.initGa(gaId);
+    // Only initialize external tracking if user has granted explicit consent (DPDP & GDPR Compliance)
+    if (this.hasConsent()) {
+      const gaId = this.getGaId();
+      if (gaId && gaId.startsWith('G-') && gaId !== 'G-XXXXXXXXXX') {
+        this.initGa(gaId);
+      }
     }
     
     // Ensure GSC meta tag is active

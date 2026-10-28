@@ -1,0 +1,20 @@
+{
+  "name": "fullstopsolution-website",
+  "version": "3.0.0",
+  "description": "Fullstop Solution - Enterprise Web Presence & Zero-Knowledge Digital Toolkit",
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/security-audit-test.js",
+    "audit": "node scripts/security-audit-test.js"
+  },
+  "keywords": [
+    "security",
+    "pwa",
+    "toolkit",
+    "zero-knowledge",
+    "web-crypto"
+  ],
+  "author": "Fullstop Solution",
+  "license": "UNLICENSED",
+  "private": true
+}

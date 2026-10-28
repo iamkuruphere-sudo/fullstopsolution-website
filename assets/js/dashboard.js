@@ -15,7 +15,6 @@
 // ==========================================================================
 
 const AdminSecurity = {
-  DEFAULT_PASSWORD: 'Admin@Fullstop2026',
   BACKUP_CODES_KEY: 'fs_admin_backup_codes',
   SALT_KEY: 'fs_admin_pwd_salt',
   HASH_KEY: 'fs_admin_pwd_hash',
@@ -52,16 +51,37 @@ const AdminSecurity = {
     return this.bufferToHex(hashBuffer);
   },
 
-  // Initialize or verify password
+  // Check if master password has been configured
+  isConfigured() {
+    return !!(localStorage.getItem(this.HASH_KEY) && localStorage.getItem(this.SALT_KEY));
+  },
+
+  // Secure initial master password setup
+  async setupMasterPassword(password) {
+    if (!password || password.length < 10) {
+      throw new Error('Master password must be at least 10 characters.');
+    }
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    if (!hasUpper || !hasLower || !hasNumber) {
+      throw new Error('Password must include uppercase, lowercase, and numbers.');
+    }
+
+    const salt = this.generateSalt();
+    const newHash = await this.computeHash(password, salt);
+    localStorage.setItem(this.SALT_KEY, salt);
+    localStorage.setItem(this.HASH_KEY, newHash);
+    this.logAudit('Security Initialized', 'Master admin password configured');
+    return true;
+  },
+
+  // Verify master password (zero default passwords or hardcoded fallbacks)
   async verifyPassword(inputPassword) {
     const storedHash = localStorage.getItem(this.HASH_KEY);
     const storedSalt = localStorage.getItem(this.SALT_KEY);
 
-    // If no custom password has been set yet, check default password or legacy PIN 8492
     if (!storedHash || !storedSalt) {
-      if (inputPassword === this.DEFAULT_PASSWORD || inputPassword === '8492') {
-        return true;
-      }
       return false;
     }
 
@@ -1032,20 +1052,13 @@ const DashboardUI = {
   // Check auth and show gate or console
   checkAuthenticationState() {
     const isSessionActive = AdminSecurity.isSessionValid();
-    const authBox = document.getElementById('admin-auth-container');
-    const consoleBox = document.getElementById('admin-console');
 
-    // Check if query parameter ?pin=8492 is passed for legacy compatibility
+    // Strip any legacy ?pin= or credentials from URL to prevent history leaks
     const urlParams = new URLSearchParams(window.location.search);
-    const pin = urlParams.get('pin');
-    if (pin && (pin === '8492' || pin === AdminSecurity.DEFAULT_PASSWORD)) {
-      AdminSecurity.createSession();
-      // Remove pin from URL cleanly
+    if (urlParams.has('pin')) {
       const url = new URL(window.location);
       url.searchParams.delete('pin');
       window.history.replaceState({}, document.title, url.pathname);
-      this.showConsole();
-      return;
     }
 
     if (isSessionActive) {
@@ -1069,12 +1082,33 @@ const DashboardUI = {
       return;
     }
 
-    document.getElementById('auth-pwd-input').disabled = false;
-    document.getElementById('auth-submit-btn').disabled = false;
+    const pwdInput = document.getElementById('auth-pwd-input');
+    const submitBtn = document.getElementById('auth-submit-btn');
+    const hint = document.getElementById('auth-setup-hint');
+
+    pwdInput.disabled = false;
+    submitBtn.disabled = false;
     document.getElementById('auth-step-pwd').style.display = 'block';
     document.getElementById('auth-step-2fa').style.display = 'none';
-    document.getElementById('auth-pwd-input').value = '';
-    document.getElementById('auth-pwd-input').focus();
+
+    if (!AdminSecurity.isConfigured()) {
+      pwdInput.placeholder = 'Set Master Admin Password (min 10 chars)';
+      submitBtn.textContent = 'Set Master Password & Initialize →';
+      if (hint) {
+        hint.innerHTML = '⚙️ <strong>Initial Setup:</strong> Set a strong master password (min 10 chars, uppercase, lowercase, numbers) to configure your console.';
+        hint.style.color = '#38bdf8';
+      }
+    } else {
+      pwdInput.placeholder = 'Enter Master Password';
+      submitBtn.textContent = 'Authenticate Console →';
+      if (hint) {
+        hint.innerHTML = '🔒 Enterprise Access Control: Session-protected with rate-limited brute force protection.';
+        hint.style.color = '#64748b';
+      }
+    }
+
+    pwdInput.value = '';
+    pwdInput.focus();
     this.setAuthError('');
   },
 
@@ -1109,6 +1143,22 @@ const DashboardUI = {
     if (!pwd) {
       this.setAuthError('Please enter your administrator master password.');
       return;
+    }
+
+    // If first-time initialization
+    if (!AdminSecurity.isConfigured()) {
+      try {
+        await AdminSecurity.setupMasterPassword(pwd);
+        AdminSecurity.createSession();
+        this.showConsole();
+        if (typeof App !== 'undefined') {
+          App.toast('Master password configured and console initialized.');
+        }
+        return;
+      } catch (err) {
+        this.setAuthError(err.message || 'Error configuring master password.');
+        return;
+      }
     }
 
     const isValid = await AdminSecurity.verifyPassword(pwd);

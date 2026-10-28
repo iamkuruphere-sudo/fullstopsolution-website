@@ -4,17 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google tag (gtag.js) - Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E9HWZP2114"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-E9HWZP2114', {
-      send_page_view: true,
-      cookie_flags: 'SameSite=None;Secure'
-    });
-  </script>
+  <!-- Privacy-Preserving Analytics managed via assets/js/analytics.js with explicit user consent -->
   
   <!-- Primary SEO Meta Tags -->
   <title>Fullstop Solution | Free Daily Digital Toolkit & High-Value Business OS</title>
@@ -542,13 +532,13 @@
         <div class="platform-grid">
           <!-- macOS Apple Silicon -->
           <div class="platform-card" data-platform="mac-arm64">
-            <span class="platform-card-badge">Apple Silicon</span>
             <div class="platform-card-header">
               <span class="platform-card-icon">🍏</span>
-              <div>
-                <h3 class="platform-card-title">macOS Apple Silicon</h3>
-                <div class="platform-card-meta">M1, M2, M3, M4 (arm64) • macOS 11+</div>
-              </div>
+              <span class="platform-card-badge">Apple Silicon</span>
+            </div>
+            <div class="platform-card-title-group">
+              <h3 class="platform-card-title">macOS Apple Silicon</h3>
+              <div class="platform-card-meta">M1, M2, M3, M4 (arm64) • macOS 11+</div>
             </div>
             <p class="platform-card-specs">
               Native Apple Silicon build. Zero-lag memory execution with native WebCrypto acceleration and full offline suite.
@@ -563,13 +553,13 @@
 
           <!-- macOS Intel -->
           <div class="platform-card" data-platform="mac-x64">
-            <span class="platform-card-badge">Intel x86_64</span>
             <div class="platform-card-header">
               <span class="platform-card-icon">🍏</span>
-              <div>
-                <h3 class="platform-card-title">macOS Intel x86_64</h3>
-                <div class="platform-card-meta">Intel Core i5, i7, i9 • macOS 10.15+</div>
-              </div>
+              <span class="platform-card-badge">Intel x86_64</span>
+            </div>
+            <div class="platform-card-title-group">
+              <h3 class="platform-card-title">macOS Intel x86_64</h3>
+              <div class="platform-card-meta">Intel Core i5, i7, i9 • macOS 10.15+</div>
             </div>
             <p class="platform-card-specs">
               Optimized for Intel MacBooks & iMacs. Sandboxed execution with zero internet access required.
@@ -584,13 +574,13 @@
 
           <!-- Windows -->
           <div class="platform-card" data-platform="windows">
-            <span class="platform-card-badge">Windows 64-bit</span>
             <div class="platform-card-header">
               <span class="platform-card-icon">🪟</span>
-              <div>
-                <h3 class="platform-card-title">Windows 10 / 11</h3>
-                <div class="platform-card-meta">64-bit (x64) • Portable Executable Suite</div>
-              </div>
+              <span class="platform-card-badge">Windows 64-bit</span>
+            </div>
+            <div class="platform-card-title-group">
+              <h3 class="platform-card-title">Windows 10 / 11</h3>
+              <div class="platform-card-meta">64-bit (x64) • Portable Executable Suite</div>
             </div>
             <p class="platform-card-specs">
               Zero-install portable distribution for Windows. Launch in 1 click with native WebView sandboxing.
@@ -605,13 +595,13 @@
 
           <!-- Linux -->
           <div class="platform-card" data-platform="linux">
-            <span class="platform-card-badge">Linux Universal</span>
             <div class="platform-card-header">
               <span class="platform-card-icon">🐧</span>
-              <div>
-                <h3 class="platform-card-title">Linux Universal</h3>
-                <div class="platform-card-meta">Ubuntu, Debian, Fedora, Arch (x86_64)</div>
-              </div>
+              <span class="platform-card-badge">Linux Universal</span>
+            </div>
+            <div class="platform-card-title-group">
+              <h3 class="platform-card-title">Linux Universal</h3>
+              <div class="platform-card-meta">Ubuntu, Debian, Fedora, Arch (x86_64)</div>
             </div>
             <p class="platform-card-specs">
               Universal desktop bundle with desktop launcher entry, XDG compliance, and standalone shell execution.
@@ -627,14 +617,14 @@
 
         <!-- Verification Banner & Checksums -->
         <div style="background:rgba(15,23,42,0.85); border:1px solid var(--border-color); border-radius:14px; padding:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem;">
-          <div>
-            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem;">
+          <div style="min-width:0; max-width:100%;">
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem; flex-wrap:wrap;">
               <span style="font-size:1.2rem;">🛡️</span>
               <strong style="color:#ffffff;">Official Cryptographic Release Signatures</strong>
               <span class="badge badge-success" style="font-size:0.7rem;">GPG Signed</span>
             </div>
-            <p style="margin:0; font-size:0.85rem; color:var(--text-secondary);">
-              Key ID: <code>0x9E7F4B2C7D10A843</code> • Fingerprint: <code>F509 C8B2 4E7A 91D3 2C84 38E1 9E7F 4B2C 7D10 A843</code>
+            <p style="margin:0; font-size:0.85rem; color:var(--text-secondary); overflow-wrap:anywhere; word-break:break-word;">
+              Key ID: <code>0x9E7F4B2C7D10A843</code> • Fingerprint: <code style="word-break:break-all; overflow-wrap:anywhere;">F509 C8B2 4E7A 91D3 2C84 38E1 9E7F 4B2C 7D10 A843</code>
             </p>
           </div>
           <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
@@ -1115,13 +1105,13 @@
         <div class="platform-grid" style="margin-top:0;">
           <!-- macOS Apple Silicon -->
           <div class="platform-card" data-platform="mac-arm64">
-            <span class="platform-card-badge">Apple Silicon</span>
             <div class="platform-card-header">
               <span class="platform-card-icon">🍏</span>
-              <div>
-                <h3 class="platform-card-title">macOS Apple Silicon</h3>
-                <div class="platform-card-meta">M1, M2, M3, M4 (arm64) • macOS 11+</div>
-              </div>
+              <span class="platform-card-badge">Apple Silicon</span>
+            </div>
+            <div class="platform-card-title-group">
+              <h3 class="platform-card-title">macOS Apple Silicon</h3>
+              <div class="platform-card-meta">M1, M2, M3, M4 (arm64) • macOS 11+</div>
             </div>
             <p class="platform-card-specs">
               Native Apple Silicon build. Zero-lag memory execution with native WebCrypto acceleration.
@@ -1136,13 +1126,13 @@
 
           <!-- macOS Intel -->
           <div class="platform-card" data-platform="mac-x64">
-            <span class="platform-card-badge">Intel x86_64</span>
             <div class="platform-card-header">
               <span class="platform-card-icon">🍏</span>
-              <div>
-                <h3 class="platform-card-title">macOS Intel x86_64</h3>
-                <div class="platform-card-meta">Intel Core i5, i7, i9 • macOS 10.15+</div>
-              </div>
+              <span class="platform-card-badge">Intel x86_64</span>
+            </div>
+            <div class="platform-card-title-group">
+              <h3 class="platform-card-title">macOS Intel x86_64</h3>
+              <div class="platform-card-meta">Intel Core i5, i7, i9 • macOS 10.15+</div>
             </div>
             <p class="platform-card-specs">
               Optimized for Intel MacBooks & iMacs. Sandboxed execution with zero internet required.
@@ -1157,13 +1147,13 @@
 
           <!-- Windows -->
           <div class="platform-card" data-platform="windows">
-            <span class="platform-card-badge">Windows 64-bit</span>
             <div class="platform-card-header">
               <span class="platform-card-icon">🪟</span>
-              <div>
-                <h3 class="platform-card-title">Windows 10 / 11</h3>
-                <div class="platform-card-meta">64-bit (x64) • Portable Executable Suite</div>
-              </div>
+              <span class="platform-card-badge">Windows 64-bit</span>
+            </div>
+            <div class="platform-card-title-group">
+              <h3 class="platform-card-title">Windows 10 / 11</h3>
+              <div class="platform-card-meta">64-bit (x64) • Portable Executable Suite</div>
             </div>
             <p class="platform-card-specs">
               Zero-install portable distribution for Windows. Launch in 1 click with native WebView sandboxing.
@@ -1178,16 +1168,17 @@
 
           <!-- Linux -->
           <div class="platform-card" data-platform="linux">
-            <span class="platform-card-badge">Linux Universal</span>
             <div class="platform-card-header">
               <span class="platform-card-icon">🐧</span>
-              <div>
-                <h3 class="platform-card-title">Linux Universal</h3>
-                <div class="platform-card-meta">Ubuntu, Debian, Fedora, Arch (x86_64)</div>
-              </div>
+              <span class="platform-card-badge">Linux Universal</span>
+            </div>
+            <div class="platform-card-title-group">
+              <h3 class="platform-card-title">Linux Universal</h3>
+              <div class="platform-card-meta">Ubuntu, Debian, Fedora, Arch (x86_64)</div>
             </div>
             <p class="platform-card-specs">
               Universal desktop bundle with desktop launcher entry, XDG compliance, and standalone shell execution.
+            </p>
             </p>
             <div class="platform-checksum-box">
               SHA-256: aeb9a2f6c6cd2c05ed8257b2b4909445c5f6ae9b66ca83554daf88d40d2d1f77
