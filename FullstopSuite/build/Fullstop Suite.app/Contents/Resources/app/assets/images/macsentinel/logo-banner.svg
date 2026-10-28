@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="banner-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329"/>
+      <stop offset="50%" stop-color="#070d1e"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <linearGradient id="banner-border" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#818cf8" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <filter id="banner-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Banner Background -->
+  <rect x="2" y="2" width="856" height="216" rx="24" fill="url(#banner-bg)" stroke="url(#banner-border)" stroke-width="2"/>
+
+  <!-- Subtle Accent Grid lines -->
+  <line x1="200" y1="2" x2="200" y2="218" stroke="#38bdf8" stroke-opacity="0.06" stroke-width="1"/>
+  <circle cx="105" cy="110" r="140" fill="none" stroke="#38bdf8" stroke-opacity="0.04" stroke-width="1.5" stroke-dasharray="4 8"/>
+
+  <!-- Left Side: Mini App Icon Squircle Lockup -->
+  <g transform="translate(30, 30)">
+    <!-- Squircle base -->
+    <rect x="0" y="0" width="160" height="160" rx="36" fill="#0f172a" stroke="#38bdf8" stroke-width="2" filter="url(#banner-glow)"/>
+    
+    <!-- Mini Sentinel Shield -->
+    <path d="M 80,30 L 126,50 C 126,102 108,128 80,144 C 52,128 34,102 34,50 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+    <path d="M 80,30 L 36,51 C 36,101 54,126 80,142 Z" fill="#0284c7" opacity="0.8"/>
+    
+    <!-- Lens Eye Core -->
+    <circle cx="80" cy="85" r="22" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+    <circle cx="80" cy="85" r="14" fill="#0284c7" stroke="#22d3ee" stroke-width="1.5"/>
+    <circle cx="80" cy="85" r="7" fill="#38bdf8"/>
+    <circle cx="80" cy="85" r="3" fill="#ffffff"/>
+
+    <!-- Green verified status node -->
+    <circle cx="80" cy="120" r="6" fill="#10b981" stroke="#047857" stroke-width="1.5"/>
+  </g>
+
+  <!-- Right Side: Brand Lockup & Typography -->
+  <g transform="translate(225, 45)">
+    <!-- Top Pill Category -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="168" height="24" rx="12" fill="rgba(56, 189, 248, 0.12)" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1"/>
+      <circle cx="12" cy="12" r="4" fill="#10b981"/>
+      <text x="24" y="16" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif" font-size="11" font-weight="700" letter-spacing="0.08em">MACOS ENDPOINT AUDIT</text>
+    </g>
+
+    <!-- Main Title -->
+    <text x="0" y="68" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif" font-size="44" font-weight="800" letter-spacing="-0.03em">
+      <tspan fill="#ffffff">Mac</tspan><tspan fill="url(#text-gradient)">Sentinel</tspan>
+    </text>
+
+    <!-- Subtitle / Tagline -->
+    <text x="0" y="98" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" font-size="14.5" font-weight="500">
+      Native, point-in-time, read-only security evidence snapshot engine
+    </text>
+
+    <!-- Badges Row -->
+    <g transform="translate(0, 118)">
+      <!-- Badge 1: Read-Only Evidence -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="124" height="22" rx="6" fill="rgba(16, 185, 129, 0.1)" stroke="rgba(16, 185, 129, 0.3)" stroke-width="1"/>
+        <text x="62" y="15" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">🔒 100% Read-Only</text>
+      </g>
+
+      <!-- Badge 2: Zero Daemons -->
+      <g transform="translate(132, 0)">
+        <rect x="0" y="0" width="118" height="22" rx="6" fill="rgba(56, 189, 248, 0.1)" stroke="rgba(56, 189, 248, 0.25)" stroke-width="1"/>
+        <text x="59" y="15" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">⚡ Zero Daemons</text>
+      </g>
+
+      <!-- Badge 3: macOS 14+ -->
+      <g transform="translate(258, 0)">
+        <rect x="0" y="0" width="128" height="22" rx="6" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
+        <text x="64" y="15" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">🍏 macOS 14+ Native</text>
+      </g>
+
+      <!-- Badge 4: Swift / SwiftUI -->
+      <g transform="translate(394, 0)">
+        <rect x="0" y="0" width="102" height="22" rx="6" fill="rgba(249, 115, 22, 0.1)" stroke="rgba(249, 115, 22, 0.25)" stroke-width="1"/>
+        <text x="51" y="15" fill="#fb923c" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">SwiftUI 5.0</text>
+      </g>
+    </g>
+  </g>
+</svg>

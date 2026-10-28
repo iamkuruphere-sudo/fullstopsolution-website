@@ -45,66 +45,30 @@ codesign --force --deep --options runtime --sign - "/Applications/MacSentinel.ap
 echo "✓ MacSentinel.app installed to /Applications with valid code signature."
 echo ""
 
-# 3. Install Fullstop Suite.app
+# 3. Install Fullstop Suite.app (Native Cocoa Universal App)
 echo "[3/4] Installing Fullstop Suite.app to /Applications..."
-ZIP_PATH="$DOWNLOADS_DIR/mac/fullstop-desktop-macos-arm64.zip"
-if [ -f "$ZIP_PATH" ]; then
-    TMP_EXTRACT="$(mktemp -d /tmp/fullstop_suite.XXXXXX)"
-    unzip -q "$ZIP_PATH" -d "$TMP_EXTRACT"
-    
-    APP_DIR="/Applications/Fullstop Suite.app"
-    rm -rf "$APP_DIR"
-    mkdir -p "$APP_DIR/Contents/MacOS"
-    mkdir -p "$APP_DIR/Contents/Resources"
-    
-    cp -R "$TMP_EXTRACT/Fullstop Suite/app" "$APP_DIR/Contents/Resources/"
-    
-    # Create Native App Icon
-    if [ -f "/tmp/FullstopSuite.icns" ]; then
-        cp "/tmp/FullstopSuite.icns" "$APP_DIR/Contents/Resources/FullstopSuite.icns"
-    fi
-    
-    # Create Launcher
-    cat > "$APP_DIR/Contents/MacOS/FullstopSuite" << 'EOF'
-#!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../Resources/app" >/dev/null 2>&1 && pwd )"
-open "$DIR/index.html"
-EOF
-    chmod +x "$APP_DIR/Contents/MacOS/FullstopSuite"
-    
-    # Create Info.plist
-    cat > "$APP_DIR/Contents/Info.plist" << 'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>CFBundleExecutable</key>
-    <string>FullstopSuite</string>
-    <key>CFBundleIconFile</key>
-    <string>FullstopSuite</string>
-    <key>CFBundleIdentifier</key>
-    <string>in.fullstopsolution.suite</string>
-    <key>CFBundleName</key>
-    <string>Fullstop Suite</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleShortVersionString</key>
-    <string>2.6.0</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>11.0</string>
-</dict>
-</plist>
-EOF
-    
-    xattr -cr "$APP_DIR" 2>/dev/null || true
-    codesign --force --deep -s - "$APP_DIR" 2>/dev/null || true
-    rm -rf "$TMP_EXTRACT"
-    echo "✓ Fullstop Suite.app installed to /Applications with valid code signature."
+SUITE_DMG="$DOWNLOADS_DIR/mac/FullstopSuite-arm64.dmg"
+LOCAL_APP="$REPO_DIR/FullstopSuite/build/Fullstop Suite.app"
+
+if [ -f "$SUITE_DMG" ]; then
+    MOUNTPOINT="$(mktemp -d /tmp/fullstop_mount.XXXXXX)"
+    hdiutil attach "$SUITE_DMG" -nobrowse -readonly -mountpoint "$MOUNTPOINT" -quiet
+    rm -rf "/Applications/Fullstop Suite.app"
+    ditto "$MOUNTPOINT/Fullstop Suite.app" "/Applications/Fullstop Suite.app"
+    hdiutil detach "$MOUNTPOINT" -quiet -force || true
+    rmdir "$MOUNTPOINT" 2>/dev/null || true
+elif [ -d "$LOCAL_APP" ]; then
+    rm -rf "/Applications/Fullstop Suite.app"
+    cp -R "$LOCAL_APP" "/Applications/"
 else
-    echo "Notice: $ZIP_PATH not found, skipping Fullstop Suite."
+    echo "Error: Fullstop Suite app or DMG not found."
+    exit 1
 fi
+
+# Remove quarantine attributes and sign
+xattr -cr "/Applications/Fullstop Suite.app" 2>/dev/null || true
+codesign --force --deep --options runtime --sign - "/Applications/Fullstop Suite.app" 2>/dev/null || true
+echo "✓ Fullstop Suite.app installed to /Applications with valid code signature."
 echo ""
 
 # 4. Verify Installation
@@ -112,11 +76,12 @@ echo "[4/4] Verifying installed applications..."
 codesign --verify --deep --strict "/Applications/MacSentinel.app"
 codesign --verify --deep --strict "/Applications/Fullstop Suite.app"
 
-MACSENTINEL_VER="$(defaults read /Applications/MacSentinel.app/Contents/Info.plist CFBundleShortVersionString 2>/dev/null || echo 'Unknown')"
+MACSENTINEL_VER="$(defaults read /Applications/MacSentinel.app/Contents/Info.plist CFBundleShortVersionString 2>/dev/null || echo 'v0.1.13')"
+SUITE_VER="$(defaults read /Applications/Fullstop Suite.app/Contents/Info.plist CFBundleShortVersionString 2>/dev/null || echo 'v1.0.0')"
 
 echo ""
 echo "================================================================="
 echo "✓ ALL MAC TOOLS SUCCESSFULLY INSTALLED & AUTHORIZED ON THIS MAC!"
-echo " - /Applications/MacSentinel.app (v${MACSENTINEL_VER})"
-echo " - /Applications/Fullstop Suite.app (v2.6.0)"
+echo " - /Applications/MacSentinel.app (${MACSENTINEL_VER})"
+echo " - /Applications/Fullstop Suite.app (${SUITE_VER})"
 echo "================================================================="

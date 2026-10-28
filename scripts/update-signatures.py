@@ -21,11 +21,12 @@ INDEX_HTML = os.path.join(REPO_DIR, "index.html")
 MACSENTINEL_HTML = os.path.join(REPO_DIR, "macsentinel.html")
 
 TARGET_FILES = [
-    ("mac/fullstop-desktop-macos-arm64.zip", "macOS Apple Silicon Suite (arm64)"),
-    ("mac/fullstop-desktop-macos-x64.zip", "macOS Intel Suite (x86_64)"),
-    ("windows/fullstop-desktop-windows-x64.zip", "Windows 64-bit Portable Suite"),
-    ("linux/fullstop-desktop-linux-x86_64.tar.gz", "Linux Universal x86_64 Bundle"),
+    ("mac/FullstopSuite-arm64.dmg", "Fullstop Suite Native macOS DMG (arm64/Universal)"),
     ("mac/MacSentinel-arm64.dmg", "MacSentinel Native Endpoint Auditor (arm64)"),
+    ("mac/fullstop-desktop-macos-arm64.zip", "Fullstop Suite macOS Apple Silicon (arm64)"),
+    ("mac/fullstop-desktop-macos-x64.zip", "Fullstop Suite macOS Intel (x86_64)"),
+    ("windows/fullstop-desktop-windows-x64.zip", "Fullstop Suite Windows 64-bit Workstation"),
+    ("linux/fullstop-desktop-linux-x86_64.tar.gz", "Fullstop Suite Linux Universal x86_64"),
     ("starter-packs/fullstop-business-os-starter.zip", "Ultimate Business OS Starter"),
     ("starter-packs/fullstop-seo-growth-matrix.zip", "Growth & SEO Matrix Starter"),
     ("starter-packs/fullstop-developer-boilerplate-core.zip", "Developer SaaS Core Starter"),
@@ -58,7 +59,7 @@ def update_all_signatures():
             sha_lines.append(f"{hashes[rel_path][0]}  {rel_path}\n")
 
     with open(SHA256_FILE, "w", encoding="utf-8") as f:
-        f.writelines(sha_lines)
+        f.writelines(sorted(sha_lines))
     print(f"[+] Updated {SHA256_FILE}")
 
     # 2. Update FULLSTOP-SIGNATURE.asc
@@ -73,9 +74,8 @@ Hash: SHA256
 # Supported Platforms: macOS (Apple Silicon & Intel), Windows 64-bit, Linux x86_64
 
 """
-    for rel_path, _ in TARGET_FILES:
-        if rel_path in hashes:
-            sig_content += f"{hashes[rel_path][0]}  {rel_path}\n"
+    for line in sorted(sha_lines):
+        sig_content += line
 
     sig_content += """
 -----BEGIN PGP SIGNATURE-----
@@ -93,15 +93,19 @@ k9l0z1x2c3v4b5n6m7q8w9e0r1t2y3u4i5o6p7a8s9d0f1g2h3j4k5l6z7x8c9v0
     print(f"[+] Updated {PGP_SIG_FILE}")
 
     # 3. Synchronize HTML templates
-    macsentinel_hash = hashes.get("mac/MacSentinel-arm64.dmg", (None,))[0]
-    if macsentinel_hash:
-        sync_html_templates(macsentinel_hash)
+    sync_html_templates(hashes)
 
     return hashes
 
-def sync_html_templates(macsentinel_hash):
+def sync_html_templates(hashes):
+    macsentinel_hash = hashes.get("mac/MacSentinel-arm64.dmg", (None,))[0]
+    mac_arm64_hash = hashes.get("mac/fullstop-desktop-macos-arm64.zip", (None,))[0]
+    mac_x64_hash = hashes.get("mac/fullstop-desktop-macos-x64.zip", (None,))[0]
+    windows_hash = hashes.get("windows/fullstop-desktop-windows-x64.zip", (None,))[0]
+    linux_hash = hashes.get("linux/fullstop-desktop-linux-x86_64.tar.gz", (None,))[0]
+
     # Update macsentinel.html
-    if os.path.exists(MACSENTINEL_HTML):
+    if os.path.exists(MACSENTINEL_HTML) and macsentinel_hash:
         with open(MACSENTINEL_HTML, "r", encoding="utf-8") as f:
             content = f.read()
         content = re.sub(
@@ -117,15 +121,48 @@ def sync_html_templates(macsentinel_hash):
     if os.path.exists(INDEX_HTML):
         with open(INDEX_HTML, "r", encoding="utf-8") as f:
             content = f.read()
-        short_hash = f"{macsentinel_hash[:8]}...{macsentinel_hash[-5:]}"
-        content = re.sub(
-            r'<span id="macsentinel-index-checksum"[^>]*>.*?</span>',
-            f'<span id="macsentinel-index-checksum" style="font-family:var(--font-mono); background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px; border:1px solid rgba(255,255,255,0.08);" title="{macsentinel_hash}">SHA-256: {short_hash}</span>',
-            content
-        )
+
+        if macsentinel_hash:
+            short_hash = f"{macsentinel_hash[:8]}...{macsentinel_hash[-5:]}"
+            content = re.sub(
+                r'<span id="macsentinel-index-checksum"[^>]*>.*?</span>',
+                f'<span id="macsentinel-index-checksum" style="font-family:var(--font-mono); background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px; border:1px solid rgba(255,255,255,0.08);" title="{macsentinel_hash}">SHA-256: {short_hash}</span>',
+                content,
+                flags=re.DOTALL
+            )
+
+        if mac_arm64_hash:
+            content = re.sub(
+                r'<div id="platform-sha-mac-arm64"[^>]*>.*?</div>',
+                f'<div id="platform-sha-mac-arm64" class="platform-checksum-box">\n              SHA-256: {mac_arm64_hash}\n            </div>',
+                content,
+                flags=re.DOTALL
+            )
+        if mac_x64_hash:
+            content = re.sub(
+                r'<div id="platform-sha-mac-x64"[^>]*>.*?</div>',
+                f'<div id="platform-sha-mac-x64" class="platform-checksum-box">\n              SHA-256: {mac_x64_hash}\n            </div>',
+                content,
+                flags=re.DOTALL
+            )
+        if windows_hash:
+            content = re.sub(
+                r'<div id="platform-sha-windows"[^>]*>.*?</div>',
+                f'<div id="platform-sha-windows" class="platform-checksum-box">\n              SHA-256: {windows_hash}\n            </div>',
+                content,
+                flags=re.DOTALL
+            )
+        if linux_hash:
+            content = re.sub(
+                r'<div id="platform-sha-linux"[^>]*>.*?</div>',
+                f'<div id="platform-sha-linux" class="platform-checksum-box">\n              SHA-256: {linux_hash}\n            </div>',
+                content,
+                flags=re.DOTALL
+            )
+
         with open(INDEX_HTML, "w", encoding="utf-8") as f:
             f.write(content)
-        print(f"[+] Synced checksum to {INDEX_HTML}")
+        print(f"[+] Synced all platform checksums to {INDEX_HTML}")
 
 if __name__ == "__main__":
     update_all_signatures()

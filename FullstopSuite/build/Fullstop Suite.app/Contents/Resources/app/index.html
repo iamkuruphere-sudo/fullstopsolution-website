@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullstop Suite — Offline Desktop Workstation</title>
+  
+  <style>
+    @font-face {
+      font-family: 'Plus Jakarta Sans';
+      src: url('./assets/fonts/PlusJakartaSans-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Plus Jakarta Sans';
+      src: url('./assets/fonts/PlusJakartaSans-ExtraBold.woff2') format('woff2');
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="./assets/css/workstation.css">
+</head>
+<body>
+
+  <div class="ws-container">
+    <!-- Left Navigation Sidebar -->
+    <aside class="ws-sidebar">
+      <!-- Brand & Security Posture -->
+      <div class="ws-brand">
+        <div class="ws-brand-top">
+          <img src="./assets/images/logo-icon.svg" alt="Fullstop Suite" class="ws-brand-logo" onerror="this.src='./assets/images/logo.png'">
+          <div>
+            <div class="ws-brand-title">
+              Fullstop Suite
+              <span class="ws-brand-badge">Desktop</span>
+            </div>
+            <div style="font-size:0.7rem; color:var(--ws-text-dim);">Enterprise Offline Workstation</div>
+          </div>
+        </div>
+
+        <div class="ws-status-pill">
+          <span class="ws-status-dot"></span>
+          <span>100% Offline • Zero Telemetry</span>
+        </div>
+      </div>
+
+      <!-- Quick Search Tool Filter -->
+      <div class="ws-search-box">
+        <input type="text" id="ws-search-input" class="ws-search-input" placeholder="Search tools (⌘K)..." autocomplete="off" spellcheck="false">
+      </div>
+
+      <!-- Navigation List -->
+      <nav class="ws-nav" id="ws-nav-list">
+        <!-- Security & Cryptography -->
+        <div class="ws-nav-category">Security & Cryptography</div>
+        <div class="ws-nav-item active" data-tool="password" onclick="DesktopApp.selectTool('password')">
+          <span class="ws-nav-icon">🔑</span>
+          <span>Password Generator</span>
+          <span class="ws-nav-shortcut">⌘1</span>
+        </div>
+        <div class="ws-nav-item" data-tool="hash" onclick="DesktopApp.selectTool('hash')">
+          <span class="ws-nav-icon">⚡</span>
+          <span>Hash & Checksum Studio</span>
+          <span class="ws-nav-shortcut">⌘2</span>
+        </div>
+        <div class="ws-nav-item" data-tool="macsentinel" onclick="DesktopApp.selectTool('macsentinel')">
+          <span class="ws-nav-icon">🛡️</span>
+          <span>MacSentinel Auditor</span>
+          <span class="ws-nav-shortcut">⌘S</span>
+        </div>
+
+        <!-- Developer & Data -->
+        <div class="ws-nav-category">Developer & Data</div>
+        <div class="ws-nav-item" data-tool="json" onclick="DesktopApp.selectTool('json')">
+          <span class="ws-nav-icon">📦</span>
+          <span>JSON Studio & CSV</span>
+          <span class="ws-nav-shortcut">⌘3</span>
+        </div>
+        <div class="ws-nav-item" data-tool="base64" onclick="DesktopApp.selectTool('base64')">
+          <span class="ws-nav-icon">🔤</span>
+          <span>Base64 & Data URI</span>
+          <span class="ws-nav-shortcut">⌘4</span>
+        </div>
+        <div class="ws-nav-item" data-tool="uuid" onclick="DesktopApp.selectTool('uuid')">
+          <span class="ws-nav-icon">🆔</span>
+          <span>UUID & GUID Studio</span>
+          <span class="ws-nav-shortcut">⌘8</span>
+        </div>
+
+        <!-- Business & Growth -->
+        <div class="ws-nav-category">Business & Growth</div>
+        <div class="ws-nav-item" data-tool="gst" onclick="DesktopApp.selectTool('gst')">
+          <span class="ws-nav-icon">🧾</span>
+          <span>GST & Multi-Tax Slabs</span>
+          <span class="ws-nav-shortcut">⌘6</span>
+        </div>
+        <div class="ws-nav-item" data-tool="invoice" onclick="DesktopApp.selectTool('invoice')">
+          <span class="ws-nav-icon">📑</span>
+          <span>Professional Invoice</span>
+          <span class="ws-nav-shortcut">⌘7</span>
+        </div>
+        <div class="ws-nav-item" data-tool="qr" onclick="DesktopApp.selectTool('qr')">
+          <span class="ws-nav-icon">📱</span>
+          <span>QR Code Studio</span>
+          <span class="ws-nav-shortcut">⌘5</span>
+        </div>
+        <div class="ws-nav-item" data-tool="utm" onclick="DesktopApp.selectTool('utm')">
+          <span class="ws-nav-icon">🔗</span>
+          <span>UTM Campaign URL</span>
+          <span class="ws-nav-shortcut">⌘9</span>
+        </div>
+        <div class="ws-nav-item" data-tool="keyword" onclick="DesktopApp.selectTool('keyword')">
+          <span class="ws-nav-icon">🎯</span>
+          <span>SEO Keyword Analyzer</span>
+          <span class="ws-nav-shortcut">⌘0</span>
+        </div>
+        <div class="ws-nav-item" data-tool="meta" onclick="DesktopApp.selectTool('meta')">
+          <span class="ws-nav-icon">🏷️</span>
+          <span>Meta Tag & SERP Studio</span>
+          <span class="ws-nav-shortcut">⌘M</span>
+        </div>
+      </nav>
+
+      <!-- Sidebar Status Footer -->
+      <footer class="ws-footer">
+        <div class="ws-footer-row">
+          <span>Release: <strong>v1.0.0</strong></span>
+          <span style="color:var(--ws-accent-cyan);">arm64 + x64</span>
+        </div>
+        <div class="ws-footer-row">
+          <span>Signature:</span>
+          <span style="color:var(--ws-accent-emerald); font-weight:600;">SHA-256 Verified</span>
+        </div>
+      </footer>
+    </aside>
+
+    <!-- Main Workspace Area -->
+    <main class="ws-main">
+      <!-- macOS Draggable Title Area -->
+      <div class="mac-title-drag">
+        <span class="mac-title-text">Fullstop Suite Workstation</span>
+      </div>
+
+      <!-- Main Action Header -->
+      <header class="ws-main-header">
+        <div class="ws-header-left">
+          <h1 class="ws-active-title" id="ws-active-title">Strong Password & Passphrase Studio</h1>
+          <p class="ws-active-desc" id="ws-active-desc">Generate cryptographically random passwords, passphrases, and secure PINs via native Web Crypto API.</p>
+        </div>
+
+        <div class="ws-header-right">
+          <button class="btn btn-sm btn-outline" onclick="DesktopApp.copyCurrentOutput()" title="Copy active result to clipboard">
+            📋 Copy Output
+          </button>
+          <button class="btn btn-sm btn-gradient" onclick="DesktopApp.selectTool(DesktopApp.activeTool)" title="Reset or generate fresh data">
+            🔄 Refresh
+          </button>
+        </div>
+      </header>
+
+      <!-- Tool Workspace Canvas -->
+      <section class="ws-canvas" id="ws-canvas">
+        <!-- Rendered dynamically by DesktopApp -->
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="ws-toast-container" id="ws-toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="./assets/js/tools.js"></script>
+  <script src="./assets/js/workstation.js"></script>
+</body>
+</html>
