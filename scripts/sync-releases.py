@@ -290,6 +290,16 @@ def main():
     updated_mac = sync_macsentinel(token=token, force=args.force)
     updated_desktop = sync_desktop_suite(token=token, force=args.force)
 
+    # Always ensure cryptographic signatures across all platforms are up to date
+    try:
+        from update_signatures import update_all_signatures
+        update_all_signatures()
+    except ImportError:
+        import subprocess
+        sig_script = os.path.join(REPO_DIR, "scripts", "update-signatures.py")
+        if os.path.exists(sig_script):
+            subprocess.run([sys.executable, sig_script], check=True)
+
     if (updated_mac or updated_desktop) and (args.commit or args.ci):
         git_commit_and_push()
     else:
