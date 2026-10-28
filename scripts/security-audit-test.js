@@ -100,6 +100,10 @@ assert(htaccess.includes("blob:"), 'blob: permitted in .htaccess CSP img-src');
 assert(headersFile.includes("blob:"), 'blob: permitted in _headers CSP img-src');
 assert(nginxConf.includes("blob:"), 'blob: permitted in nginx.conf CSP img-src');
 assert(vercelJson.includes("blob:"), 'blob: permitted in vercel.json CSP img-src');
+assert(htaccess.includes("api.github.com") && htaccess.includes("script.google.com"), 'GitHub API and Google Apps Script permitted in .htaccess connect-src');
+assert(headersFile.includes("api.github.com") && headersFile.includes("script.google.com"), 'GitHub API and Google Apps Script permitted in _headers connect-src');
+assert(nginxConf.includes("api.github.com") && nginxConf.includes("script.google.com"), 'GitHub API and Google Apps Script permitted in nginx.conf connect-src');
+assert(vercelJson.includes("api.github.com") && vercelJson.includes("script.google.com"), 'GitHub API and Google Apps Script permitted in vercel.json connect-src');
 assert(htaccess.includes("Strict-Transport-Security"), 'HSTS set in .htaccess');
 assert(headersFile.includes("Strict-Transport-Security"), 'HSTS set in _headers');
 assert(nginxConf.includes("Strict-Transport-Security"), 'HSTS set in nginx.conf');
@@ -108,14 +112,20 @@ assert(vercelJson.includes("Strict-Transport-Security"), 'HSTS set in vercel.jso
 // Defense-in-depth: HTML CSP meta tag across all HTML pages
 const htmlFiles = ['index.html', 'macsentinel.html', 'dashboard.html', 'privacy-policy.html', 'terms.html', 'security.html'];
 let allHaveCsp = true;
+let allHaveConnectApis = true;
 for (const hf of htmlFiles) {
   const content = fs.readFileSync(path.join(ROOT, hf), 'utf8');
   if (!content.includes('http-equiv="Content-Security-Policy"')) {
     allHaveCsp = false;
     console.error(`Missing CSP meta tag in ${hf}`);
   }
+  if (!content.includes('api.github.com') || !content.includes('script.google.com')) {
+    allHaveConnectApis = false;
+    console.error(`Missing API connect-src in ${hf}`);
+  }
 }
 assert(allHaveCsp, 'All 6 website HTML pages have defense-in-depth CSP <meta> tags');
+assert(allHaveConnectApis, 'All 6 website HTML pages permit GitHub API and Google Apps Script in connect-src');
 
 // ============================================================================
 // 6. MACSENTINEL STAR PRODUCT & DISTRIBUTION VERIFICATION
@@ -445,6 +455,21 @@ assert(workstationJs.includes("'keyword'"), 'Workstation controller includes key
 assert(workstationJs.includes("'meta'"), 'Workstation controller includes meta tool');
 assert(workstationJs.includes("'m': 'meta'"), 'Workstation controller includes ⌘M shortcut for Meta Tag Studio');
 assert(workstationJs.includes("'s': 'macsentinel'"), 'Workstation controller includes ⌘S shortcut for MacSentinel');
+
+// ============================================================================
+// 13. CROSS-PLATFORM RUNTIMES, OFFLINE SERIALIZATION & ASSET INTEGRITY
+// ============================================================================
+console.log('\n--- 13. Cross-Platform Runtimes, Offline Serialization & Asset Integrity ---');
+assert(fs.existsSync(path.join(ROOT, 'FullstopSuite/resources/FullstopSuite.icns')), 'FullstopSuite.icns icon exists in local resources directory');
+
+const buildPackagesPy = fs.readFileSync(path.join(ROOT, 'scripts/build-desktop-packages.py'), 'utf8');
+assert(buildPackagesPy.includes('Edge\\\\Application\\\\msedge.exe'), 'Windows launcher probes standard Microsoft Edge path');
+assert(buildPackagesPy.includes('Chrome\\\\Application\\\\chrome.exe'), 'Windows launcher probes standard Google Chrome path');
+assert(buildPackagesPy.includes('google-chrome-stable'), 'Linux launcher includes google-chrome-stable for Ubuntu/Debian');
+assert(buildPackagesPy.includes('install-linux.sh'), 'Linux package includes automated desktop integration script');
+
+assert(toolsJs.includes("id === 'standalone-body'") || toolsJs.includes("standalone-body"), 'tools.js targets standalone-body in DOM lookups');
+assert(toolsJs.includes("exportOfflineTool()"), 'exportOfflineTool stub is preserved in exported offline tool engine');
 
 // ============================================================================
 // FINAL SUMMARY

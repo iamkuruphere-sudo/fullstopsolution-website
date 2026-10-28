@@ -168,23 +168,60 @@ def create_windows_package():
 setlocal enabledelayedexpansion
 title Fullstop Suite Desktop Workstation
 set "DIR=%~dp0"
-set "TARGET=file:///%DIR%app/index.html"
+set "TARGET=%DIR%app\\index.html"
 
 echo Starting Fullstop Suite Desktop Workstation...
 
+rem 1. Check PATH for msedge
 where msedge >nul 2>&1
 if %ERRORLEVEL% EQU 0 (
     start "" msedge --app="%TARGET%"
     exit /b 0
 )
 
+rem 2. Check standard Microsoft Edge installation locations
+if exist "%ProgramFiles(x86)%\\Microsoft\\Edge\\Application\\msedge.exe" (
+    start "" "%ProgramFiles(x86)%\\Microsoft\\Edge\\Application\\msedge.exe" --app="%TARGET%"
+    exit /b 0
+)
+if exist "%ProgramFiles%\\Microsoft\\Edge\\Application\\msedge.exe" (
+    start "" "%ProgramFiles%\\Microsoft\\Edge\\Application\\msedge.exe" --app="%TARGET%"
+    exit /b 0
+)
+if exist "%LocalAppData%\\Microsoft\\Edge\\Application\\msedge.exe" (
+    start "" "%LocalAppData%\\Microsoft\\Edge\\Application\\msedge.exe" --app="%TARGET%"
+    exit /b 0
+)
+
+rem 3. Check PATH for chrome
 where chrome >nul 2>&1
 if %ERRORLEVEL% EQU 0 (
     start "" chrome --app="%TARGET%"
     exit /b 0
 )
 
-start "" "%DIR%app\\index.html"
+rem 4. Check standard Google Chrome installation locations
+if exist "%ProgramFiles%\\Google\\Chrome\\Application\\chrome.exe" (
+    start "" "%ProgramFiles%\\Google\\Chrome\\Application\\chrome.exe" --app="%TARGET%"
+    exit /b 0
+)
+if exist "%ProgramFiles(x86)%\\Google\\Chrome\\Application\\chrome.exe" (
+    start "" "%ProgramFiles(x86)%\\Google\\Chrome\\Application\\chrome.exe" --app="%TARGET%"
+    exit /b 0
+)
+if exist "%LocalAppData%\\Google\\Chrome\\Application\\chrome.exe" (
+    start "" "%LocalAppData%\\Google\\Chrome\\Application\\chrome.exe" --app="%TARGET%"
+    exit /b 0
+)
+
+rem 5. Check Brave browser
+if exist "%ProgramFiles%\\BraveSoftware\\Brave-Browser\\Application\\brave.exe" (
+    start "" "%ProgramFiles%\\BraveSoftware\\Brave-Browser\\Application\\brave.exe" --app="%TARGET%"
+    exit /b 0
+)
+
+rem 6. Fallback to default browser
+start "" "%TARGET%"
 exit /b 0
 """
         z.writestr("Fullstop Suite/Launch Fullstop Suite.bat", launcher_bat)
@@ -228,11 +265,11 @@ def create_linux_package():
             ti.mode = mode
             tar.addfile(ti, io.BytesIO(content.encode("utf-8")))
 
-        launcher_sh = """#!/bin/bash
+        launcher_sh = """#!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 TARGET="file://$DIR/app/index.html"
 
-for BROWSER in google-chrome chromium-browser chromium brave-browser microsoft-edge; do
+for BROWSER in google-chrome google-chrome-stable chromium-browser chromium brave-browser microsoft-edge; do
   if command -v "$BROWSER" >/dev/null 2>&1; then
     "$BROWSER" --app="$TARGET" >/dev/null 2>&1 &
     exit 0
@@ -243,21 +280,77 @@ if command -v xdg-open >/dev/null 2>&1; then
     xdg-open "$TARGET" >/dev/null 2>&1 &
 elif command -v sensible-browser >/dev/null 2>&1; then
     sensible-browser "$TARGET" >/dev/null 2>&1 &
+elif command -v firefox >/dev/null 2>&1; then
+    firefox "$TARGET" >/dev/null 2>&1 &
 else
     echo "Fullstop Suite: Please open $TARGET in your browser."
 fi
 """
         add_file_content("fullstop-suite/fullstop-suite.sh", launcher_sh, mode=0o755)
 
+        install_sh = """#!/usr/bin/env bash
+# Fullstop Suite — Automated Linux Desktop Integration Script
+set -euo pipefail
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+echo "================================================================="
+echo " Installing Fullstop Suite to ~/.local/share/applications"
+echo "================================================================="
+
+APP_DIR="$HOME/.local/share/fullstop-suite"
+ICON_DIR="$HOME/.local/share/icons/hicolor/256x256/apps"
+DESKTOP_DIR="$HOME/.local/share/applications"
+
+mkdir -p "$APP_DIR" "$ICON_DIR" "$DESKTOP_DIR"
+
+# Copy workstation assets
+cp -R "$DIR/app" "$APP_DIR/"
+cp "$DIR/fullstop-suite.sh" "$APP_DIR/"
+chmod +x "$APP_DIR/fullstop-suite.sh"
+
+# Install icon
+if [ -f "$DIR/app/assets/images/logo.png" ]; then
+    cp "$DIR/app/assets/images/logo.png" "$ICON_DIR/fullstop-suite.png"
+fi
+
+# Write desktop entry with absolute paths
+cat << EOF > "$DESKTOP_DIR/fullstop-suite.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Fullstop Suite
+GenericName=Offline Toolkit
+Comment=Zero-Knowledge Offline Desktop Workstation
+Exec=$APP_DIR/fullstop-suite.sh
+Icon=fullstop-suite
+Terminal=false
+Categories=Utility;Development;Security;
+StartupNotify=true
+EOF
+
+chmod +x "$DESKTOP_DIR/fullstop-suite.desktop"
+
+if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database "$DESKTOP_DIR" 2>/dev/null || true
+fi
+
+echo "✓ Fullstop Suite successfully integrated into your application launcher!"
+echo "Launching Fullstop Suite..."
+"$APP_DIR/fullstop-suite.sh"
+"""
+        add_file_content("fullstop-suite/install-linux.sh", install_sh, mode=0o755)
+
         desktop_entry = """[Desktop Entry]
 Version=1.0
 Type=Application
 Name=Fullstop Suite
+GenericName=Offline Toolkit
 Comment=Zero-Knowledge Offline Desktop Workstation
 Exec=bash -c "$(dirname "%k")/fullstop-suite.sh"
-Icon=utilities-terminal
+Icon=fullstop-suite
 Terminal=false
 Categories=Utility;Development;Security;
+StartupNotify=true
 """
         add_file_content("fullstop-suite/fullstop-suite.desktop", desktop_entry, mode=0o644)
 
@@ -268,8 +361,13 @@ Security Architecture: 100% Client-Side Memory, Zero Telemetry
 ======================================================================
 
 QUICK START:
-1. Make launcher executable: chmod +x fullstop-suite.sh
-2. Run ./fullstop-suite.sh
+Option 1 (Automated Desktop Integration):
+  chmod +x install-linux.sh
+  ./install-linux.sh
+
+Option 2 (Standalone Portable):
+  chmod +x fullstop-suite.sh
+  ./fullstop-suite.sh
 
 HOW TO VERIFY SIGNATURE INTEGRITY:
 Run in terminal:

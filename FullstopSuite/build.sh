@@ -65,7 +65,9 @@ EOF
 cp "$BUILD_DIR/FullstopSuite" "$APP_DIR/Contents/MacOS/FullstopSuite"
 chmod +x "$APP_DIR/Contents/MacOS/FullstopSuite"
 
-if [ -f "/Applications/Fullstop Suite.app/Contents/Resources/FullstopSuite.icns" ]; then
+if [ -f "$SCRIPT_DIR/resources/FullstopSuite.icns" ]; then
+    cp "$SCRIPT_DIR/resources/FullstopSuite.icns" "$APP_DIR/Contents/Resources/FullstopSuite.icns"
+elif [ -f "/Applications/Fullstop Suite.app/Contents/Resources/FullstopSuite.icns" ]; then
     cp "/Applications/Fullstop Suite.app/Contents/Resources/FullstopSuite.icns" "$APP_DIR/Contents/Resources/FullstopSuite.icns"
 fi
 

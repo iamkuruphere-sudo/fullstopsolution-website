@@ -47,7 +47,7 @@ const ToolEngine = {
 
   // Export current tool as a 100% standalone single-file HTML application
   exportOfflineTool(toolKey, toolTitle) {
-    const modalBody = document.getElementById('tool-modal-body') || document.getElementById('ws-canvas');
+    const modalBody = document.getElementById('tool-modal-body') || document.getElementById('ws-canvas') || document.getElementById('standalone-body');
     const toolContent = modalBody ? modalBody.innerHTML : '';
     
     // Serialize ToolEngine methods so the exported tool is truly self-contained and operates 100% offline
@@ -55,9 +55,16 @@ const ToolEngine = {
     try {
       const parts = [];
       for (const [key, val] of Object.entries(this)) {
-        if (key === 'exportOfflineTool') continue;
         if (typeof val === 'function') {
-          parts.push(`  ${val.toString()}`);
+          if (key === 'exportOfflineTool') {
+            parts.push(`  exportOfflineTool() {
+    if (typeof App !== 'undefined' && App.showToast) {
+      App.showToast('You are already running the offline edition of this tool.');
+    }
+  }`);
+          } else {
+            parts.push(`  ${val.toString()}`);
+          }
         } else {
           parts.push(`  ${key}: ${JSON.stringify(val)}`);
         }
@@ -1554,7 +1561,7 @@ const ToolEngine = {
 
   resetInvoice() {
     localStorage.removeItem('fs_invoice_draft');
-    const modalBody = document.getElementById('tool-modal-body') || document.getElementById('ws-canvas');
+    const modalBody = document.getElementById('tool-modal-body') || document.getElementById('ws-canvas') || document.getElementById('standalone-body');
     if (modalBody) modalBody.innerHTML = this.renderInvoiceGenerator();
     this.calculateInvoice();
     App.showToast('Invoice reset to default.');
