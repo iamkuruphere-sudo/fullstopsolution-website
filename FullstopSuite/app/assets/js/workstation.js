@@ -273,8 +273,9 @@ const DesktopApp = {
         return;
       }
 
-      // ⌘1 - ⌘9 -> Switch tools
+      // ⌘1 - ⌘9, ⌘0, ⌘M, ⌘S -> Switch tools
       if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey) {
+        const key = e.key.toLowerCase();
         const keyMap = {
           '1': 'password',
           '2': 'hash',
@@ -285,11 +286,13 @@ const DesktopApp = {
           '7': 'invoice',
           '8': 'uuid',
           '9': 'utm',
-          '0': 'keyword'
+          '0': 'keyword',
+          'm': 'meta',
+          's': 'macsentinel'
         };
-        if (keyMap[e.key]) {
+        if (keyMap[key]) {
           e.preventDefault();
-          this.selectTool(keyMap[e.key]);
+          this.selectTool(keyMap[key]);
         }
       }
     });

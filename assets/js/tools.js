@@ -47,9 +47,26 @@ const ToolEngine = {
 
   // Export current tool as a 100% standalone single-file HTML application
   exportOfflineTool(toolKey, toolTitle) {
-    const modalBody = document.getElementById('tool-modal-body');
+    const modalBody = document.getElementById('tool-modal-body') || document.getElementById('ws-canvas');
     const toolContent = modalBody ? modalBody.innerHTML : '';
     
+    // Serialize ToolEngine methods so the exported tool is truly self-contained and operates 100% offline
+    let serializedEngine = '';
+    try {
+      const parts = [];
+      for (const [key, val] of Object.entries(this)) {
+        if (key === 'exportOfflineTool') continue;
+        if (typeof val === 'function') {
+          parts.push(`  ${val.toString()}`);
+        } else {
+          parts.push(`  ${key}: ${JSON.stringify(val)}`);
+        }
+      }
+      serializedEngine = `const ToolEngine = {\n${parts.join(',\n')}\n};\n`;
+    } catch (e) {
+      serializedEngine = '';
+    }
+
     const standaloneHtml = `<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -125,6 +142,9 @@ const ToolEngine = {
     }
     .btn-primary { background: #0284c7; color: #fff; }
     .btn-gradient { background: linear-gradient(135deg, #0284c7, #6366f1); color: #fff; }
+    .btn-outline { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff; }
+    .btn-sm { padding: 0.45rem 0.85rem; font-size: 0.825rem; }
+    .btn-xs { padding: 0.25rem 0.5rem; font-size: 0.75rem; }
     .code-output {
       background: #000;
       color: #38bdf8;
@@ -155,6 +175,51 @@ const ToolEngine = {
   <footer style="margin-top:2rem; font-size:0.8rem; color:var(--text-muted); text-align:center;">
     Fullstop Solution Offline Toolkit • Signed & Verified • Zero Cloud Connection Needed
   </footer>
+
+  <script>
+    window.App = window.App || {
+      showToast: function(m) {
+        let t = document.getElementById('offline-toast');
+        if (!t) {
+          t = document.createElement('div');
+          t.id = 'offline-toast';
+          t.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#0284c7; color:#fff; padding:10px 16px; border-radius:8px; font-weight:600; font-size:14px; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.5); transition:opacity 0.3s;';
+          document.body.appendChild(t);
+        }
+        t.textContent = m;
+        t.style.opacity = '1';
+        clearTimeout(window._toastTimer);
+        window._toastTimer = setTimeout(() => { t.style.opacity = '0'; }, 3000);
+      },
+      toast: function(m) { this.showToast(m); },
+      escapeHTML: function(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      },
+      openDesktopModal: function() {
+        window.open('https://www.fullstopsolution.in/#desktop', '_blank');
+      }
+    };
+
+    ${serializedEngine}
+
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof ToolEngine !== 'undefined') {
+        if ('${toolKey}' === 'password' && ToolEngine.generatePassword) ToolEngine.generatePassword();
+        if ('${toolKey}' === 'hash' && ToolEngine.calculateHashes) ToolEngine.calculateHashes();
+        if ('${toolKey}' === 'uuid' && ToolEngine.generateUuids) ToolEngine.generateUuids(5);
+        if ('${toolKey}' === 'gst' && ToolEngine.calculateGst) ToolEngine.calculateGst();
+        if ('${toolKey}' === 'qr' && ToolEngine.generateQr) ToolEngine.generateQr();
+        if ('${toolKey}' === 'utm' && ToolEngine.generateUtm) ToolEngine.generateUtm();
+        if ('${toolKey}' === 'meta' && ToolEngine.updateMetaPreview) ToolEngine.updateMetaPreview();
+      }
+    });
+  </script>
 </body>
 </html>`;
 
@@ -1261,6 +1326,10 @@ const ToolEngine = {
     if (!canvas) return;
     const dataUrl = canvas.toDataURL();
     const w = window.open('', '_blank');
+    if (!w) {
+      if (typeof App !== 'undefined' && App.showToast) App.showToast('Popup blocked. Please allow popups to print.');
+      return;
+    }
     w.document.write(`
       <html><head><title>Print QR Code | Fullstop Solution</title></head>
       <body style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; font-family:sans-serif;">
@@ -1485,7 +1554,7 @@ const ToolEngine = {
 
   resetInvoice() {
     localStorage.removeItem('fs_invoice_draft');
-    const modalBody = document.getElementById('tool-modal-body');
+    const modalBody = document.getElementById('tool-modal-body') || document.getElementById('ws-canvas');
     if (modalBody) modalBody.innerHTML = this.renderInvoiceGenerator();
     this.calculateInvoice();
     App.showToast('Invoice reset to default.');

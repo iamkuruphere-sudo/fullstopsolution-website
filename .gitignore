@@ -1,3 +1,4 @@
 fullstopsolution-production.zip
 .DS_Store
 node_modules/
+FullstopSuite/build/FullstopSuite_*

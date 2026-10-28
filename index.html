@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://www.paypal.com https://www.paypalobjects.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.razorpay.com https://www.paypal.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'self' https://api.razorpay.com https://checkout.razorpay.com https://www.paypal.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.razorpay.com;">
 
   <!-- Privacy-Preserving Analytics managed via assets/js/analytics.js with explicit user consent -->
   
@@ -601,7 +602,7 @@
               Native Apple Silicon build. Zero-lag memory execution with native WebCrypto acceleration and full offline suite.
             </p>
             <div id="platform-sha-mac-arm64" class="platform-checksum-box">
-              SHA-256: c5e973bb01ac7ebff338372a7dbf89e23b2652527523b2e61de53c07fba0f1b6
+              SHA-256: 350605345a839002bdf578aa97c87ec86fc8e1d318e3ef692c51bb6e94dc9b19
             </div>
             <a id="platform-dl-mac-dmg" href="downloads/mac/FullstopSuite-arm64.dmg" download class="btn btn-gradient" style="width:100%; justify-content:center; margin-bottom:0.5rem; font-weight:700;">
               ⬇️ Download DMG (Native App)
@@ -625,7 +626,7 @@
               Optimized for Intel MacBooks & iMacs. Sandboxed execution with zero internet access required.
             </p>
             <div id="platform-sha-mac-x64" class="platform-checksum-box">
-              SHA-256: 7a701153f348fb7a745bc14d3aaedf079135d5c0a728e0a47f8eabd97b6b1c0c
+              SHA-256: 1fe929b7ae5933877c7dc67c3d6f409ef72f22d8e08e2fec778af96f43963dae
             </div>
             <a id="platform-dl-mac-x64" href="downloads/mac/fullstop-desktop-macos-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
               ⬇️ Download for Mac Intel (.zip)
@@ -646,7 +647,7 @@
               Zero-install portable distribution for Windows. Launch in 1 click with native WebView sandboxing.
             </p>
             <div id="platform-sha-windows" class="platform-checksum-box">
-              SHA-256: dbf1f66d2cf1aa4f4f0913c3a929a6b034faed32c62be33121d4cf7e179de09f
+              SHA-256: 2a345898d835c0d2b565c506ef209c02f544878e203e75fa32cfb2d7ca4c01f4
             </div>
             <a id="platform-dl-windows" href="downloads/windows/fullstop-desktop-windows-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
               ⬇️ Download for Windows x64 (.zip)
@@ -667,7 +668,7 @@
               Universal desktop bundle with desktop launcher entry, XDG compliance, and standalone shell execution.
             </p>
             <div id="platform-sha-linux" class="platform-checksum-box">
-              SHA-256: 126294e11602a7d451b9bd4a8e1cd4cc220231cdf798a6a5896b4a4a517664c9
+              SHA-256: f6000086baf26338ad9bd1eb03863a504ea802728992475c8505c96acc91ba59
             </div>
             <a id="platform-dl-linux" href="downloads/linux/fullstop-desktop-linux-x86_64.tar.gz" download class="btn btn-primary" style="width:100%; justify-content:center;">
               ⬇️ Download for Linux (.tar.gz)
@@ -1178,8 +1179,8 @@
             <p class="platform-card-specs">
               Native Apple Silicon build. Zero-lag memory execution with native WebCrypto acceleration.
             </p>
-            <div class="platform-checksum-box">
-              SHA-256: c5e973bb01ac7ebff338372a7dbf89e23b2652527523b2e61de53c07fba0f1b6
+            <div id="modal-sha-mac-arm64" class="platform-checksum-box">
+              SHA-256: 350605345a839002bdf578aa97c87ec86fc8e1d318e3ef692c51bb6e94dc9b19
             </div>
             <a href="downloads/mac/FullstopSuite-arm64.dmg" download class="btn btn-gradient" style="width:100%; justify-content:center; margin-bottom:0.5rem; font-weight:700;">
               ⬇️ Download DMG (Native App)
@@ -1202,8 +1203,8 @@
             <p class="platform-card-specs">
               Optimized for Intel MacBooks & iMacs. Sandboxed execution with zero internet required.
             </p>
-            <div class="platform-checksum-box">
-              SHA-256: 7a701153f348fb7a745bc14d3aaedf079135d5c0a728e0a47f8eabd97b6b1c0c
+            <div id="modal-sha-mac-x64" class="platform-checksum-box">
+              SHA-256: 1fe929b7ae5933877c7dc67c3d6f409ef72f22d8e08e2fec778af96f43963dae
             </div>
             <a href="downloads/mac/fullstop-desktop-macos-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
               ⬇️ Download Mac Intel (.zip)
@@ -1223,8 +1224,8 @@
             <p class="platform-card-specs">
               Zero-install portable distribution for Windows. Launch in 1 click with native WebView sandboxing.
             </p>
-            <div class="platform-checksum-box">
-              SHA-256: dbf1f66d2cf1aa4f4f0913c3a929a6b034faed32c62be33121d4cf7e179de09f
+            <div id="modal-sha-windows" class="platform-checksum-box">
+              SHA-256: 2a345898d835c0d2b565c506ef209c02f544878e203e75fa32cfb2d7ca4c01f4
             </div>
             <a href="downloads/windows/fullstop-desktop-windows-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
               ⬇️ Download Windows (.zip)
@@ -1244,8 +1245,8 @@
             <p class="platform-card-specs">
               Universal desktop bundle with desktop launcher entry, XDG compliance, and standalone shell execution.
             </p>
-            <div class="platform-checksum-box">
-              SHA-256: 126294e11602a7d451b9bd4a8e1cd4cc220231cdf798a6a5896b4a4a517664c9
+            <div id="modal-sha-linux" class="platform-checksum-box">
+              SHA-256: f6000086baf26338ad9bd1eb03863a504ea802728992475c8505c96acc91ba59
             </div>
             <a href="downloads/linux/fullstop-desktop-linux-x86_64.tar.gz" download class="btn btn-primary" style="width:100%; justify-content:center;">
               ⬇️ Download Linux (.tar.gz)

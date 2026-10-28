@@ -24,6 +24,7 @@ clang -framework Cocoa -framework WebKit -target x86_64-apple-macos10.15 -O2 \
 echo "[3/4] Creating Universal 2 binary (Apple Silicon + Intel)..."
 lipo -create -output "$BUILD_DIR/FullstopSuite" \
   "$BUILD_DIR/FullstopSuite_arm64" "$BUILD_DIR/FullstopSuite_x64"
+rm -f "$BUILD_DIR/FullstopSuite_arm64" "$BUILD_DIR/FullstopSuite_x64"
 
 # 4. Assemble .app Bundle
 echo "[4/4] Assembling and signing Fullstop Suite.app..."
