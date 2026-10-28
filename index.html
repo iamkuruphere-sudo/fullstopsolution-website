@@ -664,14 +664,15 @@
         <!-- Verification Banner & Checksums -->
         <div style="background:rgba(15,23,42,0.85); border:1px solid var(--border-color); border-radius:14px; padding:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem;">
           <div style="min-width:0; max-width:100%;">
-            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.45rem; flex-wrap:wrap;">
               <span style="font-size:1.2rem;">🛡️</span>
-              <strong style="color:#ffffff;">Official Cryptographic Release Signatures</strong>
+              <strong style="color:var(--text-primary);">Official Cryptographic Release Signatures</strong>
               <span class="badge badge-success" style="font-size:0.7rem;">GPG Signed</span>
             </div>
-            <p style="margin:0; font-size:0.85rem; color:var(--text-secondary); overflow-wrap:anywhere; word-break:break-word;">
-              Key ID: <code>0x9E7F4B2C7D10A843</code> • Fingerprint: <code style="word-break:break-all; overflow-wrap:anywhere;">F509 C8B2 4E7A 91D3 2C84 38E1 9E7F 4B2C 7D10 A843</code>
-            </p>
+            <div style="margin:0; font-size:0.825rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:0.35rem;">
+              <div>Key ID: <code style="color:var(--accent-neon-cyan); background:#020617; padding:2px 6px; border-radius:4px;">0x9E7F4B2C7D10A843</code></div>
+              <div>Fingerprint: <code style="word-break:break-all; overflow-wrap:anywhere; color:var(--accent-neon-cyan); background:#020617; padding:2px 6px; border-radius:4px; font-size:0.75rem;">F509 C8B2 4E7A 91D3 2C84 38E1 9E7F 4B2C 7D10 A843</code></div>
+            </div>
           </div>
           <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
             <a href="downloads/SHA256SUMS.txt" target="_blank" class="btn btn-outline btn-sm">📄 View SHA256SUMS.txt</a>
@@ -1226,7 +1227,6 @@
             <p class="platform-card-specs">
               Universal desktop bundle with desktop launcher entry, XDG compliance, and standalone shell execution.
             </p>
-            </p>
             <div class="platform-checksum-box">
               SHA-256: aeb9a2f6c6cd2c05ed8257b2b4909445c5f6ae9b66ca83554daf88d40d2d1f77
             </div>
@@ -1265,7 +1265,7 @@
           Verify that your downloaded desktop package has not been tampered with and was compiled directly by the official Fullstop Solution release pipeline.
         </p>
 
-        <h4 style="color:#ffffff; font-size:0.95rem; margin:1rem 0 0.5rem 0;">1. macOS & Linux Terminal Verification</h4>
+        <h4 style="color:var(--text-primary); font-size:0.95rem; margin:1rem 0 0.5rem 0;">1. macOS & Linux Terminal Verification</h4>
         <div class="verify-command-box">
           shasum -a 256 fullstop-desktop-macos-arm64.zip
         </div>
@@ -1273,12 +1273,12 @@
           The output hash must exactly match the hash published in <a href="downloads/SHA256SUMS.txt" target="_blank" style="color:var(--accent-primary);">SHA256SUMS.txt</a>.
         </p>
 
-        <h4 style="color:#ffffff; font-size:0.95rem; margin:1rem 0 0.5rem 0;">2. Windows PowerShell Verification</h4>
+        <h4 style="color:var(--text-primary); font-size:0.95rem; margin:1rem 0 0.5rem 0;">2. Windows PowerShell Verification</h4>
         <div class="verify-command-box">
           Get-FileHash fullstop-desktop-windows-x64.zip -Algorithm SHA256
         </div>
 
-        <h4 style="color:#ffffff; font-size:0.95rem; margin:1rem 0 0.5rem 0;">3. GPG / PGP Digital Signature Check</h4>
+        <h4 style="color:var(--text-primary); font-size:0.95rem; margin:1rem 0 0.5rem 0;">3. GPG / PGP Digital Signature Check</h4>
         <div class="verify-command-box">
           gpg --verify downloads/FULLSTOP-SIGNATURE.asc
         </div>
