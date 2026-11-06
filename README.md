@@ -1,14 +1,15 @@
-# Fullstop Solution — Digital Toolkit & High-Value Commerce Platform
+# Fullstop Solution — 100% Free Digital Toolkit & Open Access Platform
 **Official Domain:** [www.fullstopsolution.in](https://www.fullstopsolution.in)  
 **Status:** Production Ready & Ready to Publish  
 
 ---
 
 ## 🌟 Executive Overview
-Fullstop Solution is a high-performance, SEO-engineered digital toolkit and digital commerce platform. It solves two critical challenges:
-1. **Traffic Attraction Engine:** 11+ daily high-utility tools (Meta Tag Generator, Password Generator, JSON Formatter, QR Code Maker, Invoice Generator, GST Calculator, UTM Builder, etc.) that bring recurring organic search traffic every single day.
-2. **High-Value Monetization:** Turnkey digital products store offering Notion Business OS templates, SEO & Growth directories, and Developer Micro-SaaS boilerplates with multi-currency checkout (₹ INR / $ USD) and instant license key fulfillment.
-3. **Hardened Security & Zero-Knowledge Architecture:** 100% of tool computations run in the user's browser via native Web Crypto APIs. Zero server logging, strict Content Security Policy (CSP), HSTS, and XSS sanitization.
+Fullstop Solution is a high-performance, SEO-engineered digital toolkit and open software platform:
+1. **Traffic Attraction Engine:** 11+ daily high-utility tools (Meta Tag Generator, Password Generator, JSON Formatter, QR Code Maker, Invoice Generator, GST Calculator, UTM Builder, etc.) running 100% in browser RAM.
+2. **Native Workstation Software & MacSentinel:** Standalone, privacy-preserving desktop applications for macOS (Apple Silicon & Intel), Windows, and Linux.
+3. **100% Free Toolkits & Frameworks:** Zero paywalls. Turnkey Notion Business OS templates, SEO & Growth directories, and Developer Micro-SaaS boilerplates available for instant free direct download.
+4. **Hardened Security & Zero-Knowledge Architecture:** 100% of tool computations run in the user's browser via native Web Crypto APIs. Zero server logging, strict Content Security Policy (CSP), HSTS, and XSS sanitization.
 
 ---
 
@@ -78,23 +79,12 @@ Then open your browser and navigate to:
 
 ---
 
-## 💳 Payment Gateway Configuration (Razorpay & PayPal)
+## 🎁 Free Open Access Architecture
 
-In `assets/js/checkout.js`:
-- **Razorpay (India - UPI, Cards, Netbanking):**
-  Add your live Razorpay Key ID either via the on-screen Gateway Settings box or in code:
-  ```javascript
-  const rzp = new Razorpay({
-    key: "YOUR_RAZORPAY_KEY_ID", // e.g. rzp_live_xxxxxxxx
-    amount: priceInPaise,
-    currency: "INR",
-    name: "Fullstop Solution"
-  });
-  ```
-- **PayPal (International Buyers):**
-  Set your PayPal Merchant email (defaults to `contact@fullstopsolution.in`).
-
-- **Instant Sandbox Mode:** The site comes with a built-in interactive checkout simulation that validates user input, applies promotional coupon codes (e.g. `LAUNCH50` for 50% off), generates unique license keys (`FS-XXXX-XXXX`), and provides immediate digital package downloads!
+All digital toolkits, developer boilerplates, and desktop applications on Fullstop Solution are 100% free with zero paywalls:
+- **Instant Direct Downloads:** Users can download `.zip` and `.dmg` archives directly from product and platform cards without accounts or payments.
+- **Open Commercial Licensing:** All frameworks, templates, and boilerplates include commercial rights for unlimited personal and client projects.
+- **Zero Financial Footprint:** No payment credentials, credit cards, or banking information are ever collected or processed.
 
 ---
 

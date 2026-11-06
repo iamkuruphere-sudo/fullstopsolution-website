@@ -21,45 +21,8 @@ const Commerce = {
   showLockedModal(productId) {
     const prods = this.getProducts();
     const product = prods[productId] || this.products[productId];
-    const modalBody = document.getElementById('checkout-modal-body');
-    if (!modalBody) {
-      if (typeof App !== 'undefined') {
-        App.toast('🔒 Sales are temporarily locked while payment gateway verification is in progress.');
-      }
-      return;
-    }
-
-    modalBody.innerHTML = `
-      <div style="text-align:center; padding:1.5rem 0.5rem;">
-        <div style="width:68px; height:68px; background:rgba(245,158,11,0.15); color:#f59e0b; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:2rem; margin-bottom:1rem; border:1px solid rgba(245,158,11,0.3);">
-          🔒
-        </div>
-        <h3 style="font-size:1.35rem; font-weight:800; margin-bottom:0.4rem; color:var(--text-primary);">
-          Paid Services Temporarily Locked
-        </h3>
-        <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.5; margin-bottom:1.5rem; max-width:420px; margin-left:auto; margin-right:auto;">
-          Payment gateway verification is currently underway for <strong>${product ? product.name : 'our toolkits'}</strong>. Online purchases are temporarily suspended to protect customer funds until full merchant KYC activation.
-        </p>
-
-        <div style="background:var(--bg-primary); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem; margin-bottom:1.5rem; text-align:left;">
-          <div style="font-size:0.8rem; font-weight:700; color:#34d399; margin-bottom:0.25rem;">✓ 100% Free Daily Tools Available</div>
-          <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.4;">
-            All 11 daily in-browser tools (Meta Tag Generator, Password Generator, JSON Validator, Invoice Maker, etc.) and free downloads remain completely active and free to use with zero caps.
-          </div>
-        </div>
-
-        <div style="display:flex; gap:0.5rem; justify-content:center;">
-          <button class="btn btn-primary" onclick="App.closeModals(); window.location.hash='tools';">
-            ⚡ Explore Free Daily Tools
-          </button>
-          <button class="btn btn-outline" onclick="App.closeModals();">
-            Close Window
-          </button>
-        </div>
-      </div>
-    `;
     if (typeof App !== 'undefined') {
-      App.openModal('checkout-modal');
+      App.downloadStarterPack(productId, product ? product.name : 'Toolkit');
     }
   },
 
@@ -87,10 +50,10 @@ const Commerce = {
       id: 'business-os',
       name: 'Fullstop Ultimate Business OS',
       tagline: 'Complete operating system with Notion templates, invoice trackers, client CRM & standard operating workflows.',
-      priceINR: 1499,
-      priceUSD: 19,
-      originalINR: 4999,
-      originalUSD: 65,
+      priceINR: 0,
+      priceUSD: 0,
+      originalINR: 0,
+      originalUSD: 0,
       features: [
         'Complete Notion Workspace (Client CRM, Project Hub, Cash Flow)',
         '30+ Ready-to-Use Business Contract & Proposal Templates',
@@ -103,10 +66,10 @@ const Commerce = {
       id: 'growth-seo',
       name: 'Full-Stack Growth & SEO Mastery Toolkit',
       tagline: '500+ curated high-DA submission directories, automated SEO audit checklists & programmatic SEO blueprints.',
-      priceINR: 2499,
-      priceUSD: 29,
-      originalINR: 6999,
-      originalUSD: 89,
+      priceINR: 0,
+      priceUSD: 0,
+      originalINR: 0,
+      originalUSD: 0,
       features: [
         '500+ High-Authority Directory Submission List (with DR & Dofollow tags)',
         '100-Point Technical & On-Page SEO Audit Checklist',
@@ -119,10 +82,10 @@ const Commerce = {
       id: 'dev-boilerplate',
       name: 'Developer Pro Micro-SaaS Boilerplate',
       tagline: 'Production-ready Next.js / Tailwind / Auth / Razorpay & UPI integration with lifetime updates.',
-      priceINR: 3999,
-      priceUSD: 49,
-      originalINR: 9999,
-      originalUSD: 129,
+      priceINR: 0,
+      priceUSD: 0,
+      originalINR: 0,
+      originalUSD: 0,
       features: [
         'Production Next.js 15 App Router Architecture',
         'Pre-configured Razorpay & UPI Webhook Workflows',
@@ -135,10 +98,10 @@ const Commerce = {
       id: 'lifetime-bundle',
       name: 'The All-Access Fullstop Lifetime Bundle',
       tagline: 'Includes every current toolkit and all future products released on fullstopsolution.in forever.',
-      priceINR: 6999,
-      priceUSD: 79,
-      originalINR: 19999,
-      originalUSD: 249,
+      priceINR: 0,
+      priceUSD: 0,
+      originalINR: 0,
+      originalUSD: 0,
       features: [
         'Everything in Ultimate Business OS',
         'Everything in Full-Stack Growth & SEO Mastery Toolkit',
@@ -167,8 +130,6 @@ const Commerce = {
   },
 
   updateProductPricingDisplays() {
-    const isINR = this.currency === 'INR';
-    const symbol = isINR ? '₹' : '$';
     const prods = this.getProducts();
 
     Object.values(prods).forEach(p => {
@@ -178,38 +139,21 @@ const Commerce = {
         cardEl.style.display = p.status === 'unlisted' ? 'none' : '';
       }
 
-      const price = isINR ? (p.priceINR || 0).toLocaleString() : p.priceUSD;
-      const orig = isINR ? (p.originalINR || 0).toLocaleString() : p.originalUSD;
-
       const priceEl = document.getElementById(`price-${p.id}`);
-      if (priceEl) priceEl.innerHTML = `<span class="product-price-currency">${symbol}</span>${price}`;
+      if (priceEl) priceEl.innerHTML = `<span class="badge badge-success">FREE</span>`;
 
       const origEl = document.getElementById(`orig-${p.id}`);
-      if (origEl) origEl.textContent = `${symbol}${orig}`;
+      if (origEl) origEl.textContent = '';
     });
   },
 
   openCheckout(productId) {
-    if (this.isSalesLocked()) {
-      this.showLockedModal(productId);
-      return;
-    }
-
     const prods = this.getProducts();
     const product = prods[productId] || this.products[productId];
-    if (!product) return;
-
-    this.selectedProduct = product;
-    this.activeDiscount = 0;
-    this.activeCouponCode = '';
-
-    // Track checkout initiation in Analytics
-    if (typeof Analytics !== 'undefined') {
-      Analytics.trackCheckoutStart(product);
+    if (typeof App !== 'undefined') {
+      App.downloadStarterPack(productId, product ? product.name : 'Toolkit');
     }
-
-    const isINR = this.currency === 'INR';
-    const symbol = isINR ? '₹' : '$';
+  },
     const price = isINR ? product.priceINR : product.priceUSD;
     const rzpKey = this.getRazorpayKey();
 

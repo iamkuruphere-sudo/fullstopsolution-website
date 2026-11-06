@@ -497,7 +497,7 @@ Visit www.fullstopsolution.in for daily interactive tools and premium toolkits.`
     this.openModal('signature-modal');
   },
 
-  // Direct Starter Pack Downloads for Paid Products
+  // Direct Free Toolkit Downloads
   downloadStarterPack(productId, productName) {
     const files = {
       'business-os': 'downloads/starter-packs/fullstop-business-os-starter.zip',
@@ -520,12 +520,12 @@ Visit www.fullstopsolution.in for daily interactive tools and premium toolkits.`
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         productId: productId,
-        productName: productName || 'Starter Pack',
+        productName: productName || 'Toolkit',
         timestamp: new Date().toISOString()
       })
     }).catch(() => {});
 
-    this.toast(`📥 Starting verified download: ${productName || 'Starter Pack'}`);
+    this.toast(`📥 Starting free verified download: ${productName || 'Toolkit'}`);
   },
 
   // Security Helper: Safe string escaping
