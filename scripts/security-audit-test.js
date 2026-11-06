@@ -509,10 +509,23 @@ for (const region of requiredRegions) {
 }
 assert(activityMapJs.includes('Bengaluru, India'), 'Activity map features Bengaluru, India hub');
 assert(activityMapJs.includes('London, United Kingdom'), 'Activity map features London, UK hub');
+assert(activityMapJs.includes('Paris, France'), 'Activity map features Paris, France hub');
 assert(activityMapJs.includes('San Francisco, USA'), 'Activity map features San Francisco hub');
 assert(activityMapJs.includes('Sydney, Australia'), 'Activity map features Sydney, Australia hub');
 assert(activityMapJs.includes('Cape Town, South Africa'), 'Activity map features Cape Town, South Africa hub');
 assert(activityMapJs.includes('São Paulo, Brazil'), 'Activity map features São Paulo, Brazil hub');
+
+const nodeMatches = activityMapJs.match(/id:\s*'[a-z0-9_-]+',\s*name:/g);
+assert(nodeMatches && nodeMatches.length === 22, `Activity map contains exactly 22 global privacy hubs (found ${nodeMatches ? nodeMatches.length : 0})`);
+
+// Manifest.json OLED Palette Check
+const manifestJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.json'), 'utf8'));
+assert(manifestJson.background_color === '#000000', 'manifest.json background_color set to rich black #000000');
+assert(manifestJson.theme_color === '#000000', 'manifest.json theme_color set to rich black #000000');
+
+// Checkout.js Syntax and Integrity Check
+assert(!checkoutJs.includes('const price = isINR'), 'checkout.js has zero dangling unclosed syntax blocks');
+assert(checkoutJs.includes('openCheckout(productId)'), 'checkout.js includes valid openCheckout method');
 
 // ============================================================================
 // FINAL SUMMARY

@@ -281,7 +281,7 @@
               Audits low-level macOS security boundaries including <strong>System Integrity Protection (SIP)</strong>, <strong>Gatekeeper policy</strong>, 
               <strong>FileVault volume encryption</strong>, Secure Boot telemetry, and Mobile Device Management (MDM) enrollment profiles.
             </p>
-            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid rgba(255,255,255,0.08); padding:0.5rem; border-radius:6px;">
               Checks: csrutil • spctl • fdesetup • enrollment
             </div>
           </div>
@@ -294,7 +294,7 @@
               Catalogs all active <strong>TCP listeners</strong>, established socket connection tables, system proxy configurations, 
               Application Firewall state, and active network sharing services (SMB, AFP, WebDAV).
             </p>
-            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid rgba(255,255,255,0.08); padding:0.5rem; border-radius:6px;">
               Checks: TCP socket table • proxy • firewall • shares
             </div>
           </div>
@@ -307,7 +307,7 @@
               Inventories primary macOS autostart locations: <strong>System &amp; User LaunchDaemons</strong>, <strong>LaunchAgents</strong>, 
               login background items, system extensions, and managed configuration profiles.
             </p>
-            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid rgba(255,255,255,0.08); padding:0.5rem; border-radius:6px;">
               Checks: /Library/LaunchDaemons • LaunchAgents • extensions
             </div>
           </div>
@@ -320,7 +320,7 @@
               Inspects conventional Microsoft Office startup and template directories where macro or add-in autoloading can occur, 
               and verifies application signature validity and quarantine attributes.
             </p>
-            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid rgba(255,255,255,0.08); padding:0.5rem; border-radius:6px;">
               Checks: Office startup folders • code signing • quarantine
             </div>
           </div>
@@ -333,7 +333,7 @@
               Interrogates the native <strong>macOS Unified Logging system (`log show`)</strong> for recent security-relevant events, 
               privacy permission (TCC) changes, software update activity, and installer package history.
             </p>
-            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid rgba(255,255,255,0.08); padding:0.5rem; border-radius:6px;">
               Checks: log show • TCC updates • install.log • signatures
             </div>
           </div>
@@ -346,7 +346,7 @@
               Integrated with <strong>CocoaLumberjack</strong> for daily rotating local log files (retained up to 7 days). 
               Provides explicit, user-triggered JSON report export for external auditing or compliance records.
             </p>
-            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#020617; padding:0.5rem; border-radius:6px;">
+            <div style="font-family:var(--font-mono); font-size:0.725rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid rgba(255,255,255,0.08); padding:0.5rem; border-radius:6px;">
               Checks: DDFileLogger • daily rotation • explicit JSON export
             </div>
           </div>
@@ -375,7 +375,7 @@
             <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem;">
               Open Terminal and verify that the downloaded disk image matches the official release hash:
             </p>
-            <pre style="background:#020617; padding:0.85rem; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-neon-cyan); overflow-x:auto;">shasum -a 256 ~/Downloads/MacSentinel-arm64.dmg</pre>
+            <pre style="background:#000000; border:1px solid rgba(255,255,255,0.08); padding:0.85rem; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-neon-cyan); overflow-x:auto;">shasum -a 256 ~/Downloads/MacSentinel-arm64.dmg</pre>
             <p style="font-size:0.775rem; color:var(--text-muted); margin-top:0.5rem;">
               Expected output: <code>060f124de7d888b03550b42c8b011b3e8884e44dbe0acd49946252e4ff0016d3</code>
             </p>
@@ -403,7 +403,7 @@
             <ul style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; padding-left:1.25rem;">
               <li>Right-click <strong>MacSentinel.app</strong> in Finder and select <strong>Open</strong>, then click <strong>Open Anyway</strong>.</li>
               <li>Or remove the download quarantine flag via Terminal:
-                <pre style="background:#020617; padding:0.6rem; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-neon-cyan); margin-top:0.4rem; overflow-x:auto;">xattr -dr com.apple.quarantine /Applications/MacSentinel.app</pre>
+                <pre style="background:#000000; border:1px solid rgba(255,255,255,0.08); padding:0.6rem; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-neon-cyan); margin-top:0.4rem; overflow-x:auto;">xattr -dr com.apple.quarantine /Applications/MacSentinel.app</pre>
               </li>
             </ul>
           </div>

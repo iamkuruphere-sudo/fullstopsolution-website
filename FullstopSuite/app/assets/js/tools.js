@@ -536,7 +536,7 @@ const ToolEngine = {
             <span id="pass-entropy" style="color:var(--accent-neon-emerald); font-size:0.75rem; font-weight:700;">128 Bits • Cryptographically Unbreakable</span>
           </label>
           <div style="display:flex; gap:0.5rem;">
-            <input type="text" id="password-output" class="form-input" style="font-family:var(--font-mono); font-size:1.15rem; font-weight:700; letter-spacing:1px; color:var(--accent-neon-cyan); background:#020617;" readonly>
+            <input type="text" id="password-output" class="form-input" style="font-family:var(--font-mono); font-size:1.15rem; font-weight:700; letter-spacing:1px; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color);" readonly>
             <button class="btn btn-primary" onclick="ToolEngine.copyPassword()">Copy</button>
             <button class="btn btn-outline" onclick="ToolEngine.generatePassword()">🔄 New</button>
           </div>
@@ -1623,7 +1623,7 @@ const ToolEngine = {
             <span>SHA-256 Hash (Industry Standard)</span>
             <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyHash('sha256')">Copy</button>
           </label>
-          <input type="text" id="hash-sha256" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-neon-cyan); background:#020617;" readonly>
+          <input type="text" id="hash-sha256" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color);" readonly>
         </div>
 
         <div class="form-group">
@@ -1631,7 +1631,7 @@ const ToolEngine = {
             <span>SHA-512 Hash (High Security)</span>
             <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyHash('sha512')">Copy</button>
           </label>
-          <input type="text" id="hash-sha512" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:#a78bfa; background:#020617;" readonly>
+          <input type="text" id="hash-sha512" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:#a78bfa; background:#000000; border:1px solid var(--border-color);" readonly>
         </div>
 
         <div class="form-group">
@@ -1639,7 +1639,7 @@ const ToolEngine = {
             <span>SHA-1 Hash (Legacy Verification)</span>
             <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyHash('sha1')">Copy</button>
           </label>
-          <input type="text" id="hash-sha1" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--text-secondary); background:#020617;" readonly>
+          <input type="text" id="hash-sha1" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--text-secondary); background:#000000; border:1px solid var(--border-color);" readonly>
         </div>
       </div>
     `;
@@ -1779,7 +1779,7 @@ const ToolEngine = {
               <span>Base64 Encoded Output</span>
               <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyBase64()">Copy</button>
             </label>
-            <textarea id="base64-encoded" class="form-textarea" style="min-height:160px; font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-neon-cyan); background:#020617;" placeholder="Base64 encoded string..."></textarea>
+            <textarea id="base64-encoded" class="form-textarea" style="min-height:160px; font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color);" placeholder="Base64 encoded string..."></textarea>
           </div>
         </div>
       </div>
@@ -2185,7 +2185,7 @@ const ToolEngine = {
             <span>Generated Tracking URL</span>
             <button class="btn btn-xs btn-primary" onclick="ToolEngine.copyUtm()">Copy URL</button>
           </label>
-          <input type="text" id="utm-output" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-neon-cyan); background:#020617;" readonly>
+          <input type="text" id="utm-output" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color);" readonly>
         </div>
       </div>
     `;
@@ -2279,7 +2279,7 @@ const ToolEngine = {
             <span>Generated Identifiers</span>
             <span id="uuid-count-label" style="font-size:0.75rem; color:var(--accent-neon-emerald);">1 Identifier Ready</span>
           </label>
-          <textarea id="uuid-output" class="form-textarea" style="min-height:180px; font-family:var(--font-mono); font-size:0.9rem; color:var(--accent-neon-cyan); background:#020617;" readonly></textarea>
+          <textarea id="uuid-output" class="form-textarea" style="min-height:180px; font-family:var(--font-mono); font-size:0.9rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color);" readonly></textarea>
         </div>
       </div>
     `;

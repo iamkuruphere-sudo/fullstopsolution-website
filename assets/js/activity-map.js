@@ -22,6 +22,7 @@
 
     // Europe
     { id: 'london', name: 'London, United Kingdom', region: 'europe', lat: 51.50, lon: -0.12, x: 499.7, y: 107.0, tool: 'Invoice & Privacy Vault', flag: '🇬🇧' },
+    { id: 'paris', name: 'Paris, France', region: 'europe', lat: 48.85, lon: 2.35, x: 506.5, y: 114.3, tool: 'Passphrase Vault & Diceware', flag: '🇫🇷' },
     { id: 'frankfurt', name: 'Frankfurt, Germany', region: 'europe', lat: 50.11, lon: 8.68, x: 524.1, y: 110.8, tool: 'SHA-256 Checksum Engine', flag: '🇩🇪' },
     { id: 'zurich', name: 'Zurich, Switzerland', region: 'europe', lat: 47.37, lon: 8.54, x: 523.7, y: 118.4, tool: 'Passphrase & Key Studio', flag: '🇨🇭' },
     { id: 'amsterdam', name: 'Amsterdam, Netherlands', region: 'europe', lat: 52.37, lon: 4.90, x: 513.6, y: 104.5, tool: 'Keyword Density & Content', flag: '🇳🇱' },
@@ -102,7 +103,7 @@
           <div class="activity-metric-item">
             <span class="activity-metric-dot pulse-purple"></span>
             <div>
-              <div class="activity-metric-val">22 Hubs</div>
+              <div class="activity-metric-val">${GLOBAL_NODES.length} Hubs</div>
               <div class="activity-metric-lbl">Worldwide Privacy Nodes</div>
             </div>
           </div>
@@ -177,7 +178,7 @@
             </defs>
 
             <!-- Map Card Dark Base Layer -->
-            <rect width="1000" height="500" fill="#05070b" rx="16"/>
+            <rect class="map-base-rect" width="1000" height="500" fill="#05070b" rx="16"/>
             <rect width="1000" height="500" fill="url(#cartographicGrid)" rx="16"/>
 
             <!-- Geographic Coordinate Parallels & Meridians -->
@@ -297,8 +298,9 @@
             <g class="network-topology-arcs" fill="none" stroke="url(#cyberArcGrad)" stroke-width="1.2" opacity="0.45" stroke-dasharray="4 6">
               <!-- Transatlantic: New York <-> London -->
               <path class="cyber-arc" d="M 294.4,136.9 Q 397,80 499.7,107.0"/>
-              <!-- Euro-Asia: London <-> Frankfurt <-> Bengaluru -->
-              <path class="cyber-arc" d="M 499.7,107.0 Q 512,108 524.1,110.8"/>
+              <!-- Euro-Asia: London <-> Paris <-> Frankfurt <-> Bengaluru -->
+              <path class="cyber-arc" d="M 499.7,107.0 Q 503,111 506.5,114.3"/>
+              <path class="cyber-arc" d="M 506.5,114.3 Q 515,112 524.1,110.8"/>
               <path class="cyber-arc" d="M 524.1,110.8 Q 610,135 715.5,213.9"/>
               <!-- Indo-Pacific: Bengaluru <-> Singapore <-> Tokyo -->
               <path class="cyber-arc" d="M 715.5,213.9 Q 750,225 788.5,246.2"/>
@@ -428,8 +430,14 @@
         // Position tooltip intelligently within viewport bounds
         let left = nodeX + 15;
         let top = nodeY - 30;
-        if (left + 220 > wrapRect.width) left = nodeX - 235;
-        if (top + 140 > wrapRect.height) top = wrapRect.height - 150;
+        if (left + 230 > wrapRect.width) {
+          left = nodeX - 235;
+        }
+        if (left < 10) left = 10;
+        if (left + 230 > wrapRect.width) {
+          left = Math.max(10, (wrapRect.width - 230) / 2);
+        }
+        if (top + 150 > wrapRect.height) top = wrapRect.height - 155;
         if (top < 10) top = 10;
 
         tooltip.style.left = `${left}px`;
@@ -473,21 +481,24 @@
     const pills = document.querySelectorAll('.activity-pill');
     pills.forEach((pill) => {
       pill.addEventListener('click', () => {
-        pills.forEach((p) => {
-          p.classList.remove('active');
-          p.setAttribute('aria-selected', 'false');
-        });
-        pill.classList.add('active');
-        pill.setAttribute('aria-selected', 'true');
-
-        activeFilter = pill.getAttribute('data-region');
-        applyRegionFilter(activeFilter);
+        const region = pill.getAttribute('data-region') || 'all';
+        applyRegionFilter(region);
       });
     });
   }
 
   // Filter nodes and continents on map
   function applyRegionFilter(region) {
+    activeFilter = region;
+
+    // Synchronize tab pill UI states
+    const pills = document.querySelectorAll('.activity-pill');
+    pills.forEach((p) => {
+      const match = p.getAttribute('data-region') === region;
+      p.classList.toggle('active', match);
+      p.setAttribute('aria-selected', match ? 'true' : 'false');
+    });
+
     const nodes = document.querySelectorAll('.map-node-group');
     const continents = document.querySelectorAll('.continent-path');
 
@@ -512,6 +523,11 @@
         cont.style.stroke = 'rgba(255, 255, 255, 0.08)';
       }
     });
+
+    const arcsGroup = document.querySelector('.network-topology-arcs');
+    if (arcsGroup) {
+      arcsGroup.style.opacity = region === 'all' ? '0.45' : '0.2';
+    }
   }
 
   // Action buttons: Manual Test Ping & Pause/Resume
@@ -575,9 +591,15 @@
 
     const elapsed = Math.max(0.08, performance.now() - startTime).toFixed(2);
 
-    // Pick random node to simulate local gateway or illuminate user beacon
-    const randomNode = GLOBAL_NODES[Math.floor(Math.random() * GLOBAL_NODES.length)];
-    triggerNodePulse(randomNode.id, 'gold');
+    // Pick candidate node respecting active region filter
+    let candidates = GLOBAL_NODES;
+    if (activeFilter !== 'all') {
+      candidates = GLOBAL_NODES.filter(n => n.region === activeFilter);
+      if (candidates.length === 0) candidates = GLOBAL_NODES;
+    }
+    const targetNode = candidates[Math.floor(Math.random() * candidates.length)];
+    triggerNodePulse(targetNode.id, 'gold');
+    spawnDynamicPingWave(targetNode.x, targetNode.y);
 
     // Add entry to telemetry feed
     logActivityEvent(
@@ -605,13 +627,31 @@
     const nodeEl = document.getElementById(`node-${nodeId}`);
     if (!nodeEl) return;
 
-    nodeEl.classList.remove('pulsing-active');
+    nodeEl.classList.remove('pulsing-active', 'pulsing-gold');
     void nodeEl.offsetWidth; // Force reflow
     nodeEl.classList.add('pulsing-active');
+    if (color === 'gold') {
+      nodeEl.classList.add('pulsing-gold');
+    }
 
     setTimeout(() => {
-      nodeEl.classList.remove('pulsing-active');
+      nodeEl.classList.remove('pulsing-active', 'pulsing-gold');
     }, 1800);
+  }
+
+  // Dynamic Verification Ping Wave Layer Animation
+  function spawnDynamicPingWave(x, y) {
+    const pingLayer = document.getElementById('dynamic-ping-layer');
+    if (!pingLayer) return;
+
+    pingLayer.insertAdjacentHTML('beforeend', `<circle cx="${x}" cy="${y}" r="6" fill="none" stroke="#fbbf24" stroke-width="2.5" class="dynamic-ping-circle" />`);
+    const circle = pingLayer.lastElementChild;
+
+    setTimeout(() => {
+      if (circle && circle.parentNode === pingLayer) {
+        pingLayer.removeChild(circle);
+      }
+    }, 1700);
   }
 
   // Append entry to live telemetry console
@@ -649,6 +689,11 @@
 
   // Start periodic live event ticker
   function startEventStream() {
+    if (timerId) {
+      clearTimeout(timerId);
+      timerId = null;
+    }
+
     // Populate initial 4 items
     for (let i = 0; i < 4; i++) {
       const n = GLOBAL_NODES[Math.floor(Math.random() * GLOBAL_NODES.length)];

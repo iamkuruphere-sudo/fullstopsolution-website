@@ -1980,8 +1980,8 @@ img {
 }
 
 .platform-checksum-box {
-  background: #020617;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-sm);
   padding: 0.5rem 0.65rem;
   font-family: var(--font-mono);
@@ -1994,8 +1994,8 @@ img {
 
 /* Verification Code Snippet Box */
 .verify-command-box {
-  background: #030712;
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: #000000;
+  border: 1px solid rgba(56, 189, 248, 0.35);
   border-radius: var(--radius-md);
   padding: 1rem 1.25rem;
   margin: 1rem 0;
@@ -2841,12 +2841,14 @@ img {
 
 .node-ripple-wave {
   animation: radarRipple 3s infinite cubic-bezier(0, 0.2, 0.8, 1);
+  transform-box: fill-box;
   transform-origin: center;
   pointer-events: none;
 }
 
 .node-ripple-wave-2 {
   animation: radarRipple 3s infinite cubic-bezier(0, 0.2, 0.8, 1) 1.5s;
+  transform-box: fill-box;
   transform-origin: center;
   pointer-events: none;
 }
@@ -2885,12 +2887,23 @@ img {
 
 .map-node-group:hover .node-core,
 .map-node-group.pulsing-active .node-core {
-  fill: #fbbf24;
-  r: 5;
-  filter: drop-shadow(0 0 12px #f59e0b);
+  fill: #38bdf8;
+  r: 4.8;
+  filter: drop-shadow(0 0 12px #06b6d4);
 }
 
 .map-node-group.pulsing-active .node-ripple-wave {
+  stroke: #22d3ee !important;
+  animation: radarRippleInstant 1.6s ease-out;
+}
+
+.map-node-group.pulsing-gold .node-core {
+  fill: #fbbf24 !important;
+  r: 5.2;
+  filter: drop-shadow(0 0 16px #f59e0b) !important;
+}
+
+.map-node-group.pulsing-gold .node-ripple-wave {
   stroke: #fbbf24 !important;
   animation: radarRippleInstant 1.6s ease-out;
 }
@@ -2899,10 +2912,31 @@ img {
   0% {
     r: 5;
     opacity: 1;
-    stroke-width: 2;
+    stroke-width: 2.2;
   }
   100% {
     r: 45;
+    opacity: 0;
+    stroke-width: 0.2;
+  }
+}
+
+/* User Interactive Dynamic Ping Wave */
+.dynamic-ping-circle {
+  animation: dynamicPingExpand 1.6s cubic-bezier(0, 0.2, 0.8, 1) forwards;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes dynamicPingExpand {
+  0% {
+    r: 6;
+    opacity: 1;
+    stroke-width: 2.8;
+  }
+  100% {
+    r: 65;
     opacity: 0;
     stroke-width: 0.2;
   }
@@ -3221,6 +3255,15 @@ img {
 [data-theme="light"] .telemetry-header-title,
 [data-theme="light"] .telemetry-origin {
   color: #0f172a;
+}
+
+[data-theme="light"] .map-base-rect {
+  fill: #f8fafc;
+}
+
+[data-theme="light"] .node-label {
+  fill: #0f172a;
+  text-shadow: none;
 }
 
 /* Responsive Styles for Activity World Map */
