@@ -237,22 +237,14 @@ const Commerce = {
       }
     }
 
-    // 2. PayPal Gateway Pathway
-    if (method === 'paypal') {
-      const paypalEmail = this.getPaypalEmail();
-      if (paypalEmail) {
-        const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(paypalEmail)}&item_name=${encodeURIComponent(this.selectedProduct.name)}&amount=${finalPrice}&currency_code=${isINR ? 'INR' : 'USD'}`;
-        window.open(paypalUrl, '_blank', 'noopener,noreferrer');
-        App.toast('Redirecting to PayPal secure checkout...');
-        return;
-      } else {
-        App.toast('PayPal merchant onboarding in progress. Please contact sales for invoice checkout.');
-        App.closeModals();
-        if (typeof App.openContactModal === 'function') {
-          App.openContactModal(`PayPal Order: ${this.selectedProduct.name}`);
-        }
-        return;
+    // 2. Gateway Pathway
+    if (method === 'paypal' || method === 'gateway') {
+      App.toast('Payment gateway integration in process. Please contact sales for invoice checkout.');
+      App.closeModals();
+      if (typeof App.openContactModal === 'function') {
+        App.openContactModal(`Order Inquiry: ${this.selectedProduct.name}`);
       }
+      return;
     }
 
     App.toast('Please select an active payment gateway.');
