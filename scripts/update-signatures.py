@@ -109,7 +109,7 @@ def sync_html_templates(hashes):
         with open(MACSENTINEL_HTML, "r", encoding="utf-8") as f:
             content = f.read()
         content = re.sub(
-            r'<div id="macsentinel-checksum"[^>]*>.*?</div>',
+            r'<div id="macsentinel-checksum"[^>]*>[\s\S]*?</div>',
             f'<div id="macsentinel-checksum" style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-neon-cyan); word-break:break-all; overflow-wrap:anywhere;">{macsentinel_hash}</div>',
             content
         )

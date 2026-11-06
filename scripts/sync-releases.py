@@ -165,25 +165,25 @@ def sync_macsentinel(token=None, force=False):
         )
         # Update download button text
         content = re.sub(
-            r'<a id="macsentinel-download-btn"[^>]*>.*?</a>',
+            r'<a id="macsentinel-download-btn"[^>]*>[\s\S]*?</a>',
             f'<a id="macsentinel-download-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="width:100%; justify-content:center; font-size:1.05rem;">⬇️ Download MacSentinel-arm64.dmg ({dmg_size_mb})</a>',
             content
         )
         # Update release link
         content = re.sub(
-            r'<a id="macsentinel-release-link"[^>]*>.*?</a>',
+            r'<a id="macsentinel-release-link"[^>]*>[\s\S]*?</a>',
             f'<a id="macsentinel-release-link" href="{html_url}" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="flex:1; justify-content:center;">GitHub Release {tag} ↗</a>',
             content
         )
         # Update bottom button
         content = re.sub(
-            r'<a id="macsentinel-bottom-btn"[^>]*>.*?</a>',
+            r'<a id="macsentinel-bottom-btn"[^>]*>[\s\S]*?</a>',
             f'<a id="macsentinel-bottom-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="margin: 0 auto; display:inline-flex;">⬇️ Download MacSentinel {tag} (.dmg)</a>',
             content
         )
         # Update checksum
         content = re.sub(
-            r'<div id="macsentinel-checksum"[^>]*>.*?</div>',
+            r'<div id="macsentinel-checksum"[^>]*>[\s\S]*?</div>',
             f'<div id="macsentinel-checksum" style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-neon-cyan); word-break:break-all; overflow-wrap:anywhere;">{new_hash}</div>',
             content
         )
@@ -218,7 +218,7 @@ def sync_macsentinel(token=None, force=False):
         )
         # Update index download button
         content = re.sub(
-            r'<a id="macsentinel-index-download-btn"[^>]*>.*?</a>',
+            r'<a id="macsentinel-index-download-btn"[^>]*>[\s\S]*?</a>',
             f'<a id="macsentinel-index-download-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-gradient" style="padding:0.85rem 1.25rem; font-weight:700; font-size:0.95rem; justify-content:center; box-shadow:0 4px 20px rgba(34, 211, 238, 0.3);">⬇️ Download DMG Free ({tag})</a>',
             content
         )

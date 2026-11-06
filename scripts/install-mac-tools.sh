@@ -76,7 +76,7 @@ echo "[4/4] Verifying installed applications..."
 codesign --verify --deep --strict "/Applications/MacSentinel.app"
 codesign --verify --deep --strict "/Applications/Fullstop Suite.app"
 
-MACSENTINEL_VER="$(defaults read /Applications/MacSentinel.app/Contents/Info.plist CFBundleShortVersionString 2>/dev/null || echo 'v0.1.13')"
+MACSENTINEL_VER="$(defaults read /Applications/MacSentinel.app/Contents/Info.plist CFBundleShortVersionString 2>/dev/null || echo 'v0.1.15')"
 SUITE_VER="$(defaults read /Applications/Fullstop Suite.app/Contents/Info.plist CFBundleShortVersionString 2>/dev/null || echo 'v1.0.0')"
 
 echo ""
