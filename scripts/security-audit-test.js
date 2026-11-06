@@ -202,9 +202,9 @@ assert(indexHtml.includes(calculatedHashes['windows/fullstop-desktop-windows-x64
 assert(indexHtml.includes(calculatedHashes['linux/fullstop-desktop-linux-x86_64.tar.gz']), 'Linux x86_64 tarball hash matches in index.html');
 
 // Check modal hashes match actual hashes
-assert(indexHtml.includes(`id="modal-sha-mac-arm64" class="platform-checksum-box">\n              SHA-256: ${calculatedHashes['mac/fullstop-desktop-macos-arm64.zip']}`), 'Modal macOS arm64 checksum box matches actual hash');
-assert(indexHtml.includes(`id="modal-sha-windows" class="platform-checksum-box">\n              SHA-256: ${calculatedHashes['windows/fullstop-desktop-windows-x64.zip']}`), 'Modal Windows checksum box matches actual hash');
-assert(indexHtml.includes(`id="modal-sha-linux" class="platform-checksum-box">\n              SHA-256: ${calculatedHashes['linux/fullstop-desktop-linux-x86_64.tar.gz']}`), 'Modal Linux checksum box matches actual hash');
+assert(new RegExp(`id="modal-sha-mac-arm64"[^>]*>[\\s\\S]*?SHA-256:\\s*${calculatedHashes['mac/fullstop-desktop-macos-arm64.zip']}`).test(indexHtml), 'Modal macOS arm64 checksum box matches actual hash');
+assert(new RegExp(`id="modal-sha-windows"[^>]*>[\\s\\S]*?SHA-256:\\s*${calculatedHashes['windows/fullstop-desktop-windows-x64.zip']}`).test(indexHtml), 'Modal Windows checksum box matches actual hash');
+assert(new RegExp(`id="modal-sha-linux"[^>]*>[\\s\\S]*?SHA-256:\\s*${calculatedHashes['linux/fullstop-desktop-linux-x86_64.tar.gz']}`).test(indexHtml), 'Modal Linux checksum box matches actual hash');
 
 // Check codesign on local built apps
 try {

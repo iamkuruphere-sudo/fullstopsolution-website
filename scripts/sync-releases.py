@@ -166,19 +166,19 @@ def sync_macsentinel(token=None, force=False):
         # Update download button text
         content = re.sub(
             r'<a id="macsentinel-download-btn"[^>]*>[\s\S]*?</a>',
-            f'<a id="macsentinel-download-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="width:100%; justify-content:center; font-size:1.05rem;">⬇️ Download MacSentinel-arm64.dmg ({dmg_size_mb})</a>',
+            f'<a id="macsentinel-download-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="width:100%; justify-content:center; font-size:1.05rem;" title="Download official MacSentinel DMG installer package for Apple Silicon">\n              ⬇️ Download MacSentinel-arm64.dmg ({dmg_size_mb})\n            </a>',
             content
         )
         # Update release link
         content = re.sub(
             r'<a id="macsentinel-release-link"[^>]*>[\s\S]*?</a>',
-            f'<a id="macsentinel-release-link" href="{html_url}" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="flex:1; justify-content:center;">GitHub Release {tag} ↗</a>',
+            f'<a id="macsentinel-release-link" href="{html_url}" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="flex:1; justify-content:center;" title="View GitHub release tag, verification checksums and changelog">\n                GitHub Release {tag} ↗\n              </a>',
             content
         )
         # Update bottom button
         content = re.sub(
             r'<a id="macsentinel-bottom-btn"[^>]*>[\s\S]*?</a>',
-            f'<a id="macsentinel-bottom-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="margin: 0 auto; display:inline-flex;">⬇️ Download MacSentinel {tag} (.dmg)</a>',
+            f'<a id="macsentinel-bottom-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-primary btn-lg" style="margin: 0 auto; display:inline-flex;" title="Download MacSentinel DMG for Apple Silicon macOS">\n          ⬇️ Download MacSentinel {tag} (.dmg)\n        </a>',
             content
         )
         # Update checksum
@@ -213,13 +213,13 @@ def sync_macsentinel(token=None, force=False):
         # Update index release link
         content = re.sub(
             r'<a id="macsentinel-index-release-link"[^>]*>.*?</a>',
-            f'<a id="macsentinel-index-release-link" href="{html_url}" target="_blank" rel="noopener" style="color:var(--accent-neon-cyan); text-decoration:none;">GitHub Release {tag} ↗</a>',
+            f'<a id="macsentinel-index-release-link" href="{html_url}" target="_blank" rel="noopener" style="color:var(--accent-neon-cyan); text-decoration:none;" title="View MacSentinel {tag} release tag, changelog, and source code on GitHub">GitHub Release {tag} ↗</a>',
             content
         )
         # Update index download button
         content = re.sub(
             r'<a id="macsentinel-index-download-btn"[^>]*>[\s\S]*?</a>',
-            f'<a id="macsentinel-index-download-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-gradient" style="padding:0.85rem 1.25rem; font-weight:700; font-size:0.95rem; justify-content:center; box-shadow:0 4px 20px rgba(34, 211, 238, 0.3);">⬇️ Download DMG Free ({tag})</a>',
+            f'<a id="macsentinel-index-download-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-gradient" style="padding:0.85rem 1.25rem; font-weight:700; font-size:0.95rem; justify-content:center; box-shadow:0 4px 20px rgba(34, 211, 238, 0.3);" title="Direct free download: MacSentinel {tag} DMG for Apple Silicon Macs ({dmg_size_mb})">\n              ⬇️ Download DMG Free ({tag})\n            </a>',
             content
         )
 

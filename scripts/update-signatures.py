@@ -134,52 +134,52 @@ def sync_html_templates(hashes):
         if mac_arm64_hash:
             content = re.sub(
                 r'<div id="platform-sha-mac-arm64"[^>]*>.*?</div>',
-                f'<div id="platform-sha-mac-arm64" class="platform-checksum-box">\n              SHA-256: {mac_arm64_hash}\n            </div>',
+                f'<div id="platform-sha-mac-arm64" class="platform-checksum-box" title="SHA-256 cryptographic digest for macOS Apple Silicon package">\n              SHA-256: {mac_arm64_hash}\n            </div>',
                 content,
                 flags=re.DOTALL
             )
             content = re.sub(
                 r'<div id="modal-sha-mac-arm64"[^>]*>.*?</div>',
-                f'<div id="modal-sha-mac-arm64" class="platform-checksum-box">\n              SHA-256: {mac_arm64_hash}\n            </div>',
+                f'<div id="modal-sha-mac-arm64" class="platform-checksum-box" title="SHA-256 cryptographic digest for macOS Apple Silicon package">\n              SHA-256: {mac_arm64_hash}\n            </div>',
                 content,
                 flags=re.DOTALL
             )
         if mac_x64_hash:
             content = re.sub(
                 r'<div id="platform-sha-mac-x64"[^>]*>.*?</div>',
-                f'<div id="platform-sha-mac-x64" class="platform-checksum-box">\n              SHA-256: {mac_x64_hash}\n            </div>',
+                f'<div id="platform-sha-mac-x64" class="platform-checksum-box" title="SHA-256 cryptographic digest for macOS Intel package">\n              SHA-256: {mac_x64_hash}\n            </div>',
                 content,
                 flags=re.DOTALL
             )
             content = re.sub(
                 r'<div id="modal-sha-mac-x64"[^>]*>.*?</div>',
-                f'<div id="modal-sha-mac-x64" class="platform-checksum-box">\n              SHA-256: {mac_x64_hash}\n            </div>',
+                f'<div id="modal-sha-mac-x64" class="platform-checksum-box" title="SHA-256 cryptographic digest for macOS Intel package">\n              SHA-256: {mac_x64_hash}\n            </div>',
                 content,
                 flags=re.DOTALL
             )
         if windows_hash:
             content = re.sub(
                 r'<div id="platform-sha-windows"[^>]*>.*?</div>',
-                f'<div id="platform-sha-windows" class="platform-checksum-box">\n              SHA-256: {windows_hash}\n            </div>',
+                f'<div id="platform-sha-windows" class="platform-checksum-box" title="SHA-256 cryptographic digest for Windows 64-bit package">\n              SHA-256: {windows_hash}\n            </div>',
                 content,
                 flags=re.DOTALL
             )
             content = re.sub(
                 r'<div id="modal-sha-windows"[^>]*>.*?</div>',
-                f'<div id="modal-sha-windows" class="platform-checksum-box">\n              SHA-256: {windows_hash}\n            </div>',
+                f'<div id="modal-sha-windows" class="platform-checksum-box" title="SHA-256 cryptographic digest for Windows 64-bit package">\n              SHA-256: {windows_hash}\n            </div>',
                 content,
                 flags=re.DOTALL
             )
         if linux_hash:
             content = re.sub(
                 r'<div id="platform-sha-linux"[^>]*>.*?</div>',
-                f'<div id="platform-sha-linux" class="platform-checksum-box">\n              SHA-256: {linux_hash}\n            </div>',
+                f'<div id="platform-sha-linux" class="platform-checksum-box" title="SHA-256 cryptographic digest for Linux Universal package">\n              SHA-256: {linux_hash}\n            </div>',
                 content,
                 flags=re.DOTALL
             )
             content = re.sub(
                 r'<div id="modal-sha-linux"[^>]*>.*?</div>',
-                f'<div id="modal-sha-linux" class="platform-checksum-box">\n              SHA-256: {linux_hash}\n            </div>',
+                f'<div id="modal-sha-linux" class="platform-checksum-box" title="SHA-256 cryptographic digest for Linux Universal package">\n              SHA-256: {linux_hash}\n            </div>',
                 content,
                 flags=re.DOTALL
             )
