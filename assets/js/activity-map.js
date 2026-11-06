@@ -73,6 +73,7 @@
     if (!container) return;
 
     renderWorldMapSVG(container);
+    updateLiveDateBadge();
     initFilterTabs();
     initActionButtons();
     startEventStream();
@@ -339,6 +340,7 @@
             <div class="telemetry-header-left">
               <span class="telemetry-terminal-icon">📟</span>
               <span class="telemetry-header-title">LIVE CLIENT-SIDE TELEMETRY STREAM</span>
+              <span class="telemetry-date-badge" id="telemetry-live-date-pill">📅 Genuine System Date</span>
               <span class="telemetry-badge-status" id="telemetry-stream-badge">
                 <span class="activity-pulse-dot"></span> LIVE • ZERO NETWORK EGRESS
               </span>
@@ -355,8 +357,7 @@
           <div class="telemetry-console-footer">
             <span class="telemetry-lock-icon">🔒</span>
             <span class="telemetry-footer-text">
-              <strong>Cryptographic Zero-Knowledge Guarantee:</strong> All actions execute locally within the client browser's Web APIs sandbox. 
-              Zero user data, IP addresses, queries, or payloads are transmitted to Fullstop Solution or third-party servers.
+              <strong>Cryptographic Zero-Knowledge & Genuine Date Guarantee:</strong> All activity timestamps strictly reflect your genuine device system clock in real time. All actions execute locally within the client browser's Web APIs sandbox. Zero user data, IP addresses, queries, or payloads are transmitted to Fullstop Solution or third-party servers.
             </span>
           </div>
         </div>
@@ -654,18 +655,33 @@
     }, 1700);
   }
 
+  // Update Live System Date & Clock Badge
+  function updateLiveDateBadge() {
+    const badge = document.getElementById('telemetry-live-date-pill');
+    if (!badge) return;
+    const now = new Date();
+    const dateStr = now.toISOString().split('T')[0];
+    badge.textContent = `📅 ${dateStr} System Date`;
+    badge.setAttribute('title', `Genuine device system date: ${now.toDateString()}`);
+  }
+
   // Append entry to live telemetry console
   function logActivityEvent(node, template, isUserEvent = false) {
     const feed = document.getElementById('activity-telemetry-feed');
     if (!feed) return;
 
+    updateLiveDateBadge();
     const now = new Date();
+    const dateStr = now.toISOString().split('T')[0];
     const timeStr = now.toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
     const item = document.createElement('div');
     item.className = `telemetry-row ${isUserEvent ? 'telemetry-row-user' : ''}`;
     item.innerHTML = `
-      <div class="telemetry-time">${timeStr}</div>
+      <div class="telemetry-time" title="${now.toISOString()}">
+        <span class="telemetry-date-part">${dateStr}</span>
+        <span class="telemetry-time-part">${timeStr}</span>
+      </div>
       <div class="telemetry-origin">
         <span class="telemetry-flag">${node.flag}</span>
         <span class="telemetry-location">${escapeHTML(node.name)}</span>

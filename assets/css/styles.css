@@ -3129,6 +3129,36 @@ img {
   font-family: var(--font-mono);
   font-size: 0.725rem;
   color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.telemetry-date-part {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  opacity: 0.8;
+  letter-spacing: -0.01em;
+}
+
+.telemetry-time-part {
+  font-size: 0.75rem;
+  color: var(--accent-neon-cyan);
+  font-weight: 600;
+}
+
+.telemetry-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  color: var(--accent-neon-cyan);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
 }
 
 .telemetry-origin {
