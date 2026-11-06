@@ -509,12 +509,12 @@ const AdminProducts = {
 const AdminTheme = {
   PRESETS: {
     'cyber-obsidian': {
-      name: 'Cyber Obsidian (Default)',
-      bgPrimary: '#060913',
-      bgSecondary: '#0f172a',
+      name: 'Cyber Obsidian (Rich Black OLED)',
+      bgPrimary: '#000000',
+      bgSecondary: '#05070b',
       accentPrimary: '#2563eb',
-      accentGradient: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)',
-      borderColor: 'rgba(59, 130, 246, 0.2)'
+      accentGradient: 'linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%)',
+      borderColor: 'rgba(255, 255, 255, 0.1)'
     },
     'emerald-matrix': {
       name: 'Emerald Matrix',

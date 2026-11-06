@@ -4,12 +4,12 @@
    ========================================================================== */
 
 :root {
-  --ws-bg: #07090e;
-  --ws-sidebar-bg: #0b101b;
-  --ws-card-bg: rgba(15, 23, 42, 0.75);
-  --ws-card-border: rgba(255, 255, 255, 0.08);
-  --ws-border: rgba(255, 255, 255, 0.08);
-  --ws-text: #f8fafc;
+  --ws-bg: #000000;
+  --ws-sidebar-bg: #05070b;
+  --ws-card-bg: rgba(8, 11, 18, 0.85);
+  --ws-card-border: rgba(255, 255, 255, 0.1);
+  --ws-border: rgba(255, 255, 255, 0.1);
+  --ws-text: #ffffff;
   --ws-text-muted: #94a3b8;
   --ws-text-dim: #64748b;
   --ws-accent: #2563eb;

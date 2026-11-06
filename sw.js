@@ -14,6 +14,7 @@ const STATIC_ASSETS = [
   '/assets/js/tools.js',
   '/assets/js/checkout.js',
   '/assets/js/analytics.js',
+  '/assets/js/activity-map.js',
   '/assets/images/logo.png',
   '/assets/images/logo-icon.svg',
   '/assets/images/logo.svg',

@@ -84,13 +84,13 @@ const ToolEngine = {
   <link rel="icon" type="image/png" href="https://www.fullstopsolution.in/assets/images/logo.png">
   <style>
     :root {
-      --bg-canvas: #030712;
-      --bg-card: rgba(15, 23, 42, 0.75);
+      --bg-canvas: #000000;
+      --bg-card: rgba(8, 11, 18, 0.85);
       --border-color: rgba(255, 255, 255, 0.1);
       --accent-primary: #38bdf8;
       --accent-neon-cyan: #22d3ee;
       --accent-neon-emerald: #10b981;
-      --text-primary: #f8fafc;
+      --text-primary: #ffffff;
       --text-secondary: #94a3b8;
       --text-muted: #64748b;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;

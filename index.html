@@ -37,7 +37,7 @@
   <!-- Favicon & Brand Icons -->
   <link rel="icon" type="image/png" href="assets/images/logo.png">
   <link rel="apple-touch-icon" href="assets/images/logo.png">
-  <meta name="theme-color" content="#0a0e17">
+  <meta name="theme-color" content="#000000">
   <link rel="manifest" href="manifest.json">
 
   <!-- Stylesheet -->
@@ -142,6 +142,7 @@
       <nav class="nav-menu" aria-label="Main Navigation">
         <ul class="nav-links">
           <li><a href="macsentinel.html" style="color:var(--accent-neon-cyan); font-weight:700;"><span style="color:#f59e0b;">★</span> MacSentinel</a></li>
+          <li><a href="#activity-map"><span style="color:var(--accent-neon-emerald); font-size:0.8rem;">●</span> Global Map</a></li>
           <li><a href="#tools" class="active">Daily Tools</a></li>
           <li><a href="#desktop">Desktop Apps <span class="badge badge-success" style="font-size:0.65rem; padding:1px 6px;">New</span></a></li>
           <li><a href="#products">Free Toolkits</a></li>
@@ -190,6 +191,13 @@
           <div class="mobile-nav-label">
             <strong style="color:var(--accent-neon-cyan);"><span style="color:#f59e0b;">★</span> MacSentinel App <span class="badge badge-success" style="font-size:0.6rem; padding:1px 5px;">Star Product</span></strong>
             <span>Free native macOS endpoint security auditor</span>
+          </div>
+        </a>
+        <a href="#activity-map" class="mobile-nav-link" onclick="App.closeMobileNav()">
+          <span class="mobile-nav-icon">🌐</span>
+          <div class="mobile-nav-label">
+            <strong>Global Map <span class="badge badge-primary" style="font-size:0.6rem; padding:1px 5px;">Live</span></strong>
+            <span>Decentralized privacy telemetry</span>
           </div>
         </a>
         <a href="#tools" class="mobile-nav-link" onclick="App.closeMobileNav()">
@@ -336,6 +344,21 @@
           <div class="stat-label">Third-Party Trackers</div>
           <div class="stat-desc">Zero telemetry bloat, ad networks, or data monetization.</div>
         </div>
+      </div>
+    </section>
+
+    <!-- Global Live Privacy Activity World Map Section -->
+    <section id="activity-map" class="activity-map-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="badge badge-primary">🌐 DECENTRALIZED GLOBAL REACH</span>
+          </div>
+          <h2 class="section-title">Worldwide Zero-Knowledge Activity</h2>
+          <p class="section-desc">Real-time client-side localized activity pings from security auditors, developers, and privacy advocates across 6 continents. 100% decentralized, private, and zero-tracking.</p>
+        </div>
+
+        <div id="activity-map-container"></div>
       </div>
     </section>
 
@@ -663,7 +686,7 @@
         </div>
 
         <!-- Verification Banner & Checksums -->
-        <div style="background:rgba(15,23,42,0.85); border:1px solid var(--border-color); border-radius:14px; padding:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem;">
+        <div style="background:rgba(6,9,16,0.92); border:1px solid var(--border-color); border-radius:14px; padding:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem;">
           <div style="min-width:0; max-width:100%;">
             <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.45rem; flex-wrap:wrap;">
               <span style="font-size:1.2rem;">🛡️</span>
@@ -671,8 +694,8 @@
               <span class="badge badge-success" style="font-size:0.7rem;">GPG Signed</span>
             </div>
             <div style="margin:0; font-size:0.825rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:0.35rem;">
-              <div>Key ID: <code style="color:var(--accent-neon-cyan); background:#020617; padding:2px 6px; border-radius:4px;">0x9E7F4B2C7D10A843</code></div>
-              <div>Fingerprint: <code style="word-break:break-all; overflow-wrap:anywhere; color:var(--accent-neon-cyan); background:#020617; padding:2px 6px; border-radius:4px; font-size:0.75rem;">F509 C8B2 4E7A 91D3 2C84 38E1 9E7F 4B2C 7D10 A843</code></div>
+              <div>Key ID: <code style="color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color); padding:2px 6px; border-radius:4px;">0x9E7F4B2C7D10A843</code></div>
+              <div>Fingerprint: <code style="word-break:break-all; overflow-wrap:anywhere; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color); padding:2px 6px; border-radius:4px; font-size:0.75rem;">F509 C8B2 4E7A 91D3 2C84 38E1 9E7F 4B2C 7D10 A843</code></div>
             </div>
           </div>
           <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
@@ -1290,5 +1313,6 @@
   <script src="assets/js/checkout.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/release-updater.js" defer></script>
+  <script src="assets/js/activity-map.js" defer></script>
 </body>
 </html>

@@ -472,6 +472,49 @@ assert(toolsJs.includes("id === 'standalone-body'") || toolsJs.includes("standal
 assert(toolsJs.includes("exportOfflineTool()"), 'exportOfflineTool stub is preserved in exported offline tool engine');
 
 // ============================================================================
+// 14. RICH BLACK THEME & DECENTRALIZED GLOBAL ACTIVITY MAP AUDIT
+// ============================================================================
+console.log('\n--- 14. Rich Black Theme & Decentralized Global Activity Map Audit ---');
+
+// Rich Black OLED CSS Variables & High-Contrast Cyber Palette
+assert(stylesCss.includes('--bg-primary: #000000;'), 'Rich black primary background #000000 configured');
+assert(stylesCss.includes('--bg-secondary: #05070b;'), 'Deep OLED secondary background #05070b configured');
+assert(stylesCss.includes('--bg-tertiary: #0a0d14;'), 'Rich obsidian tertiary background #0a0d14 configured');
+assert(stylesCss.includes('activity-map-section'), 'Activity world geography map section styles defined');
+assert(stylesCss.includes('world-map-svg'), 'World map SVG styling defined');
+assert(stylesCss.includes('node-ripple-wave') && stylesCss.includes('radarRipple'), 'Radar pulse animation defined in CSS');
+assert(stylesCss.includes('activity-telemetry-console') && stylesCss.includes('telemetry-row'), 'Live telemetry stream CSS classes defined');
+
+// HTML Integration & Navigation
+assert(indexHtml.includes('id="activity-map"'), 'index.html contains activity-map section');
+assert(indexHtml.includes('id="activity-map-container"'), 'index.html contains activity-map-container anchor');
+assert(indexHtml.includes('assets/js/activity-map.js'), 'index.html loads activity-map.js');
+assert(indexHtml.includes('href="#activity-map"'), 'Navigation links to #activity-map');
+assert(indexHtml.includes('name="theme-color" content="#000000"'), 'Theme color meta tag set to #000000');
+
+// Service Worker Cache
+assert(swJs.includes('/assets/js/activity-map.js'), 'sw.js caches assets/js/activity-map.js');
+
+// Security & Privacy Verification of Activity Map Engine
+const activityMapJs = fs.readFileSync(path.join(ROOT, 'assets/js/activity-map.js'), 'utf8');
+assert(!activityMapJs.includes('http://') && !activityMapJs.includes('https://'), 'Zero external tracker/endpoint URLs in activity-map.js (Zero Network Egress)');
+assert(!activityMapJs.includes('fetch(') && !activityMapJs.includes('XMLHttpRequest'), 'Zero remote network telemetry calls (100% Client-Side Privacy)');
+assert(activityMapJs.includes('crypto.subtle.digest'), 'Uses genuine Web Crypto API SHA-256 for cryptographic verification');
+assert(activityMapJs.includes('escapeHTML'), 'Uses strict HTML escaping against XSS injection');
+
+// Global Nodes Directory Coverage (North America, Europe, Asia, India, Australia, South America, Africa)
+const requiredRegions = ['asia', 'europe', 'north-america', 'south-america', 'africa', 'oceania'];
+for (const region of requiredRegions) {
+  assert(activityMapJs.includes(`region: '${region}'`), `Activity map includes privacy nodes for ${region}`);
+}
+assert(activityMapJs.includes('Bengaluru, India'), 'Activity map features Bengaluru, India hub');
+assert(activityMapJs.includes('London, United Kingdom'), 'Activity map features London, UK hub');
+assert(activityMapJs.includes('San Francisco, USA'), 'Activity map features San Francisco hub');
+assert(activityMapJs.includes('Sydney, Australia'), 'Activity map features Sydney, Australia hub');
+assert(activityMapJs.includes('Cape Town, South Africa'), 'Activity map features Cape Town, South Africa hub');
+assert(activityMapJs.includes('São Paulo, Brazil'), 'Activity map features São Paulo, Brazil hub');
+
+// ============================================================================
 // FINAL SUMMARY
 // ============================================================================
 console.log(`\n================================================================`);
