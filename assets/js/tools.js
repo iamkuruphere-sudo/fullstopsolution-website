@@ -259,10 +259,10 @@ const ToolEngine = {
         <!-- Presets Bar -->
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; margin-bottom:1.25rem; padding:0.5rem 0.75rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid var(--border-color);">
           <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">PRESETS:</span>
-          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadMetaPreset('saas')">SaaS Platform</button>
-          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadMetaPreset('ecommerce')">E-Commerce Store</button>
-          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadMetaPreset('blog')">Technical Blog</button>
-          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadMetaPreset('portfolio')">Portfolio / Freelancer</button>
+          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadMetaPreset('saas')" title="Load recommended SEO & Social presets for SaaS platforms">SaaS Platform</button>
+          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadMetaPreset('ecommerce')" title="Load recommended SEO & Social presets for E-Commerce online stores">E-Commerce Store</button>
+          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadMetaPreset('blog')" title="Load recommended SEO & Social presets for technical publications and blogs">Technical Blog</button>
+          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadMetaPreset('portfolio')" title="Load recommended SEO & Social presets for portfolio and agency websites">Portfolio / Freelancer</button>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;" class="tool-split">
@@ -304,9 +304,9 @@ const ToolEngine = {
           <div>
             <!-- Social Preview Tabs -->
             <div style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
-              <button class="btn btn-xs btn-primary meta-tab active" id="tab-serp" onclick="ToolEngine.switchMetaTab('serp')">Google SERP</button>
-              <button class="btn btn-xs btn-outline meta-tab" id="tab-twitter" onclick="ToolEngine.switchMetaTab('twitter')">Twitter / X Card</button>
-              <button class="btn btn-xs btn-outline meta-tab" id="tab-og" onclick="ToolEngine.switchMetaTab('og')">Open Graph (FB/LinkedIn)</button>
+              <button class="btn btn-xs btn-primary meta-tab active" id="tab-serp" onclick="ToolEngine.switchMetaTab('serp')" title="Preview how this page appears in Google search engine results">Google SERP</button>
+              <button class="btn btn-xs btn-outline meta-tab" id="tab-twitter" onclick="ToolEngine.switchMetaTab('twitter')" title="Preview how this page appears when shared on Twitter / X cards">Twitter / X Card</button>
+              <button class="btn btn-xs btn-outline meta-tab" id="tab-og" onclick="ToolEngine.switchMetaTab('og')" title="Preview how this page appears when shared on Facebook and LinkedIn">Open Graph (FB/LinkedIn)</button>
             </div>
 
             <!-- Google Preview -->
@@ -346,8 +346,8 @@ const ToolEngine = {
             <label class="form-label">Generated HTML Code</label>
             <div class="code-output" id="meta-code-output" style="max-height:130px;">&lt;!-- Code will appear here --&gt;</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.75rem;">
-              <button class="btn btn-primary btn-sm" onclick="ToolEngine.copyMetaCode()">Copy HTML</button>
-              <button class="btn btn-outline btn-sm" onclick="ToolEngine.downloadMetaFile()">Download .html</button>
+              <button class="btn btn-primary btn-sm" onclick="ToolEngine.copyMetaCode()" title="Copy generated HTML meta tags to clipboard">Copy HTML</button>
+              <button class="btn btn-outline btn-sm" onclick="ToolEngine.downloadMetaFile()" title="Download generated meta tags as index-meta.html file">Download .html</button>
             </div>
           </div>
         </div>
@@ -525,9 +525,9 @@ const ToolEngine = {
 
         <!-- Generation Mode Selector -->
         <div style="display:flex; gap:0.5rem; margin-bottom:1.25rem;">
-          <button class="btn btn-sm btn-primary pass-mode-btn active" id="mode-password" onclick="ToolEngine.setPassMode('password')">Random Password</button>
-          <button class="btn btn-sm btn-outline pass-mode-btn" id="mode-passphrase" onclick="ToolEngine.setPassMode('passphrase')">Memorable Passphrase</button>
-          <button class="btn btn-sm btn-outline pass-mode-btn" id="mode-pin" onclick="ToolEngine.setPassMode('pin')">Secure PIN</button>
+          <button class="btn btn-sm btn-primary pass-mode-btn active" id="mode-password" onclick="ToolEngine.setPassMode('password')" title="Generate cryptographically random passwords with symbols and letters">Random Password</button>
+          <button class="btn btn-sm btn-outline pass-mode-btn" id="mode-passphrase" onclick="ToolEngine.setPassMode('passphrase')" title="Generate human-memorable multi-word passphrases">Memorable Passphrase</button>
+          <button class="btn btn-sm btn-outline pass-mode-btn" id="mode-pin" onclick="ToolEngine.setPassMode('pin')" title="Generate secure numeric PIN codes for UPI, cards, and banking">Secure PIN</button>
         </div>
 
         <div class="form-group">
@@ -537,8 +537,8 @@ const ToolEngine = {
           </label>
           <div style="display:flex; gap:0.5rem;">
             <input type="text" id="password-output" class="form-input" style="font-family:var(--font-mono); font-size:1.15rem; font-weight:700; letter-spacing:1px; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color);" readonly>
-            <button class="btn btn-primary" onclick="ToolEngine.copyPassword()">Copy</button>
-            <button class="btn btn-outline" onclick="ToolEngine.generatePassword()">🔄 New</button>
+            <button class="btn btn-primary" onclick="ToolEngine.copyPassword()" title="Copy generated secret to clipboard">Copy</button>
+            <button class="btn btn-outline" onclick="ToolEngine.generatePassword()" title="Generate a brand new random secret using Web Crypto API">🔄 New</button>
           </div>
           <!-- Strength Bar -->
           <div style="height:6px; background:#1e293b; border-radius:3px; margin-top:8px; overflow:hidden;">
@@ -610,10 +610,10 @@ const ToolEngine = {
           <div class="form-group">
             <label class="form-label">PIN Length</label>
             <div style="display:flex; gap:0.5rem;">
-              <button class="btn btn-sm btn-outline pin-len-btn" onclick="ToolEngine.setPinLength(4)">4 Digits</button>
-              <button class="btn btn-sm btn-primary pin-len-btn active" id="pin-len-6" onclick="ToolEngine.setPinLength(6)">6 Digits (UPI / Card)</button>
-              <button class="btn btn-sm btn-outline pin-len-btn" onclick="ToolEngine.setPinLength(8)">8 Digits (Bank)</button>
-              <button class="btn btn-sm btn-outline pin-len-btn" onclick="ToolEngine.setPinLength(12)">12 Digits (Master)</button>
+              <button class="btn btn-sm btn-outline pin-len-btn" onclick="ToolEngine.setPinLength(4)" title="Generate 4-digit numeric PIN">4 Digits</button>
+              <button class="btn btn-sm btn-primary pin-len-btn active" id="pin-len-6" onclick="ToolEngine.setPinLength(6)" title="Generate 6-digit numeric PIN (Standard UPI / ATM Card)">6 Digits (UPI / Card)</button>
+              <button class="btn btn-sm btn-outline pin-len-btn" onclick="ToolEngine.setPinLength(8)" title="Generate 8-digit high-security numeric PIN (Banking & Security Keys)">8 Digits (Bank)</button>
+              <button class="btn btn-sm btn-outline pin-len-btn" onclick="ToolEngine.setPinLength(12)" title="Generate 12-digit master authorization numeric code">12 Digits (Master)</button>
             </div>
           </div>
         </div>
@@ -623,9 +623,9 @@ const ToolEngine = {
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
             <span style="font-size:0.85rem; font-weight:700;">Bulk Generator</span>
             <div style="display:flex; gap:0.5rem;">
-              <button class="btn btn-xs btn-outline" onclick="ToolEngine.generateBulkPasswords(5)">Generate 5</button>
-              <button class="btn btn-xs btn-outline" onclick="ToolEngine.generateBulkPasswords(10)">Generate 10</button>
-              <button class="btn btn-xs btn-primary" onclick="ToolEngine.downloadBulkPasswords()">Download .txt</button>
+              <button class="btn btn-xs btn-outline" onclick="ToolEngine.generateBulkPasswords(5)" title="Generate a batch of 5 cryptographically secure passwords">Generate 5</button>
+              <button class="btn btn-xs btn-outline" onclick="ToolEngine.generateBulkPasswords(10)" title="Generate a batch of 10 cryptographically secure passwords">Generate 10</button>
+              <button class="btn btn-xs btn-primary" onclick="ToolEngine.downloadBulkPasswords()" title="Download batch passwords as a local text file">Download .txt</button>
             </div>
           </div>
           <textarea id="bulk-passwords-output" class="form-textarea" style="min-height:70px; font-family:var(--font-mono); font-size:0.8rem;" placeholder="Click 'Generate 5' or 'Generate 10' for batch passwords..."></textarea>
@@ -808,14 +808,14 @@ const ToolEngine = {
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
           <div style="display:flex; gap:0.5rem; align-items:center;">
             <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">SAMPLES:</span>
-            <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadJsonPreset('api')">API Response</button>
-            <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadJsonPreset('ecommerce')">E-Commerce</button>
-            <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadJsonPreset('users')">Users List</button>
+            <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadJsonPreset('api')" title="Load sample REST API response JSON payload">API Response</button>
+            <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadJsonPreset('ecommerce')" title="Load sample E-Commerce product catalog JSON payload">E-Commerce</button>
+            <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadJsonPreset('users')" title="Load sample user profiles array JSON payload">Users List</button>
           </div>
           <div style="display:flex; gap:0.5rem;">
             <input type="file" id="json-file-input" style="display:none;" accept=".json,.csv,.txt" onchange="ToolEngine.handleJsonUpload(event)">
-            <button class="btn btn-xs btn-outline" onclick="document.getElementById('json-file-input').click()">📁 Open File</button>
-            <button class="btn btn-xs btn-primary" onclick="ToolEngine.downloadJsonFile()">💾 Download</button>
+            <button class="btn btn-xs btn-outline" onclick="document.getElementById('json-file-input').click()" title="Open a local .json, .csv, or .txt file from your computer">📁 Open File</button>
+            <button class="btn btn-xs btn-primary" onclick="ToolEngine.downloadJsonFile()" title="Download formatted JSON as data.json to your computer">💾 Download</button>
           </div>
         </div>
 
@@ -826,15 +826,15 @@ const ToolEngine = {
         <!-- Action Toolbar -->
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-            <button class="btn btn-primary btn-sm" onclick="ToolEngine.formatJson(2)">Beautify (2 Spaces)</button>
-            <button class="btn btn-outline btn-sm" onclick="ToolEngine.formatJson(4)">Beautify (4 Spaces)</button>
-            <button class="btn btn-outline btn-sm" onclick="ToolEngine.minifyJson()">Minify</button>
-            <button class="btn btn-gradient btn-sm" onclick="ToolEngine.jsonToCsv()">JSON ➔ CSV</button>
-            <button class="btn btn-gradient btn-sm" onclick="ToolEngine.csvToJson()">CSV ➔ JSON</button>
+            <button class="btn btn-primary btn-sm" onclick="ToolEngine.formatJson(2)" title="Format and indent JSON with 2-space indentation">Beautify (2 Spaces)</button>
+            <button class="btn btn-outline btn-sm" onclick="ToolEngine.formatJson(4)" title="Format and indent JSON with 4-space indentation">Beautify (4 Spaces)</button>
+            <button class="btn btn-outline btn-sm" onclick="ToolEngine.minifyJson()" title="Minify JSON payload removing all whitespace and newlines">Minify</button>
+            <button class="btn btn-gradient btn-sm" onclick="ToolEngine.jsonToCsv()" title="Convert structured JSON object array into CSV tabular format">JSON ➔ CSV</button>
+            <button class="btn btn-gradient btn-sm" onclick="ToolEngine.csvToJson()" title="Parse and convert CSV text into JSON objects">CSV ➔ JSON</button>
           </div>
           <div style="display:flex; gap:0.5rem;">
-            <button class="btn btn-outline btn-sm" onclick="ToolEngine.copyJson()">Copy Output</button>
-            <button class="btn btn-outline btn-sm" onclick="document.getElementById('json-input').value = ''; ToolEngine.validateJsonRealtime();">Clear</button>
+            <button class="btn btn-outline btn-sm" onclick="ToolEngine.copyJson()" title="Copy JSON output to clipboard">Copy Output</button>
+            <button class="btn btn-outline btn-sm" onclick="document.getElementById('json-input').value = ''; ToolEngine.validateJsonRealtime();" title="Clear JSON input and reset status">Clear</button>
           </div>
         </div>
 
@@ -1057,11 +1057,11 @@ const ToolEngine = {
 
         <!-- QR Type Selector -->
         <div style="display:flex; gap:0.5rem; margin-bottom:1.25rem; flex-wrap:wrap;">
-          <button class="btn btn-sm btn-primary qr-type-btn active" id="qr-type-url" onclick="ToolEngine.setQrType('url')">Website URL</button>
-          <button class="btn btn-sm btn-outline qr-type-btn" id="qr-type-upi" onclick="ToolEngine.setQrType('upi')">UPI Payment (India)</button>
-          <button class="btn btn-sm btn-outline qr-type-btn" id="qr-type-wifi" onclick="ToolEngine.setQrType('wifi')">Wi-Fi Connect</button>
-          <button class="btn btn-sm btn-outline qr-type-btn" id="qr-type-vcard" onclick="ToolEngine.setQrType('vcard')">vCard Contact</button>
-          <button class="btn btn-sm btn-outline qr-type-btn" id="qr-type-text" onclick="ToolEngine.setQrType('text')">Plain Text / SMS</button>
+          <button class="btn btn-sm btn-primary qr-type-btn active" id="qr-type-url" onclick="ToolEngine.setQrType('url')" title="Create scannable QR code for website or app URL">Website URL</button>
+          <button class="btn btn-sm btn-outline qr-type-btn" id="qr-type-upi" onclick="ToolEngine.setQrType('upi')" title="Create payment QR code for Indian UPI apps (GPay, PhonePe, Paytm, BHIM)">UPI Payment (India)</button>
+          <button class="btn btn-sm btn-outline qr-type-btn" id="qr-type-wifi" onclick="ToolEngine.setQrType('wifi')" title="Create Wi-Fi connect QR code for instant smartphone network connection">Wi-Fi Connect</button>
+          <button class="btn btn-sm btn-outline qr-type-btn" id="qr-type-vcard" onclick="ToolEngine.setQrType('vcard')" title="Create contact card QR code to add phone/email directly to address book">vCard Contact</button>
+          <button class="btn btn-sm btn-outline qr-type-btn" id="qr-type-text" onclick="ToolEngine.setQrType('text')" title="Create QR code containing arbitrary plain text or SMS">Plain Text / SMS</button>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 240px; gap:1.5rem;" class="tool-split">
@@ -1156,8 +1156,8 @@ const ToolEngine = {
           <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; background:#0b1226; padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
             <canvas id="qr-canvas" width="200" height="200" style="background:#ffffff; border-radius:8px; box-shadow:var(--shadow-md); margin-bottom:1rem; max-width:100%;"></canvas>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; width:100%;">
-              <button class="btn btn-primary btn-sm" onclick="ToolEngine.downloadQr(512)">Download PNG</button>
-              <button class="btn btn-outline btn-sm" onclick="ToolEngine.printQr()">Print QR</button>
+              <button class="btn btn-primary btn-sm" onclick="ToolEngine.downloadQr(512)" title="Download high-resolution 512x512 PNG image of QR code">Download PNG</button>
+              <button class="btn btn-outline btn-sm" onclick="ToolEngine.printQr()" title="Print QR code label directly or save as PDF">Print QR</button>
             </div>
             <small style="color:var(--text-muted); font-size:0.72rem; margin-top:0.5rem; text-align:center;">
               High-Res 512px Vector Output
@@ -1371,8 +1371,8 @@ const ToolEngine = {
             </select>
           </div>
           <div style="display:flex; gap:0.5rem;">
-            <button class="btn btn-xs btn-outline" onclick="ToolEngine.resetInvoice()">Reset Form</button>
-            <button class="btn btn-xs btn-primary" onclick="ToolEngine.printInvoice()">🖨️ Print / Save PDF</button>
+            <button class="btn btn-xs btn-outline" onclick="ToolEngine.resetInvoice()" title="Reset invoice to default sample template">Reset Form</button>
+            <button class="btn btn-xs btn-primary" onclick="ToolEngine.printInvoice()" title="Print invoice directly or save as clean vector PDF">🖨️ Print / Save PDF</button>
           </div>
         </div>
 
@@ -1426,7 +1426,7 @@ const ToolEngine = {
         <div class="form-group">
           <label class="form-label" style="display:flex; justify-content:space-between; align-items:center;">
             <span>Line Items</span>
-            <button class="btn btn-xs btn-gradient" onclick="ToolEngine.addInvoiceRow()">+ Add Item</button>
+            <button class="btn btn-xs btn-gradient" onclick="ToolEngine.addInvoiceRow()" title="Add a new billing line item row to this invoice">+ Add Item</button>
           </label>
           <div style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse; font-size:0.85rem;" id="inv-table">
@@ -1445,14 +1445,14 @@ const ToolEngine = {
                   <td style="padding:0.4rem;"><input type="number" class="form-input inv-item-qty" value="1" min="1" oninput="ToolEngine.calculateInvoice()"></td>
                   <td style="padding:0.4rem;"><input type="number" class="form-input inv-item-rate" value="1499" min="0" oninput="ToolEngine.calculateInvoice()"></td>
                   <td style="padding:0.4rem; text-align:right; font-weight:700;" class="inv-item-amount">₹1,499.00</td>
-                  <td style="padding:0.4rem; text-align:center;"><button class="btn btn-xs" style="color:#ef4444; background:none; border:none;" onclick="ToolEngine.deleteInvoiceRow(this)">✕</button></td>
+                  <td style="padding:0.4rem; text-align:center;"><button class="btn btn-xs" style="color:#ef4444; background:none; border:none;" onclick="ToolEngine.deleteInvoiceRow(this)" title="Delete this invoice line item">✕</button></td>
                 </tr>
                 <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
                   <td style="padding:0.4rem;"><input type="text" class="form-input inv-item-desc" value="Custom SaaS Architecture Consultation" oninput="ToolEngine.calculateInvoice()"></td>
                   <td style="padding:0.4rem;"><input type="number" class="form-input inv-item-qty" value="3" min="1" oninput="ToolEngine.calculateInvoice()"></td>
                   <td style="padding:0.4rem;"><input type="number" class="form-input inv-item-rate" value="2500" min="0" oninput="ToolEngine.calculateInvoice()"></td>
                   <td style="padding:0.4rem; text-align:right; font-weight:700;" class="inv-item-amount">₹7,500.00</td>
-                  <td style="padding:0.4rem; text-align:center;"><button class="btn btn-xs" style="color:#ef4444; background:none; border:none;" onclick="ToolEngine.deleteInvoiceRow(this)">✕</button></td>
+                  <td style="padding:0.4rem; text-align:center;"><button class="btn btn-xs" style="color:#ef4444; background:none; border:none;" onclick="ToolEngine.deleteInvoiceRow(this)" title="Delete this invoice line item">✕</button></td>
                 </tr>
               </tbody>
             </table>
@@ -1500,7 +1500,7 @@ const ToolEngine = {
       <td style="padding:0.4rem;"><input type="number" class="form-input inv-item-qty" value="1" min="1" oninput="ToolEngine.calculateInvoice()"></td>
       <td style="padding:0.4rem;"><input type="number" class="form-input inv-item-rate" value="1000" min="0" oninput="ToolEngine.calculateInvoice()"></td>
       <td style="padding:0.4rem; text-align:right; font-weight:700;" class="inv-item-amount">₹1,000.00</td>
-      <td style="padding:0.4rem; text-align:center;"><button class="btn btn-xs" style="color:#ef4444; background:none; border:none;" onclick="ToolEngine.deleteInvoiceRow(this)">✕</button></td>
+      <td style="padding:0.4rem; text-align:center;"><button class="btn btn-xs" style="color:#ef4444; background:none; border:none;" onclick="ToolEngine.deleteInvoiceRow(this)" title="Delete this invoice line item">✕</button></td>
     `;
     tbody.appendChild(tr);
     this.calculateInvoice();
@@ -1584,8 +1584,8 @@ const ToolEngine = {
 
         <!-- Mode Toggle: Text Hash vs Local File Checksum -->
         <div style="display:flex; gap:0.5rem; margin-bottom:1.25rem;">
-          <button class="btn btn-sm btn-primary hash-tab active" id="tab-hash-text" onclick="ToolEngine.setHashTab('text')">Text Hash</button>
-          <button class="btn btn-sm btn-outline hash-tab" id="tab-hash-file" onclick="ToolEngine.setHashTab('file')">Local File Checksum Verifier</button>
+          <button class="btn btn-sm btn-primary hash-tab active" id="tab-hash-text" onclick="ToolEngine.setHashTab('text')" title="Compute cryptographic digests for raw text and secrets">Text Hash</button>
+          <button class="btn btn-sm btn-outline hash-tab" id="tab-hash-file" onclick="ToolEngine.setHashTab('file')" title="Compute and verify SHA-256 checksums on local files in-browser">Local File Checksum Verifier</button>
         </div>
 
         <!-- Text Hash Panel -->
@@ -1603,7 +1603,7 @@ const ToolEngine = {
             <strong style="color:#ffffff; font-size:1rem; display:block; margin-bottom:0.25rem;">Drag & drop any file here to verify SHA-256</strong>
             <p style="color:var(--text-muted); font-size:0.8rem; margin:0 0 1rem 0;">Runs 100% locally in your browser memory. Files are never uploaded to any server.</p>
             <input type="file" id="hash-file-picker" style="display:none;" onchange="ToolEngine.handleFileHash(event)">
-            <button class="btn btn-sm btn-primary" onclick="document.getElementById('hash-file-picker').click()">Select Local File</button>
+            <button class="btn btn-sm btn-primary" onclick="document.getElementById('hash-file-picker').click()" title="Select a file from your hard drive to verify its hash locally">Select Local File</button>
             <div id="file-hash-progress" style="margin-top:0.75rem; font-size:0.8rem; color:var(--accent-neon-cyan); display:none;">Computing file hash...</div>
           </div>
         </div>
@@ -1621,7 +1621,7 @@ const ToolEngine = {
         <div class="form-group">
           <label class="form-label" style="display:flex; justify-content:space-between;">
             <span>SHA-256 Hash (Industry Standard)</span>
-            <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyHash('sha256')">Copy</button>
+            <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyHash('sha256')" title="Copy SHA-256 hexadecimal hash to clipboard">Copy</button>
           </label>
           <input type="text" id="hash-sha256" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color);" readonly>
         </div>
@@ -1629,7 +1629,7 @@ const ToolEngine = {
         <div class="form-group">
           <label class="form-label" style="display:flex; justify-content:space-between;">
             <span>SHA-512 Hash (High Security)</span>
-            <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyHash('sha512')">Copy</button>
+            <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyHash('sha512')" title="Copy SHA-512 hexadecimal hash to clipboard">Copy</button>
           </label>
           <input type="text" id="hash-sha512" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:#a78bfa; background:#000000; border:1px solid var(--border-color);" readonly>
         </div>
@@ -1637,7 +1637,7 @@ const ToolEngine = {
         <div class="form-group">
           <label class="form-label" style="display:flex; justify-content:space-between;">
             <span>SHA-1 Hash (Legacy Verification)</span>
-            <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyHash('sha1')">Copy</button>
+            <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyHash('sha1')" title="Copy SHA-1 hexadecimal hash to clipboard">Copy</button>
           </label>
           <input type="text" id="hash-sha1" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--text-secondary); background:#000000; border:1px solid var(--border-color);" readonly>
         </div>
@@ -1757,15 +1757,15 @@ const ToolEngine = {
 
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
           <div style="display:flex; gap:0.5rem;">
-            <button class="btn btn-primary btn-sm" onclick="ToolEngine.encodeBase64()">Encode to Base64</button>
-            <button class="btn btn-outline btn-sm" onclick="ToolEngine.decodeBase64()">Decode Base64</button>
+            <button class="btn btn-primary btn-sm" onclick="ToolEngine.encodeBase64()" title="Encode plain text into standard or URL-safe Base64">Encode to Base64</button>
+            <button class="btn btn-outline btn-sm" onclick="ToolEngine.decodeBase64()" title="Decode Base64 string back into readable plain text">Decode Base64</button>
             <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.8rem; margin-left:0.5rem; cursor:pointer;">
               <input type="checkbox" id="base64-url-safe"> URL-Safe
             </label>
           </div>
           <div>
             <input type="file" id="base64-file" style="display:none;" onchange="ToolEngine.fileToBase64(event)">
-            <button class="btn btn-xs btn-outline" onclick="document.getElementById('base64-file').click()">🖼️ File / Image ➔ Data URI</button>
+            <button class="btn btn-xs btn-outline" onclick="document.getElementById('base64-file').click()" title="Select an image or binary file to convert directly into a Data URI">🖼️ File / Image ➔ Data URI</button>
           </div>
         </div>
 
@@ -1777,7 +1777,7 @@ const ToolEngine = {
           <div class="form-group">
             <label class="form-label" style="display:flex; justify-content:space-between;">
               <span>Base64 Encoded Output</span>
-              <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyBase64()">Copy</button>
+              <button class="btn btn-xs btn-outline" onclick="ToolEngine.copyBase64()" title="Copy Base64 encoded result to clipboard">Copy</button>
             </label>
             <textarea id="base64-encoded" class="form-textarea" style="min-height:160px; font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color);" placeholder="Base64 encoded string..."></textarea>
           </div>
@@ -2001,20 +2001,20 @@ const ToolEngine = {
             <div class="form-group">
               <label class="form-label">Calculation Mode</label>
               <div style="display:flex; gap:0.5rem;">
-                <button class="btn btn-sm btn-primary gst-mode-btn active" id="gst-exclusive" onclick="ToolEngine.setGstMode('exclusive')">Exclusive (Add GST)</button>
-                <button class="btn btn-sm btn-outline gst-mode-btn" id="gst-inclusive" onclick="ToolEngine.setGstMode('inclusive')">Inclusive (Reverse GST)</button>
+                <button class="btn btn-sm btn-primary gst-mode-btn active" id="gst-exclusive" onclick="ToolEngine.setGstMode('exclusive')" title="Calculate GST added on top of base amount">Exclusive (Add GST)</button>
+                <button class="btn btn-sm btn-outline gst-mode-btn" id="gst-inclusive" onclick="ToolEngine.setGstMode('inclusive')" title="Calculate reverse GST included inside total gross amount">Inclusive (Reverse GST)</button>
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label">Standard Tax Slabs</label>
               <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
-                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(0)">0% (Exempt)</button>
-                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(3)">3% (Gold)</button>
-                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(5)">5% (Essentials)</button>
-                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(12)">12% (Standard I)</button>
-                <button class="btn btn-xs btn-primary gst-slab-btn active" id="slab-18" onclick="ToolEngine.setGstRate(18)">18% (IT/Services)</button>
-                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(28)">28% (Luxury)</button>
+                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(0)" title="Set GST rate to 0% (Tax-exempt goods & services)">0% (Exempt)</button>
+                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(3)" title="Set GST rate to 3% (Gold & precious jewelry)">3% (Gold)</button>
+                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(5)" title="Set GST rate to 5% (Essential commodities & basic items)">5% (Essentials)</button>
+                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(12)" title="Set GST rate to 12% (Standard goods & processed products)">12% (Standard I)</button>
+                <button class="btn btn-xs btn-primary gst-slab-btn active" id="slab-18" onclick="ToolEngine.setGstRate(18)" title="Set GST rate to 18% (IT software, professional services & tech)">18% (IT/Services)</button>
+                <button class="btn btn-xs btn-outline gst-slab-btn" onclick="ToolEngine.setGstRate(28)" title="Set GST rate to 28% (Luxury goods & automobiles)">28% (Luxury)</button>
               </div>
             </div>
 
@@ -2051,7 +2051,7 @@ const ToolEngine = {
               <span>Gross Final Amount:</span>
               <strong id="gst-gross">₹11,800.00</strong>
             </div>
-            <button class="btn btn-outline btn-sm" style="width:100%; margin-top:1rem;" onclick="ToolEngine.copyGstSummary()">Copy Tax Summary</button>
+            <button class="btn btn-outline btn-sm" style="width:100%; margin-top:1rem;" onclick="ToolEngine.copyGstSummary()" title="Copy formatted tax breakdown summary to clipboard">Copy Tax Summary</button>
           </div>
         </div>
       </div>
@@ -2142,11 +2142,11 @@ const ToolEngine = {
         <!-- Presets -->
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.25rem; padding:0.5rem 0.75rem; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid var(--border-color);">
           <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">PRESETS:</span>
-          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('google')">Google Ads</button>
-          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('facebook')">Facebook / Meta</button>
-          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('linkedin')">LinkedIn Post</button>
-          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('newsletter')">Email Newsletter</button>
-          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('twitter')">X / Twitter</button>
+          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('google')" title="Load recommended Google Ads PPC campaign parameters">Google Ads</button>
+          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('facebook')" title="Load recommended Facebook / Meta Ads campaign parameters">Facebook / Meta</button>
+          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('linkedin')" title="Load recommended LinkedIn organic / sponsored post parameters">LinkedIn Post</button>
+          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('newsletter')" title="Load recommended Email Newsletter campaign parameters">Email Newsletter</button>
+          <button class="btn btn-xs btn-outline" onclick="ToolEngine.loadUtmPreset('twitter')" title="Load recommended X / Twitter social campaign parameters">X / Twitter</button>
         </div>
 
         <div class="form-group">
@@ -2183,7 +2183,7 @@ const ToolEngine = {
         <div class="form-group" style="margin-top:1rem;">
           <label class="form-label" style="display:flex; justify-content:space-between;">
             <span>Generated Tracking URL</span>
-            <button class="btn btn-xs btn-primary" onclick="ToolEngine.copyUtm()">Copy URL</button>
+            <button class="btn btn-xs btn-primary" onclick="ToolEngine.copyUtm()" title="Copy generated tracking URL with UTM parameters to clipboard">Copy URL</button>
           </label>
           <input type="text" id="utm-output" class="form-input" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-neon-cyan); background:#000000; border:1px solid var(--border-color);" readonly>
         </div>
@@ -2263,14 +2263,14 @@ const ToolEngine = {
 
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
           <div style="display:flex; gap:0.5rem;">
-            <button class="btn btn-sm btn-primary" onclick="ToolEngine.generateUuids(1)">Generate 1</button>
-            <button class="btn btn-sm btn-outline" onclick="ToolEngine.generateUuids(5)">Batch 5</button>
-            <button class="btn btn-sm btn-outline" onclick="ToolEngine.generateUuids(25)">Batch 25</button>
-            <button class="btn btn-sm btn-outline" onclick="ToolEngine.generateUuids(100)">Batch 100</button>
+            <button class="btn btn-sm btn-primary" onclick="ToolEngine.generateUuids(1)" title="Generate 1 random RFC 4122 v4 UUID">Generate 1</button>
+            <button class="btn btn-sm btn-outline" onclick="ToolEngine.generateUuids(5)" title="Generate 5 random RFC 4122 v4 UUIDs">Batch 5</button>
+            <button class="btn btn-sm btn-outline" onclick="ToolEngine.generateUuids(25)" title="Generate 25 random RFC 4122 v4 UUIDs">Batch 25</button>
+            <button class="btn btn-sm btn-outline" onclick="ToolEngine.generateUuids(100)" title="Generate 100 random RFC 4122 v4 UUIDs">Batch 100</button>
           </div>
           <div style="display:flex; gap:0.5rem;">
-            <button class="btn btn-sm btn-outline" onclick="ToolEngine.copyUuids()">Copy All</button>
-            <button class="btn btn-sm btn-gradient" onclick="ToolEngine.downloadUuids()">Download .txt</button>
+            <button class="btn btn-sm btn-outline" onclick="ToolEngine.copyUuids()" title="Copy all generated UUIDs to clipboard">Copy All</button>
+            <button class="btn btn-sm btn-gradient" onclick="ToolEngine.downloadUuids()" title="Download generated UUIDs as a .txt file">Download .txt</button>
           </div>
         </div>
 

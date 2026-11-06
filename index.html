@@ -155,7 +155,7 @@
   <!-- Top Navigation Bar -->
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="/" class="brand">
+      <a href="/" class="brand" title="Fullstop Solution Home — Zero-Knowledge Privacy-First Digital Tools & Software">
         <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img" width="42" height="42">
         <div class="brand-text">
           <span class="brand-name">FULLSTOP SOLUTION<span class="brand-dot">.</span></span>
@@ -165,27 +165,22 @@
 
       <nav class="nav-menu" aria-label="Main Navigation">
         <ul class="nav-links">
-          <li><a href="macsentinel.html" style="color:var(--accent-neon-cyan); font-weight:700;"><span style="color:#f59e0b;">★</span> MacSentinel</a></li>
-          <li><a href="#activity-map"><span style="color:var(--accent-neon-emerald); font-size:0.8rem;">●</span> Global Map</a></li>
-          <li><a href="#tools" class="active">Daily Tools</a></li>
-          <li><a href="#desktop">Desktop Apps <span class="badge badge-success" style="font-size:0.65rem; padding:1px 6px;">New</span></a></li>
-          <li><a href="#products">Free Toolkits</a></li>
-          <li><a href="#security">Security</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="macsentinel.html" style="color:var(--accent-neon-cyan); font-weight:700;" title="MacSentinel — Free native macOS endpoint security auditor (Apple Silicon DMG)"><span style="color:#f59e0b;">★</span> MacSentinel</a></li>
+          <li><a href="#activity-map" title="Explore live decentralized zero-knowledge activity map across 22 global hubs"><span style="color:var(--accent-neon-emerald); font-size:0.8rem;">●</span> Global Map</a></li>
+          <li><a href="#tools" class="active" title="Jump to the 11 free in-browser daily utility studios (100% private & client-side)">Daily Tools</a></li>
+          <li><a href="#desktop" title="Browse free native desktop workstation packages for macOS, Windows & Linux">Desktop Apps <span class="badge badge-success" style="font-size:0.65rem; padding:1px 6px;">New</span></a></li>
+          <li><a href="#products" title="Download 100% free business operating systems, SEO toolkits & developer boilerplates">Free Toolkits</a></li>
+          <li><a href="#security" title="Read our zero-knowledge security architecture & client-side encryption documentation">Security</a></li>
+          <li><a href="#faq" title="Frequently asked questions about privacy, offline tools & commercial licensing">FAQ</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <!-- Dark/Light Theme Toggle -->
-        <button id="theme-toggle-btn" class="btn-icon" aria-label="Toggle theme">
-          <span id="theme-icon">☀️</span>
-        </button>
-
-        <button class="btn btn-outline btn-sm nav-btn-desktop" onclick="App.openDesktopModal()">🖥️ Desktop Suite</button>
-        <a href="#products" class="btn btn-gradient btn-sm nav-cta-desktop">Free Downloads</a>
+        <button class="btn btn-outline btn-sm nav-btn-desktop" onclick="App.openDesktopModal()" title="Open Cross-Platform Desktop Workstation Download Packages (macOS, Windows, Linux)">🖥️ Desktop Suite</button>
+        <a href="#products" class="btn btn-gradient btn-sm nav-cta-desktop" title="Browse all 100% free business toolkits, templates & boilerplates">Free Downloads</a>
 
         <!-- Mobile & Tablet Hamburger Button -->
-        <button id="nav-toggle-btn" class="nav-toggle-btn" aria-label="Toggle navigation drawer" aria-expanded="false" onclick="App.toggleMobileNav()">
+        <button id="nav-toggle-btn" class="nav-toggle-btn" aria-label="Toggle navigation drawer" aria-expanded="false" onclick="App.toggleMobileNav()" title="Toggle navigation menu">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
@@ -198,61 +193,61 @@
   <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" onclick="App.closeMobileNav()"></div>
   <aside id="mobile-nav-drawer" class="mobile-nav-drawer" aria-label="Mobile Navigation Menu">
     <div class="mobile-nav-header">
-      <a href="/" class="brand" onclick="App.closeMobileNav()">
+      <a href="/" class="brand" onclick="App.closeMobileNav()" title="Fullstop Solution Home — Zero-Knowledge Privacy-First Digital Tools & Software">
         <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img" width="36" height="36">
         <div class="brand-text">
           <span class="brand-name" style="font-size:1.05rem;">FULLSTOP SOLUTION<span class="brand-dot">.</span></span>
           <span class="brand-domain" style="font-size:0.65rem;">www.fullstopsolution.in</span>
         </div>
       </a>
-      <button class="mobile-nav-close" aria-label="Close navigation" onclick="App.closeMobileNav()">✕</button>
+      <button class="mobile-nav-close" aria-label="Close navigation" onclick="App.closeMobileNav()" title="Close mobile navigation drawer">✕</button>
     </div>
 
     <div class="mobile-nav-body">
       <nav class="mobile-nav-links">
-        <a href="macsentinel.html" class="mobile-nav-link" onclick="App.closeMobileNav()" style="background:rgba(34, 211, 238, 0.08); border-left:3px solid var(--accent-neon-cyan);">
+        <a href="macsentinel.html" class="mobile-nav-link" onclick="App.closeMobileNav()" style="background:rgba(34, 211, 238, 0.08); border-left:3px solid var(--accent-neon-cyan);" title="MacSentinel — Free native macOS endpoint security auditor (Apple Silicon DMG)">
           <span class="mobile-nav-icon">🛡️</span>
           <div class="mobile-nav-label">
             <strong style="color:var(--accent-neon-cyan);"><span style="color:#f59e0b;">★</span> MacSentinel App <span class="badge badge-success" style="font-size:0.6rem; padding:1px 5px;">Star Product</span></strong>
             <span>Free native macOS endpoint security auditor</span>
           </div>
         </a>
-        <a href="#activity-map" class="mobile-nav-link" onclick="App.closeMobileNav()">
+        <a href="#activity-map" class="mobile-nav-link" onclick="App.closeMobileNav()" title="Decentralized live zero-knowledge activity map across 22 global hubs">
           <span class="mobile-nav-icon">🌐</span>
           <div class="mobile-nav-label">
             <strong>Global Map <span class="badge badge-primary" style="font-size:0.6rem; padding:1px 5px;">Live</span></strong>
             <span>Decentralized privacy telemetry</span>
           </div>
         </a>
-        <a href="#tools" class="mobile-nav-link" onclick="App.closeMobileNav()">
+        <a href="#tools" class="mobile-nav-link" onclick="App.closeMobileNav()" title="11 client-side in-browser productivity and security utilities">
           <span class="mobile-nav-icon">⚡</span>
           <div class="mobile-nav-label">
             <strong>Daily Tools</strong>
             <span>11 offline browser utilities</span>
           </div>
         </a>
-        <a href="#desktop" class="mobile-nav-link" onclick="App.closeMobileNav()">
+        <a href="#desktop" class="mobile-nav-link" onclick="App.closeMobileNav()" title="Download native workstation desktop apps for macOS, Windows & Linux">
           <span class="mobile-nav-icon">🖥️</span>
           <div class="mobile-nav-label">
             <strong>Desktop Apps <span class="badge badge-success" style="font-size:0.6rem; padding:1px 5px;">New</span></strong>
             <span>macOS, Windows & Linux builds</span>
           </div>
         </a>
-        <a href="#products" class="mobile-nav-link" onclick="App.closeMobileNav()">
+        <a href="#products" class="mobile-nav-link" onclick="App.closeMobileNav()" title="Download 100% free Notion templates, growth kits & developer boilerplates">
           <span class="mobile-nav-icon">💎</span>
           <div class="mobile-nav-label">
             <strong>Free Toolkits</strong>
             <span>Business OS, SEO &amp; SaaS Boilerplates</span>
           </div>
         </a>
-        <a href="#security" class="mobile-nav-link" onclick="App.closeMobileNav()">
+        <a href="#security" class="mobile-nav-link" onclick="App.closeMobileNav()" title="Explore zero-knowledge architecture, Web Crypto sandbox & CSP enforcement">
           <span class="mobile-nav-icon">🛡️</span>
           <div class="mobile-nav-label">
             <strong>Security Architecture</strong>
             <span>Zero-Knowledge client sandbox</span>
           </div>
         </a>
-        <a href="#faq" class="mobile-nav-link" onclick="App.closeMobileNav()">
+        <a href="#faq" class="mobile-nav-link" onclick="App.closeMobileNav()" title="Read answers about privacy, zero-tracking, offline use and licensing">
           <span class="mobile-nav-icon">❓</span>
           <div class="mobile-nav-label">
             <strong>FAQ</strong>
@@ -262,10 +257,10 @@
       </nav>
 
       <div class="mobile-nav-actions">
-        <button class="btn btn-outline btn-sm" style="width:100%; justify-content:center;" onclick="App.closeMobileNav(); App.openDesktopModal();">
+        <button class="btn btn-outline btn-sm" style="width:100%; justify-content:center;" onclick="App.closeMobileNav(); App.openDesktopModal();" title="Open desktop app package selector modal">
           🖥️ Desktop App Packages
         </button>
-        <a href="#products" class="btn btn-gradient btn-sm" style="width:100%; justify-content:center;" onclick="App.closeMobileNav();">
+        <a href="#products" class="btn btn-gradient btn-sm" style="width:100%; justify-content:center;" onclick="App.closeMobileNav();" title="Jump to free business OS and developer toolkits">
           Explore Free Toolkits →
         </a>
       </div>
@@ -293,31 +288,31 @@
 
         <!-- Two Clear Primary Journeys -->
         <div style="display:flex; justify-content:center; align-items:center; gap:1rem; margin:1.75rem 0; flex-wrap:wrap;">
-          <a href="#tools" class="btn btn-gradient btn-lg" style="font-weight:700; padding:0.9rem 1.6rem; font-size:1rem; box-shadow:0 6px 25px rgba(34, 211, 238, 0.25);">
+          <a href="#tools" class="btn btn-gradient btn-lg" style="font-weight:700; padding:0.9rem 1.6rem; font-size:1rem; box-shadow:0 6px 25px rgba(34, 211, 238, 0.25);" title="Scroll to interactive browser utilities (100% private in-browser execution)">
             ⚡ Use Free Browser Tools
           </a>
-          <a href="#desktop" class="btn btn-outline btn-lg" style="font-weight:700; padding:0.9rem 1.6rem; font-size:1rem; border-color:var(--accent-neon-cyan); color:var(--accent-neon-cyan);">
+          <a href="#desktop" class="btn btn-outline btn-lg" style="font-weight:700; padding:0.9rem 1.6rem; font-size:1rem; border-color:var(--accent-neon-cyan); color:var(--accent-neon-cyan);" title="Jump to native desktop apps and MacSentinel auditor downloads">
             🖥️ Download Desktop Apps &amp; MacSentinel
           </a>
         </div>
 
         <!-- Live Search Palette with Command-K indicator -->
-        <div class="hero-search-box">
+        <div class="hero-search-box" title="Quickly filter and launch any of the 11 in-browser tools">
           <span class="hero-search-icon">⚡</span>
-          <input type="search" id="hero-search" class="hero-search-input" placeholder="Search 11+ client-side tools (Password Gen, JSON Studio, Hash Calc, QR, GST)..." autocomplete="off">
-          <span class="hero-search-shortcut">⌘K</span>
+          <input type="search" id="hero-search" class="hero-search-input" placeholder="Search 11+ client-side tools (Password Gen, JSON Studio, Hash Calc, QR, GST)..." autocomplete="off" title="Type keywords or tool names to instantly filter tools (Press ⌘K to focus)">
+          <span class="hero-search-shortcut" title="Keyboard shortcut: Press ⌘K or Ctrl+K to focus search">⌘K</span>
         </div>
 
         <!-- Quick Launch Chips -->
         <div class="hero-chips-wrap">
           <span class="hero-chips-label">Popular:</span>
-          <button class="hero-chip" onclick="window.location.href='macsentinel.html'" style="border-color:var(--accent-neon-cyan); color:var(--accent-neon-cyan); font-weight:700;"><span style="color:#f59e0b;">★</span> MacSentinel App</button>
-          <button class="hero-chip" onclick="App.openTool('meta', 'Meta Tag Generator & SERP Preview')">🌐 Meta & SERP</button>
-          <button class="hero-chip" onclick="App.openTool('password', 'Strong Password Generator')">🔑 Password Gen</button>
-          <button class="hero-chip" onclick="App.openTool('json', 'JSON Formatter & Validator')">{ } JSON Studio</button>
-          <button class="hero-chip" onclick="App.openTool('hash', 'Cryptographic Hash Calculator')">🛡️ Hash Calc</button>
-          <button class="hero-chip" onclick="App.openTool('qr', 'QR Code Generator')">📱 QR Generator</button>
-          <button class="hero-chip" onclick="App.openTool('invoice', 'Professional Invoice Generator')">🧾 Invoice Studio</button>
+          <button class="hero-chip" onclick="window.location.href='macsentinel.html'" style="border-color:var(--accent-neon-cyan); color:var(--accent-neon-cyan); font-weight:700;" title="View MacSentinel — Free native macOS endpoint security auditor"><span style="color:#f59e0b;">★</span> MacSentinel App</button>
+          <button class="hero-chip" onclick="App.openTool('meta', 'Meta Tag Generator & SERP Preview')" title="Launch Meta Tag Studio (⌘M) — Real-time Google SERP, OpenGraph & Twitter preview">🌐 Meta & SERP</button>
+          <button class="hero-chip" onclick="App.openTool('password', 'Strong Password Generator')" title="Launch Password Studio (⌘1) — Generate cryptographically secure passwords & Diceware phrases">🔑 Password Gen</button>
+          <button class="hero-chip" onclick="App.openTool('json', 'JSON Formatter & Validator')" title="Launch JSON Studio (⌘3) — Format, validate, and minify JSON data">{ } JSON Studio</button>
+          <button class="hero-chip" onclick="App.openTool('hash', 'Cryptographic Hash Calculator')" title="Launch Hash Studio (⌘2) — Compute SHA-256, SHA-512 & MD5 checksums">🛡️ Hash Calc</button>
+          <button class="hero-chip" onclick="App.openTool('qr', 'QR Code Generator')" title="Launch QR Studio (⌘8) — Generate high-resolution QR codes for URLs, WiFi & UPI">📱 QR Generator</button>
+          <button class="hero-chip" onclick="App.openTool('invoice', 'Professional Invoice Generator')" title="Launch Invoice Studio (⌘7) — Draft professional client invoices with instant PDF export">🧾 Invoice Studio</button>
         </div>
 
         <div class="hero-features">
@@ -398,11 +393,11 @@
         </div>
 
         <!-- Filter Tabs -->
-        <div class="filter-tabs">
-          <button class="filter-tab active" data-category="all">All Tools (11)</button>
-          <button class="filter-tab" data-category="seo">SEO & Marketing</button>
-          <button class="filter-tab" data-category="dev">Developer & Security</button>
-          <button class="filter-tab" data-category="business">Business & Finance</button>
+        <div class="filter-tabs" role="tablist" aria-label="Tool Categories">
+          <button class="filter-tab active" data-category="all" role="tab" aria-selected="true" title="Show all 11 daily digital tools (SEO, Developer, Security & Finance)">All Tools (11)</button>
+          <button class="filter-tab" data-category="seo" role="tab" aria-selected="false" title="Filter to SEO & Marketing tools: Meta Tag Generator, Keyword Analyzer & UTM Builder">SEO & Marketing</button>
+          <button class="filter-tab" data-category="dev" role="tab" aria-selected="false" title="Filter to Developer & Security tools: Password Gen, Hash Calc, JSON Studio, Base64 & UUID">Developer & Security</button>
+          <button class="filter-tab" data-category="business" role="tab" aria-selected="false" title="Filter to Business & Finance tools: QR Code Generator, Invoice Studio & GST Calculator">Business & Finance</button>
         </div>
 
         <!-- Tools Grid -->
@@ -417,7 +412,7 @@
             <p class="tool-card-desc">Generate Google-compliant meta tags, Open Graph tags, and Twitter Cards with real-time SERP snippet previews.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 100% Client-Side</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('meta', 'Meta Tag Generator & SERP Preview')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('meta', 'Meta Tag Generator & SERP Preview')" title="Open Meta Tag Studio (⌘M) — Real-time Google SERP, OpenGraph & Twitter preview">Launch Tool</button>
             </div>
           </div>
 
@@ -431,7 +426,7 @@
             <p class="tool-card-desc">Create cryptographically secure passwords and passphrases with entropy analysis using native Web Crypto APIs.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 Web Crypto API</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('password', 'Strong Password Generator')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('password', 'Strong Password Generator')" title="Open Password Studio (⌘1) — Generate secure passwords & Diceware phrases">Launch Tool</button>
             </div>
           </div>
 
@@ -445,7 +440,7 @@
             <p class="tool-card-desc">Beautify, inspect, validate, and minify your JSON data with instant syntax error pinpointing and line markers.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 Zero Data Sent</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('json', 'JSON Formatter & Validator')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('json', 'JSON Formatter & Validator')" title="Open JSON Studio (⌘3) — Beautify, validate and minify JSON data">Launch Tool</button>
             </div>
           </div>
 
@@ -459,7 +454,7 @@
             <p class="tool-card-desc">Generate high-contrast QR codes for website URLs, UPI payments, contact cards, and text with instant PNG export.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 Canvas Rendered</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('qr', 'QR Code Generator')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('qr', 'QR Code Generator')" title="Open QR Studio (⌘8) — Generate high-resolution QR codes for URLs, WiFi & UPI">Launch Tool</button>
             </div>
           </div>
 
@@ -473,7 +468,7 @@
             <p class="tool-card-desc">Create customizable, print-ready client invoices with automatic GST/VAT computations and multi-currency support.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 PDF Print Ready</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('invoice', 'Professional Invoice Generator')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('invoice', 'Professional Invoice Generator')" title="Open Invoice Studio (⌘7) — Draft professional client invoices with instant PDF export">Launch Tool</button>
             </div>
           </div>
 
@@ -487,7 +482,7 @@
             <p class="tool-card-desc">Calculate word counts, character counts, reading times, and identify over-optimized keyword frequencies.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 In-Memory Analysis</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('keyword', 'Keyword Density & Readability')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('keyword', 'Keyword Density & Readability')" title="Open Keyword Analyzer (⌘0) — Word count, keyword density & Flesch reading score">Launch Tool</button>
             </div>
           </div>
 
@@ -501,7 +496,7 @@
             <p class="tool-card-desc">Generate cryptographic SHA-256, SHA-512, and SHA-1 hashes instantly for text verification and data integrity.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 Web Crypto Subtle</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('hash', 'Hash & Checksum Calculator')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('hash', 'Hash & Checksum Calculator')" title="Open Hash Studio (⌘2) — Compute SHA-256, SHA-512 & MD5 checksums">Launch Tool</button>
             </div>
           </div>
 
@@ -515,7 +510,7 @@
             <p class="tool-card-desc">Two-way instant Base64 string encoding and decoding with full UTF-8 international character support.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 Instant Client-Side</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('base64', 'Base64 Encoder & Decoder')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('base64', 'Base64 Encoder & Decoder')" title="Open Base64 Studio (⌘4) — Encode and decode binary & Unicode text">Launch Tool</button>
             </div>
           </div>
 
@@ -529,7 +524,7 @@
             <p class="tool-card-desc">Create error-free Google Analytics tracking links with custom sources, mediums, campaign names, and terms.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 No URL Logging</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('utm', 'UTM Campaign Link Builder')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('utm', 'UTM Campaign Link Builder')" title="Open UTM Builder (⌘9) — Build sanitized tracking URLs with zero bloat">Launch Tool</button>
             </div>
           </div>
 
@@ -543,7 +538,7 @@
             <p class="tool-card-desc">Calculate Indian GST (5%, 12%, 18%, 28%) and global VAT amounts with inclusive and exclusive breakdowns.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 Accurate Calculations</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('gst', 'GST & VAT Calculator')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('gst', 'GST & VAT Calculator')" title="Open GST Calculator (⌘6) — Compute Indian GST & global VAT breakdowns">Launch Tool</button>
             </div>
           </div>
 
@@ -557,7 +552,7 @@
             <p class="tool-card-desc">Generate single or bulk RFC 4122 Version 4 globally unique identifiers with one-click clipboard copying.</p>
             <div class="tool-card-footer">
               <span class="tool-privacy-tag">🔒 Cryptographically Random</span>
-              <button class="btn btn-primary btn-sm" onclick="App.openTool('uuid', 'UUID v4 Generator')">Launch Tool</button>
+              <button class="btn btn-primary btn-sm" onclick="App.openTool('uuid', 'UUID v4 Generator')" title="Open UUID Generator (⌘5) — Generate RFC 4122 v4 unique identifiers">Launch Tool</button>
             </div>
           </div>
         </div>
@@ -605,16 +600,16 @@
               <span>•</span>
               <span id="macsentinel-index-checksum" style="font-family:var(--font-mono); background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px; border:1px solid rgba(255,255,255,0.08);" title="aa3f0be5f7e12405e5b717b5802b2e2f15ba2b4240fb8c3b971cc723dcfbbd55">SHA-256: aa3f0be5...bbd55</span>
               <span>•</span>
-              <a id="macsentinel-index-release-link" href="https://github.com/iamkuruphere-sudo/MacSentinel/releases/tag/v0.1.15" target="_blank" rel="noopener" style="color:var(--accent-neon-cyan); text-decoration:none;">GitHub Release v0.1.15 ↗</a>
+              <a id="macsentinel-index-release-link" href="https://github.com/iamkuruphere-sudo/MacSentinel/releases/tag/v0.1.15" target="_blank" rel="noopener" style="color:var(--accent-neon-cyan); text-decoration:none;" title="View MacSentinel v0.1.15 release tag, changelog, and source code on GitHub">GitHub Release v0.1.15 ↗</a>
               <span>•</span>
               <span>🔒 Zero-Knowledge Local Architecture</span>
             </div>
           </div>
           <div class="macsentinel-star-actions" style="display:flex; flex-direction:column; gap:0.75rem; justify-content:center; min-width:220px;">
-            <a id="macsentinel-index-download-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-gradient" style="padding:0.85rem 1.25rem; font-weight:700; font-size:0.95rem; justify-content:center; box-shadow:0 4px 20px rgba(34, 211, 238, 0.3);">
+            <a id="macsentinel-index-download-btn" href="downloads/mac/MacSentinel-arm64.dmg" download class="btn btn-gradient" style="padding:0.85rem 1.25rem; font-weight:700; font-size:0.95rem; justify-content:center; box-shadow:0 4px 20px rgba(34, 211, 238, 0.3);" title="Direct free download: MacSentinel v0.1.15 DMG for Apple Silicon Macs (2.07 MiB)">
               ⬇️ Download DMG Free (v0.1.15)
             </a>
-            <a href="macsentinel.html" class="btn btn-outline" style="padding:0.75rem 1.25rem; font-weight:600; font-size:0.9rem; justify-content:center; border-color:var(--accent-neon-cyan); color:var(--accent-neon-cyan);">
+            <a href="macsentinel.html" class="btn btn-outline" style="padding:0.75rem 1.25rem; font-weight:600; font-size:0.9rem; justify-content:center; border-color:var(--accent-neon-cyan); color:var(--accent-neon-cyan);" title="Explore detailed architecture, SIP, Gatekeeper, Unified Logging & audit specifications">
               Explore Full Audit Specs →
             </a>
           </div>
@@ -634,13 +629,13 @@
             <p class="platform-card-specs">
               Native Apple Silicon build. Zero-lag memory execution with native WebCrypto acceleration and full offline suite.
             </p>
-            <div id="platform-sha-mac-arm64" class="platform-checksum-box">
+            <div id="platform-sha-mac-arm64" class="platform-checksum-box" title="SHA-256 cryptographic digest for macOS Apple Silicon package">
               SHA-256: ca803788c43ac5626a797b35b422140553f56324dc1e8f50d64c803f810c4709
             </div>
-            <a id="platform-dl-mac-dmg" href="downloads/mac/FullstopSuite-arm64.dmg" download class="btn btn-gradient" style="width:100%; justify-content:center; margin-bottom:0.5rem; font-weight:700;">
+            <a id="platform-dl-mac-dmg" href="downloads/mac/FullstopSuite-arm64.dmg" download class="btn btn-gradient" style="width:100%; justify-content:center; margin-bottom:0.5rem; font-weight:700;" title="Direct free download: FullstopSuite-arm64.dmg for Apple Silicon Macs">
               ⬇️ Download DMG (Native App)
             </a>
-            <a id="platform-dl-mac-arm64" href="downloads/mac/fullstop-desktop-macos-arm64.zip" download class="btn btn-primary btn-sm" style="width:100%; justify-content:center;">
+            <a id="platform-dl-mac-arm64" href="downloads/mac/fullstop-desktop-macos-arm64.zip" download class="btn btn-primary btn-sm" style="width:100%; justify-content:center;" title="Direct free download: fullstop-desktop-macos-arm64.zip portable archive">
               📦 Download Portable (.zip)
             </a>
           </div>
@@ -658,10 +653,10 @@
             <p class="platform-card-specs">
               Optimized for Intel MacBooks & iMacs. Sandboxed execution with zero internet access required.
             </p>
-            <div id="platform-sha-mac-x64" class="platform-checksum-box">
+            <div id="platform-sha-mac-x64" class="platform-checksum-box" title="SHA-256 cryptographic digest for macOS Intel package">
               SHA-256: 45712c1f42b7f33852706b54c6e28100def243f3187eff7b30a26962184339e7
             </div>
-            <a id="platform-dl-mac-x64" href="downloads/mac/fullstop-desktop-macos-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+            <a id="platform-dl-mac-x64" href="downloads/mac/fullstop-desktop-macos-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;" title="Direct free download: fullstop-desktop-macos-x64.zip portable archive for Intel Macs">
               ⬇️ Download for Mac Intel (.zip)
             </a>
           </div>
@@ -679,10 +674,10 @@
             <p class="platform-card-specs">
               Zero-install portable distribution for Windows. Launch in 1 click with native WebView sandboxing.
             </p>
-            <div id="platform-sha-windows" class="platform-checksum-box">
+            <div id="platform-sha-windows" class="platform-checksum-box" title="SHA-256 cryptographic digest for Windows 64-bit package">
               SHA-256: 2434fdbfdf51a822cbcb8d05eb7de536fb0e3c55be21bf2cf4989eaa94d494bd
             </div>
-            <a id="platform-dl-windows" href="downloads/windows/fullstop-desktop-windows-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+            <a id="platform-dl-windows" href="downloads/windows/fullstop-desktop-windows-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;" title="Direct free download: fullstop-desktop-windows-x64.zip portable app for Windows 10 & 11">
               ⬇️ Download for Windows x64 (.zip)
             </a>
           </div>
@@ -700,10 +695,10 @@
             <p class="platform-card-specs">
               Universal desktop bundle with desktop launcher entry, XDG compliance, and standalone shell execution.
             </p>
-            <div id="platform-sha-linux" class="platform-checksum-box">
+            <div id="platform-sha-linux" class="platform-checksum-box" title="SHA-256 cryptographic digest for Linux Universal package">
               SHA-256: f0fe2aea0ff630f66493a06ed06e1c3658bc24bbb6b777f96052d514648f33a3
             </div>
-            <a id="platform-dl-linux" href="downloads/linux/fullstop-desktop-linux-x86_64.tar.gz" download class="btn btn-primary" style="width:100%; justify-content:center;">
+            <a id="platform-dl-linux" href="downloads/linux/fullstop-desktop-linux-x86_64.tar.gz" download class="btn btn-primary" style="width:100%; justify-content:center;" title="Direct free download: fullstop-desktop-linux-x86_64.tar.gz for Linux">
               ⬇️ Download for Linux (.tar.gz)
             </a>
           </div>
@@ -723,9 +718,9 @@
             </div>
           </div>
           <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-            <a href="downloads/SHA256SUMS.txt" target="_blank" class="btn btn-outline btn-sm">📄 View SHA256SUMS.txt</a>
-            <a href="downloads/FULLSTOP-SIGNATURE.asc" target="_blank" class="btn btn-outline btn-sm">🔏 View PGP Signature</a>
-            <button class="btn btn-gradient btn-sm" onclick="App.openSignatureModal()">Terminal Verify Guide</button>
+            <a href="downloads/SHA256SUMS.txt" target="_blank" class="btn btn-outline btn-sm" title="View official SHA-256 cryptographic checksums ledger">📄 View SHA256SUMS.txt</a>
+            <a href="downloads/FULLSTOP-SIGNATURE.asc" target="_blank" class="btn btn-outline btn-sm" title="View official GPG detached cryptographic signature">🔏 View PGP Signature</a>
+            <button class="btn btn-gradient btn-sm" onclick="App.openSignatureModal()" title="Open step-by-step cryptographic signature and checksum verification guide">Terminal Verify Guide</button>
           </div>
         </div>
       </div>
@@ -754,7 +749,7 @@
               We have eliminated all prices and paywalls across fullstopsolution.in. All <strong>Business OS systems, SEO growth matrices, developer SaaS boilerplates, and lifetime bundle archives</strong> are available for free instant direct download below.
             </p>
           </div>
-          <a href="#desktop" class="btn btn-outline btn-sm" style="border-color:#34d399; color:#34d399; font-weight:700;">🖥️ Explore Desktop Apps</a>
+          <a href="#desktop" class="btn btn-outline btn-sm" style="border-color:#34d399; color:#34d399; font-weight:700;" title="Browse cross-platform offline desktop workstation apps and MacSentinel DMG">🖥️ Explore Desktop Apps</a>
         </div>
 
         <div class="products-grid">
@@ -788,7 +783,7 @@
               </li>
             </ul>
             <div style="display:flex; flex-direction:column; gap:0.5rem;">
-              <button class="btn btn-primary btn-md" style="width:100%; justify-content:center; font-weight:700;" onclick="App.downloadStarterPack('business-os', 'Fullstop Ultimate Business OS')">⬇️ Download Free Business OS (.zip)</button>
+              <button class="btn btn-primary btn-md" style="width:100%; justify-content:center; font-weight:700;" onclick="App.downloadStarterPack('business-os', 'Fullstop Ultimate Business OS')" title="Direct free download: Fullstop Ultimate Business OS Notion hub and 30+ legal contracts archive (.zip)">⬇️ Download Free Business OS (.zip)</button>
             </div>
           </div>
 
@@ -822,7 +817,7 @@
               </li>
             </ul>
             <div style="display:flex; flex-direction:column; gap:0.5rem;">
-              <button class="btn btn-primary btn-md" style="width:100%; justify-content:center; font-weight:700;" onclick="App.downloadStarterPack('growth-seo', 'Growth & SEO Mastery Matrix')">⬇️ Download Free SEO Matrix (.zip)</button>
+              <button class="btn btn-primary btn-md" style="width:100%; justify-content:center; font-weight:700;" onclick="App.downloadStarterPack('growth-seo', 'Growth & SEO Mastery Matrix')" title="Direct free download: Full-Stack Growth & SEO Mastery directory checklists and blueprints (.zip)">⬇️ Download Free SEO Matrix (.zip)</button>
             </div>
           </div>
 
@@ -856,7 +851,7 @@
               </li>
             </ul>
             <div style="display:flex; flex-direction:column; gap:0.5rem;">
-              <button class="btn btn-primary btn-md" style="width:100%; justify-content:center; font-weight:700;" onclick="App.downloadStarterPack('dev-boilerplate', 'Developer Pro SaaS Boilerplate')">⬇️ Download Free SaaS Boilerplate (.zip)</button>
+              <button class="btn btn-primary btn-md" style="width:100%; justify-content:center; font-weight:700;" onclick="App.downloadStarterPack('dev-boilerplate', 'Developer Pro SaaS Boilerplate')" title="Direct free download: Developer Pro SaaS Boilerplate Next.js 15 production repository (.zip)">⬇️ Download Free SaaS Boilerplate (.zip)</button>
             </div>
           </div>
 
@@ -894,7 +889,7 @@
               </li>
             </ul>
             <div style="display:flex; flex-direction:column; gap:0.5rem;">
-              <button class="btn btn-gradient btn-md" style="width:100%; justify-content:center; font-weight:800; box-shadow:0 6px 25px rgba(34, 211, 238, 0.35);" onclick="App.downloadStarterPack('lifetime-bundle', 'The All-Access Lifetime Bundle')">⬇️ Download Complete Lifetime Bundle (.zip)</button>
+              <button class="btn btn-gradient btn-md" style="width:100%; justify-content:center; font-weight:800; box-shadow:0 6px 25px rgba(34, 211, 238, 0.35);" onclick="App.downloadStarterPack('lifetime-bundle', 'The All-Access Lifetime Bundle')" title="Direct free download: The All-Access Lifetime Bundle archive containing all toolkits (.zip)">⬇️ Download Complete Lifetime Bundle (.zip)</button>
             </div>
           </div>
         </div>
@@ -942,7 +937,7 @@
         <form id="lead-magnet-form" class="lead-form">
           <input type="text" id="lead-name" class="lead-input" placeholder="Your Full Name" required style="max-width:180px;">
           <input type="email" id="lead-email" class="lead-input" placeholder="Enter your business email address..." required>
-          <button type="submit" class="btn btn-gradient" style="white-space:nowrap;">Instant Access 📥</button>
+          <button type="submit" class="btn btn-gradient" style="white-space:nowrap;" title="Submit to receive instant free checklist and digital engineering updates">Instant Access 📥</button>
         </form>
       </div>
     </section>
@@ -960,7 +955,7 @@
 
         <div class="faq-grid">
           <div class="faq-item active">
-            <button class="faq-question">
+            <button class="faq-question" title="Toggle FAQ answer details">
               <span>Are all the daily tools really 100% free to use?</span>
               <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
@@ -970,7 +965,7 @@
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" title="Toggle FAQ answer details">
               <span>Is my sensitive data stored or sent to any server?</span>
               <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
@@ -980,7 +975,7 @@
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" title="Toggle FAQ answer details">
               <span>Are there any costs, subscriptions, or hidden fees?</span>
               <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
@@ -990,7 +985,7 @@
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" title="Toggle FAQ answer details">
               <span>Can I use the toolkits for commercial client work?</span>
               <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
@@ -1000,7 +995,7 @@
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question" title="Toggle FAQ answer details">
               <span>Do I need an account or license key to download?</span>
               <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
@@ -1018,7 +1013,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="brand">
+          <a href="/" class="brand" title="Fullstop Solution Home — Zero-Knowledge Privacy-First Digital Tools & Software">
             <img src="assets/images/logo.png" alt="Fullstop Solution Logo" class="brand-logo-img" width="42" height="42">
             <span class="brand-name">FULLSTOP SOLUTION<span class="brand-dot">.</span></span>
           </a>
@@ -1034,35 +1029,35 @@
         <div class="footer-col">
           <h4>Daily Tools</h4>
           <ul class="footer-links">
-            <li><a href="javascript:void(0)" onclick="App.openTool('meta', 'Meta Tag Generator')">Meta Tag Generator</a></li>
-            <li><a href="javascript:void(0)" onclick="App.openTool('password', 'Strong Password Generator')">Password Generator</a></li>
-            <li><a href="javascript:void(0)" onclick="App.openTool('json', 'JSON Formatter & Validator')">JSON Formatter</a></li>
-            <li><a href="javascript:void(0)" onclick="App.openTool('qr', 'QR Code Generator')">QR Code Maker</a></li>
-            <li><a href="javascript:void(0)" onclick="App.openTool('invoice', 'Invoice Generator')">Invoice Maker</a></li>
-            <li><a href="javascript:void(0)" onclick="App.openTool('gst', 'GST Calculator')">GST Calculator</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('meta', 'Meta Tag Generator')" title="Generate SEO & Social Graph meta tags for your website">Meta Tag Generator</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('password', 'Strong Password Generator')" title="Generate cryptographically secure randomized passwords and passphrases">Password Generator</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('json', 'JSON Formatter & Validator')" title="Validate, format, minify, and convert JSON data client-side">JSON Formatter</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('qr', 'QR Code Generator')" title="Generate custom QR codes for URLs, UPI, Wi-Fi, and vCards">QR Code Maker</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('invoice', 'Invoice Generator')" title="Create professional client-side invoices with automatic tax and discount calculations">Invoice Maker</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openTool('gst', 'GST Calculator')" title="Calculate GST inclusive and exclusive pricing across Indian tax slabs">GST Calculator</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Free Toolkits &amp; Apps</h4>
           <ul class="footer-links">
-            <li><a href="macsentinel.html" style="color:var(--accent-neon-cyan); font-weight:700;"><span style="color:#f59e0b;">★</span> MacSentinel App (Free)</a></li>
-            <li><a href="#products">Business OS Notion</a></li>
-            <li><a href="#products">Growth & SEO Toolkit</a></li>
-            <li><a href="#products">Developer SaaS Kit</a></li>
-            <li><a href="#products">Lifetime Access Pass</a></li>
-            <li><a href="#products">Directory Submissions</a></li>
+            <li><a href="macsentinel.html" style="color:var(--accent-neon-cyan); font-weight:700;" title="Download MacSentinel — Free native macOS endpoint security auditor"><span style="color:#f59e0b;">★</span> MacSentinel App (Free)</a></li>
+            <li><a href="#products" title="Download Fullstop Ultimate Business OS Notion templates free">Business OS Notion</a></li>
+            <li><a href="#products" title="Download Growth & SEO Mastery Toolkit free">Growth & SEO Toolkit</a></li>
+            <li><a href="#products" title="Download Developer SaaS Boilerplate codebase free">Developer SaaS Kit</a></li>
+            <li><a href="#products" title="Download All-in-One Lifetime Bundle archive free">Lifetime Access Pass</a></li>
+            <li><a href="#products" title="Download 150+ Curated SaaS Directory Submissions Database free">Directory Submissions</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Trust & Legal</h4>
           <ul class="footer-links">
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
-            <li><a href="security.html">Security Architecture</a></li>
-            <li><a href="sitemap.xml">XML Sitemap</a></li>
-            <li><a href="javascript:void(0)" onclick="App.openContactModal()">Contact Support</a></li>
+            <li><a href="privacy-policy.html" title="Read our zero-tracking zero-knowledge Privacy Policy">Privacy Policy</a></li>
+            <li><a href="terms.html" title="Read our Terms of Service & Open Commercial License">Terms of Service</a></li>
+            <li><a href="security.html" title="Review our Zero-Knowledge Security Architecture & In-Browser Sandboxing">Security Architecture</a></li>
+            <li><a href="sitemap.xml" title="View XML sitemap for search engine crawlers">XML Sitemap</a></li>
+            <li><a href="javascript:void(0)" onclick="App.openContactModal()" title="Open direct confidential contact inquiry form">Contact Support</a></li>
           </ul>
         </div>
       </div>
@@ -1088,7 +1083,7 @@
           <span style="font-size:1.5rem;">⚙️</span>
           <h3 class="modal-title" id="tool-modal-title">Interactive Tool</h3>
         </div>
-        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()" title="Close this dialog">✕ Close</button>
       </div>
       <div class="modal-body" id="tool-modal-body">
         <!-- Injected dynamically by ToolEngine -->
@@ -1104,7 +1099,7 @@
           <span style="font-size:1.5rem;">🎁</span>
           <h3 class="modal-title">Free Toolkit Download</h3>
         </div>
-        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()" title="Close this dialog">✕ Close</button>
       </div>
       <div class="modal-body" id="checkout-modal-body">
         <!-- Injected dynamically by Commerce -->
@@ -1120,7 +1115,7 @@
           <span style="font-size:1.5rem;">💬</span>
           <h3 class="modal-title">Contact Support & Inquiries</h3>
         </div>
-        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()" title="Close this dialog">✕ Close</button>
       </div>
       <div class="modal-body">
         <p style="font-size:0.875rem; color:#94a3b8; margin-bottom:1.25rem; line-height:1.5;">
@@ -1156,7 +1151,7 @@
 
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
             <span style="font-size:0.75rem; color:#64748b;">🔒 100% Private • Direct Administration Delivery</span>
-            <button type="submit" id="contact-submit-btn" class="btn btn-primary">
+            <button type="submit" id="contact-submit-btn" class="btn btn-primary" title="Send encrypted inquiry to Fullstop Solution support desk">
               Send Message →
             </button>
           </div>
@@ -1173,7 +1168,7 @@
           <span style="font-size:1.5rem;">🖥️</span>
           <h3 class="modal-title">Fullstop Desktop Suite • Cross-Platform Downloads</h3>
         </div>
-        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()" title="Close this dialog">✕ Close</button>
       </div>
       <div class="modal-body">
         <p style="font-size:0.9rem; color:#94a3b8; margin-bottom:1.5rem; line-height:1.5;">
@@ -1197,10 +1192,10 @@
             <div id="modal-sha-mac-arm64" class="platform-checksum-box">
               SHA-256: ca803788c43ac5626a797b35b422140553f56324dc1e8f50d64c803f810c4709
             </div>
-            <a href="downloads/mac/FullstopSuite-arm64.dmg" download class="btn btn-gradient" style="width:100%; justify-content:center; margin-bottom:0.5rem; font-weight:700;">
+            <a href="downloads/mac/FullstopSuite-arm64.dmg" download class="btn btn-gradient" style="width:100%; justify-content:center; margin-bottom:0.5rem; font-weight:700;" title="Download Fullstop Suite DMG for Apple Silicon Macs (M1/M2/M3/M4)">
               ⬇️ Download DMG (Native App)
             </a>
-            <a href="downloads/mac/fullstop-desktop-macos-arm64.zip" download class="btn btn-primary btn-sm" style="width:100%; justify-content:center;">
+            <a href="downloads/mac/fullstop-desktop-macos-arm64.zip" download class="btn btn-primary btn-sm" style="width:100%; justify-content:center;" title="Download portable standalone Apple Silicon macOS package">
               📦 Download Portable (.zip)
             </a>
           </div>
@@ -1221,7 +1216,7 @@
             <div id="modal-sha-mac-x64" class="platform-checksum-box">
               SHA-256: 45712c1f42b7f33852706b54c6e28100def243f3187eff7b30a26962184339e7
             </div>
-            <a href="downloads/mac/fullstop-desktop-macos-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+            <a href="downloads/mac/fullstop-desktop-macos-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;" title="Download portable standalone Intel x86_64 macOS package">
               ⬇️ Download Mac Intel (.zip)
             </a>
           </div>
@@ -1242,7 +1237,7 @@
             <div id="modal-sha-windows" class="platform-checksum-box">
               SHA-256: 2434fdbfdf51a822cbcb8d05eb7de536fb0e3c55be21bf2cf4989eaa94d494bd
             </div>
-            <a href="downloads/windows/fullstop-desktop-windows-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;">
+            <a href="downloads/windows/fullstop-desktop-windows-x64.zip" download class="btn btn-primary" style="width:100%; justify-content:center;" title="Download portable standalone Windows 64-bit package">
               ⬇️ Download Windows (.zip)
             </a>
           </div>
@@ -1263,7 +1258,7 @@
             <div id="modal-sha-linux" class="platform-checksum-box">
               SHA-256: f0fe2aea0ff630f66493a06ed06e1c3658bc24bbb6b777f96052d514648f33a3
             </div>
-            <a href="downloads/linux/fullstop-desktop-linux-x86_64.tar.gz" download class="btn btn-primary" style="width:100%; justify-content:center;">
+            <a href="downloads/linux/fullstop-desktop-linux-x86_64.tar.gz" download class="btn btn-primary" style="width:100%; justify-content:center;" title="Download portable standalone Linux 64-bit tarball">
               ⬇️ Download Linux (.tar.gz)
             </a>
           </div>
@@ -1274,9 +1269,9 @@
             🛡️ Issuer: Fullstop Solution Release Signing Authority • Key ID: <code>0x9E7F4B2C7D10A843</code>
           </div>
           <div style="display:flex; gap:0.5rem;">
-            <a href="downloads/SHA256SUMS.txt" target="_blank" class="btn btn-outline btn-xs">SHA256SUMS.txt</a>
-            <a href="downloads/FULLSTOP-SIGNATURE.asc" target="_blank" class="btn btn-outline btn-xs">PGP Signature</a>
-            <button class="btn btn-gradient btn-xs" onclick="App.openSignatureModal()">How to Verify</button>
+            <a href="downloads/SHA256SUMS.txt" target="_blank" class="btn btn-outline btn-xs" title="Open SHA256SUMS.txt file with cryptographic hashes for all packages">SHA256SUMS.txt</a>
+            <a href="downloads/FULLSTOP-SIGNATURE.asc" target="_blank" class="btn btn-outline btn-xs" title="Open PGP detached digital signature file">PGP Signature</a>
+            <button class="btn btn-gradient btn-xs" onclick="App.openSignatureModal()" title="View step-by-step cryptographic signature verification guide">How to Verify</button>
           </div>
         </div>
       </div>
@@ -1291,7 +1286,7 @@
           <span style="font-size:1.5rem;">🔏</span>
           <h3 class="modal-title">Cryptographic Signature & Integrity Verification</h3>
         </div>
-        <button class="btn btn-outline btn-sm" onclick="App.closeModals()">✕ Close</button>
+        <button class="btn btn-outline btn-sm" onclick="App.closeModals()" title="Close this dialog">✕ Close</button>
       </div>
       <div class="modal-body">
         <p style="font-size:0.875rem; color:#94a3b8; margin-bottom:1rem; line-height:1.5;">
@@ -1303,7 +1298,7 @@
           shasum -a 256 fullstop-desktop-macos-arm64.zip
         </div>
         <p style="font-size:0.8rem; color:var(--text-muted); margin:0.25rem 0 1rem 0;">
-          The output hash must exactly match the hash published in <a href="downloads/SHA256SUMS.txt" target="_blank" style="color:var(--accent-primary);">SHA256SUMS.txt</a>.
+          The output hash must exactly match the hash published in <a href="downloads/SHA256SUMS.txt" target="_blank" style="color:var(--accent-primary);" title="View official SHA256SUMS.txt manifest">SHA256SUMS.txt</a>.
         </p>
 
         <h4 style="color:var(--text-primary); font-size:0.95rem; margin:1rem 0 0.5rem 0;">2. Windows PowerShell Verification</h4>
@@ -1324,7 +1319,7 @@
             <strong style="color:var(--accent-neon-cyan); font-size:0.85rem;">Prefer Instant In-Browser Verification?</strong>
             <p style="margin:0; font-size:0.78rem; color:var(--text-secondary);">Use our client-side File Checksum Verifier to check your file in 1 second.</p>
           </div>
-          <button class="btn btn-primary btn-sm" onclick="App.openTool('hash', 'Cryptographic Hash & File Checksum Studio')">Open Verifier</button>
+          <button class="btn btn-primary btn-sm" onclick="App.openTool('hash', 'Cryptographic Hash & File Checksum Studio')" title="Launch client-side SHA-256 hash and checksum verifier tool">Open Verifier</button>
         </div>
       </div>
     </div>

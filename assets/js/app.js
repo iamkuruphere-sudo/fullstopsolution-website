@@ -70,24 +70,9 @@ const App = {
     }
   },
 
-  // 1. Theme Management (Dark / Light + Custom Presets)
+  // 1. Theme Management (Permanently Locked to Rich Black Dark Theme)
   initTheme() {
-    // Check if custom admin preset theme is saved
-    const customPreset = localStorage.getItem('fs_site_theme');
-    if (customPreset && typeof AdminTheme !== 'undefined') {
-      AdminTheme.applyTheme(customPreset);
-    }
-
-    const savedTheme = localStorage.getItem('fs_theme') || 
-      (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    this.setTheme(savedTheme);
-
-    const toggleBtn = document.getElementById('theme-toggle-btn');
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', () => {
-        this.toggleTheme();
-      });
-    }
+    this.setTheme('dark');
 
     // Sync product displays from catalog
     if (typeof Commerce !== 'undefined' && Commerce.updateProductPricingDisplays) {
@@ -96,26 +81,16 @@ const App = {
   },
 
   toggleTheme() {
-    const newTheme = this.theme === 'dark' ? 'light' : 'dark';
-    this.setTheme(newTheme);
+    // Permanent Dark Theme enforced across website
+    this.setTheme('dark');
   },
 
   setTheme(theme) {
-    this.theme = theme;
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('fs_theme', theme);
-    const icon = document.getElementById('theme-icon');
-    if (icon) {
-      icon.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
-    const mobileIcon = document.getElementById('mobile-theme-icon');
-    if (mobileIcon) {
-      mobileIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
-    const mobileText = document.getElementById('mobile-theme-text');
-    if (mobileText) {
-      mobileText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
-    }
+    this.theme = 'dark';
+    document.documentElement.setAttribute('data-theme', 'dark');
+    try {
+      localStorage.setItem('fs_theme', 'dark');
+    } catch (e) {}
   },
 
   // Mobile Navigation Drawer Toggle & Close

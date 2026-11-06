@@ -121,13 +121,13 @@
         <!-- Interactive Filter & Action Ribbon -->
         <div class="activity-controls-bar">
           <div class="activity-filter-pills" role="tablist" aria-label="Geographic Region Filter">
-            <button class="activity-pill active" data-region="all" role="tab" aria-selected="true">Global (All Nodes)</button>
-            <button class="activity-pill" data-region="asia" role="tab" aria-selected="false">Asia &amp; India</button>
-            <button class="activity-pill" data-region="europe" role="tab" aria-selected="false">Europe</button>
-            <button class="activity-pill" data-region="north-america" role="tab" aria-selected="false">North America</button>
-            <button class="activity-pill" data-region="south-america" role="tab" aria-selected="false">South America</button>
-            <button class="activity-pill" data-region="africa" role="tab" aria-selected="false">Africa</button>
-            <button class="activity-pill" data-region="oceania" role="tab" aria-selected="false">Australia / Oceania</button>
+            <button class="activity-pill active" data-region="all" role="tab" aria-selected="true" title="Filter activity stream to show all 22 global privacy nodes">Global (All Nodes)</button>
+            <button class="activity-pill" data-region="asia" role="tab" aria-selected="false" title="Filter activity stream to Asian &amp; Indian privacy nodes">Asia &amp; India</button>
+            <button class="activity-pill" data-region="europe" role="tab" aria-selected="false" title="Filter activity stream to European privacy nodes">Europe</button>
+            <button class="activity-pill" data-region="north-america" role="tab" aria-selected="false" title="Filter activity stream to North American privacy nodes">North America</button>
+            <button class="activity-pill" data-region="south-america" role="tab" aria-selected="false" title="Filter activity stream to South American privacy nodes">South America</button>
+            <button class="activity-pill" data-region="africa" role="tab" aria-selected="false" title="Filter activity stream to African privacy nodes">Africa</button>
+            <button class="activity-pill" data-region="oceania" role="tab" aria-selected="false" title="Filter activity stream to Australian and Oceania privacy nodes">Australia / Oceania</button>
           </div>
           <div class="activity-actions-wrap">
             <button id="activity-ping-test-btn" class="btn btn-outline btn-sm activity-test-ping-btn" title="Execute a genuine client-side cryptographic SHA-256 verification in your browser">
@@ -372,7 +372,8 @@
   function renderNodeMarkers() {
     return GLOBAL_NODES.map((node) => {
       return `
-        <g class="map-node-group" id="node-${node.id}" data-id="${node.id}" data-region="${node.region}" transform="translate(${node.x}, ${node.y})" tabindex="0" role="button" aria-label="${node.name}">
+        <g class="map-node-group" id="node-${node.id}" data-id="${node.id}" data-region="${node.region}" transform="translate(${node.x}, ${node.y})" tabindex="0" role="button" aria-label="${node.name}" title="${node.name} — Zero-Knowledge Edge Node (Latency: ${node.latency}ms)">
+          <title>${node.name} — Zero-Knowledge Edge Node (${node.latency}ms)</title>
           <!-- Outer Radar Ripple Wave -->
           <circle class="node-ripple-wave" r="14" fill="none" stroke="rgba(34, 211, 238, 0.4)" stroke-width="1.2"/>
           <circle class="node-ripple-wave-2" r="22" fill="none" stroke="rgba(34, 211, 238, 0.2)" stroke-width="0.8"/>
